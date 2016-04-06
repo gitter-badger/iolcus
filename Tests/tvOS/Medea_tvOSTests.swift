@@ -24,7 +24,7 @@
 //
 
 import XCTest
-@testable import Medea_tvOS
+@testable import Medea
 
 class Medea_tvOSTests: XCTestCase {
     

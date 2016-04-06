@@ -24,7 +24,7 @@
 //
 
 import XCTest
-@testable import Medea_iOS
+@testable import Medea
 
 class Medea_iOSTests: XCTestCase {
     

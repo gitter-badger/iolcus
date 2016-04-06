@@ -23,6 +23,8 @@
 //  SOFTWARE.
 //
 
+import Foundation
+
 public struct JSONDeserialization {
     
     private init() { }

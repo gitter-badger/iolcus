@@ -23,6 +23,8 @@
 //  SOFTWARE.
 //
 
+import Foundation
+
 public class JSONSerialization {
     
     private let scanner: Scanner<Character>

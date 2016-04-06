@@ -23,6 +23,8 @@
 //  SOFTWARE.
 //
 
+import Foundation
+
 public protocol JSONEncodable {
     
     func json() -> JSON
