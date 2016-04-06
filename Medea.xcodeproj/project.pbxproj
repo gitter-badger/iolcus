@@ -7,53 +7,43 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BA5B9B541CB42DDF003EF1CA /* MedeaOSX.h in Headers */ = {isa = PBXBuildFile; fileRef = BA5B9B531CB42DDF003EF1CA /* MedeaOSX.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BA5B9B5B1CB42DDF003EF1CA /* MedeaOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA5B9B511CB42DDF003EF1CA /* MedeaOSX.framework */; };
-		BA5B9B601CB42DDF003EF1CA /* MedeaOSXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B9B5F1CB42DDF003EF1CA /* MedeaOSXTests.swift */; };
-		BA5B9B731CB46249003EF1CA /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B9B6F1CB46249003EF1CA /* JSON.swift */; };
-		BA5B9B741CB46249003EF1CA /* JSON+Accessors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B9B701CB46249003EF1CA /* JSON+Accessors.swift */; };
-		BA5B9B751CB46249003EF1CA /* JSON+Initializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B9B711CB46249003EF1CA /* JSON+Initializers.swift */; };
-		BA5B9B761CB46249003EF1CA /* JSON+LiteralConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B9B721CB46249003EF1CA /* JSON+LiteralConvertible.swift */; };
-		BA5B9B791CB46371003EF1CA /* JSONConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B9B781CB46371003EF1CA /* JSONConstants.swift */; };
-		BA5B9B7D1CB465AB003EF1CA /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B9B7B1CB465AB003EF1CA /* Scanner.swift */; };
-		BA5B9B7E1CB465AB003EF1CA /* Set+PatternMatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B9B7C1CB465AB003EF1CA /* Set+PatternMatch.swift */; };
-		BA5B9B881CB4664F003EF1CA /* JSONArraySerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B9B801CB4664F003EF1CA /* JSONArraySerialization.swift */; };
-		BA5B9B891CB4664F003EF1CA /* JSONBoolSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B9B811CB4664F003EF1CA /* JSONBoolSerialization.swift */; };
-		BA5B9B8A1CB4664F003EF1CA /* JSONNullSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B9B821CB4664F003EF1CA /* JSONNullSerialization.swift */; };
-		BA5B9B8B1CB4664F003EF1CA /* JSONNumberSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B9B831CB4664F003EF1CA /* JSONNumberSerialization.swift */; };
-		BA5B9B8C1CB4664F003EF1CA /* JSONObjectSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B9B841CB4664F003EF1CA /* JSONObjectSerialization.swift */; };
-		BA5B9B8D1CB4664F003EF1CA /* JSONSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B9B851CB4664F003EF1CA /* JSONSerialization.swift */; };
-		BA5B9B8E1CB4664F003EF1CA /* JSONStringSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B9B861CB4664F003EF1CA /* JSONStringSerialization.swift */; };
-		BA5B9B8F1CB4664F003EF1CA /* JSONValueSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B9B871CB4664F003EF1CA /* JSONValueSerialization.swift */; };
-		BA5B9B991CB4670A003EF1CA /* JSONArrayDeserialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B9B911CB4670A003EF1CA /* JSONArrayDeserialization.swift */; };
-		BA5B9B9A1CB4670A003EF1CA /* JSONBoolDeserialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B9B921CB4670A003EF1CA /* JSONBoolDeserialization.swift */; };
-		BA5B9B9B1CB4670A003EF1CA /* JSONDeserialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B9B931CB4670A003EF1CA /* JSONDeserialization.swift */; };
-		BA5B9B9C1CB4670A003EF1CA /* JSONDoubleDeserialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B9B941CB4670A003EF1CA /* JSONDoubleDeserialization.swift */; };
-		BA5B9B9D1CB4670A003EF1CA /* JSONIntegerDeserialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B9B951CB4670A003EF1CA /* JSONIntegerDeserialization.swift */; };
-		BA5B9B9E1CB4670A003EF1CA /* JSONNullDeserialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B9B961CB4670A003EF1CA /* JSONNullDeserialization.swift */; };
-		BA5B9B9F1CB4670A003EF1CA /* JSONObjectDeserialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B9B971CB4670A003EF1CA /* JSONObjectDeserialization.swift */; };
-		BA5B9BA01CB4670A003EF1CA /* JSONStringDeserialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B9B981CB4670A003EF1CA /* JSONStringDeserialization.swift */; };
-		BA5B9BA41CB467B3003EF1CA /* JSONEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B9BA31CB467B3003EF1CA /* JSONEncodable.swift */; };
-		BA5B9BA61CB467BC003EF1CA /* JSONDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B9BA51CB467BC003EF1CA /* JSONDecodable.swift */; };
+		BA5FC1161CB5799700FBCB84 /* Medea_OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = BA5FC1151CB5799700FBCB84 /* Medea_OSX.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BA5FC11D1CB5799700FBCB84 /* Medea_OSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA5FC1131CB5799700FBCB84 /* Medea_OSX.framework */; };
+		BA5FC1221CB5799700FBCB84 /* Medea_OSXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5FC1211CB5799700FBCB84 /* Medea_OSXTests.swift */; };
+		BA5FC1321CB57CFE00FBCB84 /* Medea_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = BA5FC1311CB57CFE00FBCB84 /* Medea_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BA5FC1391CB57CFE00FBCB84 /* Medea_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA5FC12F1CB57CFE00FBCB84 /* Medea_iOS.framework */; };
+		BA5FC13E1CB57CFE00FBCB84 /* Medea_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5FC13D1CB57CFE00FBCB84 /* Medea_iOSTests.swift */; };
+		BA5FC1681CB5952500FBCB84 /* Medea_tvOS.h in Headers */ = {isa = PBXBuildFile; fileRef = BA5FC1671CB5952500FBCB84 /* Medea_tvOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BA5FC16F1CB5952500FBCB84 /* Medea_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA5FC1651CB5952500FBCB84 /* Medea_tvOS.framework */; };
+		BA5FC1741CB5952500FBCB84 /* Medea_tvOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5FC1731CB5952500FBCB84 /* Medea_tvOSTests.swift */; };
+		BAA6500D1CB599E8006F561A /* Medea_watchOS.h in Headers */ = {isa = PBXBuildFile; fileRef = BAA6500C1CB599E8006F561A /* Medea_watchOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		BA5B9B5C1CB42DDF003EF1CA /* PBXContainerItemProxy */ = {
+		BA5FC11E1CB5799700FBCB84 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BAF809211CB38E000055F146 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = BA5B9B501CB42DDF003EF1CA;
-			remoteInfo = MedeaOSX;
+			remoteGlobalIDString = BA5FC1121CB5799700FBCB84;
+			remoteInfo = "Medea-OSX";
+		};
+		BA5FC13A1CB57CFE00FBCB84 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BAF809211CB38E000055F146 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BA5FC12E1CB57CFE00FBCB84;
+			remoteInfo = Medea_iOS;
+		};
+		BA5FC1701CB5952500FBCB84 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BAF809211CB38E000055F146 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BA5FC1641CB5952500FBCB84;
+			remoteInfo = Medea_tvOS;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		BA5B9B511CB42DDF003EF1CA /* MedeaOSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MedeaOSX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BA5B9B531CB42DDF003EF1CA /* MedeaOSX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MedeaOSX.h; path = Source/Headers/MedeaOSX.h; sourceTree = "<group>"; };
-		BA5B9B551CB42DDF003EF1CA /* Info-OSX.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-OSX.plist"; path = "Support/Info-OSX.plist"; sourceTree = "<group>"; };
-		BA5B9B5A1CB42DDF003EF1CA /* MedeaOSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MedeaOSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BA5B9B5F1CB42DDF003EF1CA /* MedeaOSXTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MedeaOSXTests.swift; path = ../Tests/OSX/MedeaOSXTests.swift; sourceTree = "<group>"; };
-		BA5B9B611CB42DDF003EF1CA /* Info-Test-OSX.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-Test-OSX.plist"; path = "../Tests/Support/Info-Test-OSX.plist"; sourceTree = "<group>"; };
 		BA5B9B6F1CB46249003EF1CA /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSON.swift; path = Source/JSON.swift; sourceTree = "<group>"; };
 		BA5B9B701CB46249003EF1CA /* JSON+Accessors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSON+Accessors.swift"; path = "Source/JSON+Accessors.swift"; sourceTree = "<group>"; };
 		BA5B9B711CB46249003EF1CA /* JSON+Initializers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSON+Initializers.swift"; path = "Source/JSON+Initializers.swift"; sourceTree = "<group>"; };
@@ -79,40 +69,92 @@
 		BA5B9B981CB4670A003EF1CA /* JSONStringDeserialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONStringDeserialization.swift; path = Source/JSONStringDeserialization.swift; sourceTree = "<group>"; };
 		BA5B9BA31CB467B3003EF1CA /* JSONEncodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONEncodable.swift; path = Source/JSONEncodable.swift; sourceTree = "<group>"; };
 		BA5B9BA51CB467BC003EF1CA /* JSONDecodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONDecodable.swift; path = Source/JSONDecodable.swift; sourceTree = "<group>"; };
+		BA5FC1131CB5799700FBCB84 /* Medea_OSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Medea_OSX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA5FC1151CB5799700FBCB84 /* Medea_OSX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Medea_OSX.h; path = Source/Headers/Medea_OSX.h; sourceTree = "<group>"; };
+		BA5FC1171CB5799700FBCB84 /* Info_OSX.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info_OSX.plist; path = Support/Info_OSX.plist; sourceTree = "<group>"; };
+		BA5FC11C1CB5799700FBCB84 /* Medea_OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Medea_OSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA5FC1211CB5799700FBCB84 /* Medea_OSXTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Medea_OSXTests.swift; path = Tests/OSX/Medea_OSXTests.swift; sourceTree = "<group>"; };
+		BA5FC1231CB5799700FBCB84 /* Info_OSXTests.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info_OSXTests.plist; path = Tests/Support/Info_OSXTests.plist; sourceTree = "<group>"; };
+		BA5FC12F1CB57CFE00FBCB84 /* Medea_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Medea_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA5FC1311CB57CFE00FBCB84 /* Medea_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Medea_iOS.h; path = Source/Headers/Medea_iOS.h; sourceTree = "<group>"; };
+		BA5FC1331CB57CFE00FBCB84 /* Info_iOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info_iOS.plist; path = Support/Info_iOS.plist; sourceTree = "<group>"; };
+		BA5FC1381CB57CFE00FBCB84 /* Medea_iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Medea_iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA5FC13D1CB57CFE00FBCB84 /* Medea_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Medea_iOSTests.swift; path = Tests/iOS/Medea_iOSTests.swift; sourceTree = "<group>"; };
+		BA5FC13F1CB57CFE00FBCB84 /* Info_iOSTests.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info_iOSTests.plist; path = Tests/Support/Info_iOSTests.plist; sourceTree = "<group>"; };
+		BA5FC1651CB5952500FBCB84 /* Medea_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Medea_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA5FC1671CB5952500FBCB84 /* Medea_tvOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Medea_tvOS.h; path = Source/Headers/Medea_tvOS.h; sourceTree = "<group>"; };
+		BA5FC1691CB5952500FBCB84 /* Info-tvOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-tvOS.plist"; path = "Support/Info-tvOS.plist"; sourceTree = "<group>"; };
+		BA5FC16E1CB5952500FBCB84 /* Medea_tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Medea_tvOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA5FC1731CB5952500FBCB84 /* Medea_tvOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Medea_tvOSTests.swift; path = Tests/tvOS/Medea_tvOSTests.swift; sourceTree = "<group>"; };
+		BA5FC1751CB5952500FBCB84 /* Info_tvOSTests.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info_tvOSTests.plist; path = Tests/Support/Info_tvOSTests.plist; sourceTree = "<group>"; };
+		BAA6500A1CB599E8006F561A /* Medea_watchOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Medea_watchOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BAA6500C1CB599E8006F561A /* Medea_watchOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Medea_watchOS.h; path = Source/Headers/Medea_watchOS.h; sourceTree = "<group>"; };
+		BAA6500E1CB599E8006F561A /* Info-watchOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-watchOS.plist"; path = "Support/Info-watchOS.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		BA5B9B4D1CB42DDF003EF1CA /* Frameworks */ = {
+		BA5FC10F1CB5799700FBCB84 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BA5B9B571CB42DDF003EF1CA /* Frameworks */ = {
+		BA5FC1191CB5799700FBCB84 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA5B9B5B1CB42DDF003EF1CA /* MedeaOSX.framework in Frameworks */,
+				BA5FC11D1CB5799700FBCB84 /* Medea_OSX.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA5FC12B1CB57CFE00FBCB84 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA5FC1351CB57CFE00FBCB84 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA5FC1391CB57CFE00FBCB84 /* Medea_iOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA5FC1611CB5952500FBCB84 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA5FC16B1CB5952500FBCB84 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA5FC16F1CB5952500FBCB84 /* Medea_tvOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BAA650061CB599E8006F561A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		BA5B9B5E1CB42DDF003EF1CA /* MedeaOSXTests */ = {
-			isa = PBXGroup;
-			children = (
-				BA5B9B5F1CB42DDF003EF1CA /* MedeaOSXTests.swift */,
-				BA5B9B611CB42DDF003EF1CA /* Info-Test-OSX.plist */,
-			);
-			path = MedeaOSXTests;
-			sourceTree = "<group>";
-		};
 		BA5B9B681CB42EE9003EF1CA /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				BA5B9B551CB42DDF003EF1CA /* Info-OSX.plist */,
+				BA5FC1171CB5799700FBCB84 /* Info_OSX.plist */,
+				BA5FC1331CB57CFE00FBCB84 /* Info_iOS.plist */,
+				BA5FC1691CB5952500FBCB84 /* Info-tvOS.plist */,
+				BAA6500E1CB599E8006F561A /* Info-watchOS.plist */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -134,7 +176,10 @@
 		BA5B9B6E1CB45025003EF1CA /* Headers */ = {
 			isa = PBXGroup;
 			children = (
-				BA5B9B531CB42DDF003EF1CA /* MedeaOSX.h */,
+				BA5FC1151CB5799700FBCB84 /* Medea_OSX.h */,
+				BA5FC1311CB57CFE00FBCB84 /* Medea_iOS.h */,
+				BA5FC1671CB5952500FBCB84 /* Medea_tvOS.h */,
+				BAA6500C1CB599E8006F561A /* Medea_watchOS.h */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -206,12 +251,65 @@
 			name = Decoding;
 			sourceTree = "<group>";
 		};
+		BA5B9BC31CB4DDF3003EF1CA /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				BA5B9BC61CB4DE39003EF1CA /* Support */,
+				BA5B9BC41CB4DE17003EF1CA /* OSX */,
+				BA5B9BC51CB4DE20003EF1CA /* iOS */,
+				BA5B9BE31CB57667003EF1CA /* tvOS */,
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
+		BA5B9BC41CB4DE17003EF1CA /* OSX */ = {
+			isa = PBXGroup;
+			children = (
+				BA5FC1211CB5799700FBCB84 /* Medea_OSXTests.swift */,
+			);
+			name = OSX;
+			sourceTree = "<group>";
+		};
+		BA5B9BC51CB4DE20003EF1CA /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				BA5FC13D1CB57CFE00FBCB84 /* Medea_iOSTests.swift */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		BA5B9BC61CB4DE39003EF1CA /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				BA5FC1231CB5799700FBCB84 /* Info_OSXTests.plist */,
+				BA5FC13F1CB57CFE00FBCB84 /* Info_iOSTests.plist */,
+				BA5FC1751CB5952500FBCB84 /* Info_tvOSTests.plist */,
+			);
+			name = Support;
+			sourceTree = "<group>";
+		};
+		BA5B9BE31CB57667003EF1CA /* tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				BA5FC1731CB5952500FBCB84 /* Medea_tvOSTests.swift */,
+			);
+			name = tvOS;
+			sourceTree = "<group>";
+		};
+		BAA6500B1CB599E8006F561A /* Medea_watchOS */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Medea_watchOS;
+			sourceTree = "<group>";
+		};
 		BAF809201CB38E000055F146 = {
 			isa = PBXGroup;
 			children = (
 				BA5B9B681CB42EE9003EF1CA /* Support */,
 				BA5B9B6D1CB45012003EF1CA /* Source */,
-				BA5B9B5E1CB42DDF003EF1CA /* MedeaOSXTests */,
+				BA5B9BC31CB4DDF3003EF1CA /* Tests */,
+				BAA6500B1CB599E8006F561A /* Medea_watchOS */,
 				BAF8092B1CB38E000055F146 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -219,8 +317,13 @@
 		BAF8092B1CB38E000055F146 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BA5B9B511CB42DDF003EF1CA /* MedeaOSX.framework */,
-				BA5B9B5A1CB42DDF003EF1CA /* MedeaOSXTests.xctest */,
+				BA5FC1131CB5799700FBCB84 /* Medea_OSX.framework */,
+				BA5FC11C1CB5799700FBCB84 /* Medea_OSXTests.xctest */,
+				BA5FC12F1CB57CFE00FBCB84 /* Medea_iOS.framework */,
+				BA5FC1381CB57CFE00FBCB84 /* Medea_iOSTests.xctest */,
+				BA5FC1651CB5952500FBCB84 /* Medea_tvOS.framework */,
+				BA5FC16E1CB5952500FBCB84 /* Medea_tvOSTests.xctest */,
+				BAA6500A1CB599E8006F561A /* Medea_watchOS.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -228,52 +331,166 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		BA5B9B4E1CB42DDF003EF1CA /* Headers */ = {
+		BA5FC1101CB5799700FBCB84 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA5B9B541CB42DDF003EF1CA /* MedeaOSX.h in Headers */,
+				BA5FC1161CB5799700FBCB84 /* Medea_OSX.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA5FC12C1CB57CFE00FBCB84 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA5FC1321CB57CFE00FBCB84 /* Medea_iOS.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA5FC1621CB5952500FBCB84 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA5FC1681CB5952500FBCB84 /* Medea_tvOS.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BAA650071CB599E8006F561A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BAA6500D1CB599E8006F561A /* Medea_watchOS.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		BA5B9B501CB42DDF003EF1CA /* MedeaOSX */ = {
+		BA5FC1121CB5799700FBCB84 /* Medea_OSX */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BA5B9B661CB42DDF003EF1CA /* Build configuration list for PBXNativeTarget "MedeaOSX" */;
+			buildConfigurationList = BA5FC1241CB5799700FBCB84 /* Build configuration list for PBXNativeTarget "Medea_OSX" */;
 			buildPhases = (
-				BA5B9B4C1CB42DDF003EF1CA /* Sources */,
-				BA5B9B4D1CB42DDF003EF1CA /* Frameworks */,
-				BA5B9B4E1CB42DDF003EF1CA /* Headers */,
-				BA5B9B4F1CB42DDF003EF1CA /* Resources */,
+				BA5FC10E1CB5799700FBCB84 /* Sources */,
+				BA5FC10F1CB5799700FBCB84 /* Frameworks */,
+				BA5FC1101CB5799700FBCB84 /* Headers */,
+				BA5FC1111CB5799700FBCB84 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = MedeaOSX;
-			productName = MedeaOSX;
-			productReference = BA5B9B511CB42DDF003EF1CA /* MedeaOSX.framework */;
+			name = Medea_OSX;
+			productName = "Medea-OSX";
+			productReference = BA5FC1131CB5799700FBCB84 /* Medea_OSX.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		BA5B9B591CB42DDF003EF1CA /* MedeaOSXTests */ = {
+		BA5FC11B1CB5799700FBCB84 /* Medea_OSXTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BA5B9B671CB42DDF003EF1CA /* Build configuration list for PBXNativeTarget "MedeaOSXTests" */;
+			buildConfigurationList = BA5FC1271CB5799700FBCB84 /* Build configuration list for PBXNativeTarget "Medea_OSXTests" */;
 			buildPhases = (
-				BA5B9B561CB42DDF003EF1CA /* Sources */,
-				BA5B9B571CB42DDF003EF1CA /* Frameworks */,
-				BA5B9B581CB42DDF003EF1CA /* Resources */,
+				BA5FC1181CB5799700FBCB84 /* Sources */,
+				BA5FC1191CB5799700FBCB84 /* Frameworks */,
+				BA5FC11A1CB5799700FBCB84 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				BA5B9B5D1CB42DDF003EF1CA /* PBXTargetDependency */,
+				BA5FC11F1CB5799700FBCB84 /* PBXTargetDependency */,
 			);
-			name = MedeaOSXTests;
-			productName = MedeaOSXTests;
-			productReference = BA5B9B5A1CB42DDF003EF1CA /* MedeaOSXTests.xctest */;
+			name = Medea_OSXTests;
+			productName = "Medea-OSXTests";
+			productReference = BA5FC11C1CB5799700FBCB84 /* Medea_OSXTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		BA5FC12E1CB57CFE00FBCB84 /* Medea_iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BA5FC1401CB57CFE00FBCB84 /* Build configuration list for PBXNativeTarget "Medea_iOS" */;
+			buildPhases = (
+				BA5FC12A1CB57CFE00FBCB84 /* Sources */,
+				BA5FC12B1CB57CFE00FBCB84 /* Frameworks */,
+				BA5FC12C1CB57CFE00FBCB84 /* Headers */,
+				BA5FC12D1CB57CFE00FBCB84 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Medea_iOS;
+			productName = Medea_iOS;
+			productReference = BA5FC12F1CB57CFE00FBCB84 /* Medea_iOS.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		BA5FC1371CB57CFE00FBCB84 /* Medea_iOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BA5FC1431CB57CFE00FBCB84 /* Build configuration list for PBXNativeTarget "Medea_iOSTests" */;
+			buildPhases = (
+				BA5FC1341CB57CFE00FBCB84 /* Sources */,
+				BA5FC1351CB57CFE00FBCB84 /* Frameworks */,
+				BA5FC1361CB57CFE00FBCB84 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BA5FC13B1CB57CFE00FBCB84 /* PBXTargetDependency */,
+			);
+			name = Medea_iOSTests;
+			productName = Medea_iOSTests;
+			productReference = BA5FC1381CB57CFE00FBCB84 /* Medea_iOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		BA5FC1641CB5952500FBCB84 /* Medea_tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BA5FC1761CB5952500FBCB84 /* Build configuration list for PBXNativeTarget "Medea_tvOS" */;
+			buildPhases = (
+				BA5FC1601CB5952500FBCB84 /* Sources */,
+				BA5FC1611CB5952500FBCB84 /* Frameworks */,
+				BA5FC1621CB5952500FBCB84 /* Headers */,
+				BA5FC1631CB5952500FBCB84 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Medea_tvOS;
+			productName = Medea_tvOS;
+			productReference = BA5FC1651CB5952500FBCB84 /* Medea_tvOS.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		BA5FC16D1CB5952500FBCB84 /* Medea_tvOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BA5FC1791CB5952500FBCB84 /* Build configuration list for PBXNativeTarget "Medea_tvOSTests" */;
+			buildPhases = (
+				BA5FC16A1CB5952500FBCB84 /* Sources */,
+				BA5FC16B1CB5952500FBCB84 /* Frameworks */,
+				BA5FC16C1CB5952500FBCB84 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BA5FC1711CB5952500FBCB84 /* PBXTargetDependency */,
+			);
+			name = Medea_tvOSTests;
+			productName = Medea_tvOSTests;
+			productReference = BA5FC16E1CB5952500FBCB84 /* Medea_tvOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		BAA650091CB599E8006F561A /* Medea_watchOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BAA650111CB599E8006F561A /* Build configuration list for PBXNativeTarget "Medea_watchOS" */;
+			buildPhases = (
+				BAA650051CB599E8006F561A /* Sources */,
+				BAA650061CB599E8006F561A /* Frameworks */,
+				BAA650071CB599E8006F561A /* Headers */,
+				BAA650081CB599E8006F561A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Medea_watchOS;
+			productName = Medea_watchOS;
+			productReference = BAA6500A1CB599E8006F561A /* Medea_watchOS.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -283,12 +500,28 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0730;
-				ORGANIZATIONNAME = "Northern Forest";
+				ORGANIZATIONNAME = "";
 				TargetAttributes = {
-					BA5B9B501CB42DDF003EF1CA = {
+					BA5FC1121CB5799700FBCB84 = {
+						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = N539XG2HT8;
+					};
+					BA5FC11B1CB5799700FBCB84 = {
 						CreatedOnToolsVersion = 7.3;
 					};
-					BA5B9B591CB42DDF003EF1CA = {
+					BA5FC12E1CB57CFE00FBCB84 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					BA5FC1371CB57CFE00FBCB84 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					BA5FC1641CB5952500FBCB84 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					BA5FC16D1CB5952500FBCB84 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					BAA650091CB599E8006F561A = {
 						CreatedOnToolsVersion = 7.3;
 					};
 				};
@@ -305,21 +538,61 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				BA5B9B501CB42DDF003EF1CA /* MedeaOSX */,
-				BA5B9B591CB42DDF003EF1CA /* MedeaOSXTests */,
+				BA5FC1121CB5799700FBCB84 /* Medea_OSX */,
+				BA5FC11B1CB5799700FBCB84 /* Medea_OSXTests */,
+				BA5FC12E1CB57CFE00FBCB84 /* Medea_iOS */,
+				BA5FC1371CB57CFE00FBCB84 /* Medea_iOSTests */,
+				BA5FC1641CB5952500FBCB84 /* Medea_tvOS */,
+				BA5FC16D1CB5952500FBCB84 /* Medea_tvOSTests */,
+				BAA650091CB599E8006F561A /* Medea_watchOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		BA5B9B4F1CB42DDF003EF1CA /* Resources */ = {
+		BA5FC1111CB5799700FBCB84 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BA5B9B581CB42DDF003EF1CA /* Resources */ = {
+		BA5FC11A1CB5799700FBCB84 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA5FC12D1CB57CFE00FBCB84 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA5FC1361CB57CFE00FBCB84 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA5FC1631CB5952500FBCB84 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA5FC16C1CB5952500FBCB84 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BAA650081CB599E8006F561A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -329,115 +602,321 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		BA5B9B4C1CB42DDF003EF1CA /* Sources */ = {
+		BA5FC10E1CB5799700FBCB84 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA5B9B9D1CB4670A003EF1CA /* JSONIntegerDeserialization.swift in Sources */,
-				BA5B9BA61CB467BC003EF1CA /* JSONDecodable.swift in Sources */,
-				BA5B9B741CB46249003EF1CA /* JSON+Accessors.swift in Sources */,
-				BA5B9B8A1CB4664F003EF1CA /* JSONNullSerialization.swift in Sources */,
-				BA5B9B731CB46249003EF1CA /* JSON.swift in Sources */,
-				BA5B9B791CB46371003EF1CA /* JSONConstants.swift in Sources */,
-				BA5B9BA41CB467B3003EF1CA /* JSONEncodable.swift in Sources */,
-				BA5B9B751CB46249003EF1CA /* JSON+Initializers.swift in Sources */,
-				BA5B9B7E1CB465AB003EF1CA /* Set+PatternMatch.swift in Sources */,
-				BA5B9B7D1CB465AB003EF1CA /* Scanner.swift in Sources */,
-				BA5B9B8C1CB4664F003EF1CA /* JSONObjectSerialization.swift in Sources */,
-				BA5B9B8F1CB4664F003EF1CA /* JSONValueSerialization.swift in Sources */,
-				BA5B9B991CB4670A003EF1CA /* JSONArrayDeserialization.swift in Sources */,
-				BA5B9B9C1CB4670A003EF1CA /* JSONDoubleDeserialization.swift in Sources */,
-				BA5B9B881CB4664F003EF1CA /* JSONArraySerialization.swift in Sources */,
-				BA5B9B9B1CB4670A003EF1CA /* JSONDeserialization.swift in Sources */,
-				BA5B9B8E1CB4664F003EF1CA /* JSONStringSerialization.swift in Sources */,
-				BA5B9B891CB4664F003EF1CA /* JSONBoolSerialization.swift in Sources */,
-				BA5B9B9F1CB4670A003EF1CA /* JSONObjectDeserialization.swift in Sources */,
-				BA5B9B9A1CB4670A003EF1CA /* JSONBoolDeserialization.swift in Sources */,
-				BA5B9B8D1CB4664F003EF1CA /* JSONSerialization.swift in Sources */,
-				BA5B9B761CB46249003EF1CA /* JSON+LiteralConvertible.swift in Sources */,
-				BA5B9BA01CB4670A003EF1CA /* JSONStringDeserialization.swift in Sources */,
-				BA5B9B8B1CB4664F003EF1CA /* JSONNumberSerialization.swift in Sources */,
-				BA5B9B9E1CB4670A003EF1CA /* JSONNullDeserialization.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BA5B9B561CB42DDF003EF1CA /* Sources */ = {
+		BA5FC1181CB5799700FBCB84 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA5B9B601CB42DDF003EF1CA /* MedeaOSXTests.swift in Sources */,
+				BA5FC1221CB5799700FBCB84 /* Medea_OSXTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA5FC12A1CB57CFE00FBCB84 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA5FC1341CB57CFE00FBCB84 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA5FC13E1CB57CFE00FBCB84 /* Medea_iOSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA5FC1601CB5952500FBCB84 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA5FC16A1CB5952500FBCB84 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA5FC1741CB5952500FBCB84 /* Medea_tvOSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BAA650051CB599E8006F561A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		BA5B9B5D1CB42DDF003EF1CA /* PBXTargetDependency */ = {
+		BA5FC11F1CB5799700FBCB84 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = BA5B9B501CB42DDF003EF1CA /* MedeaOSX */;
-			targetProxy = BA5B9B5C1CB42DDF003EF1CA /* PBXContainerItemProxy */;
+			target = BA5FC1121CB5799700FBCB84 /* Medea_OSX */;
+			targetProxy = BA5FC11E1CB5799700FBCB84 /* PBXContainerItemProxy */;
+		};
+		BA5FC13B1CB57CFE00FBCB84 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BA5FC12E1CB57CFE00FBCB84 /* Medea_iOS */;
+			targetProxy = BA5FC13A1CB57CFE00FBCB84 /* PBXContainerItemProxy */;
+		};
+		BA5FC1711CB5952500FBCB84 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BA5FC1641CB5952500FBCB84 /* Medea_tvOS */;
+			targetProxy = BA5FC1701CB5952500FBCB84 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		BA5B9B621CB42DDF003EF1CA /* Debug */ = {
+		BA5FC1251CB5799700FBCB84 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "$(SRCROOT)/Support/Info-OSX.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Support/Info_OSX.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = nl.northernforest.MedeaOSX;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "nl.northernforest.medea-osx";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		BA5B9B631CB42DDF003EF1CA /* Release */ = {
+		BA5FC1261CB5799700FBCB84 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "$(SRCROOT)/Support/Info-OSX.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Support/Info_OSX.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = nl.northernforest.MedeaOSX;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "nl.northernforest.medea-osx";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
-		BA5B9B641CB42DDF003EF1CA /* Debug */ = {
+		BA5FC1281CB5799700FBCB84 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = MedeaOSXTests/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Tests/Support/Info_OSXTests.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = nl.northernforest.MedeaOSXTests;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "nl.northernforest.medea-osxtests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		BA5B9B651CB42DDF003EF1CA /* Release */ = {
+		BA5FC1291CB5799700FBCB84 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = MedeaOSXTests/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Tests/Support/Info_OSXTests.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = nl.northernforest.MedeaOSXTests;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "nl.northernforest.medea-osxtests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		BA5FC1411CB57CFE00FBCB84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/Support/Info_iOS.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "nl.northernforest.medea-ios";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BA5FC1421CB57CFE00FBCB84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/Support/Info_iOS.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "nl.northernforest.medea-ios";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BA5FC1441CB57CFE00FBCB84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "$(SRCROOT)/Tests/Support/Info_iOSTests.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "nl.northernforest.medea-iostests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		BA5FC1451CB57CFE00FBCB84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "$(SRCROOT)/Tests/Support/Info_iOSTests.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "nl.northernforest.medea-iostests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BA5FC1771CB5952500FBCB84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/Support/Info-tvOS.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "nl.northernforest.medea-tvos";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		BA5FC1781CB5952500FBCB84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/Support/Info-tvOS.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "nl.northernforest.medea-tvos";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BA5FC17A1CB5952500FBCB84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "$(SRCROOT)/Tests/Support/Info_tvOSTests.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "nl.northernforest.medea-tvostests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+			};
+			name = Debug;
+		};
+		BA5FC17B1CB5952500FBCB84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "$(SRCROOT)/Tests/Support/Info_tvOSTests.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "nl.northernforest.medea-tvostests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BAA6500F1CB599E8006F561A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/Support/Info-watchOS.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "nl.northernforest.medea-watchos";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		BAA650101CB599E8006F561A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/Support/Info-watchOS.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "nl.northernforest.medea-watchos";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
 		};
@@ -479,7 +958,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -521,7 +1001,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -532,23 +1013,67 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		BA5B9B661CB42DDF003EF1CA /* Build configuration list for PBXNativeTarget "MedeaOSX" */ = {
+		BA5FC1241CB5799700FBCB84 /* Build configuration list for PBXNativeTarget "Medea_OSX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BA5B9B621CB42DDF003EF1CA /* Debug */,
-				BA5B9B631CB42DDF003EF1CA /* Release */,
+				BA5FC1251CB5799700FBCB84 /* Debug */,
+				BA5FC1261CB5799700FBCB84 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BA5B9B671CB42DDF003EF1CA /* Build configuration list for PBXNativeTarget "MedeaOSXTests" */ = {
+		BA5FC1271CB5799700FBCB84 /* Build configuration list for PBXNativeTarget "Medea_OSXTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BA5B9B641CB42DDF003EF1CA /* Debug */,
-				BA5B9B651CB42DDF003EF1CA /* Release */,
+				BA5FC1281CB5799700FBCB84 /* Debug */,
+				BA5FC1291CB5799700FBCB84 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		BA5FC1401CB57CFE00FBCB84 /* Build configuration list for PBXNativeTarget "Medea_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA5FC1411CB57CFE00FBCB84 /* Debug */,
+				BA5FC1421CB57CFE00FBCB84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BA5FC1431CB57CFE00FBCB84 /* Build configuration list for PBXNativeTarget "Medea_iOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA5FC1441CB57CFE00FBCB84 /* Debug */,
+				BA5FC1451CB57CFE00FBCB84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BA5FC1761CB5952500FBCB84 /* Build configuration list for PBXNativeTarget "Medea_tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA5FC1771CB5952500FBCB84 /* Debug */,
+				BA5FC1781CB5952500FBCB84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BA5FC1791CB5952500FBCB84 /* Build configuration list for PBXNativeTarget "Medea_tvOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA5FC17A1CB5952500FBCB84 /* Debug */,
+				BA5FC17B1CB5952500FBCB84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BAA650111CB599E8006F561A /* Build configuration list for PBXNativeTarget "Medea_watchOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BAA6500F1CB599E8006F561A /* Debug */,
+				BAA650101CB599E8006F561A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		BAF809241CB38E000055F146 /* Build configuration list for PBXProject "Medea" */ = {
 			isa = XCConfigurationList;
