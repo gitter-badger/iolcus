@@ -34,7 +34,7 @@ final class JSONStringDeserialization: JSONDeserialization {
                 throw JSON.Exception.Serializing.UnexpectedEOF
             }
             
-            if opening != JSONConstants.stringOpening {
+            if opening != JSON.Constants.stringOpening {
                 throw JSON.Exception.Serializing.UnexpectedCharacter(character: opening, position: scannerPosition)
             }
         }
@@ -47,12 +47,12 @@ final class JSONStringDeserialization: JSONDeserialization {
             }
             
             switch character {
-            case JSONConstants.stringClosing:
+            case JSON.Constants.stringClosing:
                 break readLoop
-            case JSONConstants.stringEscape:
+            case JSON.Constants.stringEscape:
                 let escapedCharacter = try readEscapedCharacter()
                 string.append(escapedCharacter)
-            case JSONConstants.stringForbidden:
+            case JSON.Constants.stringForbidden:
                 throw JSON.Exception.Serializing.UnexpectedCharacter(character: character, position: scannerPosition)
             default:
                 string.append(character)
@@ -66,7 +66,7 @@ final class JSONStringDeserialization: JSONDeserialization {
                 throw JSON.Exception.Serializing.UnexpectedEOF
             }
             
-            if ending != JSONConstants.stringClosing {
+            if ending != JSON.Constants.stringClosing {
                 throw JSON.Exception.Serializing.UnexpectedCharacter(character: ending, position: scannerPosition)
             }
         }
@@ -86,7 +86,7 @@ final class JSONStringDeserialization: JSONDeserialization {
                 throw JSON.Exception.Serializing.UnexpectedEOF
             }
             
-            if escapeCharacter != JSONConstants.stringEscape {
+            if escapeCharacter != JSON.Constants.stringEscape {
                 throw JSON.Exception.Serializing.UnexpectedCharacter(character: escapeCharacter, position: scannerPosition)
             }
         }
@@ -95,11 +95,11 @@ final class JSONStringDeserialization: JSONDeserialization {
             throw JSON.Exception.Serializing.UnexpectedEOF
         }
         
-        if let mapping = JSONConstants.stringUnescapeMap[escapeClassifier] {
+        if let mapping = JSON.Constants.stringUnescapeMap[escapeClassifier] {
             return mapping
         }
 
-        if escapeClassifier == JSONConstants.stringEscapeUnicode {
+        if escapeClassifier == JSON.Constants.stringEscapeUnicode {
             return try readEscapedUnicodeCharacter()
         }
         
@@ -112,7 +112,7 @@ final class JSONStringDeserialization: JSONDeserialization {
                 throw JSON.Exception.Serializing.UnexpectedEOF
             }
             
-            if escapeCharacter != JSONConstants.stringEscape {
+            if escapeCharacter != JSON.Constants.stringEscape {
                 throw JSON.Exception.Serializing.UnexpectedCharacter(character: escapeCharacter, position: scannerPosition)
             }
             
@@ -120,7 +120,7 @@ final class JSONStringDeserialization: JSONDeserialization {
                 throw JSON.Exception.Serializing.UnexpectedEOF
             }
             
-            if escapeClassifier != JSONConstants.stringEscapeUnicode {
+            if escapeClassifier != JSON.Constants.stringEscapeUnicode {
                 throw JSON.Exception.Serializing.UnexpectedCharacter(character: escapeClassifier, position: scannerPosition)
             }
         }
@@ -140,7 +140,7 @@ final class JSONStringDeserialization: JSONDeserialization {
                 throw JSON.Exception.Serializing.UnexpectedEOF
             }
             
-            if escapeCharacter != JSONConstants.stringEscape {
+            if escapeCharacter != JSON.Constants.stringEscape {
                 throw JSON.Exception.Serializing.UnexpectedCharacter(character: escapeCharacter, position: scannerPosition)
             }
             
@@ -148,7 +148,7 @@ final class JSONStringDeserialization: JSONDeserialization {
                 throw JSON.Exception.Serializing.UnexpectedEOF
             }
             
-            if escapeClassifier != JSONConstants.stringEscapeUnicode {
+            if escapeClassifier != JSON.Constants.stringEscapeUnicode {
                 throw JSON.Exception.Serializing.UnexpectedCharacter(character: escapeClassifier, position: scannerPosition)
             }
         }

@@ -32,12 +32,12 @@ struct JSONArraySerialization: GeneratorType {
             JSONSerialization.generatorWithJSON($0)
         }
         
-        let opening = AnyGenerator(GeneratorOfOne(JSONConstants.arrayOpening))
+        let opening = AnyGenerator(GeneratorOfOne(JSON.Constants.arrayOpening))
         let body = AnyGenerator(JoinGenerator(
             base: elementDeserializations.generate(),
-            separator: GeneratorOfOne(JSONConstants.arraySeparator)
+            separator: GeneratorOfOne(JSON.Constants.arraySeparator)
         ))
-        let closing = AnyGenerator(GeneratorOfOne(JSONConstants.arrayClosing))
+        let closing = AnyGenerator(GeneratorOfOne(JSON.Constants.arrayClosing))
         
         var generator = JoinGenerator(
             base: [opening, body, closing].generate(),

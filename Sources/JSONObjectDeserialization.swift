@@ -34,7 +34,7 @@ final class JSONObjectDeserialization: JSONDeserialization {
                 throw JSON.Exception.Serializing.UnexpectedEOF
             }
             
-            if opening != JSONConstants.objectOpening {
+            if opening != JSON.Constants.objectOpening {
                 throw JSON.Exception.Serializing.UnexpectedCharacter(character: opening, position: scannerPosition)
             }
         }
@@ -48,7 +48,7 @@ final class JSONObjectDeserialization: JSONDeserialization {
                 throw JSON.Exception.Serializing.UnexpectedEOF
             }
             
-            if ending == JSONConstants.objectClosing {
+            if ending == JSON.Constants.objectClosing {
                 break readLoop
             }
             
@@ -67,7 +67,7 @@ final class JSONObjectDeserialization: JSONDeserialization {
                     throw JSON.Exception.Serializing.UnexpectedEOF
                 }
                 
-                if keyValueSeparator != JSONConstants.objectKeyValueSeparator {
+                if keyValueSeparator != JSON.Constants.objectKeyValueSeparator {
                     throw JSON.Exception.Serializing.UnexpectedCharacter(character: keyValueSeparator, position: scannerPosition)
                 }
             }
@@ -84,7 +84,7 @@ final class JSONObjectDeserialization: JSONDeserialization {
                 throw JSON.Exception.Serializing.UnexpectedEOF
             }
             
-            if separator != JSONConstants.objectPropertySeparator {
+            if separator != JSON.Constants.objectPropertySeparator {
                 break readLoop
             }
             
@@ -96,7 +96,7 @@ final class JSONObjectDeserialization: JSONDeserialization {
                 throw JSON.Exception.Serializing.UnexpectedEOF
             }
             
-            if ending != JSONConstants.objectClosing {
+            if ending != JSON.Constants.objectClosing {
                 throw JSON.Exception.Serializing.UnexpectedCharacter(character: ending, position: scannerPosition)
             }
         }

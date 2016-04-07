@@ -34,7 +34,7 @@ final class JSONArrayDeserialization: JSONDeserialization {
                 throw JSON.Exception.Serializing.UnexpectedEOF
             }
             
-            if opening != JSONConstants.arrayOpening {
+            if opening != JSON.Constants.arrayOpening {
                 throw JSON.Exception.Serializing.UnexpectedCharacter(character: opening, position: scannerPosition)
             }
         }
@@ -48,7 +48,7 @@ final class JSONArrayDeserialization: JSONDeserialization {
                 throw JSON.Exception.Serializing.UnexpectedEOF
             }
             
-            if ending == JSONConstants.arrayClosing {
+            if ending == JSON.Constants.arrayClosing {
                 break readLoop
             }
             
@@ -64,7 +64,7 @@ final class JSONArrayDeserialization: JSONDeserialization {
                 throw JSON.Exception.Serializing.UnexpectedEOF
             }
             
-            if separator != JSONConstants.arraySeparator {
+            if separator != JSON.Constants.arraySeparator {
                 break readLoop
             }
             
@@ -76,7 +76,7 @@ final class JSONArrayDeserialization: JSONDeserialization {
                 throw JSON.Exception.Serializing.UnexpectedEOF
             }
             
-            if ending != JSONConstants.arrayClosing {
+            if ending != JSON.Constants.arrayClosing {
                 throw JSON.Exception.Serializing.UnexpectedCharacter(character: ending, position: scannerPosition)
             }
         }

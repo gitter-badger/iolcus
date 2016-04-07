@@ -34,17 +34,17 @@ final class JSONValueDeserialization: JSONDeserialization {
         }
         
         switch opening {
-        case JSONConstants.objectOpening:
+        case JSON.Constants.objectOpening:
             return try deserializeObject()
-        case JSONConstants.arrayOpening:
+        case JSON.Constants.arrayOpening:
             return try deserializeArray()
-        case JSONConstants.numberOpenings:
+        case JSON.Constants.numberOpenings:
             return try deserializeNumber()
-        case JSONConstants.stringOpening:
+        case JSON.Constants.stringOpening:
             return try deserializeString()
-        case JSONConstants.trueSequence[0], JSONConstants.falseSequence[0]:
+        case JSON.Constants.trueSequence[0], JSON.Constants.falseSequence[0]:
             return try deserializeBool()
-        case JSONConstants.nullSequence[0]:
+        case JSON.Constants.nullSequence[0]:
             return try deserializeNull()
         default:
             throw JSON.Exception.Serializing.UnexpectedCharacter(character: opening, position: scannerPosition)

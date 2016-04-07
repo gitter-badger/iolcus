@@ -1,16 +1,16 @@
 //
-//  JSONConstants.swift
+//  JSON+Constants.swift
 //  Medea
 //
 //  Created by Anton Bronnikov on 24/03/2016.
 //  Copyright © 2016 northernforest. All rights reserved.
 //
 
-struct JSONConstants {
+extension JSON.Constants {
     
     static let whitespace : Set<Character> = [ " ", "\t", "\r", "\n" ]
     
-    static let nullSequence : [Character] = [ "n", "u", "l", "l" ]
+    static let nullSequence  : [Character] = [ "n", "u", "l", "l" ]
     
     static let trueSequence  : [Character] = [ "t", "r", "u", "e" ]
     static let falseSequence : [Character] = [ "f", "a", "l", "s", "e" ]
@@ -48,9 +48,9 @@ struct JSONConstants {
                                                          "\u{2f}" : "/",
                                                          "\u{5c}" : "\\" ]
     
-    static let stringForbidden     : Set<Character> = [ "\u{00}", "\u{01}", "\u{02}", "\u{03}", "\u{04}", "\u{05}", "\u{06}", "\u{07}",
-                                                        "\u{08}", "\u{09}", "\u{0a}", "\u{0b}", "\u{0c}", "\u{0d}", "\u{0e}", "\u{0f}",
-                                                        "\u{10}", "\u{11}", "\u{12}", "\u{13}", "\u{14}", "\u{15}", "\u{16}", "\u{17}",
-                                                        "\u{18}", "\u{19}", "\u{1a}", "\u{1b}", "\u{1c}", "\u{1d}", "\u{1e}", "\u{1f}" ]
+    static let stringForbidden : Set<Character> = [ "\u{00}", "\u{01}", "\u{02}", "\u{03}", "\u{04}", "\u{05}", "\u{06}", "\u{07}",
+                                                    "\u{08}", "\u{09}", "\u{0a}", "\u{0b}", "\u{0c}", "\u{0d}", "\u{0e}", "\u{0f}",
+                                                    "\u{10}", "\u{11}", "\u{12}", "\u{13}", "\u{14}", "\u{15}", "\u{16}", "\u{17}",
+                                                    "\u{18}", "\u{19}", "\u{1a}", "\u{1b}", "\u{1c}", "\u{1d}", "\u{1e}", "\u{1f}" ]
     
 }

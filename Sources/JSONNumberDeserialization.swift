@@ -36,7 +36,7 @@ final class JSONNumberDeserialization: JSONDeserialization {
                 throw JSON.Exception.Serializing.UnexpectedEOF
             }
             
-            if !JSONConstants.numberCharacters.contains(character) {
+            if !JSON.Constants.numberCharacters.contains(character) {
                 resetPeekedCharacters()
                 break readLoop
             }

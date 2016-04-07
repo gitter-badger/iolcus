@@ -32,7 +32,7 @@ struct JSONObjectSerialization: GeneratorType {
             (key: String, value: JSON) -> AnyGenerator<Character> in
             
             let key = AnyGenerator(JSONStringSerialization(key))
-            let separator = AnyGenerator(GeneratorOfOne(JSONConstants.objectKeyValueSeparator))
+            let separator = AnyGenerator(GeneratorOfOne(JSON.Constants.objectKeyValueSeparator))
             let value = JSONSerialization.generatorWithJSON(value)
             
             return AnyGenerator(JoinGenerator(
@@ -41,12 +41,12 @@ struct JSONObjectSerialization: GeneratorType {
             ))
         }
         
-        let opening = AnyGenerator(GeneratorOfOne(JSONConstants.objectOpening))
+        let opening = AnyGenerator(GeneratorOfOne(JSON.Constants.objectOpening))
         let body = AnyGenerator(JoinGenerator(
             base: propertyDeserializations.generate(),
-            separator: GeneratorOfOne(JSONConstants.arraySeparator)
+            separator: GeneratorOfOne(JSON.Constants.arraySeparator)
         ))
-        let closing = AnyGenerator(GeneratorOfOne(JSONConstants.objectClosing))
+        let closing = AnyGenerator(GeneratorOfOne(JSON.Constants.objectClosing))
 
         var generator = JoinGenerator(
             base: [opening, body, closing].generate(),

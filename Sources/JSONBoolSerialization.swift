@@ -28,7 +28,7 @@ struct JSONBoolSerialization: GeneratorType {
     private let nextCharacter: Void -> Character?
     
     init(_ boolean: Bool) {
-        var generator = (boolean ? JSONConstants.trueSequence : JSONConstants.falseSequence).generate()
+        var generator = (boolean ? JSON.Constants.trueSequence : JSON.Constants.falseSequence).generate()
         
         nextCharacter = {
             return generator.next()

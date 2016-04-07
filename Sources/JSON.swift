@@ -56,6 +56,8 @@ public indirect enum JSON {
         
     }
     
+    struct Constants { }
+    
 }
 
 // MARK: - Equatable

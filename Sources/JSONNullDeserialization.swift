@@ -29,7 +29,7 @@ final class JSONNullDeserialization: JSONDeserialization {
         resetPeekedCharacters()
         skipWhitespaceCharacters()
         
-        try JSONConstants.nullSequence.forEach() {
+        try JSON.Constants.nullSequence.forEach() {
             guard let character = readCharacter() else {
                 throw JSON.Exception.Serializing.UnexpectedEOF
             }

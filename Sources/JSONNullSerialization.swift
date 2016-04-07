@@ -26,7 +26,7 @@
 struct JSONNullSerialization: GeneratorType {
 
     private let nextCharacter: Void -> Character? = {
-        var generator = JSONConstants.nullSequence.generate()
+        var generator = JSON.Constants.nullSequence.generate()
         return {
             return generator.next()
         }

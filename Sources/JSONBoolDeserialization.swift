@@ -34,9 +34,9 @@ final class JSONBoolDeserialization: JSONDeserialization {
         }
         
         switch opening {
-        case JSONConstants.trueSequence[0]:
+        case JSON.Constants.trueSequence[0]:
             return try deserializeTrue()
-        case JSONConstants.falseSequence[0]:
+        case JSON.Constants.falseSequence[0]:
             return try deserializeFalse()
         default:
             throw JSON.Exception.Serializing.UnexpectedCharacter(character: opening, position: scannerPosition)
@@ -44,7 +44,7 @@ final class JSONBoolDeserialization: JSONDeserialization {
     }
     
     private func deserializeTrue() throws -> JSON? {
-        try JSONConstants.trueSequence.forEach() {
+        try JSON.Constants.trueSequence.forEach() {
             guard let character = readCharacter() else {
                 throw JSON.Exception.Serializing.UnexpectedEOF
             }
@@ -58,7 +58,7 @@ final class JSONBoolDeserialization: JSONDeserialization {
     }
     
     private func deserializeFalse() throws -> JSON {
-        try JSONConstants.falseSequence.forEach() {
+        try JSON.Constants.falseSequence.forEach() {
             guard let character = readCharacter() else {
                 throw JSON.Exception.Serializing.UnexpectedEOF
             }

@@ -55,7 +55,7 @@ public class JSONDeserialization {
     }
     
     final func skipWhitespaceCharacters() {
-        scanner.skipWhile(JSONConstants.whitespace.contains)
+        scanner.skipWhile(JSON.Constants.whitespace.contains)
     }
 
     // MARK: - Internal deserialization
