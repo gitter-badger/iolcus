@@ -25,7 +25,7 @@
 
 import Foundation
 
-public class JSONDeserialization {
+class JSONDeserialization {
     
     private let scanner: Scanner<Character>
     var scannerPosition: Int { return scanner.position }
@@ -94,30 +94,26 @@ public class JSONDeserialization {
     
 }
 
-// MARK: - Exposed API
+// MARK: -
 
 extension JSONDeserialization {
     
-    /// Parses a `string` into a `JSON` value.
-    public static func jsonWithString(string: Swift.String) throws -> JSON? {
+    static func jsonWithString(string: Swift.String) throws -> JSON? {
         let scanner = Scanner(string.characters)
         return try deserializeFromScanner(scanner)
     }
     
-    /// Parses a `sequence` of characters into a `JSON` value.
-    public static func jsonWithSequence<S: SequenceType where S.Generator.Element == Character>(sequence: S) throws -> JSON? {
+    static func jsonWithSequence<S: SequenceType where S.Generator.Element == Character>(sequence: S) throws -> JSON? {
         let scanner = Scanner(sequence)
         return try deserializeFromScanner(scanner)
     }
     
-    /// Parses the chain of characters produced by `generator` into a `JSON` value.
-    public static func jsonWithGenerator<G: GeneratorType where G.Element == Character>(generator: G) throws -> JSON? {
+    static func jsonWithGenerator<G: GeneratorType where G.Element == Character>(generator: G) throws -> JSON? {
         let scanner = Scanner(generator)
         return try deserializeFromScanner(scanner)
     }
     
-    /// Uses the `closure` to read the chain of characters and parses it into a `JSON` value.
-    public static func jsonWithClosure(closure: Void -> Character?) throws -> JSON? {
+    static func jsonWithClosure(closure: Void -> Character?) throws -> JSON? {
         let scanner = Scanner(closure)
         return try deserializeFromScanner(scanner)
     }
@@ -136,68 +132,3 @@ extension JSONDeserialization {
     }
     
 }
-
-// MARK: - Foundation version of JSON
-
-#if os(OSX) || os(iOS) || os(tvOS)
-    
-extension JSONDeserialization {
-    
-    public static func jsonWithNSJSON(nsjson: AnyObject) throws -> JSON {
-        if let json = nsjson as? [NSString: AnyObject] {
-            return try jsonWithNSJSON(json)
-        }
-        
-        if let json = nsjson as? [AnyObject] {
-            return try jsonWithNSJSON(json)
-        }
-        
-        if let json = nsjson as? NSString {
-            return try jsonWithNSJSON(json)
-        }
-        
-        if let json = nsjson as? NSNumber {
-            return try jsonWithNSJSON(json)
-        }
-        
-        if let json = nsjson as? NSNull {
-            return try jsonWithNSJSON(json)
-        }
-        
-        throw JSON.Exception.Serializing.FailedToReadNSJSON(type: nsjson.dynamicType)
-    }
-    
-    private static func jsonWithNSJSON(nsjson: NSNull) throws -> JSON {
-        return .Null
-    }
-    
-    private static func jsonWithNSJSON(nsjson: NSNumber) throws -> JSON {
-        let double = nsjson.doubleValue
-        return .Double(double)
-    }
-    
-    private static func jsonWithNSJSON(nsjson: NSString) throws -> JSON {
-        let string = nsjson as Swift.String
-        return .String(string)
-    }
-    
-    private static func jsonWithNSJSON(nsjson: [AnyObject]) throws -> JSON {
-        let array = try nsjson.map() {
-            try jsonWithNSJSON($0)
-        }
-        return .Array(array)
-    }
-    
-    private static func jsonWithNSJSON(nsjson: [NSString: AnyObject]) throws -> JSON {
-        var properties: [Swift.String: JSON] = [:]
-        try nsjson.forEach() {
-            let key = $0 as Swift.String
-            let value = try jsonWithNSJSON($1)
-            properties[key] = value
-        }
-        return .Object(properties)
-    }
-
-}
-    
-#endif

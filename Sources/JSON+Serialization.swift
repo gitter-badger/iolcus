@@ -1,5 +1,5 @@
 //
-//  JSON+Initializers.swift
+//  JSON+Serialization.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -24,25 +24,20 @@
 //
 
 extension JSON {
-    
-    /// Creates a `JSON` value from the instance of `JSONEncodable`.
-    public init<J: JSONEncodable>(_ element: J) {
-        self = element.encodeJSON()
+
+    /// Serializes a `JSON` value into the `String`.
+    public static func stringWithJSON(json: JSON) -> Swift.String {
+        return JSONSerialization.stringWithJSON(json)
     }
     
-    /// Creates a `JSON` value from the array of `JSONEncodable`'s.
-    public init<J: JSONEncodable>(_ elements: [J]) {
-        self = elements.encodeJSON()
+    /// Serializes a `JSON` value into the sequence of `Character`'s.
+    public static func sequenceWithJSON(json: JSON) -> AnySequence<Character> {
+        return JSONSerialization.sequenceWithJSON(json)
     }
-    
-    /// Creates a `JSON` value from the list of `JSONEncodable`'s.
-    public init<J: JSONEncodable>(_ elements: J...) {
-        self = elements.encodeJSON()
-    }
-    
-    /// Creates a `JSON` value from the dictionary of `[String: JSONEncodable]`.
-    public init<J: JSONEncodable>(_ properties: [Swift.String: J]) {
-        self = properties.encodeJSON()
+
+    /// Creates a `Character` generator that serializes the `JSON` value.
+    public static func generatorWithJSON(json: JSON) -> AnyGenerator<Character> {
+        return JSONSerialization.generatorWithJSON(json)
     }
     
 }

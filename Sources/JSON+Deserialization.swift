@@ -1,5 +1,5 @@
 //
-//  JSON+Initializers.swift
+//  JSON+Deserialization.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -24,25 +24,25 @@
 //
 
 extension JSON {
-    
-    /// Creates a `JSON` value from the instance of `JSONEncodable`.
-    public init<J: JSONEncodable>(_ element: J) {
-        self = element.encodeJSON()
+ 
+    /// Parses a `string` into the `JSON` value.
+    public static func jsonWithString(string: Swift.String) throws -> JSON? {
+        return try JSONDeserialization.jsonWithString(string)
     }
     
-    /// Creates a `JSON` value from the array of `JSONEncodable`'s.
-    public init<J: JSONEncodable>(_ elements: [J]) {
-        self = elements.encodeJSON()
+    /// Parses a `sequence` of characters into the `JSON` value.
+    public static func jsonWithSequence<S: SequenceType where S.Generator.Element == Character>(sequence: S) throws -> JSON? {
+        return try JSONDeserialization.jsonWithSequence(sequence)
     }
     
-    /// Creates a `JSON` value from the list of `JSONEncodable`'s.
-    public init<J: JSONEncodable>(_ elements: J...) {
-        self = elements.encodeJSON()
+    /// Parses the chain of characters produced by `generator` into the `JSON` value.
+    public static func jsonWithGenerator<G: GeneratorType where G.Element == Character>(generator: G) throws -> JSON? {
+        return try JSONDeserialization.jsonWithGenerator(generator)
     }
     
-    /// Creates a `JSON` value from the dictionary of `[String: JSONEncodable]`.
-    public init<J: JSONEncodable>(_ properties: [Swift.String: J]) {
-        self = properties.encodeJSON()
+    /// Uses the `closure` to read the chain of characters and parses it into the `JSON` value.
+    public static func jsonWithClosure(closure: Void -> Character?) throws -> JSON? {
+        return try JSONDeserialization.jsonWithClosure(closure)
     }
-    
+
 }

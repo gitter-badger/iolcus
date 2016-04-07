@@ -25,7 +25,7 @@
 
 extension JSON {
     
-    /// A concrete `Bool` value if `JSON` actually wraps it, `nil` otherwise.
+    /// A concrete `Bool` value if `JSON` is wrapping it, `nil` otherwise.
     public var booleanValue: Swift.Bool? {
         if case .Boolean(let boolean) = self {
             return boolean
@@ -33,7 +33,7 @@ extension JSON {
         return nil
     }
     
-    /// A concrete `Double` value if `JSON` actually wraps it, `nil` otherwise.
+    /// A concrete `Double` value if `JSON` is wrapping it, `nil` otherwise.
     public var doubleValue: Swift.Double? {
         if case .Double(let double) = self {
             return double
@@ -41,7 +41,7 @@ extension JSON {
         return nil
     }
     
-    /// A concrete `Int` value if `JSON` actually wraps it, `nil` otherwise.
+    /// A concrete `Int` value if `JSON` is wrapping it, `nil` otherwise.
     public var intValue: Swift.Int? {
         if case .Integer(let integer) = self {
             return integer
@@ -49,7 +49,7 @@ extension JSON {
         return nil
     }
     
-    /// A concrete `String` value if `JSON` actually wraps it, `nil` otherwise.
+    /// A concrete `String` value if `JSON` is wrapping it, `nil` otherwise.
     public var stringValue: Swift.String? {
         if case .String(let string) = self {
             return string
@@ -57,7 +57,7 @@ extension JSON {
         return nil
     }
     
-    /// A concrete `[JSON]` array if `JSON` actually wraps it, `nil` otherwise.
+    /// A concrete `[JSON]` array if `JSON` is wrapping it, `nil` otherwise.
     public var arrayElements: [JSON]? {
         if case .Array(let array) = self {
             return array
@@ -65,7 +65,7 @@ extension JSON {
         return nil
     }
     
-    /// A concrete `[String: JSON]` dictionary if `JSON` actually wraps it, `nil` otherwise.
+    /// A concrete `[String: JSON]` dictionary if `JSON` is wrapping it, `nil` otherwise.
     public var objectProperties: [Swift.String: JSON]? {
         if case .Object(let object) = self {
             return object

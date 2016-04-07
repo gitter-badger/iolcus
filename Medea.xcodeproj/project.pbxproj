@@ -16,6 +16,18 @@
 		BA5FC1681CB5952500FBCB84 /* Medea_tvOS.h in Headers */ = {isa = PBXBuildFile; fileRef = BA5FC1671CB5952500FBCB84 /* Medea_tvOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BA5FC16F1CB5952500FBCB84 /* Medea.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA5FC1651CB5952500FBCB84 /* Medea.framework */; };
 		BA5FC1741CB5952500FBCB84 /* Medea_tvOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5FC1731CB5952500FBCB84 /* Medea_tvOSTests.swift */; };
+		BA6AC9D71CB6DAE800D301DD /* JSON+Deserialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6AC9D61CB6DAE800D301DD /* JSON+Deserialization.swift */; };
+		BA6AC9D81CB6DAE800D301DD /* JSON+Deserialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6AC9D61CB6DAE800D301DD /* JSON+Deserialization.swift */; };
+		BA6AC9D91CB6DAE800D301DD /* JSON+Deserialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6AC9D61CB6DAE800D301DD /* JSON+Deserialization.swift */; };
+		BA6AC9DA1CB6DAE800D301DD /* JSON+Deserialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6AC9D61CB6DAE800D301DD /* JSON+Deserialization.swift */; };
+		BA6AC9DC1CB6DBCE00D301DD /* JSON+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6AC9DB1CB6DBCE00D301DD /* JSON+Foundation.swift */; };
+		BA6AC9DD1CB6DBCE00D301DD /* JSON+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6AC9DB1CB6DBCE00D301DD /* JSON+Foundation.swift */; };
+		BA6AC9DE1CB6DBCE00D301DD /* JSON+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6AC9DB1CB6DBCE00D301DD /* JSON+Foundation.swift */; };
+		BA6AC9DF1CB6DBCE00D301DD /* JSON+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6AC9DB1CB6DBCE00D301DD /* JSON+Foundation.swift */; };
+		BA6AC9E11CB701F900D301DD /* JSON+Serialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6AC9E01CB701F900D301DD /* JSON+Serialization.swift */; };
+		BA6AC9E21CB701F900D301DD /* JSON+Serialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6AC9E01CB701F900D301DD /* JSON+Serialization.swift */; };
+		BA6AC9E31CB701F900D301DD /* JSON+Serialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6AC9E01CB701F900D301DD /* JSON+Serialization.swift */; };
+		BA6AC9E41CB701F900D301DD /* JSON+Serialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6AC9E01CB701F900D301DD /* JSON+Serialization.swift */; };
 		BAA6500D1CB599E8006F561A /* Medea_watchOS.h in Headers */ = {isa = PBXBuildFile; fileRef = BAA6500C1CB599E8006F561A /* Medea_watchOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BAA650121CB5AE69006F561A /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B9B6F1CB46249003EF1CA /* JSON.swift */; };
 		BAA650131CB5AE6A006F561A /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B9B6F1CB46249003EF1CA /* JSON.swift */; };
@@ -188,6 +200,9 @@
 		BA5FC1731CB5952500FBCB84 /* Medea_tvOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Medea_tvOSTests.swift; path = Tests/tvOS/Medea_tvOSTests.swift; sourceTree = "<group>"; };
 		BA5FC1751CB5952500FBCB84 /* Info_tvOSTests.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info_tvOSTests.plist; path = Tests/Support/Info_tvOSTests.plist; sourceTree = "<group>"; };
 		BA6AC9D41CB6A09D00D301DD /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		BA6AC9D61CB6DAE800D301DD /* JSON+Deserialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSON+Deserialization.swift"; path = "Sources/JSON+Deserialization.swift"; sourceTree = "<group>"; };
+		BA6AC9DB1CB6DBCE00D301DD /* JSON+Foundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSON+Foundation.swift"; path = "Sources/JSON+Foundation.swift"; sourceTree = "<group>"; };
+		BA6AC9E01CB701F900D301DD /* JSON+Serialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSON+Serialization.swift"; path = "Sources/JSON+Serialization.swift"; sourceTree = "<group>"; };
 		BAA6500A1CB599E8006F561A /* Medea.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Medea.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAA6500C1CB599E8006F561A /* Medea_watchOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Medea_watchOS.h; path = Sources/Medea_watchOS.h; sourceTree = "<group>"; };
 		BAA6500E1CB599E8006F561A /* Info-watchOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-watchOS.plist"; path = "Support/Info-watchOS.plist"; sourceTree = "<group>"; };
@@ -292,6 +307,9 @@
 				BA5B9B701CB46249003EF1CA /* JSON+Accessors.swift */,
 				BA5B9B711CB46249003EF1CA /* JSON+Initializers.swift */,
 				BA5B9B721CB46249003EF1CA /* JSON+LiteralConvertible.swift */,
+				BA6AC9D61CB6DAE800D301DD /* JSON+Deserialization.swift */,
+				BA6AC9E01CB701F900D301DD /* JSON+Serialization.swift */,
+				BA6AC9DB1CB6DBCE00D301DD /* JSON+Foundation.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -691,11 +709,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA6AC9DC1CB6DBCE00D301DD /* JSON+Foundation.swift in Sources */,
 				BAA650301CB5AE9E006F561A /* JSONBoolDeserialization.swift in Sources */,
 				BAA650721CB5AEBC006F561A /* JSONDecodable.swift in Sources */,
 				BAA650161CB5AE71006F561A /* JSON+Accessors.swift in Sources */,
 				BAA650521CB5AEAB006F561A /* JSONDoubleSerialization.swift in Sources */,
 				BAA6504F1CB5AEAB006F561A /* JSONNullSerialization.swift in Sources */,
+				BA6AC9D71CB6DAE800D301DD /* JSON+Deserialization.swift in Sources */,
 				BAA650501CB5AEAB006F561A /* JSONBoolSerialization.swift in Sources */,
 				BAA6506E1CB5AEB4006F561A /* JSONEncodable.swift in Sources */,
 				BAA650121CB5AE69006F561A /* JSON.swift in Sources */,
@@ -711,6 +731,7 @@
 				BAA650531CB5AEAB006F561A /* JSONStringSerialization.swift in Sources */,
 				BAA6502A1CB5AE93006F561A /* Set+PatternMatch.swift in Sources */,
 				BAA650261CB5AE8E006F561A /* Scanner.swift in Sources */,
+				BA6AC9E11CB701F900D301DD /* JSON+Serialization.swift in Sources */,
 				BAA650341CB5AE9E006F561A /* JSONArrayDeserialization.swift in Sources */,
 				BAA6501E1CB5AE7F006F561A /* JSON+LiteralConvertible.swift in Sources */,
 				BAA650311CB5AE9E006F561A /* JSONNumberDeserialization.swift in Sources */,
@@ -731,11 +752,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA6AC9DD1CB6DBCE00D301DD /* JSON+Foundation.swift in Sources */,
 				BAA650381CB5AE9F006F561A /* JSONBoolDeserialization.swift in Sources */,
 				BAA650731CB5AEBD006F561A /* JSONDecodable.swift in Sources */,
 				BAA650171CB5AE72006F561A /* JSON+Accessors.swift in Sources */,
 				BAA6505A1CB5AEAB006F561A /* JSONDoubleSerialization.swift in Sources */,
 				BAA650571CB5AEAB006F561A /* JSONNullSerialization.swift in Sources */,
+				BA6AC9D81CB6DAE800D301DD /* JSON+Deserialization.swift in Sources */,
 				BAA650581CB5AEAB006F561A /* JSONBoolSerialization.swift in Sources */,
 				BAA6506F1CB5AEB5006F561A /* JSONEncodable.swift in Sources */,
 				BAA650131CB5AE6A006F561A /* JSON.swift in Sources */,
@@ -751,6 +774,7 @@
 				BAA6505B1CB5AEAB006F561A /* JSONStringSerialization.swift in Sources */,
 				BAA6502B1CB5AE94006F561A /* Set+PatternMatch.swift in Sources */,
 				BAA650271CB5AE8F006F561A /* Scanner.swift in Sources */,
+				BA6AC9E21CB701F900D301DD /* JSON+Serialization.swift in Sources */,
 				BAA6503C1CB5AE9F006F561A /* JSONArrayDeserialization.swift in Sources */,
 				BAA6501F1CB5AE7F006F561A /* JSON+LiteralConvertible.swift in Sources */,
 				BAA650391CB5AE9F006F561A /* JSONNumberDeserialization.swift in Sources */,
@@ -771,11 +795,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA6AC9DE1CB6DBCE00D301DD /* JSON+Foundation.swift in Sources */,
 				BAA650401CB5AEA0006F561A /* JSONBoolDeserialization.swift in Sources */,
 				BAA650741CB5AEBE006F561A /* JSONDecodable.swift in Sources */,
 				BAA650181CB5AE73006F561A /* JSON+Accessors.swift in Sources */,
 				BAA650621CB5AEAC006F561A /* JSONDoubleSerialization.swift in Sources */,
 				BAA6505F1CB5AEAC006F561A /* JSONNullSerialization.swift in Sources */,
+				BA6AC9D91CB6DAE800D301DD /* JSON+Deserialization.swift in Sources */,
 				BAA650601CB5AEAC006F561A /* JSONBoolSerialization.swift in Sources */,
 				BAA650701CB5AEB6006F561A /* JSONEncodable.swift in Sources */,
 				BAA650141CB5AE6B006F561A /* JSON.swift in Sources */,
@@ -791,6 +817,7 @@
 				BAA650631CB5AEAC006F561A /* JSONStringSerialization.swift in Sources */,
 				BAA6502C1CB5AE95006F561A /* Set+PatternMatch.swift in Sources */,
 				BAA650281CB5AE90006F561A /* Scanner.swift in Sources */,
+				BA6AC9E31CB701F900D301DD /* JSON+Serialization.swift in Sources */,
 				BAA650441CB5AEA0006F561A /* JSONArrayDeserialization.swift in Sources */,
 				BAA650201CB5AE80006F561A /* JSON+LiteralConvertible.swift in Sources */,
 				BAA650411CB5AEA0006F561A /* JSONNumberDeserialization.swift in Sources */,
@@ -811,11 +838,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA6AC9DF1CB6DBCE00D301DD /* JSON+Foundation.swift in Sources */,
 				BAA650481CB5AEA0006F561A /* JSONBoolDeserialization.swift in Sources */,
 				BAA650751CB5AEBE006F561A /* JSONDecodable.swift in Sources */,
 				BAA650191CB5AE74006F561A /* JSON+Accessors.swift in Sources */,
 				BAA6506A1CB5AEAD006F561A /* JSONDoubleSerialization.swift in Sources */,
 				BAA650671CB5AEAD006F561A /* JSONNullSerialization.swift in Sources */,
+				BA6AC9DA1CB6DAE800D301DD /* JSON+Deserialization.swift in Sources */,
 				BAA650681CB5AEAD006F561A /* JSONBoolSerialization.swift in Sources */,
 				BAA650711CB5AEB7006F561A /* JSONEncodable.swift in Sources */,
 				BAA650151CB5AE6D006F561A /* JSON.swift in Sources */,
@@ -831,6 +860,7 @@
 				BAA6506B1CB5AEAD006F561A /* JSONStringSerialization.swift in Sources */,
 				BAA6502D1CB5AE96006F561A /* Set+PatternMatch.swift in Sources */,
 				BAA650291CB5AE90006F561A /* Scanner.swift in Sources */,
+				BA6AC9E41CB701F900D301DD /* JSON+Serialization.swift in Sources */,
 				BAA6504C1CB5AEA0006F561A /* JSONArrayDeserialization.swift in Sources */,
 				BAA650211CB5AE81006F561A /* JSON+LiteralConvertible.swift in Sources */,
 				BAA650491CB5AEA0006F561A /* JSONNumberDeserialization.swift in Sources */,

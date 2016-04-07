@@ -25,17 +25,25 @@
 
 import Foundation
 
-public struct JSONSerialization {
+struct JSONSerialization {
     
     private init() { }
     
 }
 
-// MARK: - Exposed API
+// MARK: -
 
 extension JSONSerialization {
     
-    public static func generatorWithJSON(json: JSON) -> AnyGenerator<Character> {
+    static func stringWithJSON(json: JSON) -> Swift.String {
+        return Swift.String(GeneratorSequence(generatorWithJSON(json)))
+    }
+
+    static func sequenceWithJSON(json: JSON) -> AnySequence<Character> {
+        return AnySequence(GeneratorSequence(generatorWithJSON(json)))
+    }
+
+    static func generatorWithJSON(json: JSON) -> AnyGenerator<Character> {
         switch json {
         case .Null:
             return AnyGenerator(JSONNullSerialization())
@@ -53,76 +61,5 @@ extension JSONSerialization {
             return AnyGenerator(JSONObjectSerialization(properties))
         }
     }
-    
-    public static func sequenceWithJSON(json: JSON) -> AnySequence<Character> {
-        return AnySequence(GeneratorSequence(generatorWithJSON(json)))
-    }
-    
-    public static func stringWithJSON(json: JSON) -> String {
-        return String(GeneratorSequence(generatorWithJSON(json)))
-    }
-    
+
 }
-
-// MARK: - Foundation version of JSON
-
-#if os(OSX) || os(iOS) || os(tvOS)
-
-extension JSONSerialization {
-    
-    public static func nsjsonWithJSON(json: JSON) -> AnyObject {
-        switch json {
-        case .Null:
-            return nsjsonWithNull()
-        case .Boolean(let boolean):
-            return nsjsonWithBoolean(boolean)
-        case .Integer(let integer):
-            return nsjsonWithInteger(integer)
-        case .Double(let double):
-            return nsjsonWithDouble(double)
-        case .String(let string):
-            return nsjsonWithString(string)
-        case .Array(let elements):
-            return nsjsonWithArray(elements)
-        case .Object(let properties):
-            return nsjsonWithObject(properties)
-        }
-    }
-    
-    private static func nsjsonWithNull() -> AnyObject {
-        return NSNull()
-    }
-
-    private static func nsjsonWithBoolean(jsonBoolean: Bool) -> AnyObject {
-        return NSNumber.init(bool: jsonBoolean)
-    }
-
-    private static func nsjsonWithInteger(jsonInteger: Int) -> AnyObject {
-        return NSNumber(integer: jsonInteger)
-    }
-
-    private static func nsjsonWithDouble(jsonDouble: Double) -> AnyObject {
-        return NSNumber(double: jsonDouble)
-    }
-
-    private static func nsjsonWithString(jsonString: String) -> AnyObject {
-        return NSString(string: jsonString)
-    }
-
-    private static func nsjsonWithArray(jsonElements: [JSON]) -> AnyObject {
-        return jsonElements.map() {
-            nsjsonWithJSON($0)
-        }
-    }
-
-    private static func nsjsonWithObject(jsonProperties: [String: JSON]) -> AnyObject {
-        var nsjsonProperties: [NSString: AnyObject] = [:]
-        jsonProperties.forEach() {
-            nsjsonProperties[$0] = nsjsonWithJSON($1)
-        }
-        return nsjsonProperties
-    }
-    
-}
-
-#endif
