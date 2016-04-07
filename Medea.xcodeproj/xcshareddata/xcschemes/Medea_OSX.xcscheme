@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "BA5FC1121CB5799700FBCB84"
-               BuildableName = "Medea_OSX.framework"
+               BuildableName = "Medea.framework"
                BlueprintName = "Medea_OSX"
                ReferencedContainer = "container:Medea.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BA5FC1121CB5799700FBCB84"
-            BuildableName = "Medea_OSX.framework"
+            BuildableName = "Medea.framework"
             BlueprintName = "Medea_OSX"
             ReferencedContainer = "container:Medea.xcodeproj">
          </BuildableReference>
@@ -65,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BA5FC1121CB5799700FBCB84"
-            BuildableName = "Medea_OSX.framework"
+            BuildableName = "Medea.framework"
             BlueprintName = "Medea_OSX"
             ReferencedContainer = "container:Medea.xcodeproj">
          </BuildableReference>
@@ -83,7 +83,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BA5FC1121CB5799700FBCB84"
-            BuildableName = "Medea_OSX.framework"
+            BuildableName = "Medea.framework"
             BlueprintName = "Medea_OSX"
             ReferencedContainer = "container:Medea.xcodeproj">
          </BuildableReference>

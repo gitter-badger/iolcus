@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "BAA650091CB599E8006F561A"
-               BuildableName = "Medea_watchOS.framework"
+               BuildableName = "Medea.framework"
                BlueprintName = "Medea_watchOS"
                ReferencedContainer = "container:Medea.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BAA650091CB599E8006F561A"
-            BuildableName = "Medea_watchOS.framework"
+            BuildableName = "Medea.framework"
             BlueprintName = "Medea_watchOS"
             ReferencedContainer = "container:Medea.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BAA650091CB599E8006F561A"
-            BuildableName = "Medea_watchOS.framework"
+            BuildableName = "Medea.framework"
             BlueprintName = "Medea_watchOS"
             ReferencedContainer = "container:Medea.xcodeproj">
          </BuildableReference>
