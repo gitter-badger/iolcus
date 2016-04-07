@@ -1,5 +1,6 @@
 import PackageDescription
 
 let package = Package(
-    name: "Medea"
+    name: "Medea",
+    exclude: ["Support", "Tests/Support"]
 )

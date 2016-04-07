@@ -144,51 +144,52 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		BA5B9B6F1CB46249003EF1CA /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSON.swift; path = Source/JSON.swift; sourceTree = "<group>"; };
-		BA5B9B701CB46249003EF1CA /* JSON+Accessors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSON+Accessors.swift"; path = "Source/JSON+Accessors.swift"; sourceTree = "<group>"; };
-		BA5B9B711CB46249003EF1CA /* JSON+Initializers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSON+Initializers.swift"; path = "Source/JSON+Initializers.swift"; sourceTree = "<group>"; };
-		BA5B9B721CB46249003EF1CA /* JSON+LiteralConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSON+LiteralConvertible.swift"; path = "Source/JSON+LiteralConvertible.swift"; sourceTree = "<group>"; };
-		BA5B9B781CB46371003EF1CA /* JSONConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONConstants.swift; path = Source/JSONConstants.swift; sourceTree = "<group>"; };
-		BA5B9B7B1CB465AB003EF1CA /* Scanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Scanner.swift; path = Source/Scanner.swift; sourceTree = "<group>"; };
-		BA5B9B7C1CB465AB003EF1CA /* Set+PatternMatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Set+PatternMatch.swift"; path = "Source/Set+PatternMatch.swift"; sourceTree = "<group>"; };
-		BA5B9B801CB4664F003EF1CA /* JSONArraySerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONArraySerialization.swift; path = Source/JSONArraySerialization.swift; sourceTree = "<group>"; };
-		BA5B9B811CB4664F003EF1CA /* JSONBoolSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONBoolSerialization.swift; path = Source/JSONBoolSerialization.swift; sourceTree = "<group>"; };
-		BA5B9B821CB4664F003EF1CA /* JSONNullSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONNullSerialization.swift; path = Source/JSONNullSerialization.swift; sourceTree = "<group>"; };
-		BA5B9B831CB4664F003EF1CA /* JSONNumberSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONNumberSerialization.swift; path = Source/JSONNumberSerialization.swift; sourceTree = "<group>"; };
-		BA5B9B841CB4664F003EF1CA /* JSONObjectSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONObjectSerialization.swift; path = Source/JSONObjectSerialization.swift; sourceTree = "<group>"; };
-		BA5B9B851CB4664F003EF1CA /* JSONSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONSerialization.swift; path = Source/JSONSerialization.swift; sourceTree = "<group>"; };
-		BA5B9B861CB4664F003EF1CA /* JSONStringSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONStringSerialization.swift; path = Source/JSONStringSerialization.swift; sourceTree = "<group>"; };
-		BA5B9B871CB4664F003EF1CA /* JSONValueSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONValueSerialization.swift; path = Source/JSONValueSerialization.swift; sourceTree = "<group>"; };
-		BA5B9B911CB4670A003EF1CA /* JSONArrayDeserialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONArrayDeserialization.swift; path = Source/JSONArrayDeserialization.swift; sourceTree = "<group>"; };
-		BA5B9B921CB4670A003EF1CA /* JSONBoolDeserialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONBoolDeserialization.swift; path = Source/JSONBoolDeserialization.swift; sourceTree = "<group>"; };
-		BA5B9B931CB4670A003EF1CA /* JSONDeserialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONDeserialization.swift; path = Source/JSONDeserialization.swift; sourceTree = "<group>"; };
-		BA5B9B941CB4670A003EF1CA /* JSONDoubleDeserialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONDoubleDeserialization.swift; path = Source/JSONDoubleDeserialization.swift; sourceTree = "<group>"; };
-		BA5B9B951CB4670A003EF1CA /* JSONIntegerDeserialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONIntegerDeserialization.swift; path = Source/JSONIntegerDeserialization.swift; sourceTree = "<group>"; };
-		BA5B9B961CB4670A003EF1CA /* JSONNullDeserialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONNullDeserialization.swift; path = Source/JSONNullDeserialization.swift; sourceTree = "<group>"; };
-		BA5B9B971CB4670A003EF1CA /* JSONObjectDeserialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONObjectDeserialization.swift; path = Source/JSONObjectDeserialization.swift; sourceTree = "<group>"; };
-		BA5B9B981CB4670A003EF1CA /* JSONStringDeserialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONStringDeserialization.swift; path = Source/JSONStringDeserialization.swift; sourceTree = "<group>"; };
-		BA5B9BA31CB467B3003EF1CA /* JSONEncodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONEncodable.swift; path = Source/JSONEncodable.swift; sourceTree = "<group>"; };
-		BA5B9BA51CB467BC003EF1CA /* JSONDecodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONDecodable.swift; path = Source/JSONDecodable.swift; sourceTree = "<group>"; };
+		BA5B9B6F1CB46249003EF1CA /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSON.swift; path = Sources/JSON.swift; sourceTree = "<group>"; };
+		BA5B9B701CB46249003EF1CA /* JSON+Accessors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSON+Accessors.swift"; path = "Sources/JSON+Accessors.swift"; sourceTree = "<group>"; };
+		BA5B9B711CB46249003EF1CA /* JSON+Initializers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSON+Initializers.swift"; path = "Sources/JSON+Initializers.swift"; sourceTree = "<group>"; };
+		BA5B9B721CB46249003EF1CA /* JSON+LiteralConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSON+LiteralConvertible.swift"; path = "Sources/JSON+LiteralConvertible.swift"; sourceTree = "<group>"; };
+		BA5B9B781CB46371003EF1CA /* JSONConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONConstants.swift; path = Sources/JSONConstants.swift; sourceTree = "<group>"; };
+		BA5B9B7B1CB465AB003EF1CA /* Scanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Scanner.swift; path = Sources/Scanner.swift; sourceTree = "<group>"; };
+		BA5B9B7C1CB465AB003EF1CA /* Set+PatternMatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Set+PatternMatch.swift"; path = "Sources/Set+PatternMatch.swift"; sourceTree = "<group>"; };
+		BA5B9B801CB4664F003EF1CA /* JSONArraySerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONArraySerialization.swift; path = Sources/JSONArraySerialization.swift; sourceTree = "<group>"; };
+		BA5B9B811CB4664F003EF1CA /* JSONBoolSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONBoolSerialization.swift; path = Sources/JSONBoolSerialization.swift; sourceTree = "<group>"; };
+		BA5B9B821CB4664F003EF1CA /* JSONNullSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONNullSerialization.swift; path = Sources/JSONNullSerialization.swift; sourceTree = "<group>"; };
+		BA5B9B831CB4664F003EF1CA /* JSONNumberSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONNumberSerialization.swift; path = Sources/JSONNumberSerialization.swift; sourceTree = "<group>"; };
+		BA5B9B841CB4664F003EF1CA /* JSONObjectSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONObjectSerialization.swift; path = Sources/JSONObjectSerialization.swift; sourceTree = "<group>"; };
+		BA5B9B851CB4664F003EF1CA /* JSONSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONSerialization.swift; path = Sources/JSONSerialization.swift; sourceTree = "<group>"; };
+		BA5B9B861CB4664F003EF1CA /* JSONStringSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONStringSerialization.swift; path = Sources/JSONStringSerialization.swift; sourceTree = "<group>"; };
+		BA5B9B871CB4664F003EF1CA /* JSONValueSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONValueSerialization.swift; path = Sources/JSONValueSerialization.swift; sourceTree = "<group>"; };
+		BA5B9B911CB4670A003EF1CA /* JSONArrayDeserialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONArrayDeserialization.swift; path = Sources/JSONArrayDeserialization.swift; sourceTree = "<group>"; };
+		BA5B9B921CB4670A003EF1CA /* JSONBoolDeserialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONBoolDeserialization.swift; path = Sources/JSONBoolDeserialization.swift; sourceTree = "<group>"; };
+		BA5B9B931CB4670A003EF1CA /* JSONDeserialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONDeserialization.swift; path = Sources/JSONDeserialization.swift; sourceTree = "<group>"; };
+		BA5B9B941CB4670A003EF1CA /* JSONDoubleDeserialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONDoubleDeserialization.swift; path = Sources/JSONDoubleDeserialization.swift; sourceTree = "<group>"; };
+		BA5B9B951CB4670A003EF1CA /* JSONIntegerDeserialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONIntegerDeserialization.swift; path = Sources/JSONIntegerDeserialization.swift; sourceTree = "<group>"; };
+		BA5B9B961CB4670A003EF1CA /* JSONNullDeserialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONNullDeserialization.swift; path = Sources/JSONNullDeserialization.swift; sourceTree = "<group>"; };
+		BA5B9B971CB4670A003EF1CA /* JSONObjectDeserialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONObjectDeserialization.swift; path = Sources/JSONObjectDeserialization.swift; sourceTree = "<group>"; };
+		BA5B9B981CB4670A003EF1CA /* JSONStringDeserialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONStringDeserialization.swift; path = Sources/JSONStringDeserialization.swift; sourceTree = "<group>"; };
+		BA5B9BA31CB467B3003EF1CA /* JSONEncodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONEncodable.swift; path = Sources/JSONEncodable.swift; sourceTree = "<group>"; };
+		BA5B9BA51CB467BC003EF1CA /* JSONDecodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONDecodable.swift; path = Sources/JSONDecodable.swift; sourceTree = "<group>"; };
 		BA5FC1131CB5799700FBCB84 /* Medea.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Medea.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BA5FC1151CB5799700FBCB84 /* Medea_OSX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Medea_OSX.h; path = Source/Headers/Medea_OSX.h; sourceTree = "<group>"; };
+		BA5FC1151CB5799700FBCB84 /* Medea_OSX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Medea_OSX.h; path = Sources/Medea_OSX.h; sourceTree = "<group>"; };
 		BA5FC1171CB5799700FBCB84 /* Info_OSX.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info_OSX.plist; path = Support/Info_OSX.plist; sourceTree = "<group>"; };
 		BA5FC11C1CB5799700FBCB84 /* Medea_OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Medea_OSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA5FC1211CB5799700FBCB84 /* Medea_OSXTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Medea_OSXTests.swift; path = Tests/OSX/Medea_OSXTests.swift; sourceTree = "<group>"; };
 		BA5FC1231CB5799700FBCB84 /* Info_OSXTests.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info_OSXTests.plist; path = Tests/Support/Info_OSXTests.plist; sourceTree = "<group>"; };
 		BA5FC12F1CB57CFE00FBCB84 /* Medea.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Medea.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BA5FC1311CB57CFE00FBCB84 /* Medea_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Medea_iOS.h; path = Source/Headers/Medea_iOS.h; sourceTree = "<group>"; };
+		BA5FC1311CB57CFE00FBCB84 /* Medea_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Medea_iOS.h; path = Sources/Medea_iOS.h; sourceTree = "<group>"; };
 		BA5FC1331CB57CFE00FBCB84 /* Info_iOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info_iOS.plist; path = Support/Info_iOS.plist; sourceTree = "<group>"; };
 		BA5FC1381CB57CFE00FBCB84 /* Medea_iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Medea_iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA5FC13D1CB57CFE00FBCB84 /* Medea_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Medea_iOSTests.swift; path = Tests/iOS/Medea_iOSTests.swift; sourceTree = "<group>"; };
 		BA5FC13F1CB57CFE00FBCB84 /* Info_iOSTests.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info_iOSTests.plist; path = Tests/Support/Info_iOSTests.plist; sourceTree = "<group>"; };
 		BA5FC1651CB5952500FBCB84 /* Medea.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Medea.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BA5FC1671CB5952500FBCB84 /* Medea_tvOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Medea_tvOS.h; path = Source/Headers/Medea_tvOS.h; sourceTree = "<group>"; };
+		BA5FC1671CB5952500FBCB84 /* Medea_tvOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Medea_tvOS.h; path = Sources/Medea_tvOS.h; sourceTree = "<group>"; };
 		BA5FC1691CB5952500FBCB84 /* Info-tvOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-tvOS.plist"; path = "Support/Info-tvOS.plist"; sourceTree = "<group>"; };
 		BA5FC16E1CB5952500FBCB84 /* Medea_tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Medea_tvOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA5FC1731CB5952500FBCB84 /* Medea_tvOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Medea_tvOSTests.swift; path = Tests/tvOS/Medea_tvOSTests.swift; sourceTree = "<group>"; };
 		BA5FC1751CB5952500FBCB84 /* Info_tvOSTests.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info_tvOSTests.plist; path = Tests/Support/Info_tvOSTests.plist; sourceTree = "<group>"; };
+		BA6AC9D41CB6A09D00D301DD /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		BAA6500A1CB599E8006F561A /* Medea.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Medea.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BAA6500C1CB599E8006F561A /* Medea_watchOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Medea_watchOS.h; path = Source/Headers/Medea_watchOS.h; sourceTree = "<group>"; };
+		BAA6500C1CB599E8006F561A /* Medea_watchOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Medea_watchOS.h; path = Sources/Medea_watchOS.h; sourceTree = "<group>"; };
 		BAA6500E1CB599E8006F561A /* Info-watchOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-watchOS.plist"; path = "Support/Info-watchOS.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -259,7 +260,7 @@
 			name = Support;
 			sourceTree = "<group>";
 		};
-		BA5B9B6D1CB45012003EF1CA /* Source */ = {
+		BA5B9B6D1CB45012003EF1CA /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				BA5B9B6E1CB45025003EF1CA /* Headers */,
@@ -270,7 +271,7 @@
 				BA5B9BA11CB46786003EF1CA /* Encoding */,
 				BA5B9BA21CB4679A003EF1CA /* Decoding */,
 			);
-			name = Source;
+			name = Sources;
 			sourceTree = "<group>";
 		};
 		BA5B9B6E1CB45025003EF1CA /* Headers */ = {
@@ -400,9 +401,10 @@
 			isa = PBXGroup;
 			children = (
 				BA5B9B681CB42EE9003EF1CA /* Support */,
-				BA5B9B6D1CB45012003EF1CA /* Source */,
+				BA5B9B6D1CB45012003EF1CA /* Sources */,
 				BA5B9BC31CB4DDF3003EF1CA /* Tests */,
 				BAF8092B1CB38E000055F146 /* Products */,
+				BA6AC9D41CB6A09D00D301DD /* Package.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1271,6 +1273,7 @@
 				BAA650101CB599E8006F561A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BAF809241CB38E000055F146 /* Build configuration list for PBXProject "Medea" */ = {
 			isa = XCConfigurationList;
