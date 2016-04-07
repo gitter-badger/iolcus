@@ -23,17 +23,23 @@
 //  SOFTWARE.
 //
 
-struct JSONNUllDeserialization: GeneratorType {
-
-    private let nextCharacter: Void -> Character? = {
-        var generator = JSONConstants.nullSequence.generate()
-        return {
-            return generator.next()
+final class JSONNullDeserialization: JSONDeserialization {
+    
+    override func deserialize() throws -> JSON? {
+        resetPeekedCharacters()
+        skipWhitespaceCharacters()
+        
+        try JSONConstants.nullSequence.forEach() {
+            guard let character = readCharacter() else {
+                throw JSON.Exception.Serializing.UnexpectedEOF
+            }
+            
+            if character != $0 {
+                throw JSON.Exception.Serializing.UnexpectedCharacter(character: character, position: scannerPosition)
+            }
         }
-    }()
-
-    func next() -> Character? {
-        return nextCharacter()
+        
+        return JSON.Null
     }
     
 }

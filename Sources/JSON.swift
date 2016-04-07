@@ -23,6 +23,7 @@
 //  SOFTWARE.
 //
 
+/// JSON value.
 public indirect enum JSON {
     
     case Null
@@ -33,8 +34,10 @@ public indirect enum JSON {
     case Array([JSON])
     case Object([Swift.String: JSON])
     
+    /// Exception produced while manipulating JSON value
     public struct Exception {
         
+        /// Exception produced while serializing JSON value
         public enum Serializing: ErrorType {
             case UnexpectedEOF
             case UnexpectedCharacter(character: Swift.Character, position: Swift.Int)
@@ -46,6 +49,7 @@ public indirect enum JSON {
             case FailedToReadNSJSON(type: Any.Type)
         }
         
+        /// Exception produced while decoding a value from JSON
         public enum Decoding: ErrorType {
             case FailedToDecode(type: Any.Type, json: JSON)
         }
@@ -89,7 +93,7 @@ public func == (lhs: JSON, rhs: JSON) -> Swift.Bool {
 extension JSON: CustomStringConvertible {
     
     public var description: Swift.String {
-        return JSONDeserialization.stringWithJSON(self)
+        return JSONSerialization.stringWithJSON(self)
     }
     
 }

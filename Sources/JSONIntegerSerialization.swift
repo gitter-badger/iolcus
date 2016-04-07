@@ -1,5 +1,5 @@
 //
-//  JSONValueSerialization.swift
+//  JSONIntegerSerialization.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -23,32 +23,20 @@
 //  SOFTWARE.
 //
 
-final class JSONValueSerialization: JSONSerialization {
+struct JSONIntegerSerialization: GeneratorType {
     
-    override func serialize() throws -> JSON? {
-        resetPeekedCharacters()
-        skipWhitespaceCharacters()
+    private let nextCharacter: Void -> Character?
+    
+    init(_ integer: Int) {
+        var generator = "\(integer)".characters.generate()
         
-        guard let opening = peekCharacter() else {
-            throw JSON.Exception.Serializing.UnexpectedEOF
+        nextCharacter = {
+            return generator.next()
         }
-        
-        switch opening {
-        case JSONConstants.objectOpening:
-            return try serializeObject()
-        case JSONConstants.arrayOpening:
-            return try serializeArray()
-        case JSONConstants.numberOpenings:
-            return try serializeNumber()
-        case JSONConstants.stringOpening:
-            return try serializeString()
-        case JSONConstants.trueSequence[0], JSONConstants.falseSequence[0]:
-            return try serializeBool()
-        case JSONConstants.nullSequence[0]:
-            return try serializeNull()
-        default:
-            throw JSON.Exception.Serializing.UnexpectedCharacter(character: opening, position: scannerPosition)
-        }
+    }
+    
+    func next() -> Character? {
+        return nextCharacter()
     }
     
 }

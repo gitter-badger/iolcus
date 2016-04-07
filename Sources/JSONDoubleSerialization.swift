@@ -1,5 +1,5 @@
 //
-//  JSONNumberSerialization.swift
+//  JSONDoubleSerialization.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -23,37 +23,20 @@
 //  SOFTWARE.
 //
 
-final class JSONNumberSerialization: JSONSerialization {
+struct JSONDoubleSerialization: GeneratorType {
     
-    override func serialize() throws -> JSON? {
-        resetPeekedCharacters()
-        skipWhitespaceCharacters()
+    private let nextCharacter: Void -> Character?
+    
+    init(_ double: Double) {
+        var generator = "\(double)".characters.generate()
         
-        var stringRepresentation = ""
-        
-        readLoop: while true {
-            guard let character = peekCharacter() else {
-                throw JSON.Exception.Serializing.UnexpectedEOF
-            }
-            
-            if !JSONConstants.numberCharacters.contains(character) {
-                resetPeekedCharacters()
-                break readLoop
-            }
-            
-            stringRepresentation.append(character)
-            skipPeekedCharacters()
+        nextCharacter = {
+            return generator.next()
         }
-        
-        if let integer = Int(stringRepresentation) {
-            return JSON.Integer(integer)
-        }
-        
-        if let double = Double(stringRepresentation) {
-            return JSON.Double(double)
-        }
-        
-        throw JSON.Exception.Serializing.FailedToReadNumber(number: stringRepresentation, position: scannerPosition)
+    }
+    
+    func next() -> Character? {
+        return nextCharacter()
     }
     
 }

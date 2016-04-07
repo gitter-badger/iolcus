@@ -25,72 +25,9 @@
 
 import Foundation
 
-public class JSONSerialization {
+public struct JSONSerialization {
     
-    private let scanner: Scanner<Character>
-    var scannerPosition: Int { return scanner.position }
-    
-    init(_ scanner: Scanner<Character>) {
-        self.scanner = scanner
-    }
-    
-    // MARK: - Scanning trough the input
-    
-    final func readCharacter() -> Character? {
-        let readCharacter = scanner.next()
-        return readCharacter
-    }
-    
-    final func peekCharacter() -> Character? {
-        let peekedCharacter = scanner.peek()
-        return peekedCharacter
-    }
-    
-    final func resetPeekedCharacters() {
-        scanner.resetPeek()
-    }
-    
-    final func skipPeekedCharacters() {
-        scanner.skipPeeked()
-    }
-    
-    final func skipWhitespaceCharacters() {
-        scanner.skipWhile(JSONConstants.whitespace.contains)
-    }
-
-    // MARK: - Internal serialization
-    
-    func serialize() throws -> JSON? {
-        fatalError("Must override")
-    }
-    
-    final func serializeNull() throws -> JSON? {
-        return try JSONNullSerialization(scanner).serialize()
-    }
-    
-    final func serializeBool() throws -> JSON? {
-        return try JSONBoolSerialization(scanner).serialize()
-    }
-    
-    final func serializeNumber() throws -> JSON? {
-        return try JSONNumberSerialization(scanner).serialize()
-    }
-    
-    final func serializeString() throws -> JSON? {
-        return try JSONStringSerialization(scanner).serialize()
-    }
-    
-    final func serializeArray() throws -> JSON? {
-        return try JSONArraySerialization(scanner).serialize()
-    }
-    
-    final func serializeObject() throws -> JSON? {
-        return try JSONObjectSerialization(scanner).serialize()
-    }
-    
-    final func serializeValue() throws -> JSON? {
-        return try JSONValueSerialization(scanner).serialize()
-    }
+    private init() { }
     
 }
 
@@ -98,37 +35,31 @@ public class JSONSerialization {
 
 extension JSONSerialization {
     
-    public static func jsonWithString(string: Swift.String) throws -> JSON? {
-        let scanner = Scanner(string.characters)
-        return try serializeFromScanner(scanner)
-    }
-    
-    public static func jsonWithSequence<S: SequenceType where S.Generator.Element == Character>(sequence: S) throws -> JSON? {
-        let scanner = Scanner(sequence)
-        return try serializeFromScanner(scanner)
-    }
-    
-    public static func jsonWithGenerator<G: GeneratorType where G.Element == Character>(generator: G) throws -> JSON? {
-        let scanner = Scanner(generator)
-        return try serializeFromScanner(scanner)
-    }
-    
-    public static func jsonWithClosure(closure: Void -> Character?) throws -> JSON? {
-        let scanner = Scanner(closure)
-        return try serializeFromScanner(scanner)
-    }
-    
-    private static func serializeFromScanner(scanner: Scanner<Character>) throws -> JSON? {
-        let serialization = JSONValueSerialization(scanner)
-        let json = try serialization.serialize()
-        
-        serialization.skipWhitespaceCharacters()
-        
-        if let tail = serialization.readCharacter() {
-            throw JSON.Exception.Serializing.UnexpectedCharacter(character: tail, position: serialization.scannerPosition)
+    public static func generatorWithJSON(json: JSON) -> AnyGenerator<Character> {
+        switch json {
+        case .Null:
+            return AnyGenerator(JSONNullSerialization())
+        case .Boolean(let boolean):
+            return AnyGenerator(JSONBoolSerialization(boolean))
+        case .Integer(let integer):
+            return AnyGenerator(JSONIntegerSerialization(integer))
+        case .Double(let double):
+            return AnyGenerator(JSONDoubleSerialization(double))
+        case .String(let string):
+            return AnyGenerator(JSONStringSerialization(string))
+        case .Array(let values):
+            return AnyGenerator(JSONArraySerialization(values))
+        case .Object(let properties):
+            return AnyGenerator(JSONObjectSerialization(properties))
         }
-        
-        return json
+    }
+    
+    public static func sequenceWithJSON(json: JSON) -> AnySequence<Character> {
+        return AnySequence(GeneratorSequence(generatorWithJSON(json)))
+    }
+    
+    public static func stringWithJSON(json: JSON) -> String {
+        return String(GeneratorSequence(generatorWithJSON(json)))
     }
     
 }
@@ -136,64 +67,62 @@ extension JSONSerialization {
 // MARK: - Foundation version of JSON
 
 #if os(OSX) || os(iOS) || os(tvOS)
-    
+
 extension JSONSerialization {
     
-    public static func jsonWithNSJSON(nsjson: AnyObject) throws -> JSON {
-        if let json = nsjson as? [NSString: AnyObject] {
-            return try jsonWithNSJSON(json)
+    public static func nsjsonWithJSON(json: JSON) -> AnyObject {
+        switch json {
+        case .Null:
+            return nsjsonWithNull()
+        case .Boolean(let boolean):
+            return nsjsonWithBoolean(boolean)
+        case .Integer(let integer):
+            return nsjsonWithInteger(integer)
+        case .Double(let double):
+            return nsjsonWithDouble(double)
+        case .String(let string):
+            return nsjsonWithString(string)
+        case .Array(let elements):
+            return nsjsonWithArray(elements)
+        case .Object(let properties):
+            return nsjsonWithObject(properties)
         }
-        
-        if let json = nsjson as? [AnyObject] {
-            return try jsonWithNSJSON(json)
-        }
-        
-        if let json = nsjson as? NSString {
-            return try jsonWithNSJSON(json)
-        }
-        
-        if let json = nsjson as? NSNumber {
-            return try jsonWithNSJSON(json)
-        }
-        
-        if let json = nsjson as? NSNull {
-            return try jsonWithNSJSON(json)
-        }
-        
-        throw JSON.Exception.Serializing.FailedToReadNSJSON(type: nsjson.dynamicType)
     }
     
-    private static func jsonWithNSJSON(nsjson: NSNull) throws -> JSON {
-        return .Null
-    }
-    
-    private static func jsonWithNSJSON(nsjson: NSNumber) throws -> JSON {
-        let double = nsjson.doubleValue
-        return .Double(double)
-    }
-    
-    private static func jsonWithNSJSON(nsjson: NSString) throws -> JSON {
-        let string = nsjson as Swift.String
-        return .String(string)
-    }
-    
-    private static func jsonWithNSJSON(nsjson: [AnyObject]) throws -> JSON {
-        let array = try nsjson.map() {
-            try jsonWithNSJSON($0)
-        }
-        return .Array(array)
-    }
-    
-    private static func jsonWithNSJSON(nsjson: [NSString: AnyObject]) throws -> JSON {
-        var properties: [Swift.String: JSON] = [:]
-        try nsjson.forEach() {
-            let key = $0 as Swift.String
-            let value = try jsonWithNSJSON($1)
-            properties[key] = value
-        }
-        return .Object(properties)
+    private static func nsjsonWithNull() -> AnyObject {
+        return NSNull()
     }
 
-}
+    private static func nsjsonWithBoolean(jsonBoolean: Bool) -> AnyObject {
+        return NSNumber.init(bool: jsonBoolean)
+    }
+
+    private static func nsjsonWithInteger(jsonInteger: Int) -> AnyObject {
+        return NSNumber(integer: jsonInteger)
+    }
+
+    private static func nsjsonWithDouble(jsonDouble: Double) -> AnyObject {
+        return NSNumber(double: jsonDouble)
+    }
+
+    private static func nsjsonWithString(jsonString: String) -> AnyObject {
+        return NSString(string: jsonString)
+    }
+
+    private static func nsjsonWithArray(jsonElements: [JSON]) -> AnyObject {
+        return jsonElements.map() {
+            nsjsonWithJSON($0)
+        }
+    }
+
+    private static func nsjsonWithObject(jsonProperties: [String: JSON]) -> AnyObject {
+        var nsjsonProperties: [NSString: AnyObject] = [:]
+        jsonProperties.forEach() {
+            nsjsonProperties[$0] = nsjsonWithJSON($1)
+        }
+        return nsjsonProperties
+    }
     
+}
+
 #endif

@@ -23,52 +23,20 @@
 //  SOFTWARE.
 //
 
-final class JSONBoolSerialization: JSONSerialization {
+struct JSONBoolSerialization: GeneratorType {
     
-    override func serialize() throws -> JSON? {
-        resetPeekedCharacters()
-        skipWhitespaceCharacters()
+    private let nextCharacter: Void -> Character?
+    
+    init(_ boolean: Bool) {
+        var generator = (boolean ? JSONConstants.trueSequence : JSONConstants.falseSequence).generate()
         
-        guard let opening = peekCharacter() else {
-            throw JSON.Exception.Serializing.UnexpectedEOF
-        }
-        
-        switch opening {
-        case JSONConstants.trueSequence[0]:
-            return try serializeTrue()
-        case JSONConstants.falseSequence[0]:
-            return try serializeFalse()
-        default:
-            throw JSON.Exception.Serializing.UnexpectedCharacter(character: opening, position: scannerPosition)
+        nextCharacter = {
+            return generator.next()
         }
     }
     
-    private func serializeTrue() throws -> JSON? {
-        try JSONConstants.trueSequence.forEach() {
-            guard let character = readCharacter() else {
-                throw JSON.Exception.Serializing.UnexpectedEOF
-            }
-            
-            if character != $0 {
-                throw JSON.Exception.Serializing.UnexpectedCharacter(character: character, position: scannerPosition)
-            }
-        }
-        
-        return JSON.Boolean(true)
-    }
-    
-    private func serializeFalse() throws -> JSON {
-        try JSONConstants.falseSequence.forEach() {
-            guard let character = readCharacter() else {
-                throw JSON.Exception.Serializing.UnexpectedEOF
-            }
-            
-            if character != $0 {
-                throw JSON.Exception.Serializing.UnexpectedCharacter(character: character, position: scannerPosition)
-            }
-        }
-        
-        return JSON.Boolean(false)
+    func next() -> Character? {
+        return nextCharacter()
     }
     
 }

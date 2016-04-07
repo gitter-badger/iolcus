@@ -1,5 +1,5 @@
 //
-//  JSONDoubleDeserialization.swift
+//  JSONValueDeserialization.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -23,20 +23,32 @@
 //  SOFTWARE.
 //
 
-struct JSONDoubleDeserialization: GeneratorType {
+final class JSONValueDeserialization: JSONDeserialization {
     
-    private let nextCharacter: Void -> Character?
-    
-    init(_ double: Double) {
-        var generator = "\(double)".characters.generate()
+    override func deserialize() throws -> JSON? {
+        resetPeekedCharacters()
+        skipWhitespaceCharacters()
         
-        nextCharacter = {
-            return generator.next()
+        guard let opening = peekCharacter() else {
+            throw JSON.Exception.Serializing.UnexpectedEOF
         }
-    }
-    
-    func next() -> Character? {
-        return nextCharacter()
+        
+        switch opening {
+        case JSONConstants.objectOpening:
+            return try deserializeObject()
+        case JSONConstants.arrayOpening:
+            return try deserializeArray()
+        case JSONConstants.numberOpenings:
+            return try deserializeNumber()
+        case JSONConstants.stringOpening:
+            return try deserializeString()
+        case JSONConstants.trueSequence[0], JSONConstants.falseSequence[0]:
+            return try deserializeBool()
+        case JSONConstants.nullSequence[0]:
+            return try deserializeNull()
+        default:
+            throw JSON.Exception.Serializing.UnexpectedCharacter(character: opening, position: scannerPosition)
+        }
     }
     
 }

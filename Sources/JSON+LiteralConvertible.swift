@@ -87,7 +87,7 @@ extension JSON: ArrayLiteralConvertible {
     
     public init(arrayLiteral elements: JSONEncodable...) {
         let array = elements.map() {
-            $0.json()
+            $0.encodeJSON()
         }
         self = .Array(array)
     }
@@ -102,7 +102,7 @@ extension JSON: DictionaryLiteralConvertible {
         var dict: [Swift.String: JSON] = [:]
         
         properties.forEach() { (key: Swift.String, value: JSONEncodable) in
-            dict[key] = value.json()
+            dict[key] = value.encodeJSON()
         }
         self = .Object(dict)
     }

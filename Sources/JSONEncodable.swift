@@ -27,7 +27,7 @@ import Foundation
 
 public protocol JSONEncodable {
     
-    func json() -> JSON
+    func encodeJSON() -> JSON
     
 }
 
@@ -35,7 +35,7 @@ public protocol JSONEncodable {
 
 extension JSON: JSONEncodable {
     
-    public func json() -> JSON { return self }
+    public func encodeJSON() -> JSON { return self }
     
 }
 
@@ -43,7 +43,7 @@ extension JSON: JSONEncodable {
 
 extension Int: JSONEncodable {
     
-    public func json() -> JSON { return JSON(integerLiteral: self) }
+    public func encodeJSON() -> JSON { return JSON(integerLiteral: self) }
     
 }
 
@@ -51,7 +51,7 @@ extension Int: JSONEncodable {
 
 extension Double: JSONEncodable {
     
-    public func json() -> JSON { return JSON(floatLiteral: self) }
+    public func encodeJSON() -> JSON { return JSON(floatLiteral: self) }
     
 }
 
@@ -59,7 +59,7 @@ extension Double: JSONEncodable {
 
 extension String: JSONEncodable {
     
-    public func json() -> JSON { return JSON(stringLiteral: self) }
+    public func encodeJSON() -> JSON { return JSON(stringLiteral: self) }
     
 }
 
@@ -67,9 +67,9 @@ extension String: JSONEncodable {
 
 extension Array where Element: JSONEncodable {
     
-    public func json() -> JSON {
+    public func encodeJSON() -> JSON {
         let json = self.map() {
-            $0.json()
+            $0.encodeJSON()
         }
         return JSON.Array(json)
     }
@@ -80,13 +80,13 @@ extension Array where Element: JSONEncodable {
 
 extension Dictionary where Key: StringLiteralConvertible, Value: JSONEncodable {
     
-    public func json() -> JSON {
+    public func encodeJSON() -> JSON {
         assert(Key.self == Swift.String || Key.self == Foundation.NSString, "\(Dictionary.self) Key must be \(Swift.String) or \(Foundation.NSString) instead")
         
         var properties: [Swift.String: JSON] = [:]
         
         self.forEach() {
-            properties[$0 as! Swift.String] = $1.json()
+            properties[$0 as! Swift.String] = $1.encodeJSON()
         }
         
         return .Object(properties)

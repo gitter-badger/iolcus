@@ -23,43 +23,85 @@
 //  SOFTWARE.
 //
 
-struct JSONObjectDeserialization: GeneratorType {
+final class JSONObjectDeserialization: JSONDeserialization {
     
-    private let nextCharacter: Void -> Character?
-
-    init(_ properties: [String: JSON]) {
-        let propertyDeserializations = properties.map() {
-            (key: String, value: JSON) -> AnyGenerator<Character> in
+    override func deserialize() throws -> JSON? {
+        resetPeekedCharacters()
+        skipWhitespaceCharacters()
+        
+        do {
+            guard let opening = readCharacter() else {
+                throw JSON.Exception.Serializing.UnexpectedEOF
+            }
             
-            let key = AnyGenerator(JSONStringDeserialization(key))
-            let separator = AnyGenerator(GeneratorOfOne(JSONConstants.objectKeyValueSeparator))
-            let value = JSONDeserialization.generatorWithJSON(value)
-            
-            return AnyGenerator(JoinGenerator(
-                base: [key, separator, value].generate(),
-                separator: EmptyGenerator<Character>()
-            ))
+            if opening != JSONConstants.objectOpening {
+                throw JSON.Exception.Serializing.UnexpectedCharacter(character: opening, position: scannerPosition)
+            }
         }
         
-        let opening = AnyGenerator(GeneratorOfOne(JSONConstants.objectOpening))
-        let body = AnyGenerator(JoinGenerator(
-            base: propertyDeserializations.generate(),
-            separator: GeneratorOfOne(JSONConstants.arraySeparator)
-        ))
-        let closing = AnyGenerator(GeneratorOfOne(JSONConstants.objectClosing))
-
-        var generator = JoinGenerator(
-            base: [opening, body, closing].generate(),
-            separator: EmptyGenerator<Character>()
-        )
+        var properties: [String: JSON] = [:]
         
-        nextCharacter = {
-            return generator.next()
+        readLoop: while true {
+            skipWhitespaceCharacters()
+            
+            guard let ending = peekCharacter() else {
+                throw JSON.Exception.Serializing.UnexpectedEOF
+            }
+            
+            if ending == JSONConstants.objectClosing {
+                break readLoop
+            }
+            
+            guard let key = try deserializeString()?.stringValue else {
+                throw JSON.Exception.Serializing.FailedToReadKey(position: scannerPosition)
+            }
+            
+            if properties.keys.contains(key) {
+                throw JSON.Exception.Serializing.DuplicateObjectKey(key: key, position: scannerPosition)
+            }
+            
+            skipWhitespaceCharacters()
+            
+            do {
+                guard let keyValueSeparator = readCharacter() else {
+                    throw JSON.Exception.Serializing.UnexpectedEOF
+                }
+                
+                if keyValueSeparator != JSONConstants.objectKeyValueSeparator {
+                    throw JSON.Exception.Serializing.UnexpectedCharacter(character: keyValueSeparator, position: scannerPosition)
+                }
+            }
+            
+            guard let value = try deserializeValue() else {
+                throw JSON.Exception.Serializing.FailedToReadValue(position: scannerPosition)
+            }
+            
+            properties[key] = value
+            
+            skipWhitespaceCharacters()
+            
+            guard let separator = peekCharacter() else {
+                throw JSON.Exception.Serializing.UnexpectedEOF
+            }
+            
+            if separator != JSONConstants.objectPropertySeparator {
+                break readLoop
+            }
+            
+            skipPeekedCharacters()
         }
-    }
-    
-    func next() -> Character? {
-        return nextCharacter()
+        
+        do {
+            guard let ending = readCharacter() else {
+                throw JSON.Exception.Serializing.UnexpectedEOF
+            }
+            
+            if ending != JSONConstants.objectClosing {
+                throw JSON.Exception.Serializing.UnexpectedCharacter(character: ending, position: scannerPosition)
+            }
+        }
+        
+        return JSON.Object(properties)
     }
     
 }

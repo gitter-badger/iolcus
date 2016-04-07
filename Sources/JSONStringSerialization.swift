@@ -23,190 +23,56 @@
 //  SOFTWARE.
 //
 
-final class JSONStringSerialization: JSONSerialization {
+struct JSONStringSerialization: GeneratorType {
     
-    override func serialize() throws -> JSON? {
-        resetPeekedCharacters()
-        skipWhitespaceCharacters()
-        
-        do {
-            guard let opening = readCharacter() else {
-                throw JSON.Exception.Serializing.UnexpectedEOF
-            }
-            
-            if opening != JSONConstants.stringOpening {
-                throw JSON.Exception.Serializing.UnexpectedCharacter(character: opening, position: scannerPosition)
-            }
-        }
-        
-        var string = ""
-        
-        readLoop: while true {
-            guard let character = peekCharacter() else {
-                throw JSON.Exception.Serializing.UnexpectedEOF
-            }
-            
-            switch character {
-            case JSONConstants.stringClosing:
-                break readLoop
-            case JSONConstants.stringEscape:
-                let escapedCharacter = try readEscapedCharacter()
-                string.append(escapedCharacter)
-            case JSONConstants.stringForbidden:
-                throw JSON.Exception.Serializing.UnexpectedCharacter(character: character, position: scannerPosition)
-            default:
-                string.append(character)
-            }
-            
-            skipPeekedCharacters()
-        }
-        
-        do {
-            guard let ending = readCharacter() else {
-                throw JSON.Exception.Serializing.UnexpectedEOF
-            }
-            
-            if ending != JSONConstants.stringClosing {
-                throw JSON.Exception.Serializing.UnexpectedCharacter(character: ending, position: scannerPosition)
-            }
-        }
-        
-        return JSON.String(string)
+    private enum State {
+        case Open, Reading, Closed
     }
     
-    // MARK: - Helpers
+    private let nextUnescapedCharacter: Void -> Character?
+    private var buffer: [Character] = []
+    private var state = State.Open
     
-    private func readEscapedCharacter() throws -> Character {
-        defer { skipPeekedCharacters() }
+    init(_ string: String) {
+        var generator = string.characters.generate()
         
-        resetPeekedCharacters()
-        
-        do {
-            guard let escapeCharacter = peekCharacter() else {
-                throw JSON.Exception.Serializing.UnexpectedEOF
+        nextUnescapedCharacter = {
+            return generator.next()
+        }
+    }
+    
+    mutating func next() -> Character? {
+        switch state {
+        case .Open:
+            state = .Reading
+            return JSONConstants.stringOpening
+        case .Reading:
+            if let character = nextEscapedCharacter() {
+                return character
             }
-            
-            if escapeCharacter != JSONConstants.stringEscape {
-                throw JSON.Exception.Serializing.UnexpectedCharacter(character: escapeCharacter, position: scannerPosition)
-            }
+            state = .Closed
+            return JSONConstants.stringClosing
+        case .Closed:
+            return nil
+        }
+    }
+    
+    private mutating func nextEscapedCharacter() -> Character? {
+        if let character = buffer.first {
+            buffer.removeFirst()
+            return character
         }
         
-        guard let escapeClassifier = peekCharacter() else {
-            throw JSON.Exception.Serializing.UnexpectedEOF
-        }
-        
-        if let mapping = JSONConstants.stringUnescapeMap[escapeClassifier] {
-            return mapping
+        if let character = nextUnescapedCharacter() {
+            if let escapeSequence = JSONConstants.stringEscapeMap[character] {
+                buffer.appendContentsOf(escapeSequence.characters)
+                return JSONConstants.stringEscape
+            }
+
+            return character
         }
 
-        if escapeClassifier == JSONConstants.stringEscapeUnicode {
-            return try readEscapedUnicodeCharacter()
-        }
-        
-        throw JSON.Exception.Serializing.UnexpectedCharacter(character: escapeClassifier, position: scannerPosition)
+        return nil
+    }
 
-//        switch escapeClassifier {
-//        case JSONConstants.stringEscapeQuote:
-//            return JSONConstants.stringQuote
-//        case JSONConstants.stringEscapeBackslash:
-//            return JSONConstants.stringBackslash
-//        case JSONConstants.stringEscapeSlash:
-//            return JSONConstants.stringSlash
-//        case JSONConstants.stringEscapeBackspace:
-//            return JSONConstants.stringBackspace
-//        case JSONConstants.stringEscapeFormFeed:
-//            return JSONConstants.stringFormFeed
-//        case JSONConstants.stringEscapeLineFeed:
-//            return JSONConstants.stringLineFeed
-//        case JSONConstants.stringEscapeCarriageReturn:
-//            return JSONConstants.stringCarriageReturn
-//        case JSONConstants.stringEscapeTab:
-//            return JSONConstants.stringTab
-//        case JSONConstants.stringEscapeUnicode:
-//            return try readEscapedUnicodeCharacter()
-//        default:
-//            throw JSON.Exception.Serializing.UnexpectedCharacter(character: escapeClassifier, position: scannerPosition)
-//        }
-    }
-    
-    private func readEscapedUnicodeCharacter() throws -> Character {
-        do {
-            guard let escapeCharacter = readCharacter() else {
-                throw JSON.Exception.Serializing.UnexpectedEOF
-            }
-            
-            if escapeCharacter != JSONConstants.stringEscape {
-                throw JSON.Exception.Serializing.UnexpectedCharacter(character: escapeCharacter, position: scannerPosition)
-            }
-            
-            guard let escapeClassifier = readCharacter() else {
-                throw JSON.Exception.Serializing.UnexpectedEOF
-            }
-            
-            if escapeClassifier != JSONConstants.stringEscapeUnicode {
-                throw JSON.Exception.Serializing.UnexpectedCharacter(character: escapeClassifier, position: scannerPosition)
-            }
-        }
-        
-        let codepoint = try readCodepoint()
-        
-        if !isSurrogate(codepoint) {
-            return Character(UnicodeScalar(codepoint))
-        }
-        
-        // If the first codepoint was surrogate then we must read the second surrogate too
-        
-        let highSurrogateCodepoint = codepoint
-        
-        do {
-            guard let escapeCharacter = readCharacter() else {
-                throw JSON.Exception.Serializing.UnexpectedEOF
-            }
-            
-            if escapeCharacter != JSONConstants.stringEscape {
-                throw JSON.Exception.Serializing.UnexpectedCharacter(character: escapeCharacter, position: scannerPosition)
-            }
-            
-            guard let escapeClassifier = readCharacter() else {
-                throw JSON.Exception.Serializing.UnexpectedEOF
-            }
-            
-            if escapeClassifier != JSONConstants.stringEscapeUnicode {
-                throw JSON.Exception.Serializing.UnexpectedCharacter(character: escapeClassifier, position: scannerPosition)
-            }
-        }
-        
-        let lowSurrogateCodepoint = try readCodepoint()
-        
-        // See 3.7 at http://unicode.org/versions/Unicode3.0.0/ch03.pdf
-        
-        let compositeCodepoint = (highSurrogateCodepoint - 0xD800) * 0x400 + lowSurrogateCodepoint - 0xDC00 + 0x10000
-        
-        return Character(UnicodeScalar(compositeCodepoint))
-    }
-    
-    private func readCodepoint() throws -> Int {
-        var hexCharacters: [Character] = []
-        
-        for _ in 0..<4 {
-            guard let hexCharacter = readCharacter() else {
-                throw JSON.Exception.Serializing.UnexpectedEOF
-            }
-            hexCharacters.append(hexCharacter)
-        }
-        
-        let hex = String(hexCharacters)
-        
-        guard let codepoint = Int(hex, radix: 16) else {
-            throw JSON.Exception.Serializing.FailedToReadHex(hex: hex, position: scannerPosition)
-        }
-        
-        return codepoint
-    }
-    
-    private func isSurrogate(codepoint: Int) -> Bool {
-        return codepoint >= 0xd800
-            && codepoint < 0xe000
-    }
-    
 }

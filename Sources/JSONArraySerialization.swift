@@ -23,65 +23,34 @@
 //  SOFTWARE.
 //
 
-final class JSONArraySerialization: JSONSerialization {
+struct JSONArraySerialization: GeneratorType {
+
+    private let nextCharacter: Void -> Character?
     
-    override func serialize() throws -> JSON? {
-        resetPeekedCharacters()
-        skipWhitespaceCharacters()
-        
-        do {
-            guard let opening = readCharacter() else {
-                throw JSON.Exception.Serializing.UnexpectedEOF
-            }
-            
-            if opening != JSONConstants.arrayOpening {
-                throw JSON.Exception.Serializing.UnexpectedCharacter(character: opening, position: scannerPosition)
-            }
+    init(_ elements: [JSON]) {
+        let elementDeserializations = elements.map() {
+            JSONSerialization.generatorWithJSON($0)
         }
         
-        var values: [JSON] = []
+        let opening = AnyGenerator(GeneratorOfOne(JSONConstants.arrayOpening))
+        let body = AnyGenerator(JoinGenerator(
+            base: elementDeserializations.generate(),
+            separator: GeneratorOfOne(JSONConstants.arraySeparator)
+        ))
+        let closing = AnyGenerator(GeneratorOfOne(JSONConstants.arrayClosing))
         
-        readLoop: while true {
-            skipWhitespaceCharacters()
-            
-            guard let ending = peekCharacter() else {
-                throw JSON.Exception.Serializing.UnexpectedEOF
-            }
-            
-            if ending == JSONConstants.arrayClosing {
-                break readLoop
-            }
-            
-            guard let value = try serializeValue() else {
-                throw JSON.Exception.Serializing.FailedToReadValue(position: scannerPosition)
-            }
-            
-            values.append(value)
-            
-            skipWhitespaceCharacters()
-            
-            guard let separator = peekCharacter() else {
-                throw JSON.Exception.Serializing.UnexpectedEOF
-            }
-            
-            if separator != JSONConstants.arraySeparator {
-                break readLoop
-            }
-            
-            skipPeekedCharacters()
+        var generator = JoinGenerator(
+            base: [opening, body, closing].generate(),
+            separator: EmptyGenerator<Character>()
+        )
+        
+        nextCharacter = {
+            return generator.next()
         }
-        
-        do {
-            guard let ending = readCharacter() else {
-                throw JSON.Exception.Serializing.UnexpectedEOF
-            }
-            
-            if ending != JSONConstants.arrayClosing {
-                throw JSON.Exception.Serializing.UnexpectedCharacter(character: ending, position: scannerPosition)
-            }
-        }
-        
-        return JSON.Array(values)
+    }
+    
+    func next() -> Character? {
+        return nextCharacter()
     }
     
 }

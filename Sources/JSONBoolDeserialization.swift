@@ -23,20 +23,52 @@
 //  SOFTWARE.
 //
 
-struct JSONBoolDeserialization: GeneratorType {
+final class JSONBoolDeserialization: JSONDeserialization {
     
-    private let nextCharacter: Void -> Character?
-    
-    init(_ boolean: Bool) {
-        var generator = (boolean ? JSONConstants.trueSequence : JSONConstants.falseSequence).generate()
+    override func deserialize() throws -> JSON? {
+        resetPeekedCharacters()
+        skipWhitespaceCharacters()
         
-        nextCharacter = {
-            return generator.next()
+        guard let opening = peekCharacter() else {
+            throw JSON.Exception.Serializing.UnexpectedEOF
+        }
+        
+        switch opening {
+        case JSONConstants.trueSequence[0]:
+            return try deserializeTrue()
+        case JSONConstants.falseSequence[0]:
+            return try deserializeFalse()
+        default:
+            throw JSON.Exception.Serializing.UnexpectedCharacter(character: opening, position: scannerPosition)
         }
     }
     
-    func next() -> Character? {
-        return nextCharacter()
+    private func deserializeTrue() throws -> JSON? {
+        try JSONConstants.trueSequence.forEach() {
+            guard let character = readCharacter() else {
+                throw JSON.Exception.Serializing.UnexpectedEOF
+            }
+            
+            if character != $0 {
+                throw JSON.Exception.Serializing.UnexpectedCharacter(character: character, position: scannerPosition)
+            }
+        }
+        
+        return JSON.Boolean(true)
+    }
+    
+    private func deserializeFalse() throws -> JSON {
+        try JSONConstants.falseSequence.forEach() {
+            guard let character = readCharacter() else {
+                throw JSON.Exception.Serializing.UnexpectedEOF
+            }
+            
+            if character != $0 {
+                throw JSON.Exception.Serializing.UnexpectedCharacter(character: character, position: scannerPosition)
+            }
+        }
+        
+        return JSON.Boolean(false)
     }
     
 }

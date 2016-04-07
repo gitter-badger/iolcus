@@ -25,6 +25,7 @@
 
 extension JSON {
     
+    /// A concrete `Bool` value if `JSON` actually wraps it, `nil` otherwise.
     public var booleanValue: Swift.Bool? {
         if case .Boolean(let boolean) = self {
             return boolean
@@ -32,6 +33,7 @@ extension JSON {
         return nil
     }
     
+    /// A concrete `Double` value if `JSON` actually wraps it, `nil` otherwise.
     public var doubleValue: Swift.Double? {
         if case .Double(let double) = self {
             return double
@@ -39,6 +41,7 @@ extension JSON {
         return nil
     }
     
+    /// A concrete `Int` value if `JSON` actually wraps it, `nil` otherwise.
     public var intValue: Swift.Int? {
         if case .Integer(let integer) = self {
             return integer
@@ -46,6 +49,7 @@ extension JSON {
         return nil
     }
     
+    /// A concrete `String` value if `JSON` actually wraps it, `nil` otherwise.
     public var stringValue: Swift.String? {
         if case .String(let string) = self {
             return string
@@ -53,6 +57,7 @@ extension JSON {
         return nil
     }
     
+    /// A concrete `[JSON]` array if `JSON` actually wraps it, `nil` otherwise.
     public var arrayElements: [JSON]? {
         if case .Array(let array) = self {
             return array
@@ -60,6 +65,7 @@ extension JSON {
         return nil
     }
     
+    /// A concrete `[String: JSON]` dictionary if `JSON` actually wraps it, `nil` otherwise.
     public var objectProperties: [Swift.String: JSON]? {
         if case .Object(let object) = self {
             return object
@@ -73,6 +79,11 @@ extension JSON {
 
 extension JSON {
     
+    /// Shorthand accessor for elements of the `JSON` array.
+    ///
+    /// - returns: If a particular `JSON` is `.Array` then this subsript will return a particular element corresponding to the `index`.
+    ///            In all other cases the subscript returns `.Null`.  
+    ///            If the `index` is out of bounds the subscript will also return `.Null`.
     public subscript(index: Swift.Int) -> JSON {
         if case .Array(let array) = self {
             if index >= 0 && index < array.count {
@@ -82,6 +93,11 @@ extension JSON {
         return .Null
     }
     
+    /// Shorthand accessor for elements of the `JSON` object (a.k.a. dictionary).
+    ///
+    /// - returns: If a particular `JSON` is `.Object` then this subsript will return a particular element corresponding to the `key`.
+    ///            In all other cases the subscript returns `.Null`.
+    ///            If there is no element with such `key` then the subscript also returns `.Null`.
     public subscript(key: Swift.String) -> JSON {
         if case .Object(let object) = self {
             if let value = object[key] {
@@ -97,56 +113,64 @@ extension JSON {
 
 extension JSON {
     
-    public var isNull: Swift.Bool? {
+    /// Indicates whether the `JSON` value is null.
+    public var isNull: Swift.Bool {
         switch  self {
         case .Null : return true
         default    : return false
         }
     }
     
-    public var isBoolean: Swift.Bool? {
+    /// Indicates whether the `JSON` value is boolean.
+    public var isBoolean: Swift.Bool {
         switch  self {
         case .Boolean(_) : return true
         default          : return false
         }
     }
     
-    public var isInteger: Swift.Bool? {
+    /// Indicates whether the `JSON` value is an integer.
+    public var isInteger: Swift.Bool {
         switch  self {
         case .Integer(_) : return true
         default          : return false
         }
     }
     
-    public var isDouble: Swift.Bool? {
+    /// Indicates whether the `JSON` value is double (floating point).
+    public var isDouble: Swift.Bool {
         switch  self {
         case .Double(_) : return true
         default         : return false
         }
     }
     
-    public var isNumber: Swift.Bool? {
+    /// Indicates whether the `JSON` value a number (either integer or double).
+    public var isNumber: Swift.Bool {
         switch  self {
         case .Integer(_), .Double(_) : return true
         default                      : return false
         }
     }
     
-    public var isString: Swift.Bool? {
+    /// Indicates whether the `JSON` value is a string.
+    public var isString: Swift.Bool {
         switch  self {
         case .String(_) : return true
         default         : return false
         }
     }
     
-    public var isArray: Swift.Bool? {
+    /// Indicates whether the `JSON` value is an array.
+    public var isArray: Swift.Bool {
         switch  self {
         case .Array(_) : return true
         default        : return false
         }
     }
     
-    public var isObject: Swift.Bool? {
+    /// Indicates whether the `JSON` value is an object.
+    public var isObject: Swift.Bool {
         switch  self {
         case .Object(_) : return true
         default         : return false

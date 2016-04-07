@@ -25,20 +25,24 @@
 
 extension JSON {
     
+    /// Creates a `JSON` value from an instance of `JSONEncodable`.
     public init<J: JSONEncodable>(_ element: J) {
-        self = element.json()
+        self = element.encodeJSON()
     }
     
+    /// Creates a `JSON` value from an array of `JSONEncodable`'s.
     public init<J: JSONEncodable>(_ elements: [J]) {
-        self = elements.json()
+        self = elements.encodeJSON()
     }
     
+    /// Creates a `JSON` value from a list of `JSONEncodable`'s.
     public init<J: JSONEncodable>(_ elements: J...) {
-        self = elements.json()
+        self = elements.encodeJSON()
     }
     
+    /// Creates a `JSON` value from a dictionary of `[String: JSONEncodable]`.
     public init<J: JSONEncodable>(_ properties: [Swift.String: J]) {
-        self = properties.json()
+        self = properties.encodeJSON()
     }
     
 }
