@@ -366,6 +366,7 @@
 			isa = PBXGroup;
 			children = (
 				BA5B9BC61CB4DE39003EF1CA /* Support */,
+				BAF400011CB83A5E006A72AD /* Shared */,
 				BA5B9BC41CB4DE17003EF1CA /* OSX */,
 				BA5B9BC51CB4DE20003EF1CA /* iOS */,
 				BA5B9BE31CB57667003EF1CA /* tvOS */,
@@ -405,6 +406,13 @@
 				BA5FC1731CB5952500FBCB84 /* Medea_tvOSTests.swift */,
 			);
 			name = tvOS;
+			sourceTree = "<group>";
+		};
+		BAF400011CB83A5E006A72AD /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Shared;
 			sourceTree = "<group>";
 		};
 		BAF809201CB38E000055F146 = {

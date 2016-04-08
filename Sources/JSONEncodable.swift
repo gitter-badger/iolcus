@@ -25,8 +25,10 @@
 
 import Foundation
 
+/// Instance of the conforming type can be encoded into a `JSON` value.
 public protocol JSONEncodable {
     
+    /// Encodes an instance into a `JSON` value.
     func encodeJSON() -> JSON
     
 }
@@ -35,6 +37,7 @@ public protocol JSONEncodable {
 
 extension JSON: JSONEncodable {
     
+    /// Encodes an instance into a `JSON` value.
     public func encodeJSON() -> JSON { return self }
     
 }
@@ -43,6 +46,7 @@ extension JSON: JSONEncodable {
 
 extension Int: JSONEncodable {
     
+    /// Encodes an instance into a `JSON` value.
     public func encodeJSON() -> JSON { return JSON(integerLiteral: self) }
     
 }
@@ -51,6 +55,7 @@ extension Int: JSONEncodable {
 
 extension Double: JSONEncodable {
     
+    /// Encodes an instance into a `JSON` value.
     public func encodeJSON() -> JSON { return JSON(floatLiteral: self) }
     
 }
@@ -59,6 +64,7 @@ extension Double: JSONEncodable {
 
 extension String: JSONEncodable {
     
+    /// Encodes an instance into a `JSON` value.
     public func encodeJSON() -> JSON { return JSON(stringLiteral: self) }
     
 }
@@ -67,6 +73,7 @@ extension String: JSONEncodable {
 
 extension Array where Element: JSONEncodable {
     
+    /// Encodes an instance into a `JSON` value.
     public func encodeJSON() -> JSON {
         let json = self.map() {
             $0.encodeJSON()
@@ -80,6 +87,7 @@ extension Array where Element: JSONEncodable {
 
 extension Dictionary where Key: StringLiteralConvertible, Value: JSONEncodable {
     
+    /// Encodes an instance into a `JSON` value.
     public func encodeJSON() -> JSON {
         assert(Key.self == Swift.String || Key.self == Foundation.NSString, "\(Dictionary.self) Key must be \(Swift.String) or \(Foundation.NSString) instead")
         

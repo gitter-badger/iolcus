@@ -23,8 +23,13 @@
 //  SOFTWARE.
 //
 
+/// Instance of the conforming type can be initialized from a `JSON` value.
 public protocol JSONDecodable {
     
+    /// Initializes an instance from `JSON` value.
+    ///
+    /// - throws: Should throw `JSON.Exception.Decoding.FailedToDecode` if `json` parameter can not
+    ///           be used to fully initialize a new instance.
     init(json: JSON) throws
     
 }
@@ -33,7 +38,12 @@ public protocol JSONDecodable {
 
 extension Array where Element: JSONDecodable {
     
-    public init(_ json: JSON) throws {
+    /// Initializes an array of `JSONDecodable` elements.
+    ///
+    /// - returns: If `JSON` argument is `.Array` then the result will an an array of all instances
+    ///            of the input array decoded into `JSONDecodable` instances.  Otherwise, the result
+    ///            will be single-element array with a decoded instance.
+    public init(json: JSON) throws {
         if case .Array(let array) = json {
             self = try array.map() {
                 try Element(json: $0)

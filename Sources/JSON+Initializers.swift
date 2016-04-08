@@ -36,8 +36,8 @@ extension JSON {
     }
     
     /// Creates a `JSON` value from the list of `JSONEncodable`'s.
-    public init<J: JSONEncodable>(_ elements: J...) {
-        self = elements.encodeJSON()
+    public init<J: JSONEncodable>(_ list: J...) {
+        self = list.encodeJSON()
     }
     
     /// Creates a `JSON` value from the dictionary of `[String: JSONEncodable]`.
