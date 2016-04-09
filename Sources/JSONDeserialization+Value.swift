@@ -1,5 +1,5 @@
 //
-//  JSONNumberDeserialization.swift
+//  JSONDeserialization.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -23,37 +23,37 @@
 //  SOFTWARE.
 //
 
-final class JSONNumberDeserialization: JSONDeserialization {
-    
-    override func deserialize() throws -> JSON? {
-        resetPeekedCharacters()
-        skipWhitespaceCharacters()
+extension JSONDeserialization {
+
+    mutating func deserializeValue() throws -> JSON {
+        let opening = try peekCharacter()
         
-        var stringRepresentation = ""
+        switch opening {
         
-        readLoop: while true {
-            guard let character = peekCharacter() else {
-                throw JSON.Exception.Serializing.UnexpectedEOF
-            }
-            
-            if !JSON.Constants.numberCharacters.contains(character) {
-                resetPeekedCharacters()
-                break readLoop
-            }
-            
-            stringRepresentation.append(character)
-            skipPeekedCharacters()
+        case JSON.Constant.nullSequence[0]:
+            return try deserializeNull()
+
+        case JSON.Constant.trueSequence[0], JSON.Constant.falseSequence[0]:
+            return try deserializeBoolean()
+
+        case JSON.Constant.numberOpenings:
+            return try deserializeNumber()
+
+        case JSON.Constant.stringOpening:
+            return try deserializeString()
+        
+        case JSON.Constant.arrayOpening:
+            return try deserializeArray()
+        
+        case JSON.Constant.objectOpening:
+            return try deserializeObject()
+        
+        default:
+            break
+        
         }
-        
-        if let integer = Int(stringRepresentation) {
-            return JSON.Integer(integer)
-        }
-        
-        if let double = Double(stringRepresentation) {
-            return JSON.Double(double)
-        }
-        
-        throw JSON.Exception.Serializing.FailedToReadNumber(number: stringRepresentation, position: scannerPosition)
+
+        throw JSON.Exception.Deserializing.UnexpectedCharacter(character: opening, position: scannerPosition)
     }
-    
+
 }

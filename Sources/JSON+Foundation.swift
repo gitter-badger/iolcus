@@ -60,7 +60,7 @@ extension JSON {
             return try jsonWithNSJSON(json)
         }
         
-        throw JSON.Exception.Serializing.FailedToReadNSJSON(type: nsjson.dynamicType)
+        throw JSON.Exception.Foundation.FailedToConvertFromNSJSON(type: nsjson.dynamicType)
     }
     
     // MARK: -

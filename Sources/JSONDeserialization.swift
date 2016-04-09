@@ -23,11 +23,9 @@
 //  SOFTWARE.
 //
 
-import Foundation
-
-class JSONDeserialization {
+struct JSONDeserialization {
     
-    private let scanner: Scanner<Character>
+    var scanner: Scanner<Character>
     var scannerPosition: Int { return scanner.position }
     
     init(_ scanner: Scanner<Character>) {
@@ -36,99 +34,48 @@ class JSONDeserialization {
     
     // MARK: - Scanning trough the input
     
-    final func readCharacter() -> Character? {
-        let readCharacter = scanner.next()
+    mutating func readCharacter() throws -> Character {
+        guard let readCharacter = scanner.next() else {
+            throw JSON.Exception.Deserializing.UnexpectedEOF
+        }
+        
         return readCharacter
     }
     
-    final func peekCharacter() -> Character? {
-        let peekedCharacter = scanner.peek()
+    mutating func readExpectedCharacter(expectedCharacter: Character) throws {
+        let character = try readCharacter()
+        
+        if character != expectedCharacter {
+            throw JSON.Exception.Deserializing.UnexpectedCharacter(character: character, position: scanner.position)
+        }
+    }
+    
+    mutating func peekCharacter() throws -> Character {
+        guard let peekedCharacter = scanner.peek() else {
+            throw JSON.Exception.Deserializing.UnexpectedEOF
+        }
+        
         return peekedCharacter
     }
     
-    final func resetPeekedCharacters() {
+    mutating func peekExpectedCharacter(expectedCharacter: Character) throws {
+        let character = try peekCharacter()
+        
+        if character != expectedCharacter {
+            throw JSON.Exception.Deserializing.UnexpectedCharacter(character: character, position: scanner.position)
+        }
+    }
+    
+    mutating func resetPeekedCharacters() {
         scanner.resetPeek()
     }
     
-    final func skipPeekedCharacters() {
+    mutating func skipPeekedCharacters() {
         scanner.skipPeeked()
     }
     
-    final func skipWhitespaceCharacters() {
-        scanner.skipWhile(JSON.Constants.whitespace.contains)
+    mutating func skipWhitespaceCharacters() {
+        scanner.skipWhile(JSON.Constant.whitespace.contains)
     }
 
-    // MARK: - Internal deserialization
-    
-    func deserialize() throws -> JSON? {
-        fatalError("Must override")
-    }
-    
-    final func deserializeNull() throws -> JSON? {
-        return try JSONNullDeserialization(scanner).deserialize()
-    }
-    
-    final func deserializeBool() throws -> JSON? {
-        return try JSONBoolDeserialization(scanner).deserialize()
-    }
-    
-    final func deserializeNumber() throws -> JSON? {
-        return try JSONNumberDeserialization(scanner).deserialize()
-    }
-    
-    final func deserializeString() throws -> JSON? {
-        return try JSONStringDeserialization(scanner).deserialize()
-    }
-    
-    final func deserializeArray() throws -> JSON? {
-        return try JSONArrayDeserialization(scanner).deserialize()
-    }
-    
-    final func deserializeObject() throws -> JSON? {
-        return try JSONObjectDeserialization(scanner).deserialize()
-    }
-    
-    final func deserializeValue() throws -> JSON? {
-        return try JSONValueDeserialization(scanner).deserialize()
-    }
-    
-}
-
-// MARK: -
-
-extension JSONDeserialization {
-    
-    static func jsonWithString(string: Swift.String) throws -> JSON? {
-        let scanner = Scanner(string.characters)
-        return try deserializeFromScanner(scanner)
-    }
-    
-    static func jsonWithSequence<S: SequenceType where S.Generator.Element == Character>(sequence: S) throws -> JSON? {
-        let scanner = Scanner(sequence)
-        return try deserializeFromScanner(scanner)
-    }
-    
-    static func jsonWithGenerator<G: GeneratorType where G.Element == Character>(generator: G) throws -> JSON? {
-        let scanner = Scanner(generator)
-        return try deserializeFromScanner(scanner)
-    }
-    
-    static func jsonWithClosure(closure: Void -> Character?) throws -> JSON? {
-        let scanner = Scanner(closure)
-        return try deserializeFromScanner(scanner)
-    }
-    
-    private static func deserializeFromScanner(scanner: Scanner<Character>) throws -> JSON? {
-        let deserialization = JSONValueDeserialization(scanner)
-        let json = try deserialization.deserialize()
-        
-        deserialization.skipWhitespaceCharacters()
-        
-        if let tail = deserialization.readCharacter() {
-            throw JSON.Exception.Serializing.UnexpectedCharacter(character: tail, position: deserialization.scannerPosition)
-        }
-        
-        return json
-    }
-    
 }

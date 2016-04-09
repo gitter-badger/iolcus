@@ -1,5 +1,5 @@
 //
-//  JSONNullDeserialization.swift
+//  JSONDeserialization.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -23,23 +23,13 @@
 //  SOFTWARE.
 //
 
-final class JSONNullDeserialization: JSONDeserialization {
-    
-    override func deserialize() throws -> JSON? {
-        resetPeekedCharacters()
-        skipWhitespaceCharacters()
-        
-        try JSON.Constants.nullSequence.forEach() {
-            guard let character = readCharacter() else {
-                throw JSON.Exception.Serializing.UnexpectedEOF
-            }
-            
-            if character != $0 {
-                throw JSON.Exception.Serializing.UnexpectedCharacter(character: character, position: scannerPosition)
-            }
+extension JSONDeserialization {
+
+    mutating func deserializeNull() throws -> JSON {
+        try JSON.Constant.nullSequence.forEach() {
+            try readExpectedCharacter($0)
         }
-        
         return JSON.Null
     }
-    
+
 }

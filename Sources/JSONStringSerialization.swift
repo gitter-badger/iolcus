@@ -45,13 +45,13 @@ struct JSONStringSerialization: GeneratorType {
         switch state {
         case .Open:
             state = .Reading
-            return JSON.Constants.stringOpening
+            return JSON.Constant.stringOpening
         case .Reading:
             if let character = nextEscapedCharacter() {
                 return character
             }
             state = .Closed
-            return JSON.Constants.stringClosing
+            return JSON.Constant.stringClosing
         case .Closed:
             return nil
         }
@@ -64,9 +64,9 @@ struct JSONStringSerialization: GeneratorType {
         }
         
         if let character = nextUnescapedCharacter() {
-            if let escapeSequence = JSON.Constants.stringEscapeMap[character] {
+            if let escapeSequence = JSON.Constant.stringEscapeMap[character] {
                 buffer.appendContentsOf(escapeSequence.characters)
-                return JSON.Constants.stringEscape
+                return JSON.Constant.stringEscape
             }
 
             return character

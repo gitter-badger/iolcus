@@ -23,19 +23,14 @@
 //  SOFTWARE.
 //
 
-final class Scanner<T> {
-    
-    private (set) var position: Int = 0
-    private var peekPosition: Int { return position + peekOffset }
+struct Scanner<T> {
     
     private let getNextElement: Void -> T?
+
+    private (set) var position: Int = 0
+    
     private var peekBuffer: [T] = []
     private var peekOffset = 0
-    
-    var peekedElement: T? {
-        guard peekOffset < peekBuffer.count else { return nil }
-        return peekBuffer[peekOffset]
-    }
     
     // MARK: -
     
@@ -43,20 +38,20 @@ final class Scanner<T> {
         getNextElement = closure
     }
     
-    convenience init<G: GeneratorType where G.Element == T>(_ generator: G) {
+    init<G: GeneratorType where G.Element == T>(_ generator: G) {
         var _generator = generator // SE-0003 sucks
         self.init() {
             return _generator.next()
         }
     }
     
-    convenience init<S: SequenceType where S.Generator.Element == T>(_ sequence: S) {
+    init<S: SequenceType where S.Generator.Element == T>(_ sequence: S) {
         self.init(sequence.generate())
     }
     
     // MARK: -
     
-    func next() -> T? {
+    mutating func next() -> T? {
         if let nextElement = peekBuffer.first {
             peekBuffer.removeFirst()
             position += 1
@@ -74,7 +69,7 @@ final class Scanner<T> {
         return nil
     }
     
-    func peek() -> T? {
+    mutating func peek() -> T? {
         if peekOffset < peekBuffer.count {
             let peek = peekBuffer[peekOffset]
             peekOffset += 1
@@ -93,16 +88,16 @@ final class Scanner<T> {
         return nextElement
     }
     
-    func resetPeek() {
+    mutating func resetPeek() {
         peekOffset = 0
     }
     
-    func skipPeeked() {
+    mutating func skipPeeked() {
         peekBuffer = []
         peekOffset = 0
     }
     
-    func skipWhile(conforms: T -> Bool) {
+    mutating func skipWhile(conforms: T -> Bool) {
         while let nextElement = peek()
             where conforms(nextElement) {
                 skipPeeked()

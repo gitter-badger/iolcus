@@ -34,28 +34,9 @@ public indirect enum JSON {
     case Array([JSON])
     case Object([Swift.String: JSON])
     
-    public struct Exception {
-        
-        /// Exception produced while serializing a `JSON` value.
-        public enum Serializing: ErrorType {
-            case UnexpectedEOF
-            case UnexpectedCharacter(character: Swift.Character, position: Swift.Int)
-            case DuplicateObjectKey(key: Swift.String, position: Swift.Int)
-            case FailedToReadKey(position: Swift.Int)
-            case FailedToReadValue(position: Swift.Int)
-            case FailedToReadHex(hex: Swift.String, position: Swift.Int)
-            case FailedToReadNumber(number: Swift.String, position: Swift.Int)
-            case FailedToReadNSJSON(type: Any.Type)
-        }
-        
-        /// Exception produced while decoding a value from the `JSON` value.
-        public enum Decoding: ErrorType {
-            case FailedToDecode(type: Any.Type, json: JSON)
-        }
-        
-    }
+    public struct Exception { }
     
-    struct Constants { }
+    struct Constant { }
     
 }
 

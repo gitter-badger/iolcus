@@ -1,5 +1,5 @@
 //
-//  JSONBoolSerialization.swift
+//  JSONDeserialization.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -23,20 +23,34 @@
 //  SOFTWARE.
 //
 
-struct JSONBoolSerialization: GeneratorType {
-    
-    private let nextCharacter: Void -> Character?
-    
-    init(_ boolean: Bool) {
-        var generator = (boolean ? JSON.Constant.trueSequence : JSON.Constant.falseSequence).generate()
+extension JSONDeserialization {
+
+    mutating func deserializeNumber() throws -> JSON {
+        var stringRepresentation = ""
         
-        nextCharacter = {
-            return generator.next()
+        readLoop: while true {
+            let character = try peekCharacter()
+            
+            if !JSON.Constant.numberCharacters.contains(character) {
+                break readLoop
+            }
+            
+            skipPeekedCharacters()
+
+            stringRepresentation.append(character)
         }
+        
+        resetPeekedCharacters()
+        
+        if let integer = Int(stringRepresentation) {
+            return JSON.Integer(integer)
+        }
+        
+        if let double = Double(stringRepresentation) {
+            return JSON.Double(double)
+        }
+        
+        throw JSON.Exception.Deserializing.FailedToReadNumber(number: stringRepresentation, position: scannerPosition)
     }
-    
-    func next() -> Character? {
-        return nextCharacter()
-    }
-    
+
 }

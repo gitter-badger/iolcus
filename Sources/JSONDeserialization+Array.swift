@@ -1,5 +1,5 @@
 //
-//  JSONBoolSerialization.swift
+//  JSONDeserialization.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -23,20 +23,39 @@
 //  SOFTWARE.
 //
 
-struct JSONBoolSerialization: GeneratorType {
-    
-    private let nextCharacter: Void -> Character?
-    
-    init(_ boolean: Bool) {
-        var generator = (boolean ? JSON.Constant.trueSequence : JSON.Constant.falseSequence).generate()
-        
-        nextCharacter = {
-            return generator.next()
-        }
+extension JSONDeserialization {
+
+    mutating func deserializeArray() throws -> JSON {
+        let array = try readArray()
+        return JSON.Array(array)
     }
     
-    func next() -> Character? {
-        return nextCharacter()
+    private mutating func readArray() throws -> [JSON] {
+        try readExpectedCharacter(JSON.Constant.arrayOpening)
+        
+        var array: [JSON] = []
+        
+        readLoop: while true {
+            skipWhitespaceCharacters()
+            
+            if try peekCharacter() == JSON.Constant.arrayClosing {
+                break readLoop
+            }
+            
+            array.append(try deserializeValue())
+            
+            skipWhitespaceCharacters()
+            
+            if try peekCharacter() != JSON.Constant.arraySeparator {
+                break readLoop
+            }
+            
+            skipPeekedCharacters()
+        }
+        
+        try readExpectedCharacter(JSON.Constant.arrayClosing)
+        
+        return array
     }
     
 }

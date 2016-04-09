@@ -1,5 +1,5 @@
 //
-//  JSONValueDeserialization.swift
+//  JSONDeserialization.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -23,31 +23,33 @@
 //  SOFTWARE.
 //
 
-final class JSONValueDeserialization: JSONDeserialization {
+extension JSONDeserialization {
     
-    override func deserialize() throws -> JSON? {
-        resetPeekedCharacters()
-        skipWhitespaceCharacters()
+    mutating func deserializeBoolean() throws -> JSON {
+        let bool = try readBoolean()
+        return JSON.Boolean(bool)
+    }
+
+    private mutating func readBoolean() throws -> Bool  {
+        let character = try peekCharacter()
         
-        guard let opening = peekCharacter() else {
-            throw JSON.Exception.Serializing.UnexpectedEOF
-        }
+        switch character {
+
+        case JSON.Constant.trueSequence[0]:
+            try JSON.Constant.trueSequence.forEach() {
+                try readExpectedCharacter($0)
+            }
+            return true
         
-        switch opening {
-        case JSON.Constants.objectOpening:
-            return try deserializeObject()
-        case JSON.Constants.arrayOpening:
-            return try deserializeArray()
-        case JSON.Constants.numberOpenings:
-            return try deserializeNumber()
-        case JSON.Constants.stringOpening:
-            return try deserializeString()
-        case JSON.Constants.trueSequence[0], JSON.Constants.falseSequence[0]:
-            return try deserializeBool()
-        case JSON.Constants.nullSequence[0]:
-            return try deserializeNull()
+        case JSON.Constant.falseSequence[0]:
+            try JSON.Constant.falseSequence.forEach() {
+                try readExpectedCharacter($0)
+            }
+            return false
+        
         default:
-            throw JSON.Exception.Serializing.UnexpectedCharacter(character: opening, position: scannerPosition)
+            throw JSON.Exception.Deserializing.UnexpectedCharacter(character: character, position: scanner.position)
+        
         }
     }
     
