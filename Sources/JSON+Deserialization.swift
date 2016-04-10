@@ -26,22 +26,22 @@
 extension JSON {
  
     /// Parses a `string` into the `JSON` value.
-    public static func jsonWithString(string: Swift.String) throws -> JSON? {
+    public static func jsonWithString(string: Swift.String) throws -> JSON {
         return try JSONDeserialization.jsonWithString(string)
     }
     
     /// Parses a `sequence` of characters into the `JSON` value.
-    public static func jsonWithSequence<S: SequenceType where S.Generator.Element == Character>(sequence: S) throws -> JSON? {
+    public static func jsonWithSequence<S: SequenceType where S.Generator.Element == Character>(sequence: S) throws -> JSON {
         return try JSONDeserialization.jsonWithSequence(sequence)
     }
     
     /// Parses the chain of characters produced by `generator` into the `JSON` value.
-    public static func jsonWithGenerator<G: GeneratorType where G.Element == Character>(generator: G) throws -> JSON? {
+    public static func jsonWithGenerator<G: GeneratorType where G.Element == Character>(generator: G) throws -> JSON {
         return try JSONDeserialization.jsonWithGenerator(generator)
     }
     
     /// Uses the `closure` to read the chain of characters and parses it into the `JSON` value.
-    public static func jsonWithClosure(closure: Void -> Character?) throws -> JSON? {
+    public static func jsonWithClosure(closure: Void -> Character?) throws -> JSON {
         return try JSONDeserialization.jsonWithClosure(closure)
     }
 

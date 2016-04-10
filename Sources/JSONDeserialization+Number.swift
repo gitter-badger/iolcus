@@ -50,7 +50,7 @@ extension JSONDeserialization {
             return JSON.Double(double)
         }
         
-        throw JSON.Exception.Deserializing.FailedToReadNumber(number: stringRepresentation, position: scannerPosition)
+        throw JSON.Error.Deserializing.FailedToReadNumber(number: stringRepresentation, position: position)
     }
 
 }

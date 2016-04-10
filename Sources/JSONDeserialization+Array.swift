@@ -42,6 +42,7 @@ extension JSONDeserialization {
                 break readLoop
             }
             
+            resetPeekedCharacters()
             array.append(try deserializeValue())
             
             skipWhitespaceCharacters()

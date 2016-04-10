@@ -48,7 +48,7 @@ extension JSONDeserialization {
             return false
         
         default:
-            throw JSON.Exception.Deserializing.UnexpectedCharacter(character: character, position: scanner.position)
+            throw JSON.Error.Deserializing.UnexpectedCharacter(character: character, position: position)
         
         }
     }

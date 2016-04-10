@@ -1,6 +1,6 @@
 //
-//  Medea_iOSTests.swift
-//  Medea_iOSTests
+//  Medea_iOS_Tests.swift
+//  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
 //
@@ -23,10 +23,12 @@
 //  SOFTWARE.
 //
 
+#if os(iOS)
+
 import XCTest
 @testable import Medea
 
-class Medea_iOSTests: XCTestCase {
+class Medea_iOS_Tests: XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -51,3 +53,5 @@ class Medea_iOSTests: XCTestCase {
     }
     
 }
+
+#endif

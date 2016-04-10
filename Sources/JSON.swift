@@ -34,7 +34,7 @@ public indirect enum JSON {
     case Array([JSON])
     case Object([Swift.String: JSON])
     
-    public struct Exception { }
+    public struct Error { }
     
     struct Constant { }
     

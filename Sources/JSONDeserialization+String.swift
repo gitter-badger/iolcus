@@ -49,7 +49,7 @@ extension JSONDeserialization {
             
             if JSON.Constant.stringForbidden.contains(character) {
                 skipPeekedCharacters()
-                throw JSON.Exception.Deserializing.UnexpectedCharacter(character: character, position: scannerPosition)
+                throw JSON.Error.Deserializing.UnexpectedCharacter(character: character, position: position)
             }
             
             skipPeekedCharacters()
@@ -78,7 +78,7 @@ extension JSONDeserialization {
         }
         
         skipPeekedCharacters()
-        throw JSON.Exception.Deserializing.UnexpectedCharacter(character: escapeClassifier, position: scanner.position)
+        throw JSON.Error.Deserializing.UnexpectedCharacter(character: escapeClassifier, position: position)
     }
     
     private mutating func readEscapedUnicodeCharacter() throws -> Character {
@@ -118,7 +118,7 @@ extension JSONDeserialization {
         let hex = String(hexCharacters)
         
         guard let codepoint = Int(hex, radix: 16) else {
-            throw JSON.Exception.Deserializing.FailedToReadHex(hex: hex, position: scanner.position)
+            throw JSON.Error.Deserializing.FailedToReadHex(hex: hex, position: position)
         }
         
         return codepoint

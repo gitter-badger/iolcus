@@ -27,6 +27,8 @@ extension JSONDeserialization {
 
     mutating func deserializeValue() throws -> JSON {
         let opening = try peekCharacter()
+
+        resetPeekedCharacters()
         
         switch opening {
         
@@ -53,7 +55,7 @@ extension JSONDeserialization {
         
         }
 
-        throw JSON.Exception.Deserializing.UnexpectedCharacter(character: opening, position: scannerPosition)
+        throw JSON.Error.Deserializing.UnexpectedCharacter(character: opening, position: position)
     }
 
 }

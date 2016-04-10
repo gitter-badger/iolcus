@@ -51,7 +51,7 @@ struct Scanner<T> {
     
     // MARK: -
     
-    mutating func next() -> T? {
+    mutating func read() -> T? {
         if let nextElement = peekBuffer.first {
             peekBuffer.removeFirst()
             position += 1
@@ -105,4 +105,17 @@ struct Scanner<T> {
         resetPeek()
     }
     
+    mutating func isEOF() -> Bool {
+        if peekBuffer.count > 0 {
+            return false
+        }
+        
+        if let _ = peek() {
+            resetPeek()
+            return false
+        }
+        
+        return true
+    }
+
 }
