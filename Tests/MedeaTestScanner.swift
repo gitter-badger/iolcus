@@ -34,7 +34,68 @@ class MedeaTestScanner: XCTestCase {
         encoding: NSUTF8StringEncoding
     )
     
-    func testStringGeneratorPerformance() {
+    static let primeNumbers = [ 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61,
+                                67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137,
+                                139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199,
+                                211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271 ]
+    
+    // MARK: - Tests
+    
+    func testThatPeekReturnsInCorrectOrderAndStops() {
+        var scanner = Scanner(MedeaTestScanner.primeNumbers)
+        
+        MedeaTestScanner.primeNumbers.forEach() {
+            XCTAssertEqual(scanner.peek(), $0)
+        }
+        
+        XCTAssertEqual(scanner.peek(), nil)
+    }
+    
+    func testThatReadReturnsInCorrectOrderAndStops() {
+        var scanner = Scanner(MedeaTestScanner.primeNumbers)
+        
+        MedeaTestScanner.primeNumbers.forEach() {
+            XCTAssertEqual(scanner.read(), $0)
+        }
+        
+        XCTAssertEqual(scanner.read(), nil)
+    }
+    
+    func testThatReadAfterPeekIsCorrect() {
+        var scanner = Scanner(MedeaTestScanner.primeNumbers)
+
+        MedeaTestScanner.primeNumbers.forEach() {
+            XCTAssertEqual(scanner.peek(), $0)
+            XCTAssertEqual(scanner.read(), $0)
+        }
+
+        XCTAssertEqual(scanner.peek(), nil)
+        XCTAssertEqual(scanner.read(), nil)
+    }
+    
+    func testThatResetPeekActuallyResetsPeekBuffer() {
+        var scanner = Scanner(MedeaTestScanner.primeNumbers)
+
+        MedeaTestScanner.primeNumbers.forEach() {
+            while let _ = scanner.peek() { }
+            scanner.resetPeek()
+            XCTAssertEqual(scanner.peek(), $0)
+            XCTAssertEqual(scanner.read(), $0)
+        }
+    }
+    
+    // MARK: - Performance tests
+    
+    func testUnicodeScalarsGeneratorPerformance() {
+        self.measureMetrics([XCTPerformanceMetric_WallClockTime], automaticallyStartMeasuring: false) {
+            var generator = MedeaTestScanner.longSerializedJSON.unicodeScalars.generate()
+            self.startMeasuring()
+            while let _ = generator.next() { }
+            self.stopMeasuring()
+        }
+    }
+
+    func testCharactersGeneratorPerformance() {
         self.measureMetrics([XCTPerformanceMetric_WallClockTime], automaticallyStartMeasuring: false) {
             var generator = MedeaTestScanner.longSerializedJSON.characters.generate()
             self.startMeasuring()
