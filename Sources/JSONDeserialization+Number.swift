@@ -1,5 +1,5 @@
 //
-//  JSONDeserialization.swift
+//  JSONDeserialization+Number.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov

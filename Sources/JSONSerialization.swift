@@ -23,43 +23,9 @@
 //  SOFTWARE.
 //
 
-import Foundation
-
-struct JSONSerialization {
+public struct JSONSerialization {
     
     private init() { }
     
 }
 
-// MARK: -
-
-extension JSONSerialization {
-    
-    static func stringWithJSON(json: JSON) -> Swift.String {
-        return Swift.String(GeneratorSequence(generatorWithJSON(json)))
-    }
-
-    static func sequenceWithJSON(json: JSON) -> AnySequence<Character> {
-        return AnySequence(GeneratorSequence(generatorWithJSON(json)))
-    }
-
-    static func generatorWithJSON(json: JSON) -> AnyGenerator<Character> {
-        switch json {
-        case .Null:
-            return AnyGenerator(JSONNullSerialization())
-        case .Boolean(let boolean):
-            return AnyGenerator(JSONBoolSerialization(boolean))
-        case .Integer(let integer):
-            return AnyGenerator(JSONIntegerSerialization(integer))
-        case .Double(let double):
-            return AnyGenerator(JSONDoubleSerialization(double))
-        case .String(let string):
-            return AnyGenerator(JSONStringSerialization(string))
-        case .Array(let values):
-            return AnyGenerator(JSONArraySerialization(values))
-        case .Object(let properties):
-            return AnyGenerator(JSONObjectSerialization(properties))
-        }
-    }
-
-}

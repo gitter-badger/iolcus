@@ -59,8 +59,6 @@ struct Scanner<T> {
             return nextElement
         }
         
-        assert(peekOffset == 0)
-        
         if let nextElement = getNextElement() {
             position += 1
             return nextElement

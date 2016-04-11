@@ -23,14 +23,14 @@
 //  SOFTWARE.
 //
 
-struct JSONDeserialization {
+public struct JSONDeserialization {
     
     private var scanner: Scanner<Character>
     var position: Int {
         return scanner.position
     }
     
-    private init(_ scanner: Scanner<Character>) {
+    init(_ scanner: Scanner<Character>) {
         self.scanner = scanner
     }
     
@@ -84,47 +84,4 @@ struct JSONDeserialization {
         return scanner.isEOF()
     }
 
-}
-
-// MARK: - Interface
-
-extension JSONDeserialization {
-    
-    static func jsonWithString(string: Swift.String) throws -> JSON {
-        let scanner = Scanner(string.characters)
-        return try deserializeFromScanner(scanner)
-    }
-    
-    static func jsonWithSequence<S: SequenceType where S.Generator.Element == Character>(sequence: S) throws -> JSON {
-        let scanner = Scanner(sequence)
-        return try deserializeFromScanner(scanner)
-    }
-    
-    static func jsonWithGenerator<G: GeneratorType where G.Element == Character>(generator: G) throws -> JSON {
-        let scanner = Scanner(generator)
-        return try deserializeFromScanner(scanner)
-    }
-    
-    static func jsonWithClosure(closure: Void -> Character?) throws -> JSON {
-        let scanner = Scanner(closure)
-        return try deserializeFromScanner(scanner)
-    }
-    
-    private static func deserializeFromScanner(scanner: Scanner<Character>) throws -> JSON {
-        var deserialization = JSONDeserialization(scanner)
-        
-        deserialization.skipWhitespaceCharacters()
-        
-        let json = try deserialization.deserializeValue()
-        
-        deserialization.skipWhitespaceCharacters()
-        
-        if !deserialization.isEOF() {
-            let character = try! deserialization.readCharacter()
-            throw JSON.Error.Deserializing.UnexpectedCharacter(character: character, position: deserialization.position)
-        }
-        
-        return json
-    }
-    
 }
