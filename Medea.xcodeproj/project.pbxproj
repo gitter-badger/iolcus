@@ -145,6 +145,13 @@
 		BAF4005D1CBAB117006A72AD /* MedeaTestScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF4005C1CBAB117006A72AD /* MedeaTestScanner.swift */; };
 		BAF4005E1CBAB117006A72AD /* MedeaTestScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF4005C1CBAB117006A72AD /* MedeaTestScanner.swift */; };
 		BAF4005F1CBAB117006A72AD /* MedeaTestScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF4005C1CBAB117006A72AD /* MedeaTestScanner.swift */; };
+		BAF400621CBBF6FC006A72AD /* RingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF400611CBBF6FC006A72AD /* RingBuffer.swift */; };
+		BAF400631CBBF6FC006A72AD /* RingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF400611CBBF6FC006A72AD /* RingBuffer.swift */; };
+		BAF400641CBBF6FC006A72AD /* RingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF400611CBBF6FC006A72AD /* RingBuffer.swift */; };
+		BAF400651CBBF6FC006A72AD /* RingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF400611CBBF6FC006A72AD /* RingBuffer.swift */; };
+		BAF400681CBC6AE9006A72AD /* MedeaTestRingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF400671CBC6AE9006A72AD /* MedeaTestRingBuffer.swift */; };
+		BAF400691CBC6AE9006A72AD /* MedeaTestRingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF400671CBC6AE9006A72AD /* MedeaTestRingBuffer.swift */; };
+		BAF4006A1CBC6AE9006A72AD /* MedeaTestRingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF400671CBC6AE9006A72AD /* MedeaTestRingBuffer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -225,6 +232,8 @@
 		BAF400521CBAA875006A72AD /* JSONSerialization+Public.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSONSerialization+Public.swift"; path = "Sources/JSONSerialization+Public.swift"; sourceTree = "<group>"; };
 		BAF400571CBAAC30006A72AD /* JSONDeserialization+Public.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSONDeserialization+Public.swift"; path = "Sources/JSONDeserialization+Public.swift"; sourceTree = "<group>"; };
 		BAF4005C1CBAB117006A72AD /* MedeaTestScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MedeaTestScanner.swift; path = Tests/MedeaTestScanner.swift; sourceTree = "<group>"; };
+		BAF400611CBBF6FC006A72AD /* RingBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RingBuffer.swift; path = Sources/RingBuffer.swift; sourceTree = "<group>"; };
+		BAF400671CBC6AE9006A72AD /* MedeaTestRingBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MedeaTestRingBuffer.swift; path = Tests/MedeaTestRingBuffer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -299,7 +308,7 @@
 			children = (
 				BA5B9B6E1CB45025003EF1CA /* Headers */,
 				BA5B9B771CB4624E003EF1CA /* Core */,
-				BA5B9B7A1CB4657D003EF1CA /* Helper extensions */,
+				BAF400601CBBF6C3006A72AD /* Helpers */,
 				BA5B9B7F1CB46612003EF1CA /* Deserialization */,
 				BA5B9B901CB466E0003EF1CA /* Serialization */,
 				BA5B9BA11CB46786003EF1CA /* Encoding */,
@@ -332,14 +341,6 @@
 			name = Core;
 			sourceTree = "<group>";
 		};
-		BA5B9B7A1CB4657D003EF1CA /* Helper extensions */ = {
-			isa = PBXGroup;
-			children = (
-				BA5B9B7C1CB465AB003EF1CA /* Set+PatternMatch.swift */,
-			);
-			name = "Helper extensions";
-			sourceTree = "<group>";
-		};
 		BA5B9B7F1CB46612003EF1CA /* Deserialization */ = {
 			isa = PBXGroup;
 			children = (
@@ -352,7 +353,6 @@
 				BAF400201CB973A5006A72AD /* JSONDeserialization+Array.swift */,
 				BAF400251CB97550006A72AD /* JSONDeserialization+Object.swift */,
 				BAF4002A1CB977BF006A72AD /* JSONDeserialization+Value.swift */,
-				BA5B9B7B1CB465AB003EF1CA /* Scanner.swift */,
 			);
 			name = Deserialization;
 			sourceTree = "<group>";
@@ -387,6 +387,7 @@
 			children = (
 				BAF400331CB9B949006A72AD /* Resources */,
 				BA5B9BC61CB4DE39003EF1CA /* Support */,
+				BAF400671CBC6AE9006A72AD /* MedeaTestRingBuffer.swift */,
 				BAF4005C1CBAB117006A72AD /* MedeaTestScanner.swift */,
 				BAF4002F1CB98A6E006A72AD /* MedeaTestDeserialization.swift */,
 			);
@@ -411,6 +412,16 @@
 				BAF400441CBA54B1006A72AD /* json11M.json */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		BAF400601CBBF6C3006A72AD /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				BA5B9B7C1CB465AB003EF1CA /* Set+PatternMatch.swift */,
+				BA5B9B7B1CB465AB003EF1CA /* Scanner.swift */,
+				BAF400611CBBF6FC006A72AD /* RingBuffer.swift */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		BAF809201CB38E000055F146 = {
@@ -735,6 +746,7 @@
 				BAF400581CBAAC30006A72AD /* JSONDeserialization+Public.swift in Sources */,
 				BAA650501CB5AEAB006F561A /* JSONBoolSerialization.swift in Sources */,
 				BAF400261CB97550006A72AD /* JSONDeserialization+Object.swift in Sources */,
+				BAF400621CBBF6FC006A72AD /* RingBuffer.swift in Sources */,
 				BAA6506E1CB5AEB4006F561A /* JSONEncodable.swift in Sources */,
 				BAF400031CB86406006A72AD /* JSON+Error.swift in Sources */,
 				BAA650121CB5AE69006F561A /* JSON.swift in Sources */,
@@ -762,6 +774,7 @@
 			files = (
 				BAF400301CB98A6E006A72AD /* MedeaTestDeserialization.swift in Sources */,
 				BAF4005D1CBAB117006A72AD /* MedeaTestScanner.swift in Sources */,
+				BAF400681CBC6AE9006A72AD /* MedeaTestRingBuffer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -780,6 +793,7 @@
 				BAF400591CBAAC30006A72AD /* JSONDeserialization+Public.swift in Sources */,
 				BAA650581CB5AEAB006F561A /* JSONBoolSerialization.swift in Sources */,
 				BAF400271CB97550006A72AD /* JSONDeserialization+Object.swift in Sources */,
+				BAF400631CBBF6FC006A72AD /* RingBuffer.swift in Sources */,
 				BAA6506F1CB5AEB5006F561A /* JSONEncodable.swift in Sources */,
 				BAF400041CB86406006A72AD /* JSON+Error.swift in Sources */,
 				BAA650131CB5AE6A006F561A /* JSON.swift in Sources */,
@@ -807,6 +821,7 @@
 			files = (
 				BAF400311CB98A6E006A72AD /* MedeaTestDeserialization.swift in Sources */,
 				BAF4005E1CBAB117006A72AD /* MedeaTestScanner.swift in Sources */,
+				BAF400691CBC6AE9006A72AD /* MedeaTestRingBuffer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -825,6 +840,7 @@
 				BAF4005A1CBAAC30006A72AD /* JSONDeserialization+Public.swift in Sources */,
 				BAA650601CB5AEAC006F561A /* JSONBoolSerialization.swift in Sources */,
 				BAF400281CB97550006A72AD /* JSONDeserialization+Object.swift in Sources */,
+				BAF400641CBBF6FC006A72AD /* RingBuffer.swift in Sources */,
 				BAA650701CB5AEB6006F561A /* JSONEncodable.swift in Sources */,
 				BAF400051CB86406006A72AD /* JSON+Error.swift in Sources */,
 				BAA650141CB5AE6B006F561A /* JSON.swift in Sources */,
@@ -852,6 +868,7 @@
 			files = (
 				BAF400321CB98A6E006A72AD /* MedeaTestDeserialization.swift in Sources */,
 				BAF4005F1CBAB117006A72AD /* MedeaTestScanner.swift in Sources */,
+				BAF4006A1CBC6AE9006A72AD /* MedeaTestRingBuffer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -870,6 +887,7 @@
 				BAF4005B1CBAAC30006A72AD /* JSONDeserialization+Public.swift in Sources */,
 				BAA650681CB5AEAD006F561A /* JSONBoolSerialization.swift in Sources */,
 				BAF400291CB97550006A72AD /* JSONDeserialization+Object.swift in Sources */,
+				BAF400651CBBF6FC006A72AD /* RingBuffer.swift in Sources */,
 				BAA650711CB5AEB7006F561A /* JSONEncodable.swift in Sources */,
 				BAF400061CB86406006A72AD /* JSON+Error.swift in Sources */,
 				BAA650151CB5AE6D006F561A /* JSON.swift in Sources */,

@@ -41,7 +41,7 @@ class MedeaTestScanner: XCTestCase {
     
     // MARK: - Tests
     
-    func testThatPeekReturnsInCorrectOrderAndStops() {
+    func testThatPeekMethodReturnsInCorrectOrderAndStopsInTheEnd() {
         var scanner = Scanner(MedeaTestScanner.primeNumbers)
         
         MedeaTestScanner.primeNumbers.forEach() {
@@ -51,7 +51,7 @@ class MedeaTestScanner: XCTestCase {
         XCTAssertEqual(scanner.peek(), nil)
     }
     
-    func testThatReadReturnsInCorrectOrderAndStops() {
+    func testThatReadMethodReturnsInCorrectOrderAndStopsInTheEnd() {
         var scanner = Scanner(MedeaTestScanner.primeNumbers)
         
         MedeaTestScanner.primeNumbers.forEach() {
@@ -61,7 +61,7 @@ class MedeaTestScanner: XCTestCase {
         XCTAssertEqual(scanner.read(), nil)
     }
     
-    func testThatReadAfterPeekIsCorrect() {
+    func testThatReadAfterPeekReturnsCorrectResults() {
         var scanner = Scanner(MedeaTestScanner.primeNumbers)
 
         MedeaTestScanner.primeNumbers.forEach() {
@@ -73,7 +73,7 @@ class MedeaTestScanner: XCTestCase {
         XCTAssertEqual(scanner.read(), nil)
     }
     
-    func testThatResetPeekActuallyResetsPeekBuffer() {
+    func testThatResetPeekMethodActuallyResetsPeekBuffer() {
         var scanner = Scanner(MedeaTestScanner.primeNumbers)
 
         MedeaTestScanner.primeNumbers.forEach() {
