@@ -33,7 +33,7 @@ struct RingBuffer<T> {
     // +---+~~~+~~~+~~~+---+---+---+---+---+---+          +~~~+~~~+---+---+~~~+~~~+~~~+~~~+~~~+~~~+
     //                   ^                                          ^
     //
-    // count = push - pop                                 count = size + push - pop
+    // count == push - pop                                 count == size + push - pop
 
     private var buffer: [T] = []
     private var bufferLastIndex = 0
