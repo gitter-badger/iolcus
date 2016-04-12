@@ -179,6 +179,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BA5AC3841CBD421000EB2C06 /* playground01.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = playground01.playground; path = Playgrounds/playground01.playground; sourceTree = "<group>"; };
 		BA5B9B6F1CB46249003EF1CA /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSON.swift; path = Sources/JSON.swift; sourceTree = "<group>"; };
 		BA5B9B701CB46249003EF1CA /* JSON+Accessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSON+Accessor.swift"; path = "Sources/JSON+Accessor.swift"; sourceTree = "<group>"; };
 		BA5B9B711CB46249003EF1CA /* JSON+Initializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSON+Initializer.swift"; path = "Sources/JSON+Initializer.swift"; sourceTree = "<group>"; };
@@ -292,6 +293,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BA5AC3831CBD41A600EB2C06 /* Playgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				BA5AC3841CBD421000EB2C06 /* playground01.playground */,
+			);
+			name = Playgrounds;
+			sourceTree = "<group>";
+		};
 		BA5B9B681CB42EE9003EF1CA /* Support */ = {
 			isa = PBXGroup;
 			children = (
@@ -429,6 +438,7 @@
 			children = (
 				BA5B9B681CB42EE9003EF1CA /* Support */,
 				BA5B9B6D1CB45012003EF1CA /* Sources */,
+				BA5AC3831CBD41A600EB2C06 /* Playgrounds */,
 				BA5B9BC31CB4DDF3003EF1CA /* Tests */,
 				BAF8092B1CB38E000055F146 /* Products */,
 				BA6AC9D41CB6A09D00D301DD /* Package.swift */,

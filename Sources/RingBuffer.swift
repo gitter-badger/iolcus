@@ -24,7 +24,7 @@
 //
 
 struct RingBuffer<T> {
-
+    
     // Unwrapped (pop <= push):                           Wrapped (push < pop):
     //
     //       ^                                                              ^
@@ -34,41 +34,75 @@ struct RingBuffer<T> {
     //                   ^                                          ^
     //
     // count == push - pop                                 count == size + push - pop
-
+    
     private var buffer: [T] = []
     private var bufferLastIndex = 0
     private var pushIndex = 0
     private var popIndex = 0
-    private var count: Int { return (popIndex <= pushIndex) ? (pushIndex - popIndex) : (buffer.count + pushIndex - popIndex) }
-    private var isEmpty: Bool { return (popIndex == pushIndex) }
-    private var isAlmostFull: Bool { return (count >= bufferLastIndex) }
+    
+    private var isAlmostFull: Bool { return count >= bufferLastIndex }
+    
+    private (set) var count = 0
+    var capacity: Int { return buffer.count }
+    var isEmpty: Bool { return count == 0 }
     
     private mutating func growBuffer(element: T) {
-        if buffer.count == 0 {
-            buffer.append(element)
-            buffer.append(element)
-            pushIndex = 0
-            popIndex = 0
-        } else {
-            let oldSize = buffer.count
+        if buffer.count == 0 {                          // Array is empty.  We need some stuff to
+            buffer.append(element)                      // fill it up with, and it will be the
+            buffer.append(element)                      // push-element.
+            
+        } else if buffer.count < buffer.capacity {      // Avoid array reallocation.  Grow the array
+            let growLength = min(                       // up to the capacity limit instead, but
+                buffer.count,                           // not more than twice the size yet.
+                buffer.capacity - buffer.count
+            )
+            let replantRange = (buffer.count - growLength)..<buffer.count
+            buffer.appendContentsOf(buffer[replantRange])
+            if popIndex > pushIndex {
+                popIndex += growLength
+            }
+            
+        } else {                                        // Array reallocation is unavoidable.
+            let growLength = buffer.count               // Simply double the size of the array then.
             buffer.appendContentsOf(buffer)
-            if popIndex > pushIndex { popIndex += oldSize }
+            if popIndex > pushIndex {
+                popIndex += growLength
+            }
         }
+        
         bufferLastIndex = buffer.count - 1
     }
     
     mutating func push(element: T) {
-        if isAlmostFull { growBuffer(element); assert(!isAlmostFull) }
+        if isAlmostFull {
+            growBuffer(element)
+            assert(!isAlmostFull)
+        }
+        
         buffer[pushIndex] = element
+        
         pushIndex += 1
-        if pushIndex == buffer.count { pushIndex = 0 }
+        if pushIndex == buffer.count {
+            pushIndex = 0
+        }
+        
+        count += 1
     }
     
     mutating func pop() -> T? {
-        if isEmpty { return nil }
+        if isEmpty {
+            return nil
+        }
+        
         let result = buffer[popIndex]
+        
         popIndex += 1
-        if popIndex == buffer.count { popIndex = 0 }
+        if popIndex == buffer.count {
+            popIndex = 0
+        }
+        
+        count -= 1
+        
         return result
     }
     

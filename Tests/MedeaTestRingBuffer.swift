@@ -34,26 +34,83 @@ class MedeaTestRingBuffer: XCTestCase {
                                 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199,
                                 211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271 ]
 
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testThatOutputIsConsistentWithPushPopPattern() {
+        var buffer = RingBuffer<Int>()
+        
+        MedeaTestRingBuffer.primeNumbers.forEach() {
+            buffer.push($0)
+            XCTAssertEqual($0, buffer.pop())
+        }
+        
+        XCTAssertTrue(buffer.isEmpty)
     }
 
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock {
-            // Put the code you want to measure the time of here.
+    func testThatOutputIsConsistentWithPushPushPopPatterhn() {
+        var buffer = RingBuffer<Int>()
+        var output: [Int] = []
+        var flag = 0
+        
+        MedeaTestRingBuffer.primeNumbers.forEach() {
+            buffer.push($0)
+            flag += 1
+            if flag % 2 == 0 {
+                let element = buffer.pop()!
+                output.append(element)
+            }
+        }
+        
+        while let element = buffer.pop() {
+            output.append(element)
+        }
+        
+        XCTAssertEqual(output, MedeaTestRingBuffer.primeNumbers)
+    }
+
+    func testThatOutputIsConsistentWithPushPushPopPushPopPatterhn() {
+        var buffer = RingBuffer<Int>()
+        var output: [Int] = []
+        var counter = 0
+        
+        MedeaTestRingBuffer.primeNumbers.forEach() {
+            buffer.push($0)
+            counter += 1
+            if counter % 3 != 0 {
+                let element = buffer.pop()!
+                output.append(element)
+            }
+        }
+        
+        while let element = buffer.pop() {
+            output.append(element)
+        }
+        
+        XCTAssertEqual(output, MedeaTestRingBuffer.primeNumbers)
+    }
+
+    func testThatCountIsCorrect() {
+        var buffer = RingBuffer<Int>()
+        var output: [Int] = []
+        var flag = 0
+        var count = 0
+        
+        MedeaTestRingBuffer.primeNumbers.forEach() {
+            buffer.push($0)
+            count += 1
+            XCTAssertEqual(count, buffer.count)
+            flag += 1
+            if flag % 2 == 0 {
+                let element = buffer.pop()!
+                count -= 1
+                XCTAssertEqual(count, buffer.count)
+                output.append(element)
+            }
+        }
+        
+        while let element = buffer.pop() {
+            count -= 1
+            XCTAssertEqual(count, buffer.count)
+            output.append(element)
         }
     }
-
+    
 }
