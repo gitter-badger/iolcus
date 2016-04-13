@@ -31,3 +31,4 @@ add_custom_target(Medea
         COMMAND /opt/swift/usr/bin/swift build
         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
         SOURCES Package.swift Sources)
+

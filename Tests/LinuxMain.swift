@@ -1,5 +1,5 @@
 //
-//  JSONDeserialization+Value.swift
+//  LinuxMain.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -23,39 +23,10 @@
 //  SOFTWARE.
 //
 
-extension JSONDeserialization {
+import XCTest
 
-    mutating func deserializeValue() throws -> JSON {
-        let opening = try peekCharacter()
+@testable import MedeaTest
 
-        // resetPeekedCharacters()
-        
-        switch opening {
-        
-        case JSON.Constant.nullSequence[0]:
-            return try deserializeNull()
-
-        case JSON.Constant.trueSequence[0], JSON.Constant.falseSequence[0]:
-            return try deserializeBoolean()
-
-        case JSON.Constant.numberOpenings:
-            return try deserializeNumber()
-
-        case JSON.Constant.stringOpening:
-            return try deserializeString()
-        
-        case JSON.Constant.arrayOpening:
-            return try deserializeArray()
-        
-        case JSON.Constant.objectOpening:
-            return try deserializeObject()
-        
-        default:
-            break
-        
-        }
-
-        throw JSON.Error.Deserializing.UnexpectedCharacter(character: opening, position: position)
-    }
-
-}
+XCTMain([
+        MedeaTestRingBuffer()
+])
