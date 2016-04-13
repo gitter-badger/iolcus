@@ -113,4 +113,52 @@ class MedeaTestRingBuffer: XCTestCase {
         }
     }
     
+    func testThatSubscriptIsCorrect() {
+        var buffer = RingBuffer<Int>()
+        var counter = 0
+        var offset = 0
+
+        MedeaTestRingBuffer.primeNumbers.forEach() {
+            buffer.push($0)
+            counter += 1
+            
+            for index in 0..<buffer.count {
+                XCTAssertEqual(buffer[index], MedeaTestRingBuffer.primeNumbers[offset + index])
+            }
+            
+            if counter % 3 != 0 {
+                buffer.pop()
+                offset += 1
+                
+                for index in 0..<buffer.count {
+                    XCTAssertEqual(buffer[index], MedeaTestRingBuffer.primeNumbers[offset + index])
+                }
+            }
+        }
+    }
+    
+    func testThatSequenceIsRight() {
+        var buffer = RingBuffer<Int>()
+        var counter = 0
+        var offset = 0
+        
+        MedeaTestRingBuffer.primeNumbers.forEach() {
+            buffer.push($0)
+            counter += 1
+            
+            zip(buffer, MedeaTestRingBuffer.primeNumbers[offset..<(offset + buffer.count)]).forEach() {
+                XCTAssertEqual($0, $1)
+            }
+            
+            if counter % 3 != 0 {
+                buffer.pop()
+                offset += 1
+                
+                zip(buffer, MedeaTestRingBuffer.primeNumbers[offset..<(offset + buffer.count)]).forEach() {
+                    XCTAssertEqual($0, $1)
+                }
+            }
+        }
+    }
+    
 }

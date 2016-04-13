@@ -44,12 +44,12 @@ class MedeaTestDeserialization: XCTestCase {
         encoding: NSUTF8StringEncoding
     )
 
-    func testDeserializationFromString() {
-        do {
-            let json: JSON = try JSONDeserialization.jsonWithString(MedeaTestDeserialization.jsonString01)
-        } catch {
-            XCTFail("Error while deserializing JSON: \(error)")
-        }
-    }
+//    func testDeserializationFromString() {
+//        do {
+//            let json: JSON = try JSONDeserialization.jsonWithString(MedeaTestDeserialization.jsonString01)
+//        } catch {
+//            XCTFail("Error while deserializing JSON: \(error)")
+//        }
+//    }
     
 }

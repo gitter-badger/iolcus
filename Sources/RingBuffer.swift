@@ -23,7 +23,7 @@
 //  SOFTWARE.
 //
 
-struct RingBuffer<T> {
+struct RingBuffer<T>: SequenceType {
     
     // Unwrapped (pop <= push):                           Wrapped (push < pop):
     //
@@ -71,6 +71,32 @@ struct RingBuffer<T> {
         }
         
         bufferLastIndex = buffer.count - 1
+    }
+    
+    subscript(index: Int) -> T {
+        precondition(index >= 0 && index < count, "Index out of range")
+        var bufferIndex = popIndex + index
+        if bufferIndex >= buffer.count {
+            bufferIndex -= buffer.count
+        }
+        return buffer[bufferIndex]
+    }
+    
+    func generate() -> AnyGenerator<T> {
+        if count == 0 {
+            let generator = EmptyGenerator<T>()
+            return AnyGenerator(generator)
+        }
+        
+        if popIndex < pushIndex {
+            let generator = buffer[popIndex..<pushIndex].generate()
+            return AnyGenerator(generator)
+        } else {
+            let generatorHead = buffer[popIndex..<buffer.count].generate()
+            let generatorTail = buffer[0..<pushIndex].generate()
+            let generator = JoinGenerator(base: [generatorHead, generatorTail].generate(), separator: [])
+            return AnyGenerator(generator)
+        }
     }
     
     mutating func push(element: T) {
