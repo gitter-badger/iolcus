@@ -226,15 +226,15 @@
 		BAF400201CB973A5006A72AD /* JSONDeserialization+Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSONDeserialization+Array.swift"; path = "Sources/JSONDeserialization+Array.swift"; sourceTree = "<group>"; };
 		BAF400251CB97550006A72AD /* JSONDeserialization+Object.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSONDeserialization+Object.swift"; path = "Sources/JSONDeserialization+Object.swift"; sourceTree = "<group>"; };
 		BAF4002A1CB977BF006A72AD /* JSONDeserialization+Value.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSONDeserialization+Value.swift"; path = "Sources/JSONDeserialization+Value.swift"; sourceTree = "<group>"; };
-		BAF4002F1CB98A6E006A72AD /* MedeaTestDeserialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MedeaTestDeserialization.swift; path = Tests/MedeaTestDeserialization.swift; sourceTree = "<group>"; };
+		BAF4002F1CB98A6E006A72AD /* MedeaTestDeserialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MedeaTestDeserialization.swift; path = Tests/MedeaTest/MedeaTestDeserialization.swift; sourceTree = "<group>"; };
 		BAF400341CB9BA1F006A72AD /* json91K.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = json91K.json; path = Tests/Resources/json91K.json; sourceTree = "<group>"; };
 		BAF4003A1CB9D5BA006A72AD /* json10K.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = json10K.json; path = Tests/Resources/json10K.json; sourceTree = "<group>"; };
 		BAF400441CBA54B1006A72AD /* json11M.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = json11M.json; path = Tests/Resources/json11M.json; sourceTree = "<group>"; };
 		BAF400521CBAA875006A72AD /* JSONSerialization+Public.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSONSerialization+Public.swift"; path = "Sources/JSONSerialization+Public.swift"; sourceTree = "<group>"; };
 		BAF400571CBAAC30006A72AD /* JSONDeserialization+Public.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSONDeserialization+Public.swift"; path = "Sources/JSONDeserialization+Public.swift"; sourceTree = "<group>"; };
-		BAF4005C1CBAB117006A72AD /* MedeaTestScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MedeaTestScanner.swift; path = Tests/MedeaTestScanner.swift; sourceTree = "<group>"; };
+		BAF4005C1CBAB117006A72AD /* MedeaTestScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MedeaTestScanner.swift; path = Tests/MedeaTest/MedeaTestScanner.swift; sourceTree = "<group>"; };
 		BAF400611CBBF6FC006A72AD /* RingBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RingBuffer.swift; path = Sources/RingBuffer.swift; sourceTree = "<group>"; };
-		BAF400671CBC6AE9006A72AD /* MedeaTestRingBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MedeaTestRingBuffer.swift; path = Tests/MedeaTestRingBuffer.swift; sourceTree = "<group>"; };
+		BAF400671CBC6AE9006A72AD /* MedeaTestRingBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MedeaTestRingBuffer.swift; path = Tests/MedeaTest/MedeaTestRingBuffer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
