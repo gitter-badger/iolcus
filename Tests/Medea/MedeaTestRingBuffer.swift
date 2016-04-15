@@ -146,7 +146,7 @@ class MedeaTestRingBuffer: XCTestCase {
             buffer.push($0)
             counter += 1
             
-            try! zip(buffer, MedeaTestRingBuffer.primeNumbers[offset..<(offset + buffer.count)]).forEach() {
+            zip(buffer, MedeaTestRingBuffer.primeNumbers[offset..<(offset + buffer.count)]).forEach() {
                 XCTAssertEqual($0, $1)
             }
             
@@ -154,7 +154,7 @@ class MedeaTestRingBuffer: XCTestCase {
                 buffer.pop()
                 offset += 1
 
-                try! zip(buffer, MedeaTestRingBuffer.primeNumbers[offset..<(offset + buffer.count)]).forEach() {
+                zip(buffer, MedeaTestRingBuffer.primeNumbers[offset..<(offset + buffer.count)]).forEach() {
                     XCTAssertEqual($0, $1)
                 }
             }
@@ -162,24 +162,3 @@ class MedeaTestRingBuffer: XCTestCase {
     }
     
 }
-
-// MARK: - Linux
-
-#if os(Linux)
-
-extension MedeaTestRingBuffer: XCTestCaseProvider {
-
-    var allTests: [(String, () throws -> Void)] {
-        return [
-                ("testThatOutputIsConsistentWithPushPopPattern", testThatOutputIsConsistentWithPushPopPattern),
-                ("testThatOutputIsConsistentWithPushPushPopPatterhn", testThatOutputIsConsistentWithPushPushPopPatterhn),
-                ("testThatOutputIsConsistentWithPushPushPopPushPopPatterhn", testThatOutputIsConsistentWithPushPushPopPushPopPatterhn),
-                ("testThatCountIsCorrect", testThatCountIsCorrect),
-                ("testThatSubscriptIsCorrect", testThatSubscriptIsCorrect),
-                ("testThatSequenceIsRight", testThatSequenceIsRight)
-        ]
-    }
-
-}
-
-#endif

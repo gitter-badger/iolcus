@@ -67,15 +67,15 @@ extension JSON: FloatLiteralConvertible {
 
 extension JSON: StringLiteralConvertible {
     
-    public init(extendedGraphemeClusterLiteral string: StringLiteralType) {
+    public init(stringLiteral string: Swift.String.StringLiteralType) {
+        self = .String(string)
+    }
+
+    public init(extendedGraphemeClusterLiteral string: Swift.String.ExtendedGraphemeClusterLiteralType) {
         self = .String(string)
     }
     
-    public init(stringLiteral string: StringLiteralType) {
-        self = .String(string)
-    }
-    
-    public init(unicodeScalarLiteral string: StringLiteralType) {
+    public init(unicodeScalarLiteral string: Swift.String.UnicodeScalarLiteralType) {
         self = .String(string)
     }
     

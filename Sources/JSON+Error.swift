@@ -35,12 +35,21 @@ extension JSON.Error {
         /// The stream of input characters for deserializing ended unexpectedly.
         case UnexpectedEOF
         
-        /// Unexpected character was found.
+        /// Unexpected unicode scalar was read.
         ///
         /// - parameters:
-        ///   - character : Actual character that was encountered.
-        ///   - position  : Position of the erroneous `character`.
-        case UnexpectedCharacter(character: Swift.Character, position: Swift.Int)
+        ///   - scalar    : Actual unicode scalar that was encountered.
+        ///   - position  : Position of the scalar in the input stream.  
+        ///                 **Note:** This is a position of a scalar and not character (which will
+        ///                           be different.
+        case UnexpectedScalar(scalar: UnicodeScalar, position: Swift.Int)
+        
+//        /// Unexpected character was found.
+//        ///
+//        /// - parameters:
+//        ///   - character : Actual character that was encountered.
+//        ///   - position  : Position of the erroneous `character`.
+//        case UnexpectedCharacter(character: Swift.Character, position: Swift.Int)
         
         /// Same key was found more than once.
         ///

@@ -25,7 +25,7 @@
 
 struct JSONArraySerialization: GeneratorType {
 
-    private let nextCharacter: Void -> Character?
+    private let _next: Void -> UnicodeScalar?
     
     init(_ elements: [JSON]) {
         let elementDeserializations = elements.map() {
@@ -41,16 +41,14 @@ struct JSONArraySerialization: GeneratorType {
         
         var generator = JoinGenerator(
             base: [opening, body, closing].generate(),
-            separator: EmptyGenerator<Character>()
+            separator: []
         )
         
-        nextCharacter = {
-            return generator.next()
-        }
+        _next = { return generator.next() }
     }
     
-    func next() -> Character? {
-        return nextCharacter()
+    func next() -> UnicodeScalar? {
+        return _next()
     }
     
 }

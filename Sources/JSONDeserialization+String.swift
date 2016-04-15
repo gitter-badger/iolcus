@@ -31,94 +31,78 @@ extension JSONDeserialization {
     }
 
     mutating func readString() throws -> String {
-        try readExpectedCharacter(JSON.Constant.stringOpening)
+        try readExpectedScalar(JSON.Constant.stringOpening)
         
-        var string = ""
+        var scalars = String.UnicodeScalarView()
         
         readLoop: while true {
-            let character = try peekCharacter()
+            let scalar = try readScalar()
             
-            if character == JSON.Constant.stringClosing {
+            if scalar == JSON.Constant.stringClosing {
                 break readLoop
             }
             
-            if character == JSON.Constant.stringEscape {
-                let escapedCharacter = try readEscapedCharacter()
-                string.append(escapedCharacter)
+            if scalar == JSON.Constant.stringEscape {
+                let escapedSymbol = try readEscapedSymbol()
+                scalars.append(escapedSymbol)
+            } else if JSON.Constant.stringForbidden.contains(scalar) {
+                throw JSON.Error.Deserializing.UnexpectedScalar(scalar: scalar, position: position)
+            } else {
+                scalars.append(scalar)
             }
-            
-            if JSON.Constant.stringForbidden.contains(character) {
-                skipPeekedCharacters()
-                throw JSON.Error.Deserializing.UnexpectedCharacter(character: character, position: position)
-            }
-            
-            skipPeekedCharacters()
-            
-            string.append(character)
         }
         
-        try readExpectedCharacter(JSON.Constant.stringClosing)
-        
-        return string
+        return String(scalars)
     }
 
-    private mutating func readEscapedCharacter() throws -> Character {
-        resetPeekedCharacters()
+    private mutating func readEscapedSymbol() throws -> UnicodeScalar {
+        let scalar = try readScalar()
         
-        try peekExpectedCharacter(JSON.Constant.stringEscape)
-        let escapeClassifier = try peekCharacter()
-        
-        if let escapedCharacter = JSON.Constant.stringUnescapeMap[escapeClassifier] {
-            skipPeekedCharacters()
-            return escapedCharacter
+        if let escapedScalar = JSON.Constant.stringUnescapeMap[scalar] {
+            return escapedScalar
         }
         
-        if escapeClassifier == JSON.Constant.stringEscapeUnicode {
+        if scalar == JSON.Constant.stringEscapeUnicode {
             return try readEscapedUnicodeCharacter()
         }
         
-        skipPeekedCharacters()
-        throw JSON.Error.Deserializing.UnexpectedCharacter(character: escapeClassifier, position: position)
+        throw JSON.Error.Deserializing.UnexpectedScalar(scalar: scalar, position: position)
     }
     
-    private mutating func readEscapedUnicodeCharacter() throws -> Character {
-        try readExpectedCharacter(JSON.Constant.stringEscape)
-        try readExpectedCharacter(JSON.Constant.stringEscapeUnicode)
-        
+    private mutating func readEscapedUnicodeCharacter() throws -> UnicodeScalar {
         let codepoint = try readCodepoint()
         
         if !isSurrogate(codepoint) {
-            return Character(UnicodeScalar(codepoint))
+            return UnicodeScalar(codepoint)
         }
         
-        // If the first codepoint was surrogate then we must read the second surrogate too
+        // If the first codepoint was surrogate then we must read the second surrogate as well
         
-        let highSurrogateCodepoint = codepoint
+        try readExpectedScalar(JSON.Constant.stringEscape)
+        try readExpectedScalar(JSON.Constant.stringEscapeUnicode)
         
-        try readExpectedCharacter(JSON.Constant.stringEscape)
-        try readExpectedCharacter(JSON.Constant.stringEscapeUnicode)
-        
-        let lowSurrogateCodepoint = try readCodepoint()
+        let lowCodepoint = try readCodepoint()
         
         // See 3.7 at http://unicode.org/versions/Unicode3.0.0/ch03.pdf
         
-        let compositeCodepoint = (highSurrogateCodepoint - 0xD800) * 0x400 + lowSurrogateCodepoint - 0xDC00 + 0x10000
+        let fullCodepoint = (codepoint - 0xD800) * 0x400 + lowCodepoint - 0xDC00 + 0x10000
         
-        return Character(UnicodeScalar(compositeCodepoint))
+        return UnicodeScalar(fullCodepoint)
     }
     
     private mutating func readCodepoint() throws -> Int {
-        var hexCharacters: [Character] = []
+        var scalars = String.UnicodeScalarView()
+        scalars.reserveCapacity(4)
         
         for _ in 0..<4 {
-            let hexCharacter = try readCharacter()
-            hexCharacters.append(hexCharacter)
+            let scalar = try readScalar()
+            scalars.append(scalar)
         }
         
-        let hex = String(hexCharacters)
+        let string = String(scalars)
         
-        guard let codepoint = Int(hex, radix: 16) else {
-            throw JSON.Error.Deserializing.FailedToReadHex(hex: hex, position: position)
+        guard let codepoint = Int(string, radix: 16) else {
+            throw JSON.Error.Deserializing.FailedToReadHex(hex: string, position: position)
         }
         
         return codepoint

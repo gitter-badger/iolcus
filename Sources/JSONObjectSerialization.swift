@@ -25,11 +25,11 @@
 
 struct JSONObjectSerialization: GeneratorType {
     
-    private let nextCharacter: Void -> Character?
+    private let _next: Void -> UnicodeScalar?
 
     init(_ properties: [String: JSON]) {
         let propertyDeserializations = properties.map() {
-            (key: String, value: JSON) -> AnyGenerator<Character> in
+            (key: String, value: JSON) -> AnyGenerator<UnicodeScalar> in
             
             let key = AnyGenerator(JSONStringSerialization(key))
             let separator = AnyGenerator(GeneratorOfOne(JSON.Constant.objectKeyValueSeparator))
@@ -37,7 +37,7 @@ struct JSONObjectSerialization: GeneratorType {
             
             return AnyGenerator(JoinGenerator(
                 base: [key, separator, value].generate(),
-                separator: EmptyGenerator<Character>()
+                separator: []
             ))
         }
         
@@ -50,16 +50,14 @@ struct JSONObjectSerialization: GeneratorType {
 
         var generator = JoinGenerator(
             base: [opening, body, closing].generate(),
-            separator: EmptyGenerator<Character>()
+            separator: []
         )
         
-        nextCharacter = {
-            return generator.next()
-        }
+        _next = { return generator.next() }
     }
     
-    func next() -> Character? {
-        return nextCharacter()
+    func next() -> UnicodeScalar? {
+        return _next()
     }
     
 }

@@ -27,7 +27,7 @@ extension JSONDeserialization {
 
     mutating func deserializeNull() throws -> JSON {
         try JSON.Constant.nullSequence.forEach() {
-            try readExpectedCharacter($0)
+            try readExpectedScalar($0)
         }
         return JSON.Null
     }

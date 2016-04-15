@@ -1,5 +1,5 @@
 //
-//  JSONDoubleSerialization.swift
+//  JSONNumberSerialization.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -23,20 +23,25 @@
 //  SOFTWARE.
 //
 
-struct JSONDoubleSerialization: GeneratorType {
+struct JSONNumberSerialization: GeneratorType {
     
-    private let nextCharacter: Void -> Character?
+    private let _next: Void -> UnicodeScalar?
+    private let stringRepresentation: String
     
-    init(_ double: Double) {
-        var generator = "\(double)".characters.generate()
-        
-        nextCharacter = {
-            return generator.next()
-        }
+    init(_ integer: Int) {
+        stringRepresentation = integer.description
+        var generator = stringRepresentation.unicodeScalars.generate()
+        _next = { return generator.next() }
     }
     
-    func next() -> Character? {
-        return nextCharacter()
+    init(_ double: Double) {
+        stringRepresentation = double.description
+        var generator = stringRepresentation.unicodeScalars.generate()
+        _next = { return generator.next() }
+    }
+    
+    func next() -> UnicodeScalar? {
+        return _next()
     }
     
 }

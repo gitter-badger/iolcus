@@ -25,15 +25,13 @@
 
 struct JSONNullSerialization: GeneratorType {
 
-    private let nextCharacter: Void -> Character? = {
+    private let _next: Void -> UnicodeScalar? = {
         var generator = JSON.Constant.nullSequence.generate()
-        return {
-            return generator.next()
-        }
+        return { return generator.next() }
     }()
-
-    func next() -> Character? {
-        return nextCharacter()
+    
+    func next() -> UnicodeScalar? {
+        return _next()
     }
     
 }

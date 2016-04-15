@@ -25,18 +25,15 @@
 
 struct JSONBoolSerialization: GeneratorType {
     
-    private let nextCharacter: Void -> Character?
+    private let _next: Void -> UnicodeScalar?
     
     init(_ boolean: Bool) {
         var generator = (boolean ? JSON.Constant.trueSequence : JSON.Constant.falseSequence).generate()
-        
-        nextCharacter = {
-            return generator.next()
-        }
+        _next = { return generator.next() }
     }
     
-    func next() -> Character? {
-        return nextCharacter()
+    func next() -> UnicodeScalar? {
+        return _next()
     }
     
 }

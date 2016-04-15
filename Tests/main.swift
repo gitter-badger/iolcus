@@ -1,5 +1,5 @@
 //
-//  MedeaTestDeserialization.swift
+//  LinuxMain.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -23,33 +23,8 @@
 //  SOFTWARE.
 //
 
-import XCTest
+#if os(Linux)
 
-@testable import Medea
+// ...
 
-class MedeaTestDeserialization: XCTestCase {
-    
-    static let jsonString01 = try! String(
-        contentsOfFile: NSBundle(forClass: MedeaTestDeserialization.self).pathForResource("json01", ofType: "json")!,
-        encoding: NSUTF8StringEncoding
-    )
-
-    static let jsonString02 = try! String(
-        contentsOfFile: NSBundle(forClass: MedeaTestDeserialization.self).pathForResource("json02", ofType: "json")!,
-        encoding: NSUTF8StringEncoding
-    )
-    
-    static let jsonString03 = try! String(
-        contentsOfFile: NSBundle(forClass: MedeaTestDeserialization.self).pathForResource("json03", ofType: "json")!,
-        encoding: NSUTF8StringEncoding
-    )
-
-//    func testDeserializationFromString() {
-//        do {
-//            let json: JSON = try JSONDeserialization.jsonWithString(MedeaTestDeserialization.jsonString01)
-//        } catch {
-//            XCTFail("Error while deserializing JSON: \(error)")
-//        }
-//    }
-    
-}
+#endif

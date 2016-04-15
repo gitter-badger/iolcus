@@ -31,14 +31,14 @@ extension JSONDeserialization {
     }
 
     private mutating func readObject() throws -> [String: JSON] {
-        try readExpectedCharacter(JSON.Constant.objectOpening)
+        try readExpectedScalar(JSON.Constant.objectOpening)
         
         var object: [String: JSON] = [:]
         
         readLoop: while true {
-            skipWhitespaceCharacters()
+            skipWhitespace()
             
-            if try peekCharacter() == JSON.Constant.objectClosing {
+            if try peekScalar() == JSON.Constant.objectClosing {
                 break readLoop
             }
             
@@ -48,24 +48,24 @@ extension JSONDeserialization {
                 throw JSON.Error.Deserializing.DuplicateObjectKey(key: key, position: position)
             }
             
-            skipWhitespaceCharacters()
-            
-            try readExpectedCharacter(JSON.Constant.objectKeyValueSeparator)
+            skipWhitespace()
 
-            skipWhitespaceCharacters()
+            try readExpectedScalar(JSON.Constant.objectKeyValueSeparator)
+
+            skipWhitespace()
 
             object[key] = try deserializeValue()
             
-            skipWhitespaceCharacters()
+            skipWhitespace()
             
-            if try peekCharacter() != JSON.Constant.objectPropertySeparator {
+            if try peekScalar() != JSON.Constant.objectPropertySeparator {
                 break readLoop
             }
             
-            skipPeekedCharacters()
+            skipPeekedScalar()
         }
         
-        try readExpectedCharacter(JSON.Constant.objectClosing)
+        try readExpectedScalar(JSON.Constant.objectClosing)
 
         return object
     }

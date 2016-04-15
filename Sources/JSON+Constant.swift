@@ -29,37 +29,43 @@ extension JSON.Constant {
     
     // MARK: - Whitespace
 
-    static let whitespace : Set<Character> = [ " ", "\t", "\r", "\n", "\r\n" ]
+    static let whitespace : Set<UnicodeScalar> = [ " ", "\t", "\r", "\n" ]
     
     // MARK: - Null
 
-    static let nullSequence  : [Character] = [ "n", "u", "l", "l" ]
+    static let nullSequence  : [UnicodeScalar] = [ "n", "u", "l", "l" ]
     
     // MARK: - Boolean
 
-    static let trueSequence  : [Character] = [ "t", "r", "u", "e" ]
-    static let falseSequence : [Character] = [ "f", "a", "l", "s", "e" ]
+    static let trueSequence  : [UnicodeScalar] = [ "t", "r", "u", "e" ]
+    static let falseSequence : [UnicodeScalar] = [ "f", "a", "l", "s", "e" ]
 
     // MARK: - Number
 
-    static let numberOpenings   : Set<Character> =
+    static let numberOpenings   : Set<UnicodeScalar> =
         [ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "-" ]
     
-    static let numberCharacters : Set<Character> =
+    static let numberRepresentationElements : Set<UnicodeScalar> =
         [ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "-", "+", ".", "e", "E" ]
     
     // MARK: - String
     
-    static let stringOpening       : Character = "\""
-    static let stringClosing       : Character = "\""
-    static let stringEscape        : Character = "\\"
-    static let stringEscapeUnicode : Character = "u"
+    static let stringOpening       : UnicodeScalar = "\""
+    static let stringClosing       : UnicodeScalar = "\""
+    static let stringEscape        : UnicodeScalar = "\\"
+    static let stringEscapeUnicode : UnicodeScalar = "u"
     
-    static let stringUnescapeMap   : [Character: Character] =
+    static let stringUnescapeMap   : [UnicodeScalar: UnicodeScalar] =
         [ "\"" : "\u{22}",  "n" : "\u{0a}",  "t" : "\u{09}",  "b" : "\u{08}",
           "\\" : "\u{5c}",  "r" : "\u{0d}",  "f" : "\u{0c}",  "/" : "\u{2f}" ]
     
-    static let stringEscapeMap     : [Character: String] =
+    static let stringForbidden     : Set<UnicodeScalar> =
+        [ "\u{00}", "\u{01}", "\u{02}", "\u{03}", "\u{04}", "\u{05}", "\u{06}", "\u{07}",
+          "\u{08}", "\u{09}", "\u{0a}", "\u{0b}", "\u{0c}", "\u{0d}", "\u{0e}", "\u{0f}",
+          "\u{10}", "\u{11}", "\u{12}", "\u{13}", "\u{14}", "\u{15}", "\u{16}", "\u{17}",
+          "\u{18}", "\u{19}", "\u{1a}", "\u{1b}", "\u{1c}", "\u{1d}", "\u{1e}", "\u{1f}" ]
+
+    static let stringEscapeMap     : [UnicodeScalar: String.UnicodeScalarView] =
         [ "\u{00}" : "u0000",    "\u{08}" : "b",        "\u{10}" : "u0010",    "\u{18}" : "u0018",
           "\u{01}" : "u0001",    "\u{09}" : "t",        "\u{11}" : "u0011",    "\u{19}" : "u0019",
           "\u{02}" : "u0002",    "\u{0a}" : "n",        "\u{12}" : "u0012",    "\u{1a}" : "u001a",
@@ -72,23 +78,18 @@ extension JSON.Constant {
           "\u{2f}" : "/",
           "\u{5c}" : "\\" ]
     
-    static let stringForbidden     : Set<Character> =
-        [ "\u{00}", "\u{01}", "\u{02}", "\u{03}", "\u{04}", "\u{05}", "\u{06}", "\u{07}",
-          "\u{08}", "\u{09}", "\u{0a}", "\u{0b}", "\u{0c}", "\u{0d}", "\u{0e}", "\u{0f}",
-          "\u{10}", "\u{11}", "\u{12}", "\u{13}", "\u{14}", "\u{15}", "\u{16}", "\u{17}",
-          "\u{18}", "\u{19}", "\u{1a}", "\u{1b}", "\u{1c}", "\u{1d}", "\u{1e}", "\u{1f}" ]
 
     // MARK: - Array
     
-    static let arrayOpening   : Character = "["
-    static let arrayClosing   : Character = "]"
-    static let arraySeparator : Character = ","
+    static let arrayOpening   : UnicodeScalar = "["
+    static let arrayClosing   : UnicodeScalar = "]"
+    static let arraySeparator : UnicodeScalar = ","
     
     // MARK: - Object
 
-    static let objectOpening           : Character = "{"
-    static let objectClosing           : Character = "}"
-    static let objectKeyValueSeparator : Character = ":"
-    static let objectPropertySeparator : Character = ","
+    static let objectOpening           : UnicodeScalar = "{"
+    static let objectClosing           : UnicodeScalar = "}"
+    static let objectKeyValueSeparator : UnicodeScalar = ":"
+    static let objectPropertySeparator : UnicodeScalar = ","
     
 }

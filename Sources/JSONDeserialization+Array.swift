@@ -31,30 +31,29 @@ extension JSONDeserialization {
     }
     
     private mutating func readArray() throws -> [JSON] {
-        try readExpectedCharacter(JSON.Constant.arrayOpening)
+        try readExpectedScalar(JSON.Constant.arrayOpening)
         
         var array: [JSON] = []
         
         readLoop: while true {
-            skipWhitespaceCharacters()
+            skipWhitespace()
             
-            if try peekCharacter() == JSON.Constant.arrayClosing {
+            if try peekScalar() == JSON.Constant.arrayClosing {
                 break readLoop
             }
             
-            resetPeekedCharacters()
             array.append(try deserializeValue())
             
-            skipWhitespaceCharacters()
+            skipWhitespace()
             
-            if try peekCharacter() != JSON.Constant.arraySeparator {
+            if try peekScalar() != JSON.Constant.arraySeparator {
                 break readLoop
             }
             
-            skipPeekedCharacters()
+            skipPeekedScalar()
         }
         
-        try readExpectedCharacter(JSON.Constant.arrayClosing)
+        try readExpectedScalar(JSON.Constant.arrayClosing)
         
         return array
     }

@@ -42,6 +42,15 @@ extension JSON: JSONEncodable {
     
 }
 
+// MARK: - Bool
+
+extension Bool: JSONEncodable {
+    
+    /// Encodes an instance into a `JSON` value.
+    public func encodeJSON() -> JSON { return JSON(booleanLiteral: self) }
+    
+}
+
 // MARK: - Int
 
 extension Int: JSONEncodable {

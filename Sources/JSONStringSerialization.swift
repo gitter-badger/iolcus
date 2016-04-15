@@ -29,50 +29,50 @@ struct JSONStringSerialization: GeneratorType {
         case Open, Reading, Closed
     }
     
-    private let nextUnescapedCharacter: Void -> Character?
-    private var buffer: [Character] = []
+    private let nextUnescapedScalar: Void -> UnicodeScalar?
+    private var buffer = RingBuffer<UnicodeScalar>()
     private var state = State.Open
     
     init(_ string: String) {
-        var generator = string.characters.generate()
+        var generator = string.unicodeScalars.generate()
+        nextUnescapedScalar = { return generator.next() }
         
-        nextUnescapedCharacter = {
-            return generator.next()
-        }
+        buffer.reserveCapacity(4)
     }
     
-    mutating func next() -> Character? {
+    private mutating func nextEscapedScalar() -> UnicodeScalar? {
+        if let scalar = buffer.pop() {
+            return scalar
+        }
+        
+        if let scalar = nextUnescapedScalar() {
+            if let escapeSequence = JSON.Constant.stringEscapeMap[scalar] {
+                buffer.pushContentsOf(escapeSequence)
+                return JSON.Constant.stringEscape
+            }
+            return scalar
+        }
+        
+        return nil
+    }
+
+    mutating func next() -> UnicodeScalar? {
         switch state {
+            
         case .Open:
             state = .Reading
             return JSON.Constant.stringOpening
+        
         case .Reading:
-            if let character = nextEscapedCharacter() {
-                return character
+            if let scalar = nextEscapedScalar() {
+                return scalar
             }
             state = .Closed
             return JSON.Constant.stringClosing
+        
         case .Closed:
             return nil
         }
     }
     
-    private mutating func nextEscapedCharacter() -> Character? {
-        if let character = buffer.first {
-            buffer.removeFirst()
-            return character
-        }
-        
-        if let character = nextUnescapedCharacter() {
-            if let escapeSequence = JSON.Constant.stringEscapeMap[character] {
-                buffer.appendContentsOf(escapeSequence.characters)
-                return JSON.Constant.stringEscape
-            }
-
-            return character
-        }
-
-        return nil
-    }
-
 }

@@ -1,5 +1,5 @@
 //
-//  JSONIntegerSerialization.swift
+//  StringUnicodeScalarView.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -23,20 +23,18 @@
 //  SOFTWARE.
 //
 
-struct JSONIntegerSerialization: GeneratorType {
+extension String.UnicodeScalarView: StringLiteralConvertible {
     
-    private let nextCharacter: Void -> Character?
-    
-    init(_ integer: Int) {
-        var generator = "\(integer)".characters.generate()
-        
-        nextCharacter = {
-            return generator.next()
-        }
+    public init(stringLiteral value: String.StringLiteralType) {
+        self = value.unicodeScalars
     }
     
-    func next() -> Character? {
-        return nextCharacter()
+    public init(extendedGraphemeClusterLiteral value: String.ExtendedGraphemeClusterLiteralType) {
+        self = value.unicodeScalars
+    }
+    
+    public init(unicodeScalarLiteral value: String.UnicodeScalarLiteralType) {
+        self = value.unicodeScalars
     }
     
 }

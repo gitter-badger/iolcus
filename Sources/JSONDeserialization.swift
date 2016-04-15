@@ -24,64 +24,79 @@
 //
 
 public struct JSONDeserialization {
+
+    private let getNextScalar: Void -> UnicodeScalar?
+    private var peekedScalar: UnicodeScalar? = nil
+    private (set) var position = 0
     
-    private var scanner: Scanner<Character>
-    var position: Int {
-        return scanner.position
-    }
-    
-    init(_ scanner: Scanner<Character>) {
-        self.scanner = scanner
+    init(getNextScalar: Void -> UnicodeScalar?) {
+        self.getNextScalar = getNextScalar
     }
     
     // MARK: - Scanning trough the input
     
-    mutating func readCharacter() throws -> Character {
-        guard let readCharacter = scanner.read() else {
+    mutating func readScalar() throws -> UnicodeScalar {
+        if let scalar = peekedScalar {
+            peekedScalar = nil
+            position += 1
+            return scalar
+        }
+        guard let scalar = getNextScalar() else {
             throw JSON.Error.Deserializing.UnexpectedEOF
         }
-
-        return readCharacter
+        position += 1
+        return scalar
     }
     
-    mutating func readExpectedCharacter(expectedCharacter: Character) throws {
-        let character = try readCharacter()
-        
-        if character != expectedCharacter {
-            throw JSON.Error.Deserializing.UnexpectedCharacter(character: character, position: scanner.position)
+    mutating func peekScalar() throws -> UnicodeScalar {
+        if let scalar = peekedScalar {
+            return scalar
         }
-    }
-    
-    mutating func peekCharacter() throws -> Character {
-        guard let peekedCharacter = scanner.peek() else {
+        guard let scalar = getNextScalar() else {
             throw JSON.Error.Deserializing.UnexpectedEOF
         }
-        
-        return peekedCharacter
+        peekedScalar = scalar
+        return scalar
     }
-    
-    mutating func peekExpectedCharacter(expectedCharacter: Character) throws {
-        let character = try peekCharacter()
-        
-        if character != expectedCharacter {
-            throw JSON.Error.Deserializing.UnexpectedCharacter(character: character, position: scanner.position)
+
+    mutating func readExpectedScalar(expectedScalar: UnicodeScalar) throws {
+        let scalar = try readScalar()
+        if scalar != expectedScalar {
+            throw JSON.Error.Deserializing.UnexpectedScalar(scalar: scalar, position: position)
         }
     }
     
-    mutating func resetPeekedCharacters() {
-        scanner.resetPeek()
+    mutating func skipPeekedScalar() {
+        peekedScalar = nil
     }
     
-    mutating func skipPeekedCharacters() {
-        scanner.skipPeeked()
-    }
-    
-    mutating func skipWhitespaceCharacters() {
-        scanner.skipWhile(JSON.Constant.whitespace.contains)
-    }
-    
-    mutating func isEOF() -> Bool {
-        return scanner.isEOF()
+    mutating func skipWhitespace() {
+        if let scalar = peekedScalar {
+            if !JSON.Constant.whitespace.contains(scalar) {
+                return
+            }
+            peekedScalar = nil
+        }
+        
+        while let scalar = getNextScalar() {
+            if !JSON.Constant.whitespace.contains(scalar) {
+                peekedScalar = scalar
+                return
+            }
+        }
     }
 
+    mutating func eof() -> Bool {
+        if peekedScalar != nil {
+            return false
+        }
+        
+        if let scalar = getNextScalar() {
+            peekedScalar = scalar
+            return false
+        }
+        
+        return true
+    }
+    
 }

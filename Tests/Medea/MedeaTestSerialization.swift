@@ -1,5 +1,5 @@
 //
-//  LinuxMain.swift
+//  MedeaTestSerialization.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -25,8 +25,30 @@
 
 import XCTest
 
-@testable import MedeaTest
+@testable import Medea
 
-XCTMain([
-        MedeaTestRingBuffer()
-])
+class MedeaTestSerialization: XCTestCase {
+
+    func testThatNullSerializesCorrectly() {
+        let json: JSON = .Null
+        let string = JSONSerialization.stringWithJSON(json)
+        XCTAssertEqual(string, "null")
+    }
+
+    func testThatBoolSerializesCorrectly() {
+        let jsonTrue: JSON = true
+        let stringTrue = JSONSerialization.stringWithJSON(jsonTrue)
+        XCTAssertEqual(stringTrue, "true")
+
+        let jsonFalse: JSON = false
+        let stringFalse = JSONSerialization.stringWithJSON(jsonFalse)
+        XCTAssertEqual(stringFalse, "false")
+    }
+
+    func testThatIntegerSerializesCorrectly() {
+        let json: JSON = -123456789
+        let string = JSONSerialization.stringWithJSON(json)
+        XCTAssertEqual(string, "-123456789")
+    }
+    
+}

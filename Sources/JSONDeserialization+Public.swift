@@ -27,40 +27,25 @@ extension JSONDeserialization {
     
     /// Parses `JSON` value from a string.
     public static func jsonWithString(string: Swift.String) throws -> JSON {
-        let scanner = Scanner(string.characters)
-        return try deserializeFromScanner(scanner)
-    }
-    
-    /// Parses `JSON` value from a sequence of characters.
-    public static func jsonWithSequence<S: SequenceType where S.Generator.Element == Character>(sequence: S) throws -> JSON {
-        let scanner = Scanner(sequence)
-        return try deserializeFromScanner(scanner)
-    }
-    
-    /// Parses `JSON` value from generator's output.
-    public static func jsonWithGenerator<G: GeneratorType where G.Element == Character>(generator: G) throws -> JSON {
-        let scanner = Scanner(generator)
-        return try deserializeFromScanner(scanner)
-    }
-    
-    /// Parses `JSON` value from closure's output.
-    public static func jsonWithClosure(closure: Void -> Character?) throws -> JSON {
-        let scanner = Scanner(closure)
-        return try deserializeFromScanner(scanner)
-    }
-    
-    private static func deserializeFromScanner(scanner: Scanner<Character>) throws -> JSON {
-        var deserialization = JSONDeserialization(scanner)
+        var generator = string.unicodeScalars.generate()
         
-        deserialization.skipWhitespaceCharacters()
+        return try deserializeWithClosure() {
+            return generator.next()
+        }
+    }
+    
+    private static func deserializeWithClosure(getNextScalar: Void -> UnicodeScalar?) throws -> JSON {
+        var deserialization = JSONDeserialization(getNextScalar: getNextScalar)
+        
+        deserialization.skipWhitespace()
         
         let json = try deserialization.deserializeValue()
         
-        deserialization.skipWhitespaceCharacters()
+        deserialization.skipWhitespace()
         
-        if !deserialization.isEOF() {
-            let character = try! deserialization.readCharacter()
-            throw JSON.Error.Deserializing.UnexpectedCharacter(character: character, position: deserialization.position)
+        if !deserialization.eof() {
+            let scalar = try! deserialization.readScalar()
+            throw JSON.Error.Deserializing.UnexpectedScalar(scalar: scalar, position: deserialization.position)
         }
         
         return json

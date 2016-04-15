@@ -72,10 +72,10 @@ public func == (lhs: JSON, rhs: JSON) -> Swift.Bool {
 
 // MARK: - CustomStringConvertible
 
-extension JSON: CustomStringConvertible {
-    
-    public var description: Swift.String {
-        return JSONSerialization.stringWithJSON(self)
-    }
-    
-}
+//extension JSON: CustomStringConvertible {
+//    
+//    public var description: Swift.String {
+//        return JSONSerialization.stringWithJSON(self)
+//    }
+//    
+//}

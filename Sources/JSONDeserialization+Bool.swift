@@ -31,24 +31,24 @@ extension JSONDeserialization {
     }
 
     private mutating func readBoolean() throws -> Bool  {
-        let character = try peekCharacter()
+        let scalar = try peekScalar()
         
-        switch character {
+        switch scalar {
 
         case JSON.Constant.trueSequence[0]:
             try JSON.Constant.trueSequence.forEach() {
-                try readExpectedCharacter($0)
+                try readExpectedScalar($0)
             }
             return true
         
         case JSON.Constant.falseSequence[0]:
             try JSON.Constant.falseSequence.forEach() {
-                try readExpectedCharacter($0)
+                try readExpectedScalar($0)
             }
             return false
         
         default:
-            throw JSON.Error.Deserializing.UnexpectedCharacter(character: character, position: position)
+            throw JSON.Error.Deserializing.UnexpectedScalar(scalar: scalar, position: position)
         
         }
     }

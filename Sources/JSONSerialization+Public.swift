@@ -27,31 +27,37 @@ extension JSONSerialization {
     
     /// Serializes `JSON` value into a `String`.
     public static func stringWithJSON(json: JSON) -> Swift.String {
-        return Swift.String(GeneratorSequence(generatorWithJSON(json)))
-    }
-    
-    /// Serializes `JSON` value into a sequence of characters.
-    public static func sequenceWithJSON(json: JSON) -> AnySequence<Character> {
-        return AnySequence(GeneratorSequence(generatorWithJSON(json)))
+        let generator = generatorWithJSON(json)
+        var scalars = String.UnicodeScalarView()
+        scalars.appendContentsOf(generator)
+        return Swift.String(scalars)
     }
     
     /// Creates generator that serializes `JSON` value.
-    public static func generatorWithJSON(json: JSON) -> AnyGenerator<Character> {
+    static func generatorWithJSON(json: JSON) -> AnyGenerator<UnicodeScalar> {
         switch json {
+            
         case .Null:
             return AnyGenerator(JSONNullSerialization())
+        
         case .Boolean(let boolean):
             return AnyGenerator(JSONBoolSerialization(boolean))
+        
         case .Integer(let integer):
-            return AnyGenerator(JSONIntegerSerialization(integer))
+            return AnyGenerator(JSONNumberSerialization(integer))
+        
         case .Double(let double):
-            return AnyGenerator(JSONDoubleSerialization(double))
+            return AnyGenerator(JSONNumberSerialization(double))
+        
         case .String(let string):
             return AnyGenerator(JSONStringSerialization(string))
+        
         case .Array(let values):
             return AnyGenerator(JSONArraySerialization(values))
+        
         case .Object(let properties):
             return AnyGenerator(JSONObjectSerialization(properties))
+        
         }
     }
     

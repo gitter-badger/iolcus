@@ -26,31 +26,31 @@
 extension JSONDeserialization {
 
     mutating func deserializeNumber() throws -> JSON {
-        var stringRepresentation = ""
+        var scalars = String.UnicodeScalarView()
+        scalars.reserveCapacity(16)
         
-        readLoop: while true {
-            let character = try peekCharacter()
+        readLoop: while !eof() {
+            let scalar = try peekScalar()
             
-            if !JSON.Constant.numberCharacters.contains(character) {
+            if !JSON.Constant.numberRepresentationElements.contains(scalar) {
                 break readLoop
             }
-            
-            skipPeekedCharacters()
 
-            stringRepresentation.append(character)
+            scalars.append(scalar)
+            skipPeekedScalar()
         }
         
-        resetPeekedCharacters()
+        let string = String(scalars)
         
-        if let integer = Int(stringRepresentation) {
+        if let integer = Int(string) {
             return JSON.Integer(integer)
         }
         
-        if let double = Double(stringRepresentation) {
+        if let double = Double(string) {
             return JSON.Double(double)
         }
         
-        throw JSON.Error.Deserializing.FailedToReadNumber(number: stringRepresentation, position: position)
+        throw JSON.Error.Deserializing.FailedToReadNumber(number: string, position: position)
     }
 
 }

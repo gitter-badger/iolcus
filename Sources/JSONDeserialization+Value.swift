@@ -26,11 +26,9 @@
 extension JSONDeserialization {
 
     mutating func deserializeValue() throws -> JSON {
-        let opening = try peekCharacter()
+        let scalar = try peekScalar()
 
-        // resetPeekedCharacters()
-        
-        switch opening {
+        switch scalar {
         
         case JSON.Constant.nullSequence[0]:
             return try deserializeNull()
@@ -55,7 +53,7 @@ extension JSONDeserialization {
         
         }
 
-        throw JSON.Error.Deserializing.UnexpectedCharacter(character: opening, position: position)
+        throw JSON.Error.Deserializing.UnexpectedScalar(scalar: scalar, position: position)
     }
 
 }
