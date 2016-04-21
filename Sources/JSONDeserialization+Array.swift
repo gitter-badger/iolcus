@@ -31,14 +31,14 @@ extension JSONDeserialization {
     }
     
     private mutating func readArray() throws -> [JSON] {
-        try readExpectedScalar(JSON.Constant.arrayOpeningScalar)
+        try readExpectedScalar(Constant.arrayOpeningScalar)
         
         var array: [JSON] = []
         
         readLoop: while true {
             skipWhitespace()
             
-            if try peekScalar() == JSON.Constant.arrayClosingScalar {
+            if try peekScalar() == Constant.arrayClosingScalar {
                 break readLoop
             }
             
@@ -46,14 +46,14 @@ extension JSONDeserialization {
             
             skipWhitespace()
             
-            if try peekScalar() != JSON.Constant.arraySeparatorScalar {
+            if try peekScalar() != Constant.arraySeparatorScalar {
                 break readLoop
             }
             
             skipPeekedScalar()
         }
         
-        try readExpectedScalar(JSON.Constant.arrayClosingScalar)
+        try readExpectedScalar(Constant.arrayClosingScalar)
         
         return array
     }

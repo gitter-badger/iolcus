@@ -23,8 +23,10 @@
 //  SOFTWARE.
 //
 
+// MARK: JSON
+
 /// JSON value.
-public indirect enum JSON {
+public indirect enum JSON: Equatable {
     
     case Null
     case Boolean(Swift.Bool)
@@ -34,15 +36,9 @@ public indirect enum JSON {
     case Array([JSON])
     case Object([Swift.String: JSON])
     
-    public struct Error { }
-    
-    struct Constant { }
-    
 }
 
 // MARK: - Equatable
-
-extension JSON: Equatable { }
 
 public func == (lhs: JSON, rhs: JSON) -> Swift.Bool {
     switch (lhs, rhs) {
@@ -81,10 +77,10 @@ public func == (lhs: JSON, rhs: JSON) -> Swift.Bool {
 
 // MARK: - CustomStringConvertible
 
-//extension JSON: CustomStringConvertible {
-//    
-//    public var description: Swift.String {
-//        return JSONSerialization.makeString(withJSON: self)
-//    }
-//    
-//}
+extension JSON: CustomStringConvertible {
+    
+    public var description: Swift.String {
+        return JSONSerialization.makeString(withJSON: self)
+    }
+    
+}

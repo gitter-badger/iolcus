@@ -25,6 +25,19 @@
 
 public struct JSONSerialization {
 
+    // MARK: - Public API
+    
+    /// Create a string by serializing `JSON` value.
+    public static func makeString(withJSON json: JSON) -> Swift.String {
+        return serialize(json).reduce("") {
+            $0 + String($1)
+        }
+    }
+
+    // MARK: - Internal
+    
+    struct Constant { }
+
     static func serialize(json: JSON) -> [String.UnicodeScalarView] {
         switch json {
             
@@ -49,12 +62,6 @@ public struct JSONSerialization {
         case .Object(let properties):
             return serialize(properties)
             
-        }
-    }
-    
-    public static func makeString(withJSON json: JSON) -> Swift.String {
-        return serialize(json).reduce("") {
-            $0 + String($1)
         }
     }
     

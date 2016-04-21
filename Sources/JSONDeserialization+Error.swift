@@ -1,6 +1,8 @@
 //
-//  JSON+Exceptions.swift
+//  JSONDeserialization+Error.swift
 //  Medea
+//
+//  Copyright (c) 2016 Anton Bronnikov
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -21,13 +23,9 @@
 //  SOFTWARE.
 //
 
-extension JSON.Error {
+extension JSONDeserialization.Error {
     
-    private init() { }
-
-    // MARK: -
-    
-    /// Exception produced while deserializing a `JSON` value.
+    /// Error produced while deserializing a `JSON` value.
     public enum Deserializing: ErrorType {
         
         /// Unexpected end of file.
@@ -39,17 +37,10 @@ extension JSON.Error {
         ///
         /// - parameters:
         ///   - scalar    : Actual unicode scalar that was encountered.
-        ///   - position  : Position of the scalar in the input stream.  
+        ///   - position  : Position of the scalar in the input stream.
         ///                 **Note:** This is a position of a scalar and not character (which will
         ///                           be different.
         case UnexpectedScalar(scalar: UnicodeScalar, position: Swift.Int)
-        
-//        /// Unexpected character was found.
-//        ///
-//        /// - parameters:
-//        ///   - character : Actual character that was encountered.
-//        ///   - position  : Position of the erroneous `character`.
-//        case UnexpectedCharacter(character: Swift.Character, position: Swift.Int)
         
         /// Same key was found more than once.
         ///
@@ -70,36 +61,11 @@ extension JSON.Error {
         case FailedToReadValue(position: Swift.Int)
         
         /// Failed to read a hex string.
-        ///
-        /// We were in the middle of reading a unicode hex.  Didn't work.
         case FailedToReadHex(hex: Swift.String, position: Swift.Int)
         
         /// Failed to read a number.
-        ///
-        /// Self explanatory.  You start reading a number and then some funny character comes in.  Check 
-        /// this `number` out yourself.
         case FailedToReadNumber(number: Swift.String, position: Swift.Int)
         
-    }
-    
-    /// Exception while coverting to/from Foundation representation of JSON.
-    public enum Foundation: ErrorType {
-
-        /// Failed to convert from Foundation JSON representation.
-        ///
-        /// This `AnyObject` that we have got, well, it's not really a JSON.  And please don't argue
-        /// with Medea.
-        case FailedToConvertFromNSJSON(type: Any.Type)
-        
-    }
-    
-    /// Exception produced while decoding a value from the `JSON` value.
-    public enum Decoding: ErrorType {
-        
-        /// Failed to decode `JSON`.
-        ///
-        /// While reading `JSON` for a `type` we faced a problem while reading `key` property.
-        case FailedToDecode(type: Any.Type, key: Swift.String, json: JSON)
     }
     
 }

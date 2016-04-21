@@ -26,12 +26,12 @@
 extension JSONSerialization {
 
     static func serialize(elements: [JSON]) -> [String.UnicodeScalarView] {
-        var result: [String.UnicodeScalarView] = [JSON.Constant.arrayOpeningSequence]
+        var result: [String.UnicodeScalarView] = [Constant.arrayOpeningSequence]
         
-        let body = elements.map(serialize).joinWithSeparator([JSON.Constant.arraySeparatorSequence])
+        let body = elements.map(serialize).joinWithSeparator([Constant.arraySeparatorSequence])
         result.appendContentsOf(body)
         
-        result.append(JSON.Constant.arrayClosingSequence)
+        result.append(Constant.arrayClosingSequence)
         
         return result
     }

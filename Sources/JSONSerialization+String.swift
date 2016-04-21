@@ -26,12 +26,12 @@
 extension JSONSerialization {
 
     static func serialize(string: String) -> [String.UnicodeScalarView] {
-        var result: [String.UnicodeScalarView] = [JSON.Constant.stringOpeningSequence]
+        var result: [String.UnicodeScalarView] = [Constant.stringOpeningSequence]
         
         let scalars = string.unicodeScalars
         var intervalStart = scalars.startIndex
         for index in scalars.startIndex..<scalars.endIndex {
-            if let substitute = JSON.Constant.stringEscapeScalarMap[scalars[index]] {
+            if let substitute = Constant.stringEscapeScalarMap[scalars[index]] {
                 if intervalStart < index {
                     let interval = intervalStart..<index
                     result.append(scalars[interval])
@@ -45,7 +45,7 @@ extension JSONSerialization {
             result.append(scalars[interval])
         }
         
-        result.append(JSON.Constant.stringClosingSequence)
+        result.append(Constant.stringClosingSequence)
         
         return result
     }

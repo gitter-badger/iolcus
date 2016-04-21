@@ -31,22 +31,22 @@ extension JSONDeserialization {
     }
 
     mutating func readString() throws -> String {
-        try readExpectedScalar(JSON.Constant.stringOpeningScalar)
+        try readExpectedScalar(Constant.stringOpeningScalar)
         
         var scalars = String.UnicodeScalarView()
         
         readLoop: while true {
             let scalar = try readScalar()
             
-            if scalar == JSON.Constant.stringClosingScalar {
+            if scalar == Constant.stringClosingScalar {
                 break readLoop
             }
             
-            if scalar == JSON.Constant.stringUnescapeScalar {
+            if scalar == Constant.stringUnescapeScalar {
                 let escapedSymbol = try readEscapedSymbol()
                 scalars.append(escapedSymbol)
-            } else if JSON.Constant.stringForbiddenScalars.contains(scalar) {
-                throw JSON.Error.Deserializing.UnexpectedScalar(scalar: scalar, position: position)
+            } else if Constant.stringForbiddenScalars.contains(scalar) {
+                throw Error.Deserializing.UnexpectedScalar(scalar: scalar, position: position)
             } else {
                 scalars.append(scalar)
             }
@@ -58,15 +58,15 @@ extension JSONDeserialization {
     private mutating func readEscapedSymbol() throws -> UnicodeScalar {
         let scalar = try readScalar()
         
-        if let escapedScalar = JSON.Constant.stringUnescapeScalarMap[scalar] {
+        if let escapedScalar = Constant.stringUnescapeScalarMap[scalar] {
             return escapedScalar
         }
         
-        if scalar == JSON.Constant.stringUnescapeUnicodeScalar {
+        if scalar == Constant.stringUnescapeUnicodeScalar {
             return try readEscapedUnicodeCharacter()
         }
         
-        throw JSON.Error.Deserializing.UnexpectedScalar(scalar: scalar, position: position)
+        throw Error.Deserializing.UnexpectedScalar(scalar: scalar, position: position)
     }
     
     private mutating func readEscapedUnicodeCharacter() throws -> UnicodeScalar {
@@ -78,8 +78,8 @@ extension JSONDeserialization {
         
         // If the first codepoint was surrogate then we must read the second surrogate as well
         
-        try readExpectedScalar(JSON.Constant.stringUnescapeScalar)
-        try readExpectedScalar(JSON.Constant.stringUnescapeUnicodeScalar)
+        try readExpectedScalar(Constant.stringUnescapeScalar)
+        try readExpectedScalar(Constant.stringUnescapeUnicodeScalar)
         
         let lowCodepoint = try readCodepoint()
         
@@ -102,7 +102,7 @@ extension JSONDeserialization {
         let string = String(scalars)
         
         guard let codepoint = Int(string, radix: 16) else {
-            throw JSON.Error.Deserializing.FailedToReadHex(hex: string, position: position)
+            throw Error.Deserializing.FailedToReadHex(hex: string, position: position)
         }
         
         return codepoint

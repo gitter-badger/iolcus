@@ -23,7 +23,11 @@
 //  SOFTWARE.
 //
 
-extension JSONDeserialization {
+public struct JSONDeserialization {
+
+    // MARK: - Public API
+    
+    public struct Error { }
     
     /// Makes `JSON` value from a string.
     public static func makeJSON(withString string: Swift.String) throws -> JSON {
@@ -46,18 +50,16 @@ extension JSONDeserialization {
         
         if !deserialization.eof() {
             let scalar = try! deserialization.readScalar()
-            throw JSON.Error.Deserializing.UnexpectedScalar(scalar: scalar, position: deserialization.position)
+            throw Error.Deserializing.UnexpectedScalar(scalar: scalar, position: deserialization.position)
         }
         
         return json
     }
+
+    // MARK: - Internal
     
-}
-
-// MARK: -
-
-public struct JSONDeserialization {
-
+    struct Constant { }
+    
     private let getNextScalar: Void -> UnicodeScalar?
     private var peekedScalar: UnicodeScalar? = nil
     private (set) var position = 0
@@ -75,7 +77,7 @@ public struct JSONDeserialization {
             return scalar
         }
         guard let scalar = getNextScalar() else {
-            throw JSON.Error.Deserializing.UnexpectedEOF
+            throw Error.Deserializing.UnexpectedEOF
         }
         position += 1
         return scalar
@@ -86,7 +88,7 @@ public struct JSONDeserialization {
             return scalar
         }
         guard let scalar = getNextScalar() else {
-            throw JSON.Error.Deserializing.UnexpectedEOF
+            throw Error.Deserializing.UnexpectedEOF
         }
         peekedScalar = scalar
         return scalar
@@ -95,7 +97,7 @@ public struct JSONDeserialization {
     mutating func readExpectedScalar(expectedScalar: UnicodeScalar) throws {
         let scalar = try readScalar()
         if scalar != expectedScalar {
-            throw JSON.Error.Deserializing.UnexpectedScalar(scalar: scalar, position: position)
+            throw Error.Deserializing.UnexpectedScalar(scalar: scalar, position: position)
         }
     }
     
@@ -105,14 +107,14 @@ public struct JSONDeserialization {
     
     mutating func skipWhitespace() {
         if let scalar = peekedScalar {
-            if !JSON.Constant.whitespaceScalars.contains(scalar) {
+            if !Constant.whitespaceScalars.contains(scalar) {
                 return
             }
             peekedScalar = nil
         }
         
         while let scalar = getNextScalar() {
-            if !JSON.Constant.whitespaceScalars.contains(scalar) {
+            if !Constant.whitespaceScalars.contains(scalar) {
                 peekedScalar = scalar
                 return
             }

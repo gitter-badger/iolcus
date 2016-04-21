@@ -32,7 +32,7 @@ extension JSONDeserialization {
         readLoop: while !eof() {
             let scalar = try peekScalar()
             
-            if !JSON.Constant.numberScalars.contains(scalar) {
+            if !Constant.numberScalars.contains(scalar) {
                 break readLoop
             }
 
@@ -50,7 +50,7 @@ extension JSONDeserialization {
             return JSON.Double(double)
         }
         
-        throw JSON.Error.Deserializing.FailedToReadNumber(number: string, position: position)
+        throw Error.Deserializing.FailedToReadNumber(number: string, position: position)
     }
 
 }

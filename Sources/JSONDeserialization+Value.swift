@@ -30,22 +30,25 @@ extension JSONDeserialization {
 
         switch scalar {
         
-        case JSON.Constant.nullOpeningScalar:
+        case Constant.nullOpeningScalar:
             return try deserializeNull()
 
-        case JSON.Constant.booleanTrueOpeningScalar, JSON.Constant.booleanFalseOpeningScalar:
-            return try deserializeBoolean()
-
-        case JSON.Constant.numberOpeningScalars:
+        case Constant.booleanTrueOpeningScalar:
+            return try deserializeTrue()
+            
+        case Constant.booleanFalseOpeningScalar:
+            return try deserializeFalse()
+            
+        case Constant.numberOpeningScalars:
             return try deserializeNumber()
 
-        case JSON.Constant.stringOpeningScalar:
+        case Constant.stringOpeningScalar:
             return try deserializeString()
         
-        case JSON.Constant.arrayOpeningScalar:
+        case Constant.arrayOpeningScalar:
             return try deserializeArray()
         
-        case JSON.Constant.objectOpeningScalar:
+        case Constant.objectOpeningScalar:
             return try deserializeObject()
         
         default:
@@ -53,7 +56,7 @@ extension JSONDeserialization {
         
         }
 
-        throw JSON.Error.Deserializing.UnexpectedScalar(scalar: scalar, position: position)
+        throw Error.Deserializing.UnexpectedScalar(scalar: scalar, position: position)
     }
 
 }

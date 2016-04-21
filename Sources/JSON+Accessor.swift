@@ -23,6 +23,8 @@
 //  SOFTWARE.
 //
 
+// MARK: Wrapped value accessors
+
 extension JSON {
     
     /// A concrete `Bool` value if `JSON` is wrapping it, `nil` otherwise.

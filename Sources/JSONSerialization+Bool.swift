@@ -26,7 +26,7 @@
 extension JSONSerialization {
 
     static func serialize(boolean: Bool) -> [String.UnicodeScalarView] {
-        return [boolean ? JSON.Constant.booleanTrueSequence : JSON.Constant.booleanFalseSequence]
+        return [boolean ? Constant.booleanTrueSequence : Constant.booleanFalseSequence]
     }
     
 }

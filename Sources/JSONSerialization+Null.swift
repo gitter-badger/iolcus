@@ -26,7 +26,7 @@
 extension JSONSerialization {
     
     static func serialize() -> [String.UnicodeScalarView] {
-        return [JSON.Constant.nullScalarSequence]
+        return [Constant.nullScalarSequence]
     }
     
 }
