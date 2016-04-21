@@ -30,22 +30,22 @@ extension JSONDeserialization {
 
         switch scalar {
         
-        case JSON.Constant.nullSequence[0]:
+        case JSON.Constant.nullOpeningScalar:
             return try deserializeNull()
 
-        case JSON.Constant.trueSequence[0], JSON.Constant.falseSequence[0]:
+        case JSON.Constant.booleanTrueOpeningScalar, JSON.Constant.booleanFalseOpeningScalar:
             return try deserializeBoolean()
 
-        case JSON.Constant.numberOpenings:
+        case JSON.Constant.numberOpeningScalars:
             return try deserializeNumber()
 
-        case JSON.Constant.stringOpening:
+        case JSON.Constant.stringOpeningScalar:
             return try deserializeString()
         
-        case JSON.Constant.arrayOpening:
+        case JSON.Constant.arrayOpeningScalar:
             return try deserializeArray()
         
-        case JSON.Constant.objectOpening:
+        case JSON.Constant.objectOpeningScalar:
             return try deserializeObject()
         
         default:

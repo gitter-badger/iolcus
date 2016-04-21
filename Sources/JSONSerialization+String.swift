@@ -1,5 +1,5 @@
 //
-//  JSONNullSerialization.swift
+//  JSONSerialization+String.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -23,15 +23,31 @@
 //  SOFTWARE.
 //
 
-struct JSONNullSerialization: GeneratorType {
+extension JSONSerialization {
 
-    private let _next: Void -> UnicodeScalar? = {
-        var generator = JSON.Constant.nullSequence.generate()
-        return { return generator.next() }
-    }()
-    
-    func next() -> UnicodeScalar? {
-        return _next()
+    static func serialize(string: String) -> [String.UnicodeScalarView] {
+        var result: [String.UnicodeScalarView] = [JSON.Constant.stringOpeningSequence]
+        
+        let scalars = string.unicodeScalars
+        var intervalStart = scalars.startIndex
+        for index in scalars.startIndex..<scalars.endIndex {
+            if let substitute = JSON.Constant.stringEscapeScalarMap[scalars[index]] {
+                if intervalStart < index {
+                    let interval = intervalStart..<index
+                    result.append(scalars[interval])
+                }
+                result.append(substitute)
+                intervalStart = index.advancedBy(1)
+            }
+        }
+        if intervalStart < scalars.endIndex {
+            let interval = intervalStart..<scalars.endIndex
+            result.append(scalars[interval])
+        }
+        
+        result.append(JSON.Constant.stringClosingSequence)
+        
+        return result
     }
     
 }

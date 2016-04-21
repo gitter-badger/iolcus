@@ -73,6 +73,11 @@ struct RingBuffer<T>: SequenceType {
         bufferLastIndex = buffer.count - 1
     }
     
+    init() { }
+    init(reserveCapacity capacity: Int) {
+        buffer.reserveCapacity(capacity)
+    }
+    
     subscript(index: Int) -> T {
         precondition(index >= 0 && index < count, "Index out of range")
         var bufferIndex = popIndex + index
@@ -84,18 +89,18 @@ struct RingBuffer<T>: SequenceType {
     
     func generate() -> AnyGenerator<T> {
         if count == 0 {
-            let generator = EmptyGenerator<T>()
-            return AnyGenerator(generator)
+            let iterator = EmptyGenerator<T>()
+            return AnyGenerator(iterator)
         }
         
         if popIndex < pushIndex {
-            let generator = buffer[popIndex..<pushIndex].generate()
-            return AnyGenerator(generator)
+            let iterator = buffer[popIndex..<pushIndex].generate()
+            return AnyGenerator(iterator)
         } else {
             let generatorHead = buffer[popIndex..<buffer.count].generate()
             let generatorTail = buffer[0..<pushIndex].generate()
-            let generator = JoinGenerator(base: [generatorHead, generatorTail].generate(), separator: [])
-            return AnyGenerator(generator)
+            let iterator = JoinGenerator(base: [generatorHead, generatorTail].generate(), separator: [])
+            return AnyGenerator(iterator)
         }
     }
     

@@ -23,6 +23,39 @@
 //  SOFTWARE.
 //
 
+extension JSONDeserialization {
+    
+    /// Makes `JSON` value from a string.
+    public static func makeJSON(withString string: Swift.String) throws -> JSON {
+        var iterator = string.unicodeScalars.generate()
+        
+        return try makeJSON() {
+            return iterator.next()
+        }
+    }
+    
+    /// Makes `JSON` value from a closure that returns `UnicodeScalar`.
+    public static func makeJSON(withClosure getNextScalar: Void -> UnicodeScalar?) throws -> JSON {
+        var deserialization = JSONDeserialization(getNextScalar: getNextScalar)
+        
+        deserialization.skipWhitespace()
+        
+        let json = try deserialization.deserializeValue()
+        
+        deserialization.skipWhitespace()
+        
+        if !deserialization.eof() {
+            let scalar = try! deserialization.readScalar()
+            throw JSON.Error.Deserializing.UnexpectedScalar(scalar: scalar, position: deserialization.position)
+        }
+        
+        return json
+    }
+    
+}
+
+// MARK: -
+
 public struct JSONDeserialization {
 
     private let getNextScalar: Void -> UnicodeScalar?
@@ -72,14 +105,14 @@ public struct JSONDeserialization {
     
     mutating func skipWhitespace() {
         if let scalar = peekedScalar {
-            if !JSON.Constant.whitespace.contains(scalar) {
+            if !JSON.Constant.whitespaceScalars.contains(scalar) {
                 return
             }
             peekedScalar = nil
         }
         
         while let scalar = getNextScalar() {
-            if !JSON.Constant.whitespace.contains(scalar) {
+            if !JSON.Constant.whitespaceScalars.contains(scalar) {
                 peekedScalar = scalar
                 return
             }

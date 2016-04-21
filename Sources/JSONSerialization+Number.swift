@@ -1,5 +1,5 @@
 //
-//  JSONDeserialization+Public.swift
+//  JSONSerialization+Number.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -23,32 +23,14 @@
 //  SOFTWARE.
 //
 
-extension JSONDeserialization {
-    
-    /// Parses `JSON` value from a string.
-    public static func jsonWithString(string: Swift.String) throws -> JSON {
-        var generator = string.unicodeScalars.generate()
-        
-        return try deserializeWithClosure() {
-            return generator.next()
-        }
+extension JSONSerialization {
+
+    static func serialize(integer: Int) -> [String.UnicodeScalarView] {
+        return [integer.description.unicodeScalars]
     }
     
-    private static func deserializeWithClosure(getNextScalar: Void -> UnicodeScalar?) throws -> JSON {
-        var deserialization = JSONDeserialization(getNextScalar: getNextScalar)
-        
-        deserialization.skipWhitespace()
-        
-        let json = try deserialization.deserializeValue()
-        
-        deserialization.skipWhitespace()
-        
-        if !deserialization.eof() {
-            let scalar = try! deserialization.readScalar()
-            throw JSON.Error.Deserializing.UnexpectedScalar(scalar: scalar, position: deserialization.position)
-        }
-        
-        return json
+    static func serialize(double: Double) -> [String.UnicodeScalarView] {
+        return [double.description.unicodeScalars]
     }
     
 }

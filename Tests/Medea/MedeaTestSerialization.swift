@@ -28,27 +28,62 @@ import XCTest
 @testable import Medea
 
 class MedeaTestSerialization: XCTestCase {
+    
+    static let json10K = try! JSONDeserialization.makeJSON(
+        withString: String(
+            contentsOfFile: NSBundle(forClass: MedeaTestDeserialization.self).pathForResource("json10K", ofType: "json")!,
+            encoding: NSUTF8StringEncoding
+        )
+    )
+
+    static let json91K = try! JSONDeserialization.makeJSON(
+        withString: String(
+            contentsOfFile: NSBundle(forClass: MedeaTestDeserialization.self).pathForResource("json91K", ofType: "json")!,
+            encoding: NSUTF8StringEncoding
+        )
+    )
+
+    static let json11M = try! JSONDeserialization.makeJSON(
+        withString: String(
+            contentsOfFile: NSBundle(forClass: MedeaTestDeserialization.self).pathForResource("json11M", ofType: "json")!,
+            encoding: NSUTF8StringEncoding
+        )
+    )
 
     func testThatNullSerializesCorrectly() {
         let json: JSON = .Null
-        let string = JSONSerialization.stringWithJSON(json)
+        let string = JSONSerialization.makeString(withJSON: json)
+        //        let string = JSONSerialization.stringWithJSON(json)
         XCTAssertEqual(string, "null")
     }
 
     func testThatBoolSerializesCorrectly() {
         let jsonTrue: JSON = true
-        let stringTrue = JSONSerialization.stringWithJSON(jsonTrue)
+        let stringTrue = JSONSerialization.makeString(withJSON: jsonTrue)
         XCTAssertEqual(stringTrue, "true")
-
+        
         let jsonFalse: JSON = false
-        let stringFalse = JSONSerialization.stringWithJSON(jsonFalse)
+        let stringFalse = JSONSerialization.makeString(withJSON: jsonFalse)
         XCTAssertEqual(stringFalse, "false")
     }
 
     func testThatIntegerSerializesCorrectly() {
         let json: JSON = -123456789
-        let string = JSONSerialization.stringWithJSON(json)
+        let string = JSONSerialization.makeString(withJSON: json)
         XCTAssertEqual(string, "-123456789")
     }
     
+    // MARK: - Performance tests
+    
+    func testPerformanceOfSerialization() {
+        // 0.3 sec for 91K
+        // 0.125 sec for 91K now
+        self.measureMetrics([XCTPerformanceMetric_WallClockTime], automaticallyStartMeasuring: false) {
+            let _ = JSONSerialization.makeString(withJSON: MedeaTestSerialization.json91K)
+            self.startMeasuring()
+            let _ = JSONSerialization.makeString(withJSON: MedeaTestSerialization.json91K)
+            self.stopMeasuring()
+        }
+    }
+
 }

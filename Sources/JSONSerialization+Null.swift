@@ -1,5 +1,5 @@
 //
-//  JSONBoolSerialization.swift
+//  JSONSerialization+Null.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -23,17 +23,10 @@
 //  SOFTWARE.
 //
 
-struct JSONBoolSerialization: GeneratorType {
+extension JSONSerialization {
     
-    private let _next: Void -> UnicodeScalar?
-    
-    init(_ boolean: Bool) {
-        var generator = (boolean ? JSON.Constant.trueSequence : JSON.Constant.falseSequence).generate()
-        _next = { return generator.next() }
-    }
-    
-    func next() -> UnicodeScalar? {
-        return _next()
+    static func serialize() -> [String.UnicodeScalarView] {
+        return [JSON.Constant.nullScalarSequence]
     }
     
 }

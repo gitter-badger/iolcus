@@ -1,5 +1,5 @@
 //
-//  JSONNumberSerialization.swift
+//  JSONSerialization+Object.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -23,25 +23,25 @@
 //  SOFTWARE.
 //
 
-struct JSONNumberSerialization: GeneratorType {
-    
-    private let _next: Void -> UnicodeScalar?
-    private let stringRepresentation: String
-    
-    init(_ integer: Int) {
-        stringRepresentation = integer.description
-        var generator = stringRepresentation.unicodeScalars.generate()
-        _next = { return generator.next() }
-    }
-    
-    init(_ double: Double) {
-        stringRepresentation = double.description
-        var generator = stringRepresentation.unicodeScalars.generate()
-        _next = { return generator.next() }
-    }
-    
-    func next() -> UnicodeScalar? {
-        return _next()
+extension JSONSerialization {
+
+    static func serialize(properties: [Swift.String: JSON]) -> [String.UnicodeScalarView] {
+        var result: [String.UnicodeScalarView] = [JSON.Constant.objectOpeningSequence]
+        
+        let propertyBodies = properties.map() { (key: Swift.String, value: JSON) -> [String.UnicodeScalarView] in
+            var result = serialize(key)
+            result.append(JSON.Constant.objectKeyValueSeparatorSequence)
+            result.appendContentsOf(serialize(value))
+            return result
+        }
+            
+        let body = propertyBodies.joinWithSeparator([JSON.Constant.objectPropertySeparatorSequence])
+        
+        result.appendContentsOf(body)
+        
+        result.append(JSON.Constant.objectClosingSequence)
+        
+        return result
     }
     
 }

@@ -51,7 +51,7 @@ class MedeaTestDeserialization: XCTestCase {
 
         nullVariants.forEach() {
             do {
-                let json = try JSONDeserialization.jsonWithString($0)
+                let json = try JSONDeserialization.makeJSON(withString: $0)
                 XCTAssertEqual(json, JSON.Null, "String \"\($0)\" does not deserialize to JSON.Null")
             }
             catch {
@@ -65,7 +65,7 @@ class MedeaTestDeserialization: XCTestCase {
         
         trueVariants.forEach() {
             do {
-                let json = try JSONDeserialization.jsonWithString($0)
+                let json = try JSONDeserialization.makeJSON(withString: $0)
                 XCTAssertEqual(json, JSON.Boolean(true), "String \"\($0)\" does not deserialize to JSON.Boolean(true)")
             }
             catch {
@@ -79,7 +79,7 @@ class MedeaTestDeserialization: XCTestCase {
         
         falseVariants.forEach() {
             do {
-                let json = try JSONDeserialization.jsonWithString($0)
+                let json = try JSONDeserialization.makeJSON(withString: $0)
                 XCTAssertEqual(json, JSON.Boolean(false), "String \"\($0)\" does not deserialize to JSON.Boolean(false)")
             }
             catch {
@@ -97,7 +97,7 @@ class MedeaTestDeserialization: XCTestCase {
         var sequenceElement = -10
         integerSequence.forEach() {
             do {
-                let json = try JSONDeserialization.jsonWithString($0)
+                let json = try JSONDeserialization.makeJSON(withString: $0)
                 XCTAssertEqual(json, JSON.Integer(sequenceElement), "String \"\($0)\" does not deserialize to JSON.Integer(\(sequenceElement))")
                 sequenceElement += 1
             } catch {
@@ -113,11 +113,11 @@ class MedeaTestDeserialization: XCTestCase {
         self.measureMetrics([XCTPerformanceMetric_WallClockTime], automaticallyStartMeasuring: false) {
             do {
                 self.startMeasuring()
-                let _ = try JSONDeserialization.jsonWithString(MedeaTestDeserialization.jsonString11M)
+                let _ = try JSONDeserialization.makeJSON(withString: MedeaTestDeserialization.jsonString11M)
                 self.stopMeasuring()
             }
             catch {
-                XCTFail("Deserialization of \"\($0)\" failed with error \(error)")
+                XCTFail("Deserialization failed with error \(error)")
             }
         }
     }

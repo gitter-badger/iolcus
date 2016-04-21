@@ -46,26 +46,35 @@ extension JSON: Equatable { }
 
 public func == (lhs: JSON, rhs: JSON) -> Swift.Bool {
     switch (lhs, rhs) {
+        
     case (.Null, .Null):
         return true
+        
     case (.Boolean(let lhsBoolean), .Boolean(let rhsBoolean)):
         return lhsBoolean == rhsBoolean
+        
     case (.Integer(let lhsInt), .Integer(let rhsInt)):
         return lhsInt == rhsInt
+        
     case (.Double(let lhsDouble), .Double(let rhsDouble)):
         return lhsDouble == rhsDouble
+        
     case (.String(let lhsString), .String(let rhsString)):
         return lhsString == rhsString
+        
     case (.Array(let lhsArray), .Array(let rhsArray)):
         return lhsArray.count == rhsArray.count
             && !zip(lhsArray, rhsArray).contains(!=)
+        
     case (.Object(let lhsObject), .Object(let rhsObject)):
         return lhsObject.count == rhsObject.count
             && !lhsObject.contains() {
                 rhsObject[$0] != $1
         }
+        
     default:
         return false
+        
     }
     
 }
@@ -75,7 +84,7 @@ public func == (lhs: JSON, rhs: JSON) -> Swift.Bool {
 //extension JSON: CustomStringConvertible {
 //    
 //    public var description: Swift.String {
-//        return JSONSerialization.stringWithJSON(self)
+//        return JSONSerialization.makeString(withJSON: self)
 //    }
 //    
 //}

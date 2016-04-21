@@ -24,8 +24,38 @@
 //
 
 public struct JSONSerialization {
+
+    static func serialize(json: JSON) -> [String.UnicodeScalarView] {
+        switch json {
+            
+        case .Null:
+            return serialize()
+            
+        case .Boolean(let boolean):
+            return serialize(boolean)
+            
+        case .Integer(let integer):
+            return serialize(integer)
+            
+        case .Double(let double):
+            return serialize(double)
+
+        case .String(let string):
+            return serialize(string)
+            
+        case .Array(let elements):
+            return serialize(elements)
+            
+        case .Object(let properties):
+            return serialize(properties)
+            
+        }
+    }
     
-    private init() { }
+    public static func makeString(withJSON json: JSON) -> Swift.String {
+        return serialize(json).reduce("") {
+            $0 + String($1)
+        }
+    }
     
 }
-

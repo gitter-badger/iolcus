@@ -1,5 +1,5 @@
 //
-//  JSONDeserialization+Array.swift
+//  JSONSerialization+Array.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -23,39 +23,17 @@
 //  SOFTWARE.
 //
 
-extension JSONDeserialization {
+extension JSONSerialization {
 
-    mutating func deserializeArray() throws -> JSON {
-        let array = try readArray()
-        return JSON.Array(array)
+    static func serialize(elements: [JSON]) -> [String.UnicodeScalarView] {
+        var result: [String.UnicodeScalarView] = [JSON.Constant.arrayOpeningSequence]
+        
+        let body = elements.map(serialize).joinWithSeparator([JSON.Constant.arraySeparatorSequence])
+        result.appendContentsOf(body)
+        
+        result.append(JSON.Constant.arrayClosingSequence)
+        
+        return result
     }
-    
-    private mutating func readArray() throws -> [JSON] {
-        try readExpectedScalar(JSON.Constant.arrayOpeningScalar)
         
-        var array: [JSON] = []
-        
-        readLoop: while true {
-            skipWhitespace()
-            
-            if try peekScalar() == JSON.Constant.arrayClosingScalar {
-                break readLoop
-            }
-            
-            array.append(try deserializeValue())
-            
-            skipWhitespace()
-            
-            if try peekScalar() != JSON.Constant.arraySeparatorScalar {
-                break readLoop
-            }
-            
-            skipPeekedScalar()
-        }
-        
-        try readExpectedScalar(JSON.Constant.arrayClosingScalar)
-        
-        return array
-    }
-    
 }

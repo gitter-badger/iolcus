@@ -35,14 +35,14 @@ extension JSONDeserialization {
         
         switch scalar {
 
-        case JSON.Constant.trueSequence[0]:
-            try JSON.Constant.trueSequence.forEach() {
+        case JSON.Constant.booleanTrueOpeningScalar:
+            try JSON.Constant.booleanTrueSequence.forEach() {
                 try readExpectedScalar($0)
             }
             return true
         
-        case JSON.Constant.falseSequence[0]:
-            try JSON.Constant.falseSequence.forEach() {
+        case JSON.Constant.booleanFalseOpeningScalar:
+            try JSON.Constant.booleanFalseSequence.forEach() {
                 try readExpectedScalar($0)
             }
             return false
