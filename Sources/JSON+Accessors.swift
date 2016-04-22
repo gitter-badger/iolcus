@@ -27,52 +27,106 @@
 
 extension JSON {
     
-    /// A concrete `Bool` value if `JSON` is wrapping it, `nil` otherwise.
-    public var booleanValue: Swift.Bool? {
-        if case .Boolean(let boolean) = self {
-            return boolean
+    /// `Bool` representation of the wrapped value.
+    public var boolean: Swift.Bool? {
+        get {
+            if case .Boolean(let boolean) = self {
+                return boolean
+            }
+            return nil
         }
-        return nil
+        set {
+            if let boolean = newValue {
+                self = .Boolean(boolean)
+            } else {
+                self = .Null
+            }
+        }
     }
     
-    /// A concrete `Double` value if `JSON` is wrapping it, `nil` otherwise.
-    public var doubleValue: Swift.Double? {
-        if case .Double(let double) = self {
-            return double
+    /// `Int` representation of the wrapped value.
+    public var integer: Swift.Int? {
+        get {
+            if case .Integer(let integer) = self {
+                return integer
+            }
+            return nil
         }
-        return nil
+        set {
+            if let integer = newValue {
+                self = .Integer(integer)
+            } else {
+                self = .Null
+            }
+        }
+    }
+
+    /// `Double` representation of the wrapped value.
+    public var double: Swift.Double? {
+        get {
+            if case .Double(let double) = self {
+                return double
+            }
+            return nil
+        }
+        set {
+            if let double = newValue {
+                self = .Double(double)
+            } else {
+                self = .Null
+            }
+        }
     }
     
-    /// A concrete `Int` value if `JSON` is wrapping it, `nil` otherwise.
-    public var intValue: Swift.Int? {
-        if case .Integer(let integer) = self {
-            return integer
+    /// `String` representation of the wrapped value.
+    public var string: Swift.String? {
+        get {
+            if case .String(let string) = self {
+                return string
+            }
+            return nil
         }
-        return nil
+        set {
+            if let string = newValue {
+                self = .String(string)
+            } else {
+                self = .Null
+            }
+        }
     }
     
-    /// A concrete `String` value if `JSON` is wrapping it, `nil` otherwise.
-    public var stringValue: Swift.String? {
-        if case .String(let string) = self {
-            return string
+    /// `[JSON]` array representation of the wrapped value.
+    public var array: [JSON]? {
+        get {
+            if case .Array(let array) = self {
+                return array
+            }
+            return nil
         }
-        return nil
+        set {
+            if let elements = newValue {
+                self = .Array(elements)
+            } else {
+                self = .Null
+            }
+        }
     }
     
-    /// A concrete `[JSON]` array if `JSON` is wrapping it, `nil` otherwise.
-    public var arrayElements: [JSON]? {
-        if case .Array(let array) = self {
-            return array
+    /// `[String: JSON]` properties dictionary representation of the wrapped value.
+    public var object: [Swift.String: JSON]? {
+        get {
+            if case .Object(let object) = self {
+                return object
+            }
+            return nil
         }
-        return nil
-    }
-    
-    /// A concrete `[String: JSON]` dictionary if `JSON` is wrapping it, `nil` otherwise.
-    public var objectProperties: [Swift.String: JSON]? {
-        if case .Object(let object) = self {
-            return object
+        set {
+            if let properties = newValue {
+                self = .Object(properties)
+            } else {
+                self = .Null
+            }
         }
-        return nil
     }
     
 }
@@ -87,12 +141,22 @@ extension JSON {
     ///            In all other cases the subscript returns `.Null`.  
     ///            If the `index` is out of bounds the subscript will also return `.Null`.
     public subscript(index: Swift.Int) -> JSON {
-        if case .Array(let array) = self {
-            if index >= 0 && index < array.count {
-                return array[index]
+        get {
+            if case .Array(let elements) = self {
+                if index >= 0 && index < elements.count {
+                    return elements[index]
+                }
+            }
+            return .Null
+        }
+        set {
+            if case .Array(var elements) = self {
+                elements[index] = newValue
+                self = .Array(elements)
+            } else {
+                fatalError("This JSON is not .Array")
             }
         }
-        return .Null
     }
     
     /// Shorthand accessor for elements of the `JSON` object (a.k.a. dictionary).
@@ -101,12 +165,22 @@ extension JSON {
     ///            In all other cases the subscript returns `.Null`.
     ///            If there is no element with such `key` then the subscript also returns `.Null`.
     public subscript(key: Swift.String) -> JSON {
-        if case .Object(let object) = self {
-            if let value = object[key] {
-                return value
+        get {
+            if case .Object(let properties) = self {
+                if let value = properties[key] {
+                    return value
+                }
+            }
+            return .Null
+        }
+        set {
+            if case .Object(var properties) = self {
+                properties[key] = newValue
+                self = .Object(properties)
+            } else {
+                fatalError("This JSON is not .Object")
             }
         }
-        return .Null
     }
     
 }

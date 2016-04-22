@@ -46,3 +46,89 @@ extension JSON {
     }
     
 }
+
+// MARK: - NilLiteralConvertible
+
+extension JSON: NilLiteralConvertible {
+    
+    public init(nilLiteral: Void) {
+        self = .Null
+    }
+    
+}
+
+// MARK: - BooleanLiteralConvertible
+
+extension JSON: BooleanLiteralConvertible {
+    
+    public init(booleanLiteral boolean: BooleanLiteralType) {
+        self = .Boolean(boolean)
+    }
+    
+}
+
+// MARK: - IntegerLiteralConvertible
+
+extension JSON: IntegerLiteralConvertible {
+    
+    public init(integerLiteral integer: IntegerLiteralType) {
+        self = .Integer(integer)
+    }
+    
+}
+
+// MARK: - FloatLiteralConvertible
+
+extension JSON: FloatLiteralConvertible {
+    
+    public init(floatLiteral float: FloatLiteralType) {
+        self = .Double(float)
+    }
+    
+}
+
+// MARK: - StringLiteralConvertible
+
+extension JSON: StringLiteralConvertible {
+    
+    public init(stringLiteral string: Swift.String.StringLiteralType) {
+        self = .String(string)
+    }
+    
+    public init(extendedGraphemeClusterLiteral string: Swift.String.ExtendedGraphemeClusterLiteralType) {
+        self = .String(string)
+    }
+    
+    public init(unicodeScalarLiteral string: Swift.String.UnicodeScalarLiteralType) {
+        self = .String(string)
+    }
+    
+}
+
+// MARK: - ArrayLiteralConvertible
+
+extension JSON: ArrayLiteralConvertible {
+    
+    public init(arrayLiteral elements: JSONEncodable...) {
+        let array = elements.map() {
+            $0.encodeJSON()
+        }
+        self = .Array(array)
+    }
+    
+}
+
+// MARK: - DictionaryLiteralConvertible
+
+extension JSON: DictionaryLiteralConvertible {
+    
+    public init(dictionaryLiteral properties: (Swift.String, JSONEncodable)...) {
+        var dict: [Swift.String: JSON] = [:]
+        
+        properties.forEach() { (key: Swift.String, value: JSONEncodable) in
+            dict[key] = value.encodeJSON()
+        }
+        self = .Object(dict)
+    }
+    
+}
