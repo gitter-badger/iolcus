@@ -23,7 +23,7 @@
 //  SOFTWARE.
 //
 
-#if os(OSX) || os(iOS) || os(tvOS)
+// #if os(OSX) || os(iOS) || os(tvOS)
 
 import Foundation
 
@@ -31,7 +31,7 @@ extension JSONSerialization {
     
     // MARK: - Public API
     
-    /// Converts Medea's `JSON` value into a Foundation representation.
+    /// Makes Foundation's `AnyObject` representation of JSON using Medea's `JSON` value.
     public static func makeFoundationJSON(withJSON json: JSON) -> AnyObject {
         switch json {
 
@@ -97,4 +97,4 @@ extension JSONSerialization {
 
 }
 
-#endif
+// #endif

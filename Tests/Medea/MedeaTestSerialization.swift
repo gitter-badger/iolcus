@@ -75,7 +75,7 @@ class MedeaTestSerialization: XCTestCase {
     
     // MARK: - Performance tests
     
-    func testPerformanceOfSerialization() {
+    func disabled_testPerformanceOfSerialization() {
         self.measureMetrics([XCTPerformanceMetric_WallClockTime], automaticallyStartMeasuring: false) {
             let _ = JSONSerialization.makeString(withJSON: MedeaTestSerialization.json91K)
             self.startMeasuring()

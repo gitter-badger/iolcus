@@ -23,10 +23,10 @@
 //  SOFTWARE.
 //
 
-extension JSONDeserialization.Error {
+extension JSON.Error {
     
     /// Error produced while deserializing a `JSON` value.
-    public enum Deserializing: ErrorType {
+    public enum Deserialization: ErrorType {
         
         /// Unexpected end of file.
         ///

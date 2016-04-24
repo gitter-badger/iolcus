@@ -45,7 +45,7 @@ extension JSONDeserialization {
             let key = try readString()
             
             if object.keys.contains(key) {
-                throw Error.Deserializing.DuplicateObjectKey(key: key, position: position)
+                throw JSON.Error.Deserialization.DuplicateObjectKey(key: key, position: position)
             }
             
             skipWhitespace()

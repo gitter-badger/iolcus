@@ -36,6 +36,8 @@ public indirect enum JSON: Equatable {
     case Array([JSON])
     case Object([Swift.String: JSON])
     
+    public struct Error { }
+    
 }
 
 // MARK: - Equatable
@@ -71,6 +73,43 @@ public func == (lhs: JSON, rhs: JSON) -> Swift.Bool {
     default:
         return false
         
+    }
+    
+}
+
+// MARK: - Hashable
+
+extension JSON: Hashable {
+    
+    public var hashValue: Int {
+        switch self {
+            
+        case .Null:
+            return 0.hashValue
+            
+        case .Boolean(let boolean):
+            return 1.hashValue ^ boolean.hashValue
+            
+        case .Integer(let integer):
+            return 2.hashValue ^ integer.hashValue
+            
+        case .Double(let double):
+            return 3.hashValue ^ double.hashValue
+            
+        case .String(let string):
+            return 4.hashValue ^ string.hashValue
+            
+        case .Array(let elements):
+            return elements.reduce(5.hashValue) {
+                $0 ^ $1.hashValue
+            }
+            
+        case .Object(let properties):
+            return properties.reduce(6.hashValue) {
+                $0 ^ $1.0.hashValue ^ $1.1.hashValue
+            }
+
+        }
     }
     
 }

@@ -23,6 +23,10 @@
 //  SOFTWARE.
 //
 
+import Foundation
+
+// MARK: JSONDecodable
+
 /// Instance of the conforming type can be initialized from a `JSON` value.
 public protocol JSONDecodable {
     
@@ -31,6 +35,62 @@ public protocol JSONDecodable {
     /// - throws: Should throw `JSON.Exception.Decoding.FailedToDecode` if `json` parameter can not
     ///           be used to fully initialize a new instance.
     init(json: JSON) throws
+    
+}
+
+// MARK: - Bool: JSONDecodable
+
+extension Bool: JSONDecodable {
+    
+    public init(json: JSON) throws {
+        guard let boolean = json.boolean else {
+            throw JSON.Error.Decodable.FailedToDecodeFromJSON(json: json, type: Bool.self)
+        }
+        
+        self = boolean
+    }
+    
+}
+
+// MARK: - Int: JSONDecodable
+
+extension Int: JSONDecodable {
+    
+    public init(json: JSON) throws {
+        guard let integer = json.integer else {
+            throw JSON.Error.Decodable.FailedToDecodeFromJSON(json: json, type: Int.self)
+        }
+        
+        self = integer
+    }
+    
+}
+
+// MARK: - Double: JSONDecodable
+
+extension Double: JSONDecodable {
+    
+    public init(json: JSON) throws {
+        guard let double = json.double else {
+            throw JSON.Error.Decodable.FailedToDecodeFromJSON(json: json, type: Double.self)
+        }
+        
+        self = double
+    }
+    
+}
+
+// MARK: - String: JSONDecodable
+
+extension String: JSONDecodable {
+    
+    public init(json: JSON) throws {
+        guard let string = json.string else {
+            throw JSON.Error.Decodable.FailedToDecodeFromJSON(json: json, type: String.self)
+        }
+        
+        self = string
+    }
     
 }
 
@@ -44,12 +104,42 @@ extension Array where Element: JSONDecodable {
     ///            of the input array decoded into `JSONDecodable` instances.  Otherwise, the result
     ///            will be single-element array with a decoded instance.
     public init(json: JSON) throws {
-        if case .Array(let array) = json {
-            self = try array.map() {
+        switch json {
+
+        case .Array(let elements):
+            self = try elements.map() {
                 try Element(json: $0)
             }
-        } else {
+            
+        default:
             self = [try Element(json: json)]
+            
+        }
+    }
+    
+}
+
+// MARK: - Dictionary
+
+extension Dictionary where Key: StringLiteralConvertible, Value: JSONDecodable {
+    
+    public init(json: JSON) throws {
+        assert(Key.self == Swift.String || Key.self == Foundation.NSString, "The key is \(Dictionary.self) while it must be \(Swift.String) or \(Foundation.NSString)")
+        
+        switch json {
+            
+        case .Object(let properties):
+            var dictionary: Dictionary = [:]
+            
+            try properties.forEach() {
+                dictionary[$0 as! Key] = try Value(json: $1)
+            }
+            
+            self = dictionary
+            
+        default:
+            throw JSON.Error.Decodable.FailedToDecodeFromJSON(json: json, type: String.self)
+            
         }
     }
     

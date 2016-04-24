@@ -27,8 +27,6 @@ public struct JSONDeserialization {
 
     // MARK: - Public API
     
-    public struct Error { }
-    
     /// Makes `JSON` value from a string.
     public static func makeJSON(withString string: Swift.String) throws -> JSON {
         var iterator = string.unicodeScalars.generate()
@@ -50,15 +48,13 @@ public struct JSONDeserialization {
         
         if !deserialization.eof() {
             let scalar = try! deserialization.readScalar()
-            throw Error.Deserializing.UnexpectedScalar(scalar: scalar, position: deserialization.position)
+            throw JSON.Error.Deserialization.UnexpectedScalar(scalar: scalar, position: deserialization.position)
         }
         
         return json
     }
 
     // MARK: - Internal
-    
-    struct Constant { }
     
     private let getNextScalar: Void -> UnicodeScalar?
     private var peekedScalar: UnicodeScalar? = nil
@@ -77,7 +73,7 @@ public struct JSONDeserialization {
             return scalar
         }
         guard let scalar = getNextScalar() else {
-            throw Error.Deserializing.UnexpectedEOF
+            throw JSON.Error.Deserialization.UnexpectedEOF
         }
         position += 1
         return scalar
@@ -88,7 +84,7 @@ public struct JSONDeserialization {
             return scalar
         }
         guard let scalar = getNextScalar() else {
-            throw Error.Deserializing.UnexpectedEOF
+            throw JSON.Error.Deserialization.UnexpectedEOF
         }
         peekedScalar = scalar
         return scalar
@@ -97,7 +93,7 @@ public struct JSONDeserialization {
     mutating func readExpectedScalar(expectedScalar: UnicodeScalar) throws {
         let scalar = try readScalar()
         if scalar != expectedScalar {
-            throw Error.Deserializing.UnexpectedScalar(scalar: scalar, position: position)
+            throw JSON.Error.Deserialization.UnexpectedScalar(scalar: scalar, position: position)
         }
     }
     

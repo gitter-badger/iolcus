@@ -25,6 +25,8 @@
 
 import Foundation
 
+// MARK: JSONEncodable
+
 /// Instance of the conforming type can be encoded into a `JSON` value.
 public protocol JSONEncodable {
     
@@ -33,7 +35,7 @@ public protocol JSONEncodable {
     
 }
 
-// MARK: - JSON
+// MARK: - JSON: JSONEncodable
 
 extension JSON: JSONEncodable {
     
@@ -42,7 +44,7 @@ extension JSON: JSONEncodable {
     
 }
 
-// MARK: - Bool
+// MARK: - Bool: JSONEncodable
 
 extension Bool: JSONEncodable {
     
@@ -51,7 +53,7 @@ extension Bool: JSONEncodable {
     
 }
 
-// MARK: - Int
+// MARK: - Int: JSONEncodable
 
 extension Int: JSONEncodable {
     
@@ -60,7 +62,7 @@ extension Int: JSONEncodable {
     
 }
 
-// MARK: - Double
+// MARK: - Double: JSONEncodable
 
 extension Double: JSONEncodable {
     
@@ -69,7 +71,7 @@ extension Double: JSONEncodable {
     
 }
 
-// MARK: - String
+// MARK: - String: JSONEncodable
 
 extension String: JSONEncodable {
     
@@ -98,7 +100,7 @@ extension Dictionary where Key: StringLiteralConvertible, Value: JSONEncodable {
     
     /// Encodes an instance into a `JSON` value.
     public func encodeJSON() -> JSON {
-        assert(Key.self == Swift.String || Key.self == Foundation.NSString, "\(Dictionary.self) Key must be \(Swift.String) or \(Foundation.NSString) instead")
+        assert(Key.self == Swift.String || Key.self == Foundation.NSString, "The key is \(Dictionary.self) while it must be \(Swift.String) or \(Foundation.NSString)")
         
         var properties: [Swift.String: JSON] = [:]
         

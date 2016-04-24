@@ -23,22 +23,18 @@
 //  SOFTWARE.
 //
 
-#if os(OSX) || os(iOS) || os(tvOS)
-    
 import Foundation
 
 extension JSONDeserialization {
     
     // MARK: - Public API
     
-    /// Makes `JSON` value from Foundation JSON object.
+    /// Makes Medea `JSON` value using Foundation's `AnyObject` representation of JSON.
     ///
-    /// - note: Foundation represents original JSON's number and JSON's boolean as `NSNumber`
-    ///         object.  This means that there is really no way to recognize one from the other
-    ///         while converting into Medea's `JSON` (that is very type-strict).  Therefore, it can
-    ///         be that something that was originally serialized as a boolean will end up being
-    ///         `.Double` if it is deserialized into a Foundation object first and only then
-    ///         converted into Medea's `JSON`.
+    /// - note: Foundation represents JSON's number and boolean as the same internal type, namely
+    ///         `NSNumber`.  This means that there is really no way to tell one from another while
+    ///         converting from Foundation to Medea.  JSON's `true` will end up as `.Integer(1)` 
+    ///         this way and `false` will be `.Integer(0)`.
     public static func makeJSON(withFoundationJSON nsjson: AnyObject) throws -> JSON {
         if let json = nsjson as? [NSString: AnyObject] {
             return try makeJSON(withFoundationJSON: json)
@@ -60,7 +56,7 @@ extension JSONDeserialization {
             return try makeJSON(withFoundationJSON: json)
         }
         
-        throw Error.Converting.FailedToConvertFromFoundationJSON(type: nsjson.dynamicType)
+        throw JSON.Error.Foundation.FailedToConvertFromFoundationJSON(type: nsjson.dynamicType)
     }
     
     // MARK: - Internal
@@ -70,8 +66,11 @@ extension JSONDeserialization {
     }
     
     private static func makeJSON(withFoundationJSON nsjson: NSNumber) throws -> JSON {
-        let double = nsjson.doubleValue
-        return .Double(double)
+        if Double(nsjson.integerValue) == nsjson.doubleValue {
+            return .Integer(nsjson.integerValue)
+        } else {
+            return .Double(nsjson.doubleValue)
+        }
     }
     
     private static func makeJSON(withFoundationJSON nsjson: NSString) throws -> JSON {
@@ -97,19 +96,3 @@ extension JSONDeserialization {
     }
     
 }
-
-// MARK: - Error definitions
-
-extension JSONDeserialization.Error {
-
-    /// Exception while coverting to/from Foundation representation of JSON.
-    public enum Converting: ErrorType {
-        
-        /// Failed to convert from Foundation `JSON` representation into Medea `JSON`.
-        case FailedToConvertFromFoundationJSON(type: Any.Type)
-        
-    }
-   
-}
-
-#endif

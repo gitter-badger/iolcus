@@ -1,5 +1,5 @@
 //
-//  JSONDeserialization+Value.swift
+//  JSONDeserialization+Foundation+Error.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -23,40 +23,16 @@
 //  SOFTWARE.
 //
 
-extension JSONDeserialization {
+import Foundation
 
-    mutating func deserializeValue() throws -> JSON {
-        let scalar = try peekScalar()
-
-        switch scalar {
+extension JSON.Error {
+    
+    /// Exception while coverting to/from Foundation representation of JSON.
+    public enum Foundation: ErrorType {
         
-        case Constant.nullOpeningScalar:
-            return try deserializeNull()
-
-        case Constant.booleanTrueOpeningScalar:
-            return try deserializeTrue()
-            
-        case Constant.booleanFalseOpeningScalar:
-            return try deserializeFalse()
-            
-        case Constant.numberOpeningScalars:
-            return try deserializeNumber()
-
-        case Constant.stringOpeningScalar:
-            return try deserializeString()
+        /// Failed to convert from Foundation `JSON` representation into Medea `JSON`.
+        case FailedToConvertFromFoundationJSON(type: Any.Type)
         
-        case Constant.arrayOpeningScalar:
-            return try deserializeArray()
-        
-        case Constant.objectOpeningScalar:
-            return try deserializeObject()
-        
-        default:
-            break
-        
-        }
-
-        throw JSON.Error.Deserialization.UnexpectedScalar(scalar: scalar, position: position)
     }
-
+    
 }

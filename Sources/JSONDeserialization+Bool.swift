@@ -54,7 +54,7 @@ extension JSONDeserialization {
             return false
         
         default:
-            throw Error.Deserializing.UnexpectedScalar(scalar: scalar, position: position)
+            throw JSON.Error.Deserialization.UnexpectedScalar(scalar: scalar, position: position)
         
         }
     }

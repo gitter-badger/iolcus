@@ -1,5 +1,5 @@
 //
-//  JSONDeserialization+Value.swift
+//  JSONDecodable+Error.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -23,40 +23,14 @@
 //  SOFTWARE.
 //
 
-extension JSONDeserialization {
-
-    mutating func deserializeValue() throws -> JSON {
-        let scalar = try peekScalar()
-
-        switch scalar {
+extension JSON.Error {
+    
+    /// Error while decoding a `JSONDecodable` instance.
+    public enum Decodable: ErrorType {
         
-        case Constant.nullOpeningScalar:
-            return try deserializeNull()
-
-        case Constant.booleanTrueOpeningScalar:
-            return try deserializeTrue()
-            
-        case Constant.booleanFalseOpeningScalar:
-            return try deserializeFalse()
-            
-        case Constant.numberOpeningScalars:
-            return try deserializeNumber()
-
-        case Constant.stringOpeningScalar:
-            return try deserializeString()
+        /// Failed to decode a `JSONDecodable` instance from `JSON` value.
+        case FailedToDecodeFromJSON(json: JSON, type: JSONDecodable.Type)
         
-        case Constant.arrayOpeningScalar:
-            return try deserializeArray()
-        
-        case Constant.objectOpeningScalar:
-            return try deserializeObject()
-        
-        default:
-            break
-        
-        }
-
-        throw JSON.Error.Deserialization.UnexpectedScalar(scalar: scalar, position: position)
     }
 
 }

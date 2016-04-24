@@ -56,13 +56,13 @@ extension JSONSerialization.Constant {
 
     static let arrayOpeningSequence: String.UnicodeScalarView = "["
     static let arrayClosingSequence: String.UnicodeScalarView = "]"
-    static let arraySeparatorSequence: String.UnicodeScalarView = ","
+    static let arraySeparatorSequence: String.UnicodeScalarView = ", "
 
     // MARK: - Object
 
     static let objectOpeningSequence: String.UnicodeScalarView = "{"
     static let objectClosingSequence: String.UnicodeScalarView = "}"
-    static let objectKeyValueSeparatorSequence: String.UnicodeScalarView = ":"
-    static let objectPropertySeparatorSequence: String.UnicodeScalarView = ","
+    static let objectKeyValueSeparatorSequence: String.UnicodeScalarView = ": "
+    static let objectPropertySeparatorSequence: String.UnicodeScalarView = ", "
 
 }
