@@ -28,8 +28,8 @@ public struct JSONDeserialization {
     // MARK: - Public API
     
     /// Makes `JSON` value from a string.
-    public static func makeJSON(withString string: Swift.String) throws -> JSON {
-        var iterator = string.unicodeScalars.generate()
+    public static func makeJSON(string input: Swift.String) throws -> JSON {
+        var iterator = input.unicodeScalars.generate()
         
         return try makeJSON() {
             return iterator.next()
@@ -37,7 +37,7 @@ public struct JSONDeserialization {
     }
     
     /// Makes `JSON` value from a closure that returns `UnicodeScalar`.
-    public static func makeJSON(withClosure getNextScalar: Void -> UnicodeScalar?) throws -> JSON {
+    public static func makeJSON(closure getNextScalar: Void -> UnicodeScalar?) throws -> JSON {
         var deserialization = JSONDeserialization(getNextScalar: getNextScalar)
         
         deserialization.skipWhitespace()

@@ -72,6 +72,9 @@
 		BA862F031CCCD5F70016E610 /* JSONDecodable+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA862F011CCCD5F70016E610 /* JSONDecodable+Error.swift */; };
 		BA862F041CCCD5F70016E610 /* JSONDecodable+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA862F011CCCD5F70016E610 /* JSONDecodable+Error.swift */; };
 		BA862F051CCCD5F70016E610 /* JSONDecodable+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA862F011CCCD5F70016E610 /* JSONDecodable+Error.swift */; };
+		BA862F0A1CCEB7190016E610 /* MedeaTestDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA862F091CCEB7190016E610 /* MedeaTestDecodable.swift */; };
+		BA862F0B1CCEB7190016E610 /* MedeaTestDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA862F091CCEB7190016E610 /* MedeaTestDecodable.swift */; };
+		BA862F0C1CCEB7190016E610 /* MedeaTestDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA862F091CCEB7190016E610 /* MedeaTestDecodable.swift */; };
 		BAA6500D1CB599E8006F561A /* Medea_watchOS.h in Headers */ = {isa = PBXBuildFile; fileRef = BAA6500C1CB599E8006F561A /* Medea_watchOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BAA650121CB5AE69006F561A /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B9B6F1CB46249003EF1CA /* JSON.swift */; };
 		BAA650131CB5AE6A006F561A /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B9B6F1CB46249003EF1CA /* JSON.swift */; };
@@ -220,6 +223,8 @@
 		BA6EDC691CBEC87700B0CC93 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = main.swift; path = Tests/main.swift; sourceTree = "<group>"; };
 		BA862EFC1CCCD5950016E610 /* JSONDeserialization+Foundation+Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSONDeserialization+Foundation+Error.swift"; path = "Sources/JSONDeserialization+Foundation+Error.swift"; sourceTree = "<group>"; };
 		BA862F011CCCD5F70016E610 /* JSONDecodable+Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSONDecodable+Error.swift"; path = "Sources/JSONDecodable+Error.swift"; sourceTree = "<group>"; };
+		BA862F081CCE85940016E610 /* test.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = test.playground; path = Playgrounds/test.playground; sourceTree = "<group>"; };
+		BA862F091CCEB7190016E610 /* MedeaTestDecodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MedeaTestDecodable.swift; path = Tests/Medea/MedeaTestDecodable.swift; sourceTree = "<group>"; };
 		BAA6500A1CB599E8006F561A /* Medea.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Medea.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAA6500C1CB599E8006F561A /* Medea_watchOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Medea_watchOS.h; path = Sources/Medea_watchOS.h; sourceTree = "<group>"; };
 		BAA6500E1CB599E8006F561A /* Info-watchOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-watchOS.plist"; path = "Support/Info-watchOS.plist"; sourceTree = "<group>"; };
@@ -411,8 +416,17 @@
 				BAF400671CBC6AE9006A72AD /* MedeaTestRingBuffer.swift */,
 				BAF4002F1CB98A6E006A72AD /* MedeaTestDeserialization.swift */,
 				BA6306FD1CC0BCC5000D98EA /* MedeaTestSerialization.swift */,
+				BA862F091CCEB7190016E610 /* MedeaTestDecodable.swift */,
 			);
 			name = Medea;
+			sourceTree = "<group>";
+		};
+		BA862F071CCE85780016E610 /* Playgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				BA862F081CCE85940016E610 /* test.playground */,
+			);
+			name = Playgrounds;
 			sourceTree = "<group>";
 		};
 		BAF400331CB9B949006A72AD /* Resources */ = {
@@ -442,6 +456,7 @@
 				BA5B9B681CB42EE9003EF1CA /* Support */,
 				BA5B9B6D1CB45012003EF1CA /* Sources */,
 				BA5B9BC31CB4DDF3003EF1CA /* Tests */,
+				BA862F071CCE85780016E610 /* Playgrounds */,
 				BAF8092B1CB38E000055F146 /* Products */,
 				BA6AC9D41CB6A09D00D301DD /* Package.swift */,
 			);
@@ -786,6 +801,7 @@
 			files = (
 				BAF400301CB98A6E006A72AD /* MedeaTestDeserialization.swift in Sources */,
 				BA6306FE1CC0BCC5000D98EA /* MedeaTestSerialization.swift in Sources */,
+				BA862F0A1CCEB7190016E610 /* MedeaTestDecodable.swift in Sources */,
 				BAF400681CBC6AE9006A72AD /* MedeaTestRingBuffer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -833,6 +849,7 @@
 			files = (
 				BAF400311CB98A6E006A72AD /* MedeaTestDeserialization.swift in Sources */,
 				BA6306FF1CC0BCC5000D98EA /* MedeaTestSerialization.swift in Sources */,
+				BA862F0B1CCEB7190016E610 /* MedeaTestDecodable.swift in Sources */,
 				BAF400691CBC6AE9006A72AD /* MedeaTestRingBuffer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -880,6 +897,7 @@
 			files = (
 				BAF400321CB98A6E006A72AD /* MedeaTestDeserialization.swift in Sources */,
 				BA6307001CC0BCC5000D98EA /* MedeaTestSerialization.swift in Sources */,
+				BA862F0C1CCEB7190016E610 /* MedeaTestDecodable.swift in Sources */,
 				BAF4006A1CBC6AE9006A72AD /* MedeaTestRingBuffer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

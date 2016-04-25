@@ -31,10 +31,21 @@ import Foundation
 public protocol JSONDecodable {
     
     /// Initializes an instance from `JSON` value.
-    ///
-    /// - throws: Should throw `JSON.Exception.Decoding.FailedToDecode` if `json` parameter can not
-    ///           be used to fully initialize a new instance.
     init(json: JSON) throws
+    
+}
+
+extension JSONDecodable {
+    
+    /// Initializes an instance from `JSON` value at specified `key` of a JSON object.
+    public init(json: JSON, at key: Swift.String) throws {
+        try self.init(json: json[key])
+    }
+    
+    /// Initializes an instance from `JSON` value at specified `index` of a JSON array.
+    public init(json: JSON, at index: Swift.Int) throws {
+        try self.init(json: json[index])
+    }
     
 }
 
@@ -113,9 +124,18 @@ extension Array where Element: JSONDecodable {
             
         default:
             throw JSON.Error.Decodable.FailedToDecodeFromJSON(json: json, type: Array.self)
-            // self = [try Element(json: json)]
             
         }
+    }
+    
+    /// Initializes an array from `JSON` value at specified `key` of a JSON object.
+    public init(json: JSON, at key: Swift.String) throws {
+        try self.init(json: json[key])
+    }
+
+    /// Initializes an array from `JSON` value at specified `index` of a JSON array.
+    public init(json: JSON, at index: Swift.Int) throws {
+        try self.init(json: json[index])
     }
     
 }
@@ -143,5 +163,15 @@ extension Dictionary where Key: StringLiteralConvertible, Value: JSONDecodable {
             
         }
     }
+
+    /// Initializes a dictionary from `JSON` value at specified `key` of a JSON object.
+    public init(json: JSON, at key: Swift.String) throws {
+        try self.init(json: json[key])
+    }
     
+    /// Initializes a dictionary from `JSON` value at specified `index` of a JSON array.
+    public init(json: JSON, at index: Swift.Int) throws {
+        try self.init(json: json[index])
+    }
+
 }

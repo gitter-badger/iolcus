@@ -25,19 +25,39 @@
 
 extension JSON {
     
-    /// Creates a `JSON` value from the instance of `JSONEncodable`.
-    public init<J: JSONEncodable>(withJSONEncodable jsonEncodable: J) {
-        self = jsonEncodable.encodeJSON()
+    /// Creates a `JSON` value from a `Bool` instance.
+    public init(boolean: Swift.Bool) {
+        self = .Boolean(boolean)
     }
     
-    /// Creates a `JSON` value from the array of `JSONEncodable`'s.
-    public init<J: JSONEncodable>(withJSONEncodable jsonEncodables: [J]) {
-        self = jsonEncodables.encodeJSON()
+    /// Creates a `JSON` value from an `Int` instance.
+    public init(integer: Swift.Int) {
+        self = .Integer(integer)
+    }
+    
+    /// Creates a `JSON` value from a `Double` instance.
+    public init(double: Swift.Double) {
+        self = .Double(double)
+    }
+    
+    /// Creates a `JSON` value from a `String` instance.
+    public init(string: Swift.String) {
+        self = .String(string)
+    }
+    
+    /// Creates a `JSON` value from an instance of `JSONEncodable`.
+    public init<Encodable: JSONEncodable>(encodable: Encodable) {
+        self = encodable.encodeJSON()
+    }
+    
+    /// Creates a `JSON` value from an array of `JSONEncodable`'s.
+    public init<Encodable: JSONEncodable>(encodable: [Encodable]) {
+        self = encodable.encodeJSON()
     }
         
-    /// Creates a `JSON` value from the dictionary of `[String: JSONEncodable]`.
-    public init<J: JSONEncodable>(withJSONEncodable jsonEncodables: [Swift.String: J]) {
-        self = jsonEncodables.encodeJSON()
+    /// Creates a `JSON` value from a dictionary of `[String: JSONEncodable]`.
+    public init<Encodable: JSONEncodable>(encodable: [Swift.String: Encodable]) {
+        self = encodable.encodeJSON()
     }
     
 }
@@ -56,8 +76,8 @@ extension JSON: NilLiteralConvertible {
 
 extension JSON: BooleanLiteralConvertible {
     
-    public init(booleanLiteral boolean: BooleanLiteralType) {
-        self = .Boolean(boolean)
+    public init(booleanLiteral: BooleanLiteralType) {
+        self = JSON(boolean: booleanLiteral)
     }
     
 }
@@ -66,8 +86,8 @@ extension JSON: BooleanLiteralConvertible {
 
 extension JSON: IntegerLiteralConvertible {
     
-    public init(integerLiteral integer: IntegerLiteralType) {
-        self = .Integer(integer)
+    public init(integerLiteral: IntegerLiteralType) {
+        self = JSON(integer: integerLiteral)
     }
     
 }
@@ -76,8 +96,8 @@ extension JSON: IntegerLiteralConvertible {
 
 extension JSON: FloatLiteralConvertible {
     
-    public init(floatLiteral float: FloatLiteralType) {
-        self = .Double(float)
+    public init(floatLiteral: FloatLiteralType) {
+        self = JSON(double: floatLiteral)
     }
     
 }
@@ -86,16 +106,16 @@ extension JSON: FloatLiteralConvertible {
 
 extension JSON: StringLiteralConvertible {
     
-    public init(stringLiteral string: Swift.String.StringLiteralType) {
-        self = .String(string)
+    public init(stringLiteral: Swift.String.StringLiteralType) {
+        self = JSON(string: stringLiteral)
     }
     
-    public init(extendedGraphemeClusterLiteral string: Swift.String.ExtendedGraphemeClusterLiteralType) {
-        self = .String(string)
+    public init(extendedGraphemeClusterLiteral: Swift.String.ExtendedGraphemeClusterLiteralType) {
+        self = JSON(string: extendedGraphemeClusterLiteral)
     }
     
-    public init(unicodeScalarLiteral string: Swift.String.UnicodeScalarLiteralType) {
-        self = .String(string)
+    public init(unicodeScalarLiteral: Swift.String.UnicodeScalarLiteralType) {
+        self = JSON(string: unicodeScalarLiteral)
     }
     
 }
@@ -104,11 +124,12 @@ extension JSON: StringLiteralConvertible {
 
 extension JSON: ArrayLiteralConvertible {
     
-    public init(arrayLiteral elements: JSONEncodable...) {
-        let array = elements.map() {
+    public init(arrayLiteral array: JSONEncodable...) {
+        let elements = array.map() {
             $0.encodeJSON()
         }
-        self = .Array(array)
+        
+        self = .Array(elements)
     }
     
 }
@@ -117,13 +138,14 @@ extension JSON: ArrayLiteralConvertible {
 
 extension JSON: DictionaryLiteralConvertible {
     
-    public init(dictionaryLiteral properties: (Swift.String, JSONEncodable)...) {
-        var dict: [Swift.String: JSON] = [:]
+    public init(dictionaryLiteral dictionary: (Swift.String, JSONEncodable)...) {
+        var properties: [Swift.String: JSON] = [:]
         
-        properties.forEach() { (key: Swift.String, value: JSONEncodable) in
-            dict[key] = value.encodeJSON()
+        dictionary.forEach() { (key: Swift.String, value: JSONEncodable) in
+            properties[key] = value.encodeJSON()
         }
-        self = .Object(dict)
+        
+        self = .Object(properties)
     }
     
 }

@@ -35,12 +35,15 @@ public protocol JSONEncodable {
     
 }
 
+
 // MARK: - JSON: JSONEncodable
 
 extension JSON: JSONEncodable {
     
     /// Encodes an instance into a `JSON` value.
-    public func encodeJSON() -> JSON { return self }
+    public func encodeJSON() -> JSON {
+        return self
+    }
     
 }
 
@@ -49,7 +52,9 @@ extension JSON: JSONEncodable {
 extension Bool: JSONEncodable {
     
     /// Encodes an instance into a `JSON` value.
-    public func encodeJSON() -> JSON { return JSON(booleanLiteral: self) }
+    public func encodeJSON() -> JSON {
+        return JSON(boolean: self)
+    }
     
 }
 
@@ -58,7 +63,9 @@ extension Bool: JSONEncodable {
 extension Int: JSONEncodable {
     
     /// Encodes an instance into a `JSON` value.
-    public func encodeJSON() -> JSON { return JSON(integerLiteral: self) }
+    public func encodeJSON() -> JSON {
+        return JSON(integer: self)
+    }
     
 }
 
@@ -67,7 +74,9 @@ extension Int: JSONEncodable {
 extension Double: JSONEncodable {
     
     /// Encodes an instance into a `JSON` value.
-    public func encodeJSON() -> JSON { return JSON(floatLiteral: self) }
+    public func encodeJSON() -> JSON {
+        return JSON(double: self)
+    }
     
 }
 
@@ -76,7 +85,9 @@ extension Double: JSONEncodable {
 extension String: JSONEncodable {
     
     /// Encodes an instance into a `JSON` value.
-    public func encodeJSON() -> JSON { return JSON(stringLiteral: self) }
+    public func encodeJSON() -> JSON {
+        return JSON(string: self)
+    }
     
 }
 
@@ -89,7 +100,8 @@ extension Array where Element: JSONEncodable {
         let json = self.map() {
             $0.encodeJSON()
         }
-        return JSON.Array(json)
+        
+        return .Array(json)
     }
     
 }

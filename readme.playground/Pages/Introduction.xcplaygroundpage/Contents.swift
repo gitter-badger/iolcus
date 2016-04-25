@@ -16,7 +16,8 @@
  
  ## Table of contents
  
- - [Quick start guide](Quick%20start%20guide)
+ 1. [Quick start guide](Quick%20start%20guide)
+ 2. [JSON literals](Literals)
  
 
  */

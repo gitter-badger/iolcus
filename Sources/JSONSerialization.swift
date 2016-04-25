@@ -28,7 +28,7 @@ public struct JSONSerialization {
     // MARK: - Public API
     
     /// Create a string by serializing `JSON` value.
-    public static func makeString(withJSON json: JSON) -> Swift.String {
+    public static func makeString(json json: JSON) -> Swift.String {
         return serialize(json).reduce("") {
             $0 + String($1)
         }
