@@ -30,6 +30,6 @@ let package = Package(
     exclude: [
         "Support",
         "Tests/Support",
-        "Tests/Support"
+        "Tests/Resources"
     ]
 )

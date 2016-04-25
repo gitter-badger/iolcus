@@ -23,6 +23,8 @@
 //  SOFTWARE.
 //
 
+#if os(OSX) || os(iOS) || os(tvOS)
+
 import Foundation
 
 extension JSONDeserialization {
@@ -96,3 +98,5 @@ extension JSONDeserialization {
     }
     
 }
+
+#endif

@@ -150,9 +150,10 @@ extension JSON {
             return .Null
         }
         set {
-            if case .Array(var elements) = self {
-                elements[index] = newValue
-                self = .Array(elements)
+            if case .Array(let elements) = self {
+                var newElements = elements
+                newElements[index] = newValue
+                self = .Array(newElements)
             } else {
                 fatalError("This JSON is not .Array")
             }
@@ -174,9 +175,10 @@ extension JSON {
             return .Null
         }
         set {
-            if case .Object(var properties) = self {
-                properties[key] = newValue
-                self = .Object(properties)
+            if case .Object(let properties) = self {
+                var newProperties = properties
+                newProperties[key] = newValue
+                self = .Object(newProperties)
             } else {
                 fatalError("This JSON is not .Object")
             }

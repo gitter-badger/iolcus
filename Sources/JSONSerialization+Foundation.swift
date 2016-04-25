@@ -23,7 +23,7 @@
 //  SOFTWARE.
 //
 
-// #if os(OSX) || os(iOS) || os(tvOS)
+#if os(OSX) || os(iOS) || os(tvOS)
 
 import Foundation
 
@@ -97,4 +97,4 @@ extension JSONSerialization {
 
 }
 
-// #endif
+#endif
