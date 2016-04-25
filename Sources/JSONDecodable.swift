@@ -112,7 +112,8 @@ extension Array where Element: JSONDecodable {
             }
             
         default:
-            self = [try Element(json: json)]
+            throw JSON.Error.Decodable.FailedToDecodeFromJSON(json: json, type: Array.self)
+            // self = [try Element(json: json)]
             
         }
     }
@@ -138,7 +139,7 @@ extension Dictionary where Key: StringLiteralConvertible, Value: JSONDecodable {
             self = dictionary
             
         default:
-            throw JSON.Error.Decodable.FailedToDecodeFromJSON(json: json, type: String.self)
+            throw JSON.Error.Decodable.FailedToDecodeFromJSON(json: json, type: Dictionary.self)
             
         }
     }

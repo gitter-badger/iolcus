@@ -29,7 +29,7 @@ extension JSON.Error {
     public enum Decodable: ErrorType {
         
         /// Failed to decode a `JSONDecodable` instance from `JSON` value.
-        case FailedToDecodeFromJSON(json: JSON, type: JSONDecodable.Type)
+        case FailedToDecodeFromJSON(json: JSON, type: Any.Type)
         
     }
 

@@ -113,13 +113,3 @@ extension JSON: Hashable {
     }
     
 }
-
-// MARK: - CustomStringConvertible
-
-extension JSON: CustomStringConvertible {
-    
-    public var description: Swift.String {
-        return JSONSerialization.makeString(withJSON: self)
-    }
-    
-}

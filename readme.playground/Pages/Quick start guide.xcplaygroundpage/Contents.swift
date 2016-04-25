@@ -8,10 +8,10 @@
  
  */
         struct Book {
-            let title   : String
-            let volume  : Int
-            let authors : [String]
-            let isbn    : String
+            let title       : String
+            let authors     : [String]
+            let volume      : Int
+            let isPaperback : Bool
         }
 /*:
  
@@ -19,10 +19,10 @@
  
  */
         let book = Book(
-            title   : "War and Peace",
-            volume  : 1,
-            authors : ["Tolstoy, Leo", "Leo Tolstoy"],
-            isbn    : "0140440623 / 9780140440621"
+            title       : "War and Peace",
+            authors     : ["Tolstoy, Leo", "Leo Tolstoy"],
+            volume      : 1,
+            isPaperback : false
         )
 /*:
  
@@ -34,14 +34,14 @@
         extension Book: JSONEncodable {
             
             func encodeJSON() -> JSON {
-                let authors = JSON(withJSONEncodable: self.authors)
-                let book: JSON = [
-                    "title"   : title,
-                    "volume"  : volume,
-                    "authors" : authors,
-                    "isbn"    : isbn
+                let jsonAuthors = JSON(withJSONEncodable: authors)
+                let jsonBook: JSON = [
+                    "title"       : title,
+                    "authors"     : jsonAuthors,
+                    "volume"      : volume,
+                    "isPaperback" : isPaperback
                 ]
-                return book
+                return jsonBook
             }
             
         }
@@ -53,8 +53,6 @@
  
  */
         let serializedBook = JSONSerialization.makeString(withJSON: jsonBook)
-
-        // {"title": "War and Peace", "authors": ["Tolstoy, Leo"], "volume": 1, "isbn": "0140440623 \/ 9780140440621"}
 /*:
  
  ### Deserializing
@@ -72,24 +70,11 @@
  */
         extension Book: JSONDecodable {
             
-            enum Error: ErrorType {
-                case FailedToInstantiateFromJson(json: JSON)
-            }
-            
             init(json: JSON) throws {
-                guard
-                    let title = json["title"].string,
-                    let volume = json["volume"].integer,
-                    let isbn = json["isbn"].string,
-                    let authors: [String] = try Array(json: json["authors"])
-                else {
-                    throw JSON.Error.Decodable.FailedToDecodeFromJSON(json: json, type: Book.self)
-                }
-                
-                self.title = title
-                self.volume = volume
-                self.isbn = isbn
-                self.authors = authors
+                title = try String(json: json["title"])
+                volume = try Int(json: json["volume"])
+                authors = try Array(json: json["authors"])
+                isPaperback = try Bool(json: json["isPaperback"])
             }
             
         }
@@ -100,4 +85,4 @@
  */
             let newBook = try! Book(json: anotherJSONBook)
 
-            print(book)
+            print(book, newBook, separator: "\n")
