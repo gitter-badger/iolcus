@@ -47,6 +47,51 @@ extension JSONDecodable {
         try self.init(json: json[index])
     }
     
+    public init(jsonSerialization: Swift.String) throws {
+        let json = try JSONDeserialization.makeJSON(string: jsonSerialization)
+        try self.init(json: json)
+    }
+    
+}
+
+extension JSON {
+    
+    public func decode<Decodable: JSONDecodable>() throws -> Decodable {
+        return try Decodable(json: self)
+    }
+    
+    public func decode<Decodable: JSONDecodable>(at key: Swift.String) throws -> Decodable {
+        return try Decodable(json: self, at: key)
+    }
+    
+    public func decode<Decodable: JSONDecodable>(at index: Swift.Int) throws -> Decodable {
+        return try Decodable(json: self, at: index)
+    }
+    
+    public func decode<Decodeable: JSONDecodable>() throws -> [Decodeable] {
+        return try Swift.Array(json: self)
+    }
+
+    public func decode<Decodeable: JSONDecodable>(at key: Swift.String) throws -> [Decodeable] {
+        return try Swift.Array(json: self, at: key)
+    }
+    
+    public func decode<Decodeable: JSONDecodable>(at index: Swift.Int) throws -> [Decodeable] {
+        return try Swift.Array(json: self, at: index)
+    }
+    
+    public func decode<Decodeable: JSONDecodable>() throws -> [Swift.String: Decodeable] {
+        return try Swift.Dictionary(json: self)
+    }
+    
+    public func decode<Decodeable: JSONDecodable>(at key: Swift.String) throws -> [Swift.String: Decodeable] {
+        return try Swift.Dictionary(json: self, at: key)
+    }
+
+    public func decode<Decodeable: JSONDecodable>(at index: Swift.Int) throws -> [Swift.String: Decodeable] {
+        return try Swift.Dictionary(json: self, at: index)
+    }
+
 }
 
 // MARK: - Bool: JSONDecodable
@@ -110,10 +155,6 @@ extension String: JSONDecodable {
 extension Array where Element: JSONDecodable {
     
     /// Initializes an array of `JSONDecodable` elements.
-    ///
-    /// - returns: If `JSON` argument is `.Array` then the result will an an array of all instances
-    ///            of the input array decoded into `JSONDecodable` instances.  Otherwise, the result
-    ///            will be single-element array with a decoded instance.
     public init(json: JSON) throws {
         switch json {
 
@@ -138,6 +179,11 @@ extension Array where Element: JSONDecodable {
         try self.init(json: json[index])
     }
     
+    public init(jsonSerialization: Swift.String) throws {
+        let json = try JSONDeserialization.makeJSON(string: jsonSerialization)
+        try self.init(json: json)
+    }
+
 }
 
 // MARK: - Dictionary
@@ -172,6 +218,11 @@ extension Dictionary where Key: StringLiteralConvertible, Value: JSONDecodable {
     /// Initializes a dictionary from `JSON` value at specified `index` of a JSON array.
     public init(json: JSON, at index: Swift.Int) throws {
         try self.init(json: json[index])
+    }
+
+    public init(jsonSerialization: Swift.String) throws {
+        let json = try JSONDeserialization.makeJSON(string: jsonSerialization)
+        try self.init(json: json)
     }
 
 }

@@ -35,6 +35,13 @@ public protocol JSONEncodable {
     
 }
 
+extension JSONEncodable {
+    
+    public func serializeJSON() -> Swift.String {
+        return JSONSerialization.makeString(json: self.encodeJSON())
+    }
+    
+}
 
 // MARK: - JSON: JSONEncodable
 
@@ -104,6 +111,10 @@ extension Array where Element: JSONEncodable {
         return .Array(json)
     }
     
+    public func serializeJSON() -> Swift.String {
+        return JSONSerialization.makeString(json: self.encodeJSON())
+    }
+    
 }
 
 // MARK: - Dictionary
@@ -123,4 +134,8 @@ extension Dictionary where Key: StringLiteralConvertible, Value: JSONEncodable {
         return .Object(properties)
     }
     
+    public func serializeJSON() -> Swift.String {
+        return JSONSerialization.makeString(json: self.encodeJSON())
+    }
+
 }

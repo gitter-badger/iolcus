@@ -338,8 +338,8 @@
 			isa = PBXGroup;
 			children = (
 				BA5B9B6F1CB46249003EF1CA /* JSON.swift */,
-				BA5B9B701CB46249003EF1CA /* JSON+Accessors.swift */,
 				BA5B9B711CB46249003EF1CA /* JSON+Initializers.swift */,
+				BA5B9B701CB46249003EF1CA /* JSON+Accessors.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
