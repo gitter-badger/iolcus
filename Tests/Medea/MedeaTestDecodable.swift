@@ -75,9 +75,9 @@ class MedeaTestDecodable: XCTestCase {
         
         let jsonBook = JSON(encodable: book)
         
-        let serializedBook = JSONSerialization.makeString(withJSON: jsonBook)
+        let serializedBook = JSONSerialization.makeString(json: jsonBook)
 
-        let anotherJSONBook = try! JSONDeserialization.makeJSON(withString: serializedBook)
+        let anotherJSONBook = try! JSONDeserialization.makeJSON(string: serializedBook)
 
         let newBook = try! Book(json: anotherJSONBook)
         

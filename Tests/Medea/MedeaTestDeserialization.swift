@@ -53,7 +53,7 @@ class MedeaTestDeserialization: XCTestCase {
     
     func verifyThat(representation representation: String, deserializesInto expectation: JSON) {
         do {
-            let json = try JSONDeserialization.makeJSON(withString: representation)
+            let json = try JSONDeserialization.makeJSON(string: representation)
             XCTAssertEqual(json, expectation, "String \"\(representation)\" should deserialize into \(expectation)")
         }
         catch {

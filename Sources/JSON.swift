@@ -40,3 +40,22 @@ public indirect enum JSON {
     }
     
 }
+
+extension JSON {
+    
+    mutating public func append(json: JSON) {
+        switch self {
+            
+        case .Array(let elements):
+            var newElements = elements
+            newElements.append(json)
+            self = .Array(newElements)
+            
+        default:
+            let newElements = [self, json]
+            self = .Array(newElements)
+            
+        }
+    }
+    
+}
