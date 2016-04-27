@@ -1,5 +1,5 @@
 //
-//  JSONDecodable+Error.swift
+//  JSON+Hashable.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -23,34 +23,37 @@
 //  SOFTWARE.
 //
 
-extension JSON.Error {
+extension JSON: Hashable {
     
-    /// Error while decoding a `JSONDecodable` instance.
-    public enum Decodable: ErrorType {
-        
-        /// Failed to decode single instance from `JSON` value.
-        ///
-        /// - Parameters:
-        ///   - json: `JSON` value that we were trying to decode from.
-        ///   - type: Target type that we were decoding to.
-        case FailedToDecodeInstanceFromJSON(json: JSON, type: Any.Type)
-        
-        
-        /// Failed to decode an array from `JSON` value.
-        ///
-        /// - Parameters:
-        ///   - json: `JSON` value that we were trying to decode from.
-        ///   - type: Target type that we were decoding to.
-        case FailedToDecodeArrayFromJSON(json: JSON, type: Any.Type)
-
-
-        /// Failed to decode a dictionary from `JSON` value.
-        ///
-        /// - Parameters:
-        ///   - json: `JSON` value that we were trying to decode from.
-        ///   - type: Target type that we were decoding to.
-        case FailedToDecodeDictionaryFromJSON(json: JSON, type: Any.Type)
-
+    public var hashValue: Int {
+        switch self {
+            
+        case .Null:
+            return 0.hashValue
+            
+        case .Boolean(let boolean):
+            return 1.hashValue ^ boolean.hashValue
+            
+        case .Integer(let integer):
+            return 2.hashValue ^ integer.hashValue
+            
+        case .Double(let double):
+            return 3.hashValue ^ double.hashValue
+            
+        case .String(let string):
+            return 4.hashValue ^ string.hashValue
+            
+        case .Array(let elements):
+            return elements.reduce(5.hashValue) {
+                $0 ^ $1.hashValue
+            }
+            
+        case .Object(let properties):
+            return properties.reduce(6.hashValue) {
+                $0 ^ $1.0.hashValue ^ $1.1.hashValue
+            }
+            
+        }
     }
-
+    
 }

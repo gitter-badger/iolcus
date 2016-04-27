@@ -13,11 +13,10 @@
  */
         struct Book {
             let title       : String
-            let authors     : [String]
-            let isbn        : String
-            let isPaperback : Bool
             let pages       : Int
-            let custom      : [String: String]
+            let isPaperback : Bool
+            let authors     : [String]
+            let notes       : [String: String]
         }
 /*:
  
@@ -26,15 +25,16 @@
  */
         let book = Book(
             title       : "Dune",
-            authors     : ["Frank Herbert"],
-            isbn        : "0441172717",
-            isPaperback : true,
             pages       : 896,
-            custom      : ["series": "Dune", "seriesNo": "1"]
+            isPaperback : true,
+            authors     : ["Frank Herbert"],
+            notes       : ["series": "Dune", "seriesNo": "1"]
         )
+
+        // Book(title: "Dune", pages: 896, isPaperback: true, authors: ["Frank Herbert"], notes: ["series": "Dune", "seriesNo": "1"])
 /*:
  
- For this `Book` to be JSON encodeable, we have to adopt protocol `JSONEncodable` and implement just one method:
+ For this `Book` to be JSON encodeable, that is serializable into JSON string, we have to adopt protocol `JSONEncodable` by implementing just one method `encodeJSON()` like this:
  
  */
         import Medea
@@ -44,75 +44,46 @@
             func encodeJSON() -> JSON {
                 let jsonBook: JSON = [
                     "title"       : title,
-                    "authors"     : JSON(encodable: authors),
-                    "isbn"        : isbn,
-                    "isPaperback" : isPaperback,
                     "pages"       : pages,
-                    "custom"      : JSON(encodable: custom)
+                    "isPaperback" : isPaperback,
+                    "authors"     : JSON(encodable: authors),
+                    "notes"       : JSON(encodable: notes)
                 ]
                 return jsonBook
             }
             
         }
-
-        let jsonBook = JSON(encodable: book)
 /*:
  
- Now `jsonBook` instance holds a JSON representation of `book` instance.  If we want to serialize it into a string we can do:
+ Now that this is done, we can serialize `book` into a JSON string by simply calling `serializeJSON()` method:
  
  */
-        let serializedBook = JSONSerialization.makeString(json: jsonBook)
+        let serializedBook = book.serializeJSON()
+
+        // {"title": "Dune", "isPaperback": true, "authors": ["Frank Herbert"], "notes": {"series": "Dune", "seriesNo": "1"}, "pages": 896}
 /*:
  
  ### Deserializing
  
- For the reverse task, that is de-serializing an instance from JSON string, we simply take a serialized string and pass it to `JSONDeserialization` like this:
- 
- */
-        let anotherJSONBook = try! JSONDeserialization.makeJSON(string: serializedBook)
-/*:
- 
- Note `try!` in front of the call.  This is because actually we can get any string as an input, and not every such string can be deserialized into a valid `JSON` instance.  Therefore, you are supposed to handle errors that might occur (for the sake of clarity we will skip this for now, but have a look at the other chapters for how it's supposed to be done).
-
- The next step is to instantiacte a `Book` from `JSON` value.  This can be done by, firstly, adopting `JSONDecodable` protocol like this:
+ For the reverse task, that is de-serializing an instance from a JSON string, we we have to adopt another protocol `JSONDecodable` as follows:
  
  */
         extension Book: JSONDecodable {
             
             init(json: JSON) throws {
                 title       = try json.decode(at: "title")
-                authors     = try json.decode(at: "authors")
-                isbn        = try json.decode(at: "isbn")
-                isPaperback = try json.decode(at: "isPaperback")
                 pages       = try json.decode(at: "pages")
-                custom      = try json.decode(at: "custom")
+                isPaperback = try json.decode(at: "isPaperback")
+                authors     = try json.decode(at: "authors")
+                notes       = try json.decode(at: "notes")
             }
             
         }
 /*:
  
- And not we can instantiate a new `Book` instance from a `JSON` value like this:
+ Once the protocol is implemented, we can just call:
  
  */
-        let newBook = try! Book(json: anotherJSONBook)
-/*:
- 
- Or it can be even simpler than that:
- 
- */
-        let newerBook = try! Book(jsonSerialization: serializedBook)
-/*:
- 
- And, oh, by the way, serializing of an JSON encodeable instance can be done simpler as well:
- 
- */
-        let anotherSerializedBook = newerBook.serializeJSON()
+        let anotherBook = try! Book(jsonSerialization: serializedBook)
 
-        let library = [book, newBook, newerBook]
-
-        let serializedLibrary = library.serializeJSON()
-
-        let anotherLibrary: [Book] = try! Array(jsonSerialization: serializedLibrary)
-
-        print(anotherLibrary)
-        
+        // Book(title: "Dune", pages: 896, isPaperback: true, authors: ["Frank Herbert"], notes: ["series": "Dune", "seriesNo": "1"])

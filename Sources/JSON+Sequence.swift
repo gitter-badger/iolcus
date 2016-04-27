@@ -1,5 +1,5 @@
 //
-//  JSONDecodable+Error.swift
+//  JSON+Sequence.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -23,34 +23,24 @@
 //  SOFTWARE.
 //
 
-extension JSON.Error {
+extension JSON: SequenceType {
     
-    /// Error while decoding a `JSONDecodable` instance.
-    public enum Decodable: ErrorType {
-        
-        /// Failed to decode single instance from `JSON` value.
-        ///
-        /// - Parameters:
-        ///   - json: `JSON` value that we were trying to decode from.
-        ///   - type: Target type that we were decoding to.
-        case FailedToDecodeInstanceFromJSON(json: JSON, type: Any.Type)
-        
-        
-        /// Failed to decode an array from `JSON` value.
-        ///
-        /// - Parameters:
-        ///   - json: `JSON` value that we were trying to decode from.
-        ///   - type: Target type that we were decoding to.
-        case FailedToDecodeArrayFromJSON(json: JSON, type: Any.Type)
-
-
-        /// Failed to decode a dictionary from `JSON` value.
-        ///
-        /// - Parameters:
-        ///   - json: `JSON` value that we were trying to decode from.
-        ///   - type: Target type that we were decoding to.
-        case FailedToDecodeDictionaryFromJSON(json: JSON, type: Any.Type)
-
+    public func generate() -> AnyGenerator<(key: Swift.String, json: JSON)> {
+        switch  self {
+            
+        case .Null, .Boolean(_), .Integer(_), .Double(_), .String(_):
+            let generator = GeneratorOfOne(("", self))
+            return AnyGenerator(generator)
+            
+        case .Array(let elements):
+            let generator = elements.enumerate().map({(Swift.String($0), $1)}).generate()
+            return AnyGenerator(generator)
+            
+        case .Object(let properties):
+            let generator = properties.generate()
+            return AnyGenerator(generator)
+            
+        }
     }
-
+    
 }

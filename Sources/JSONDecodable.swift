@@ -27,26 +27,58 @@ import Foundation
 
 // MARK: JSONDecodable
 
-/// Instance of the conforming type can be initialized from a `JSON` value.
+/// Instance of the conforming type can be initialized (decoded) from a `JSON` value.
 public protocol JSONDecodable {
     
-    /// Initializes an instance from `JSON` value.
+    /// Initializes (decodes) a new instance of `Self` from given `JSON` value.
+    ///
+    /// - Throws: `JSON.Error.Decodable`
     init(json: JSON) throws
     
 }
 
 extension JSONDecodable {
     
-    /// Initializes an instance from `JSON` value at specified `key` of a JSON object.
-    public init(json: JSON, at key: Swift.String) throws {
-        try self.init(json: json[key])
-    }
-    
-    /// Initializes an instance from `JSON` value at specified `index` of a JSON array.
+    /// Initializes (decodes) a new instance of `Self` from `JSON` value at specified index of a
+    /// given `JSON` array.
+    ///
+    ///     // Get first two strings from the JSON array.
+    ///     let first = String(json: inputJSON, at: 0)
+    ///     let second = String(json: inputJSON, at: 1)
+    ///
+    /// - Precondition: `json == .Array(_)`
+    ///
+    /// - Parameters:
+    ///   - json: Input `JSON` value to decode a new instance from.
+    ///   - at:   Index of the input `JSON` value in the JSON array.
+    ///
+    /// - Throws: `JSON.Error.Decodable`
     public init(json: JSON, at index: Swift.Int) throws {
         try self.init(json: json[index])
     }
     
+    
+    /// Initializes (decodes) a new instance of `Self` from `JSON` value at specified key of a given
+    /// `JSON` object.
+    ///
+    ///     // Get a string from the value of "name" property
+    ///     let name = String(json: inputJSON, at: "name")
+    ///
+    /// - Precondition: `json == .Object(_)`
+    ///
+    /// - Parameters:
+    ///   - json: Input `JSON` value to decode a new instance from.
+    ///   - at:   Value of the dictionary key to get the input `JSON` value from.
+    ///
+    /// - Throws: `JSON.Error.Decodable`
+    public init(json: JSON, at key: Swift.String) throws {
+        try self.init(json: json[key])
+    }
+    
+    
+    /// Initializes (deserializes) a new instance of `Self` from a given JSON string.
+    ///
+    /// - Throws: `JSON.Error.Decodable`
     public init(jsonSerialization: Swift.String) throws {
         let json = try JSONDeserialization.makeJSON(string: jsonSerialization)
         try self.init(json: json)
@@ -56,39 +88,74 @@ extension JSONDecodable {
 
 extension JSON {
     
-    public func decode<Decodable: JSONDecodable>() throws -> Decodable {
-        return try Decodable(json: self)
+    /// Decodes `self` into a new instance.
+    ///
+    /// - Throws: `JSON.Error.Decodable`
+    public func decode<T: JSONDecodable>() throws -> T {
+        return try T(json: self)
     }
     
-    public func decode<Decodable: JSONDecodable>(at key: Swift.String) throws -> Decodable {
-        return try Decodable(json: self, at: key)
+    
+    /// Decodes a property of `self` into a new instance.
+    ///
+    /// - Throws: `JSON.Error.Decodable`
+    public func decode<T: JSONDecodable>(at key: Swift.String) throws -> T {
+        return try T(json: self, at: key)
     }
     
-    public func decode<Decodable: JSONDecodable>(at index: Swift.Int) throws -> Decodable {
-        return try Decodable(json: self, at: index)
+    
+    /// Decodes an element of `self` into a new instance.
+    ///
+    /// - Throws: `JSON.Error.Decodable`
+    public func decode<T: JSONDecodable>(at index: Swift.Int) throws -> T {
+        return try T(json: self, at: index)
     }
     
-    public func decode<Decodeable: JSONDecodable>() throws -> [Decodeable] {
+    
+    /// Decodes `self` into an array.
+    ///
+    /// - Throws: `JSON.Error.Decodable`
+    public func decode<T: JSONDecodable>() throws -> [T] {
         return try Swift.Array(json: self)
     }
 
-    public func decode<Decodeable: JSONDecodable>(at key: Swift.String) throws -> [Decodeable] {
+
+    /// Decodes a property of `self` into an array.
+    ///
+    /// - Throws: `JSON.Error.Decodable`
+    public func decode<T: JSONDecodable>(at key: Swift.String) throws -> [T] {
         return try Swift.Array(json: self, at: key)
     }
     
-    public func decode<Decodeable: JSONDecodable>(at index: Swift.Int) throws -> [Decodeable] {
+    
+    /// Decodes an element of `self` into an array.
+    ///
+    /// - Throws: `JSON.Error.Decodable`
+    public func decode<T: JSONDecodable>(at index: Swift.Int) throws -> [T] {
         return try Swift.Array(json: self, at: index)
     }
     
-    public func decode<Decodeable: JSONDecodable>() throws -> [Swift.String: Decodeable] {
+    
+    /// Decodes `self` into a dictionary.
+    ///
+    /// - Throws: `JSON.Error.Decodable`
+    public func decode<D: JSONDecodable>() throws -> [Swift.String: D] {
         return try Swift.Dictionary(json: self)
     }
     
-    public func decode<Decodeable: JSONDecodable>(at key: Swift.String) throws -> [Swift.String: Decodeable] {
+    
+    /// Decodes a property of `self` into a dictionary.
+    ///
+    /// - Throws: `JSON.Error.Decodable`
+    public func decode<D: JSONDecodable>(at key: Swift.String) throws -> [Swift.String: D] {
         return try Swift.Dictionary(json: self, at: key)
     }
 
-    public func decode<Decodeable: JSONDecodable>(at index: Swift.Int) throws -> [Swift.String: Decodeable] {
+    
+    /// Decodes an element of `self` into a dictionary.
+    ///
+    /// - Throws: `JSON.Error.Decodable`
+    public func decode<D: JSONDecodable>(at index: Swift.Int) throws -> [Swift.String: D] {
         return try Swift.Dictionary(json: self, at: index)
     }
 
@@ -98,9 +165,12 @@ extension JSON {
 
 extension Bool: JSONDecodable {
     
+    /// Initializes an instance by decoding given `JSON` value.
+    ///
+    /// - Throws: `JSON.Error.Decodable`
     public init(json: JSON) throws {
         guard let boolean = json.boolean else {
-            throw JSON.Error.Decodable.FailedToDecodeFromJSON(json: json, type: Bool.self)
+            throw JSON.Error.Decodable.FailedToDecodeInstanceFromJSON(json: json, type: Bool.self)
         }
         
         self = boolean
@@ -112,9 +182,12 @@ extension Bool: JSONDecodable {
 
 extension Int: JSONDecodable {
     
+    /// Initializes an instance by decoding given `JSON` value.
+    ///
+    /// - Throws: `JSON.Error.Decodable`
     public init(json: JSON) throws {
         guard let integer = json.integer else {
-            throw JSON.Error.Decodable.FailedToDecodeFromJSON(json: json, type: Int.self)
+            throw JSON.Error.Decodable.FailedToDecodeInstanceFromJSON(json: json, type: Int.self)
         }
         
         self = integer
@@ -126,9 +199,12 @@ extension Int: JSONDecodable {
 
 extension Double: JSONDecodable {
     
+    /// Initializes an instance by decoding given `JSON` value.
+    ///
+    /// - Throws: `JSON.Error.Decodable`
     public init(json: JSON) throws {
         guard let double = json.double else {
-            throw JSON.Error.Decodable.FailedToDecodeFromJSON(json: json, type: Double.self)
+            throw JSON.Error.Decodable.FailedToDecodeInstanceFromJSON(json: json, type: Double.self)
         }
         
         self = double
@@ -140,9 +216,12 @@ extension Double: JSONDecodable {
 
 extension String: JSONDecodable {
     
+    /// Initializes an instance by decoding given `JSON` value.
+    ///
+    /// - Throws: `JSON.Error.Decodable`
     public init(json: JSON) throws {
         guard let string = json.string else {
-            throw JSON.Error.Decodable.FailedToDecodeFromJSON(json: json, type: String.self)
+            throw JSON.Error.Decodable.FailedToDecodeInstanceFromJSON(json: json, type: String.self)
         }
         
         self = string
@@ -154,7 +233,11 @@ extension String: JSONDecodable {
 
 extension Array where Element: JSONDecodable {
     
-    /// Initializes an array of `JSONDecodable` elements.
+    /// Initializes an array by decoding given `JSON` value.
+    ///
+    /// - Precondition: `json == .Array(_)`.
+    ///
+    /// - Throws: `JSON.Error.Decodable`
     public init(json: JSON) throws {
         switch json {
 
@@ -164,21 +247,35 @@ extension Array where Element: JSONDecodable {
             }
             
         default:
-            throw JSON.Error.Decodable.FailedToDecodeFromJSON(json: json, type: Array.self)
+            throw JSON.Error.Decodable.FailedToDecodeArrayFromJSON(json: json, type: Array.self)
             
         }
     }
     
-    /// Initializes an array from `JSON` value at specified `key` of a JSON object.
-    public init(json: JSON, at key: Swift.String) throws {
-        try self.init(json: json[key])
-    }
-
-    /// Initializes an array from `JSON` value at specified `index` of a JSON array.
+    
+    /// Initializes an array by decoding `JSON` value at specified index of `json` parameter.
+    ///
+    /// - Precondition: `json == .Array(_) && json[index] == .Array(_)`
+    ///
+    /// - Throws: `JSON.Error.Decodable`
     public init(json: JSON, at index: Swift.Int) throws {
         try self.init(json: json[index])
     }
     
+    
+    /// Initializes an array by decoding `JSON` value at specified key of `json` parameter.
+    ///
+    /// - Precondition: `json == .Object(_) && json[key] == .Array(_)`
+    ///
+    /// - Throws: `JSON.Error.Decodable`
+    public init(json: JSON, at key: Swift.String) throws {
+        try self.init(json: json[key])
+    }
+
+    
+    /// Initializes (deserializes) a new `Array` from a given JSON string.
+    ///
+    /// - Throws: `JSON.Error.Decodable`
     public init(jsonSerialization: Swift.String) throws {
         let json = try JSONDeserialization.makeJSON(string: jsonSerialization)
         try self.init(json: json)
@@ -190,8 +287,16 @@ extension Array where Element: JSONDecodable {
 
 extension Dictionary where Key: StringLiteralConvertible, Value: JSONDecodable {
     
+    /// Initializes a dictionary by decoding given `JSON` value.
+    ///
+    /// - Precondition: `json == .Object(_)`.
+    ///
+    /// - Throws: `JSON.Error.Decodable`
     public init(json: JSON) throws {
-        assert(Key.self == Swift.String || Key.self == Foundation.NSString, "The key is \(Dictionary.self) while it must be \(Swift.String) or \(Foundation.NSString)")
+        assert(
+            Key.self == Swift.String || Key.self == Foundation.NSString,
+            "The key is \(Dictionary.self) while it must be String"
+        )
         
         switch json {
             
@@ -205,21 +310,35 @@ extension Dictionary where Key: StringLiteralConvertible, Value: JSONDecodable {
             self = dictionary
             
         default:
-            throw JSON.Error.Decodable.FailedToDecodeFromJSON(json: json, type: Dictionary.self)
+            throw JSON.Error.Decodable.FailedToDecodeDictionaryFromJSON(json: json, type: Dictionary.self)
             
         }
     }
 
-    /// Initializes a dictionary from `JSON` value at specified `key` of a JSON object.
+    
+    /// Initializes a dictionary by decoding `JSON` value at specified index of `json` parameter.
+    ///
+    /// - Precondition: `json == .Array(_) && json[index] == .Object(_)`
+    ///
+    /// - Throws: `JSON.Error.Decodable`
     public init(json: JSON, at key: Swift.String) throws {
         try self.init(json: json[key])
     }
     
-    /// Initializes a dictionary from `JSON` value at specified `index` of a JSON array.
+    
+    /// Initializes a dictionary by decoding `JSON` value at specified key of `json` parameter.
+    ///
+    /// - Precondition: `json == .Object(_) && json[key] == .Object(_)`
+    ///
+    /// - Throws: `JSON.Error.Decodable`
     public init(json: JSON, at index: Swift.Int) throws {
         try self.init(json: json[index])
     }
 
+    
+    /// Initializes (deserializes) a new `Dictionary` from a given JSON string.
+    ///
+    /// - Throws: `JSON.Error.Decodable`
     public init(jsonSerialization: Swift.String) throws {
         let json = try JSONDeserialization.makeJSON(string: jsonSerialization)
         try self.init(json: json)

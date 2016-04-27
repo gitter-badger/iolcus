@@ -3,6 +3,6 @@
     <pages>
         <page name='Introduction'/>
         <page name='Quick start guide'/>
-        <page name='Literals'/>
+        <page name='JSON type'/>
     </pages>
 </playground>

@@ -1,5 +1,5 @@
 //
-//  JSONDecodable+Error.swift
+//  JSON+Equatable.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -23,34 +23,39 @@
 //  SOFTWARE.
 //
 
-extension JSON.Error {
-    
-    /// Error while decoding a `JSONDecodable` instance.
-    public enum Decodable: ErrorType {
-        
-        /// Failed to decode single instance from `JSON` value.
-        ///
-        /// - Parameters:
-        ///   - json: `JSON` value that we were trying to decode from.
-        ///   - type: Target type that we were decoding to.
-        case FailedToDecodeInstanceFromJSON(json: JSON, type: Any.Type)
-        
-        
-        /// Failed to decode an array from `JSON` value.
-        ///
-        /// - Parameters:
-        ///   - json: `JSON` value that we were trying to decode from.
-        ///   - type: Target type that we were decoding to.
-        case FailedToDecodeArrayFromJSON(json: JSON, type: Any.Type)
+extension JSON: Equatable { }
 
-
-        /// Failed to decode a dictionary from `JSON` value.
-        ///
-        /// - Parameters:
-        ///   - json: `JSON` value that we were trying to decode from.
-        ///   - type: Target type that we were decoding to.
-        case FailedToDecodeDictionaryFromJSON(json: JSON, type: Any.Type)
-
+public func == (lhs: JSON, rhs: JSON) -> Swift.Bool {
+    switch (lhs, rhs) {
+        
+    case (.Null, .Null):
+        return true
+        
+    case (.Boolean(let lhsBoolean), .Boolean(let rhsBoolean)):
+        return lhsBoolean == rhsBoolean
+        
+    case (.Integer(let lhsInt), .Integer(let rhsInt)):
+        return lhsInt == rhsInt
+        
+    case (.Double(let lhsDouble), .Double(let rhsDouble)):
+        return lhsDouble == rhsDouble
+        
+    case (.String(let lhsString), .String(let rhsString)):
+        return lhsString == rhsString
+        
+    case (.Array(let lhsArray), .Array(let rhsArray)):
+        return lhsArray.count == rhsArray.count
+            && !zip(lhsArray, rhsArray).contains(!=)
+        
+    case (.Object(let lhsObject), .Object(let rhsObject)):
+        return lhsObject.count == rhsObject.count
+            && !lhsObject.contains() {
+                rhsObject[$0] != $1
+        }
+        
+    default:
+        return false
+        
     }
-
+    
 }

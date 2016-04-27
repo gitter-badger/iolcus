@@ -23,10 +23,8 @@
 //  SOFTWARE.
 //
 
-// MARK: JSON
-
 /// JSON value.
-public indirect enum JSON: Equatable {
+public indirect enum JSON {
     
     case Null
     case Boolean(Swift.Bool)
@@ -36,80 +34,9 @@ public indirect enum JSON: Equatable {
     case Array([JSON])
     case Object([Swift.String: JSON])
     
-    public struct Error { }
-    
-}
-
-// MARK: - Equatable
-
-public func == (lhs: JSON, rhs: JSON) -> Swift.Bool {
-    switch (lhs, rhs) {
-        
-    case (.Null, .Null):
-        return true
-        
-    case (.Boolean(let lhsBoolean), .Boolean(let rhsBoolean)):
-        return lhsBoolean == rhsBoolean
-        
-    case (.Integer(let lhsInt), .Integer(let rhsInt)):
-        return lhsInt == rhsInt
-        
-    case (.Double(let lhsDouble), .Double(let rhsDouble)):
-        return lhsDouble == rhsDouble
-        
-    case (.String(let lhsString), .String(let rhsString)):
-        return lhsString == rhsString
-        
-    case (.Array(let lhsArray), .Array(let rhsArray)):
-        return lhsArray.count == rhsArray.count
-            && !zip(lhsArray, rhsArray).contains(!=)
-        
-    case (.Object(let lhsObject), .Object(let rhsObject)):
-        return lhsObject.count == rhsObject.count
-            && !lhsObject.contains() {
-                rhsObject[$0] != $1
-        }
-        
-    default:
-        return false
-        
-    }
-    
-}
-
-// MARK: - Hashable
-
-extension JSON: Hashable {
-    
-    public var hashValue: Int {
-        switch self {
-            
-        case .Null:
-            return 0.hashValue
-            
-        case .Boolean(let boolean):
-            return 1.hashValue ^ boolean.hashValue
-            
-        case .Integer(let integer):
-            return 2.hashValue ^ integer.hashValue
-            
-        case .Double(let double):
-            return 3.hashValue ^ double.hashValue
-            
-        case .String(let string):
-            return 4.hashValue ^ string.hashValue
-            
-        case .Array(let elements):
-            return elements.reduce(5.hashValue) {
-                $0 ^ $1.hashValue
-            }
-            
-        case .Object(let properties):
-            return properties.reduce(6.hashValue) {
-                $0 ^ $1.0.hashValue ^ $1.1.hashValue
-            }
-
-        }
+    /// Generic JSON-related error.
+    public struct Error {
+        private init() {}
     }
     
 }
