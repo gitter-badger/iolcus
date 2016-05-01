@@ -23,15 +23,37 @@
 //  SOFTWARE.
 //
 
-/// JSON value.
+/// `JSON` value.
+///
+/// Enumeration of:
+/// - `Null`
+/// - `Boolean(Bool)`
+/// - `Integer(Int)`
+/// - `Double(Double)`
+/// - `String(String)`
+/// - `Array([JSON])`
+/// - `Object([String: JSON])`
 public indirect enum JSON {
     
+    /// Null JSON value.
     case Null
+    
+    /// Boolean JSON value.
     case Boolean(Swift.Bool)
+    
+    /// JSON integer value.
     case Integer(Swift.Int)
+    
+    /// JSON double value.
     case Double(Swift.Double)
+    
+    /// JSON string value.
     case String(Swift.String)
+    
+    /// JSON array.
     case Array([JSON])
+    
+    /// JSON object.
     case Object([Swift.String: JSON])
     
     /// Generic JSON-related error.

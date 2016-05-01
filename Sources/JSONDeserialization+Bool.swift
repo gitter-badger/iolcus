@@ -25,11 +25,6 @@
 
 extension JSONDeserialization {
     
-    mutating func deserializeBoolean() throws -> JSON {
-        let bool = try readBoolean()
-        return JSON.Boolean(bool)
-    }
-    
     mutating func deserializeTrue() throws -> JSON {
         try readTrue()
         return JSON.Boolean(true)
@@ -40,25 +35,6 @@ extension JSONDeserialization {
         return JSON.Boolean(false)
     }
 
-    private mutating func readBoolean() throws -> Bool  {
-        let scalar = try peekScalar()
-        
-        switch scalar {
-
-        case Constant.booleanTrueOpeningScalar:
-            try readTrue()
-            return true
-        
-        case Constant.booleanFalseOpeningScalar:
-            try readFalse()
-            return false
-        
-        default:
-            throw JSON.Error.Deserialization.UnexpectedScalar(scalar: scalar, position: position)
-        
-        }
-    }
-    
     private mutating func readTrue() throws {
         try Constant.booleanTrueSequence.forEach() {
             try readExpectedScalar($0)

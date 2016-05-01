@@ -46,7 +46,12 @@ extension JSON {
     }
     
     /// Creates a `JSON` value from an instance of `JSONEncodable`.
-    public init<Encodable: JSONEncodable>(encodable: Encodable) {
+//    public init<Encodable: JSONEncodable>(encodable: Encodable) {
+//        self = encodable.encodeJSON()
+//    }
+    
+    /// Creates a `JSON` value from an instance of `JSONEncodable`.
+    public init(encodable: JSONEncodable) {
         self = encodable.encodeJSON()
     }
     
@@ -54,10 +59,30 @@ extension JSON {
     public init<Encodable: JSONEncodable>(encodable: [Encodable]) {
         self = encodable.encodeJSON()
     }
+    
+    /// Creates a `JSON` value from an array of `JSONEncodable`'s.
+    public init(encodable: [JSONEncodable]) {
+        let json = encodable.map() {
+            $0.encodeJSON()
+        }
         
+        self = .Array(json)
+    }
+    
     /// Creates a `JSON` value from a dictionary of `[String: JSONEncodable]`.
     public init<Encodable: JSONEncodable>(encodable: [Swift.String: Encodable]) {
         self = encodable.encodeJSON()
+    }
+    
+    /// Creates a `JSON` value from a dictionary of `[String: JSONEncodable]`.
+    public init(encodable: [Swift.String: JSONEncodable]) {
+        var properties: [Swift.String: JSON] = [:]
+        
+        encodable.forEach() {
+            properties[$0] = $1.encodeJSON()
+        }
+        
+        self = .Object(properties)
     }
     
 }
