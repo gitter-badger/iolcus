@@ -27,27 +27,41 @@ import Medea
 import XCTest
 
 class TestAccessors: XCTestCase {
-
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    
+    func testUnwrappingBoolean() {
+        let json: JSON = true
+        
+        XCTAssertEqual(json.unwrappedBoolean, true)
+        XCTAssertNil(json.unwrappedInteger)
+        XCTAssertNil(json.unwrappedDouble)
+        XCTAssertNil(json.unwrappedString)
     }
     
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
+    func testUnwrappingInteger() {
+        let json: JSON = 42
+        
+        XCTAssertEqual(json.unwrappedInteger, 42)
+        XCTAssertNil(json.unwrappedBoolean)
+        XCTAssertNil(json.unwrappedDouble)
+        XCTAssertNil(json.unwrappedString)
     }
+    
+    func testUnwrappingDouble() {
+        let json: JSON = 36.6
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        XCTAssertEqual(json.unwrappedDouble, 36.6)
+        XCTAssertNil(json.unwrappedBoolean)
+        XCTAssertNil(json.unwrappedInteger)
+        XCTAssertNil(json.unwrappedString)
     }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func testUnwrappingString() {
+        let json: JSON = "Lorem ipsum dolor sit amet"
+        
+        XCTAssertEqual(json.unwrappedString, "Lorem ipsum dolor sit amet")
+        XCTAssertNil(json.unwrappedBoolean)
+        XCTAssertNil(json.unwrappedInteger)
+        XCTAssertNil(json.unwrappedDouble)
     }
-
+    
 }

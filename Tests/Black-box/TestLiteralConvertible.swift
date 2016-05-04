@@ -30,20 +30,17 @@ class TestLiteralConvertible: XCTestCase {
     
     func testNilLiteralConvertible() {
         let json: JSON = nil
-        XCTAssertTrue(json.isNull)
         XCTAssertEqual(json, JSON.Null)
     }
     
     func testBooleanLiteralConvertible() {
         do {
             let json: JSON = true
-            XCTAssertTrue(json.isBoolean)
             XCTAssertEqual(json, JSON.Boolean(true))
         }
         
         do {
             let json: JSON = false
-            XCTAssertTrue(json.isBoolean)
             XCTAssertEqual(json, JSON.Boolean(false))
         }
     }
@@ -51,32 +48,27 @@ class TestLiteralConvertible: XCTestCase {
     func testIntegerLiteralConvertible() {
         do {
             let json: JSON = 0
-            XCTAssertTrue(json.isInteger)
             XCTAssertEqual(json, JSON.Integer(0))
         }
         
         do {
             let json: JSON = -2147483648
-            XCTAssertTrue(json.isInteger)
             XCTAssertEqual(json, JSON.Integer(-2147483648))
         }
         
         do {
             let json: JSON = 2147483647
-            XCTAssertTrue(json.isInteger)
             XCTAssertEqual(json, JSON.Integer(2147483647))
         }
         
         #if arch(x86_64) || arch(arm64)
             do {
                 let json: JSON = -9223372036854775808
-                XCTAssertTrue(json.isInteger)
                 XCTAssertEqual(json, JSON.Integer(-9223372036854775808))
             }
             
             do {
                 let json: JSON = 9223372036854775807
-                XCTAssertTrue(json.isInteger)
                 XCTAssertEqual(json, JSON.Integer(9223372036854775807))
             }
         #endif
@@ -85,19 +77,16 @@ class TestLiteralConvertible: XCTestCase {
     func testFloatLiteralConvertible() {
         do {
             let json: JSON = 0.0
-            XCTAssertTrue(json.isDouble)
             XCTAssertEqual(json, JSON.Double(0.0))
         }
         
         do {
             let json: JSON = 1.234567e+89
-            XCTAssertTrue(json.isDouble)
             XCTAssertEqual(json, JSON.Double(1.234567e+89))
         }
         
         do {
             let json: JSON = -1.234567e-89
-            XCTAssertTrue(json.isDouble)
             XCTAssertEqual(json, JSON.Double(-1.234567e-89))
         }
     }
@@ -105,19 +94,16 @@ class TestLiteralConvertible: XCTestCase {
     func testStringLiteralConvertible() {
         do {
             let json: JSON = "Lorem ipsum dolor sit amet"
-            XCTAssertTrue(json.isString)
             XCTAssertEqual(json, JSON.String("Lorem ipsum dolor sit amet"))
         }
         
         do {
             let json: JSON = "排版測試用文字悲坐阿梅德"
-            XCTAssertTrue(json.isString)
             XCTAssertEqual(json, JSON.String("排版測試用文字悲坐阿梅德"))
         }
-
+        
         do {
             let json: JSON = "\u{25490}\u{29256}\u{28204}\u{35430}\u{29992}\u{25991}\u{23383}\u{24754}\u{22352}\u{38463}\u{26757}\u{24503}"
-            XCTAssertTrue(json.isString)
             XCTAssertEqual(json, JSON.String("\u{25490}\u{29256}\u{28204}\u{35430}\u{29992}\u{25991}\u{23383}\u{24754}\u{22352}\u{38463}\u{26757}\u{24503}"))
         }
     }
@@ -129,15 +115,16 @@ class TestLiteralConvertible: XCTestCase {
             -1.234567e-89, 0.0, 1.234567e+89,
             "Lorem ipsum"
         ]
-        XCTAssertTrue(json.isArray)
         XCTAssertEqual(
             json,
-            JSON.Array([
-                JSON.Boolean(true), JSON.Boolean(false),
-                JSON.Integer(-2147483648), JSON.Integer(0), JSON.Integer(2147483647),
-                JSON.Double(-1.234567e-89), JSON.Double(0.0), JSON.Double(1.234567e+89),
-                JSON.String("Lorem ipsum")
-                ])
+            JSON.Array(
+                [
+                    JSON.Boolean(true), JSON.Boolean(false),
+                    JSON.Integer(-2147483648), JSON.Integer(0), JSON.Integer(2147483647),
+                    JSON.Double(-1.234567e-89), JSON.Double(0.0), JSON.Double(1.234567e+89),
+                    JSON.String("Lorem ipsum")
+                ]
+            )
         )
     }
     
@@ -153,20 +140,21 @@ class TestLiteralConvertible: XCTestCase {
             "1.234567e+89"  : 1.234567e+89,
             "Lorem ipsum"   : "Lorem ipsum"
         ]
-        XCTAssertTrue(json.isObject)
         XCTAssertEqual(
             json,
-            JSON.Object([
-                "true"          : JSON.Boolean(true),
-                "false"         : JSON.Boolean(false),
-                "-2147483648"   : JSON.Integer(-2147483648),
-                "0"             : JSON.Integer(0),
-                "2147483647"    : JSON.Integer(2147483647),
-                "-1.234567e-89" : JSON.Double(-1.234567e-89),
-                "0.0"           : JSON.Double(0.0),
-                "1.234567e+89"  : JSON.Double(1.234567e+89),
-                "Lorem ipsum"   : JSON.String("Lorem ipsum")
-                ])
+            JSON.Object(
+                [
+                    "true"          : JSON.Boolean(true),
+                    "false"         : JSON.Boolean(false),
+                    "-2147483648"   : JSON.Integer(-2147483648),
+                    "0"             : JSON.Integer(0),
+                    "2147483647"    : JSON.Integer(2147483647),
+                    "-1.234567e-89" : JSON.Double(-1.234567e-89),
+                    "0.0"           : JSON.Double(0.0),
+                    "1.234567e+89"  : JSON.Double(1.234567e+89),
+                    "Lorem ipsum"   : JSON.String("Lorem ipsum")
+                ]
+            )
         )
     }
     
