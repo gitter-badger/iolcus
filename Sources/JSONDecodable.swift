@@ -169,7 +169,7 @@ extension Bool: JSONDecodable {
     ///
     /// - Throws: `JSON.Error.Decodable`
     public init(json: JSON) throws {
-        guard let boolean = json.boolean else {
+        guard let boolean = json.unwrappedBoolean else {
             throw JSON.Error.Decodable.FailedToDecodeInstanceFromJSON(json: json, type: Bool.self)
         }
         
@@ -186,7 +186,7 @@ extension Int: JSONDecodable {
     ///
     /// - Throws: `JSON.Error.Decodable`
     public init(json: JSON) throws {
-        guard let integer = json.integer else {
+        guard let integer = json.unwrappedInteger else {
             throw JSON.Error.Decodable.FailedToDecodeInstanceFromJSON(json: json, type: Int.self)
         }
         
@@ -203,7 +203,7 @@ extension Double: JSONDecodable {
     ///
     /// - Throws: `JSON.Error.Decodable`
     public init(json: JSON) throws {
-        guard let double = json.double else {
+        guard let double = json.unwrappedDouble else {
             throw JSON.Error.Decodable.FailedToDecodeInstanceFromJSON(json: json, type: Double.self)
         }
         
@@ -220,7 +220,7 @@ extension String: JSONDecodable {
     ///
     /// - Throws: `JSON.Error.Decodable`
     public init(json: JSON) throws {
-        guard let string = json.string else {
+        guard let string = json.unwrappedString else {
             throw JSON.Error.Decodable.FailedToDecodeInstanceFromJSON(json: json, type: String.self)
         }
         
