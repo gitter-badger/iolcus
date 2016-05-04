@@ -46,11 +46,6 @@ extension JSON {
     }
     
     /// Creates a `JSON` value from an instance of `JSONEncodable`.
-//    public init<Encodable: JSONEncodable>(encodable: Encodable) {
-//        self = encodable.encodeJSON()
-//    }
-    
-    /// Creates a `JSON` value from an instance of `JSONEncodable`.
     public init(encodable: JSONEncodable) {
         self = encodable.encodeJSON()
     }

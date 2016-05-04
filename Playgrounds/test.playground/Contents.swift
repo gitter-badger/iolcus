@@ -2,7 +2,9 @@ import Medea
 
 let json0: JSON = ["Lorem", "ipsum"]
 
-let json1: JSON = [false, 1, 2.0, "III", json0]
+let json1: JSON = [false, 1, 2.0, "false", json0]
+
+json1[3].asBoolean
 
 var json2: JSON = [
     "name"  : "Object",
@@ -19,3 +21,4 @@ json2[path] = "Dolor"
 print(json2)
 
 path
+
