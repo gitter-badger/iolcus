@@ -26,7 +26,7 @@
 import Medea
 import XCTest
 
-class MedeaTestDeserialization: XCTestCase {
+class TestDeserialization: XCTestCase {
     
     let whitespace: [String] = [ "", " ", "\t", "\n", "\r" ]
     
