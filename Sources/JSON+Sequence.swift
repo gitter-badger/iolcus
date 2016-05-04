@@ -25,20 +25,53 @@
 
 extension JSON: SequenceType {
     
-    public func generate() -> AnyGenerator<(key: Swift.String, json: JSON)> {
-        switch  self {
+    public typealias Generator = AnyGenerator<(path: JSONPath, json: JSON)>
+    
+    public func generate() -> Generator {
+        let sequence = reversePathEnumeration().map() {
+            (JSONPath(elements: $0.reverse()), $1)
+        }
+        
+        let generator = sequence.generate()
+        
+        return Generator(generator)
+    }
+    
+    private func reversePathEnumeration() -> [(reversePath: [JSONPathElement], json: JSON)] {
+        switch self {
             
         case .Null, .Boolean(_), .Integer(_), .Double(_), .String(_):
-            let generator = GeneratorOfOne(("", self))
-            return AnyGenerator(generator)
+            return [([], self)]
             
         case .Array(let elements):
-            let generator = elements.enumerate().map({(Swift.String($0), $1)}).generate()
-            return AnyGenerator(generator)
+            return elements.enumerate().flatMap() {
+                (index: Swift.Int, element: JSON) -> [(reversePath: [JSONPathElement], json: JSON)] in
+                
+                let suffix = JSONPathElement.Index(index)
+                return element.reversePathEnumeration().map() {
+                    (reversePath: [JSONPathElement], json: JSON) -> (reversePath: [JSONPathElement], json: JSON) in
+                    
+                    var reversePathWithSuffix = reversePath
+                    reversePathWithSuffix.append(suffix)
+                    
+                    return (reversePathWithSuffix, json)
+                }
+            }
             
         case .Object(let properties):
-            let generator = properties.generate()
-            return AnyGenerator(generator)
+            return properties.flatMap() {
+                (key: Swift.String, element: JSON) -> [(reversePath: [JSONPathElement], json: JSON)] in
+                
+                let suffix = JSONPathElement.Key(key)
+                return element.reversePathEnumeration().map() {
+                    (reversePath: [JSONPathElement], json: JSON) -> (reversePath: [JSONPathElement], json: JSON) in
+                    
+                    var reversePathWithSuffix = reversePath
+                    reversePathWithSuffix.append(suffix)
+                    
+                    return (reversePathWithSuffix, json)
+                }
+            }
             
         }
     }

@@ -23,237 +23,186 @@
 //  SOFTWARE.
 //
 
-// MARK: Wrapped value accessors
-
 extension JSON {
     
-    /// `Bool` representation of the wrapped value.
-    public var boolean: Swift.Bool? {
-        get {
-            if case .Boolean(let boolean) = self {
-                return boolean
-            }
+    /// Unwrapping accessor to contained `Bool` value.
+    public var unwrappedBoolean: Swift.Bool? {
+        guard case .Boolean(let boolean) = self else {
             return nil
         }
-        set {
-            if let boolean = newValue {
-                self = .Boolean(boolean)
-            } else {
-                self = .Null
-            }
-        }
+        return boolean
     }
     
-    /// `Int` representation of the wrapped value.
-    public var integer: Swift.Int? {
-        get {
-            if case .Integer(let integer) = self {
-                return integer
-            }
+    /// Unwrapping accessor to contained `Int` value.
+    public var unwrappedInteger: Swift.Int? {
+        guard case .Integer(let integer) = self else {
             return nil
         }
-        set {
-            if let integer = newValue {
-                self = .Integer(integer)
-            } else {
-                self = .Null
-            }
-        }
+        return integer
     }
-
-    /// `Double` representation of the wrapped value.
-    public var double: Swift.Double? {
-        get {
-            if case .Double(let double) = self {
-                return double
-            }
+    
+    /// Unwrapping accessor to contained `Double` value.
+    public var unwrappedDouble: Swift.Double? {
+        guard case .Double(let double) = self else {
             return nil
         }
-        set {
-            if let double = newValue {
-                self = .Double(double)
-            } else {
-                self = .Null
-            }
-        }
+        return double
     }
     
-    /// `String` representation of the wrapped value.
-    public var string: Swift.String? {
-        get {
-            if case .String(let string) = self {
-                return string
-            }
+    /// Unwrapping accessor to contained `String` value.
+    public var unwrappedString: Swift.String? {
+        guard case .String(let string) = self else {
             return nil
         }
-        set {
-            if let string = newValue {
-                self = .String(string)
-            } else {
-                self = .Null
-            }
-        }
+        return string
     }
     
-    /// `[JSON]` array representation of the wrapped value.
-    public var array: [JSON]? {
-        get {
-            if case .Array(let array) = self {
-                return array
-            }
-            return nil
+    // MARK: - Array accessor subscript
+    
+    private func getValue(at index: Swift.Int) -> JSON {
+        guard case .Array(let elements) = self else {
+            return .Null
         }
-        set {
-            if let elements = newValue {
-                self = .Array(elements)
-            } else {
-                self = .Null
-            }
+        
+        guard index >= 0 && index < elements.count else {
+            return .Null
         }
+        
+        return elements[index]
     }
     
-    /// `[String: JSON]` properties dictionary representation of the wrapped value.
-    public var object: [Swift.String: JSON]? {
-        get {
-            if case .Object(let object) = self {
-                return object
-            }
-            return nil
+    private mutating func setValue(at index: Swift.Int, value newValue: JSON) {
+        guard case .Array(let elements) = self else {
+            fatalError("`self` is not `.Array`")
         }
-        set {
-            if let properties = newValue {
-                self = .Object(properties)
-            } else {
-                self = .Null
-            }
-        }
+        
+        var newElements = elements
+        newElements[index] = newValue
+        
+        self = .Array(newElements)
     }
     
-}
-
-// MARK: - Subscript accessors
-
-extension JSON {
-    
-    /// Shorthand accessor for elements of the `JSON` array.
+    /// Subscript-accessor to the elements of a `JSON` array.
     ///
-    /// - returns: If a particular `JSON` is `.Array` then this subsript will return a particular element corresponding to the `index`.
-    ///            In all other cases the subscript returns `.Null`.  
-    ///            If the `index` is out of bounds the subscript will also return `.Null`.
+    /// - Note: An attempt to assign a new value via this accessor will produce runtime exception if
+    ///         `self` is not `.Array`.
+    ///
+    /// - returns: ⁃ If `self` is `.Array` then a particular element at given `index`. \
+    ///            ⁃ If `index` is out of bounds then result is `.Null`. \
+    ///            ⁃ If `self` is _not_ `.Array` then `.Null`.
     public subscript(index: Swift.Int) -> JSON {
-        get {
-            if case .Array(let elements) = self {
-                if index >= 0 && index < elements.count {
-                    return elements[index]
-                }
-            }
-            return .Null
-        }
-        set {
-            if case .Array(let elements) = self {
-                var newElements = elements
-                newElements[index] = newValue
-                self = .Array(newElements)
-            } else {
-                fatalError("This JSON is not .Array")
-            }
-        }
+        get { return getValue(at: index) }
+        set { setValue(at: index, value: newValue) }
     }
     
-    /// Shorthand accessor for elements of the `JSON` object (a.k.a. dictionary).
+    // MARK: - Object accessor subscript
+    
+    private func getValue(at key: Swift.String) -> JSON {
+        guard case .Object(let properties) = self else {
+            return .Null
+        }
+        
+        return properties[key] ?? .Null
+    }
+    
+    private mutating func setValue(at key: Swift.String, value newValue: JSON) {
+        guard case .Object(let properties) = self else {
+            fatalError("`self` is not `.Object`")
+        }
+        
+        var newProperties = properties
+        newProperties[key] = newValue
+        
+        self = .Object(newProperties)
+    }
+    
+    /// Subscript-accessor to the elements of a `JSON` object (a.k.a. dictionary).
     ///
-    /// - returns: If a particular `JSON` is `.Object` then this subsript will return a particular element corresponding to the `key`.
-    ///            In all other cases the subscript returns `.Null`.
-    ///            If there is no element with such `key` then the subscript also returns `.Null`.
+    /// - Note: An attempt to assign a new value via this accessor will produce runtime exception if
+    ///         `self` is not `.Object`.
+    ///
+    /// - returns: ⁃ If `self` is `.Object` then a particular element at given `key`.
+    ///            ⁃ If there is no such `key` then result is `.Null`.
+    ///            ⁃ If `self` is _not_ `.Object` then `.Null`.
     public subscript(key: Swift.String) -> JSON {
-        get {
-            if case .Object(let properties) = self {
-                if let value = properties[key] {
-                    return value
-                }
-            }
-            return .Null
+        get { return getValue(at: key) }
+        set { setValue(at: key, value: newValue) }
+    }
+
+    // MARK: - JSONPathElement accessor subscript
+    
+    private func getValue(at pathElement: JSONPathElement) -> JSON {
+        switch pathElement {
+            
+        case .Index(let index):
+            return self[index]
+            
+        case .Key(let key):
+            return self[key]
+            
         }
-        set {
-            if case .Object(let properties) = self {
-                var newProperties = properties
-                newProperties[key] = newValue
-                self = .Object(newProperties)
-            } else {
-                fatalError("This JSON is not .Object")
-            }
+    }
+    
+    private mutating func setValue(at pathElement: JSONPathElement, value newValue: JSON) {
+        switch pathElement {
+            
+        case .Index(let index):
+            self[index] = newValue
+            
+        case .Key(let key):
+            self[key] = newValue
+
         }
+    }
+
+    /// TODO
+    public subscript(pathElement: JSONPathElement) -> JSON {
+        get { return getValue(at: pathElement) }
+        set { setValue(at: pathElement, value: newValue) }
+    }
+
+    // MARK: - Private accessor for ArraySlice<JSONPathElement>
+    
+    private mutating func setValue(at pathSlice: ArraySlice<JSONPathElement>, value newValue: JSON) {
+        if let head = pathSlice.first {
+            let tail = pathSlice[(pathSlice.startIndex + 1)..<pathSlice.endIndex]
+            var headValue = self[head]
+            headValue[tail] = newValue
+            self[head] = headValue
+        } else {
+            self = newValue
+        }
+    }
+    
+    private func getValue(at pathSlice: ArraySlice<JSONPathElement>) -> JSON {
+        return pathSlice.reduce(self) {
+            $0[$1]
+        }
+    }
+
+    private subscript(pathSlice: ArraySlice<JSONPathElement>) -> JSON {
+        get { return getValue(at: pathSlice) }
+        set { setValue(at: pathSlice, value: newValue) }
+    }
+
+    // MARK: - JSONPath accessor subscript
+    
+    private func getValue(at path: JSONPath) -> JSON {
+        return path.reduce(self) {
+            $0[$1]
+        }
+    }
+    
+    private mutating func setValue(at path: JSONPath, value newValue: JSON) {
+        let pathArray = path.map({ $0 })
+        let pathSlice = pathArray[pathArray.startIndex..<pathArray.endIndex]
+        
+        self[pathSlice] = newValue
+    }
+    
+    public subscript(path: JSONPath) -> JSON {
+        get { return getValue(at: path) }
+        set { setValue(at: path, value: newValue) }
     }
     
 }
-
-// MARK: - Wrapped type inspection
-
-extension JSON {
-    
-    /// Indicates whether the `JSON` value is null.
-    public var isNull: Swift.Bool {
-        switch  self {
-        case .Null : return true
-        default    : return false
-        }
-    }
-    
-    /// Indicates whether the `JSON` value is boolean.
-    public var isBoolean: Swift.Bool {
-        switch  self {
-        case .Boolean(_) : return true
-        default          : return false
-        }
-    }
-    
-    /// Indicates whether the `JSON` value is an integer.
-    public var isInteger: Swift.Bool {
-        switch  self {
-        case .Integer(_) : return true
-        default          : return false
-        }
-    }
-    
-    /// Indicates whether the `JSON` value is double (floating point).
-    public var isDouble: Swift.Bool {
-        switch  self {
-        case .Double(_) : return true
-        default         : return false
-        }
-    }
-    
-    /// Indicates whether the `JSON` value a number (either integer or double).
-    public var isNumber: Swift.Bool {
-        switch  self {
-        case .Integer(_), .Double(_) : return true
-        default                      : return false
-        }
-    }
-    
-    /// Indicates whether the `JSON` value is a string.
-    public var isString: Swift.Bool {
-        switch  self {
-        case .String(_) : return true
-        default         : return false
-        }
-    }
-    
-    /// Indicates whether the `JSON` value is an array.
-    public var isArray: Swift.Bool {
-        switch  self {
-        case .Array(_) : return true
-        default        : return false
-        }
-    }
-    
-    /// Indicates whether the `JSON` value is an object.
-    public var isObject: Swift.Bool {
-        switch  self {
-        case .Object(_) : return true
-        default         : return false
-        }
-    }
-    
-}
-
