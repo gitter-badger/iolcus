@@ -61,12 +61,10 @@
  
  ## Unwrapping `JSON` values
  
- Every `JSON` value (well, except `.Null`) is either a wrapper for some concrete basic type like `Bool`, `Int`, `Double`, `String` or a container type (array or a dictionary).  There are accessor properties on every `JSON` value that allow to get the particular contained type:
+ Every `JSON` value (well, except `.Null`) is either a wrapper for some concrete basic type like `Bool`, `Int`, `Double` or `String`, or a container type (array or a dictionary).  There are accessor-properties for every such wrapped type:
  
  */
-        json = 42
-        print(json.integer!)    // 42
-        print(json.string)      // nil
+json = "df"
+json.array?.append(43)
 
-        print(object.object!)   // ["id": 42, "elements": [false, -42, 36.6], "description": "Lorem ipsum"]
-        print(object.array)     // nil
+json
