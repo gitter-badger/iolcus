@@ -26,4 +26,8 @@
 import Medea
 import XCTest
 
+class TestDecodable: XCTestCase {
+    
+    
+}
 

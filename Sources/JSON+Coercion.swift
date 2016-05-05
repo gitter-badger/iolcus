@@ -104,7 +104,8 @@ extension JSON {
     ///   ⁃ If `self` is `.Boolean`, then the result is `1.0` if the wrapped value is `true`,
     ///     `0.0` otherwise. \
     ///   ⁃ If `self` is `.Integer`, then the result is the wrapped `Int` value converted into a
-    ///     `Double`. \
+    ///     `Double`.  Beware of side-effects of Int->Double conversions.  E.g. 64-bit
+    ///     `Int(9223372036854774807)` might convert into `Double(9223372036854774784)`. \
     ///   ⁃ If `self` is `.Double`, then it returns a wrapped `Double` value. \
     ///   ⁃ If `self` is `.String`, then it converts wrapped `String` into a `Double`, or returns
     ///     `nil` if the conversion is not possible. \
