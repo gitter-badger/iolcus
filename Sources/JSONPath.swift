@@ -23,49 +23,74 @@
 //  SOFTWARE.
 //
 
-public struct JSONPath: SequenceType, ArrayLiteralConvertible, CustomStringConvertible {
+/// A path to the sub-value within a `JSON` value.
+public struct JSONPath {
     
-    private var path: [JSONPathElement]
+    // MARK: - Public API
     
+    /// Count of elements in a path.
     public var count: Int {
         return path.count
     }
-    
+
+    /// First element in the path.
     public var first: JSONPathElement? {
         return path.first
     }
     
-    public var description: String {
-        return path.map({ "[\($0)]" }).joinWithSeparator("")
-    }
-
+    /// Creates a path from an array of path elements.
     public init(elements: [JSONPathElement]) {
         path = elements
     }
     
+    /// Creates a path from an array-slice of path elements.
     public init(elements: ArraySlice<JSONPathElement>) {
         self.init(elements: Array(elements))
     }
     
+    /// Creates a path from a list of path elements.
     public init(elements: JSONPathElement...) {
         self.init(elements: elements)
     }
+    
+    /// An element at specific position of the path.
+    public subscript(index: Int) -> JSONPathElement {
+        get { return path[index] }
+        set { path[index] = newValue }
+    }
+ 
+    // MARK: - Internal
+    
+    private var path: [JSONPathElement]
+
+}
+
+// MARK: - ArrayLiteralConvertible
+
+extension JSONPath: ArrayLiteralConvertible {
     
     public init(arrayLiteral elements: JSONPathElement...) {
         self.init(elements: elements)
     }
     
-    public subscript(index: Int) -> JSONPathElement {
-        get { return path[index] }
-        set { path[index] = newValue }
-    }
-    
-    public subscript(subRange: Range<Int>) -> JSONPath {
-        return JSONPath(elements: path[subRange])
-    }
+}
+
+// MARK: - SequenceType
+
+extension JSONPath: SequenceType {
     
     public func generate() -> IndexingGenerator<[JSONPathElement]> {
         return path.generate()
     }
     
+}
+
+// MARK: - CustomStringConvertible
+
+extension JSONPath: CustomStringConvertible {
+    
+    public var description: String {
+        return path.map({ "[\($0)]" }).joinWithSeparator("")
+    }
+
 }

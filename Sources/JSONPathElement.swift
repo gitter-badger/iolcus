@@ -23,18 +23,15 @@
 //  SOFTWARE.
 //
 
-public enum JSONPathElement: CustomStringConvertible {
+/// An element of `JSONPath`.
+public enum JSONPathElement {
     
+    /// Resolves an element of a `JSON` array by its index.
     case Index(Int)
+    
+    /// Resolves a property of a `JSON` object by its key.
     case Key(String)
  
-    public var description: String {
-        switch self {
-        case .Index(let index) : return index.description
-        case .Key(let key)     : return key
-        }
-    }
-
 }
 
 // MARK: - IntegerLiteralConvertible
@@ -61,6 +58,24 @@ extension JSONPathElement: StringLiteralConvertible {
     
     public init(extendedGraphemeClusterLiteral string: Swift.String.ExtendedGraphemeClusterLiteralType) {
         self = Key(string)
+    }
+    
+}
+
+// MARK: - CustomStringConvertible
+
+extension JSONPathElement: CustomStringConvertible {
+    
+    public var description: String {
+        switch self {
+            
+        case .Index(let index):
+            return Swift.String(index)
+        
+        case .Key(let key):
+            return key
+            
+        }
     }
     
 }

@@ -35,14 +35,12 @@ extension JSON.Error {
         ///   - type: Target type that we were decoding to.
         case FailedToDecodeInstanceFromJSON(json: JSON, type: Any.Type)
         
-        
         /// Failed to decode an array from `JSON` value.
         ///
         /// - Parameters:
         ///   - json: `JSON` value that we were trying to decode from.
         ///   - type: Target type that we were decoding to.
         case FailedToDecodeArrayFromJSON(json: JSON, type: Any.Type)
-
 
         /// Failed to decode a dictionary from `JSON` value.
         ///

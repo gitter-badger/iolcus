@@ -62,7 +62,6 @@ extension JSON {
         }
     }
     
-    
     /// Attempts to coerce `self` into an `Int` value.
     ///
     /// - returns:
@@ -99,7 +98,6 @@ extension JSON {
         }
     }
     
-    
     /// Attempts to coerce `self` into an `Double` value.
     ///
     /// - returns:
@@ -132,12 +130,37 @@ extension JSON {
         }
     }
     
-    
-    /// Coerces `self` into a `String` value.
+    /// Attempts to coerce `self` into a `String` value.
     ///
-    /// - returns: `String` representation of serialized `self`
+    /// - returns:
+    ///   ⁃ If `self` is `.Null`, then result is `"null"`. \
+    ///   ⁃ If `self` is `.Boolean`, then the result is `"true"` or `"false"` correspondingly.  \
+    ///   ⁃ If `self` is `.Integer` or `.Double`, then the result is a `String` representation of 
+    ///     the wrapped number. \
+    ///   ⁃ If `self` is `.String`, then it returns a wrapped `String` value. \
+    ///   ⁃ In all other scenarios the result is `nil`.
     public var asString: Swift.String? {
-        return self.serializeJSON()
+        switch self {
+            
+        case .Null:
+            return "null"
+            
+        case .Boolean(let boolean):
+            return Swift.String(boolean)
+            
+        case .Integer(let integer):
+            return Swift.String(integer)
+            
+        case .Double(let double):
+            return Swift.String(double)
+            
+        case .String(let string):
+            return string
+            
+        case .Array(_), .Object(_):
+            return nil
+
+        }
     }
     
 }

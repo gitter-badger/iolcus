@@ -132,6 +132,9 @@
 		BA9A7D791CDA35C50087C0D7 /* JSON+Coercion.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9A7D771CDA35C50087C0D7 /* JSON+Coercion.swift */; };
 		BA9A7D7A1CDA35C50087C0D7 /* JSON+Coercion.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9A7D771CDA35C50087C0D7 /* JSON+Coercion.swift */; };
 		BA9A7D7B1CDA35C50087C0D7 /* JSON+Coercion.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9A7D771CDA35C50087C0D7 /* JSON+Coercion.swift */; };
+		BA9A7D7D1CDA857D0087C0D7 /* TestCoercion.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9A7D7C1CDA857D0087C0D7 /* TestCoercion.swift */; };
+		BA9A7D7E1CDA857D0087C0D7 /* TestCoercion.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9A7D7C1CDA857D0087C0D7 /* TestCoercion.swift */; };
+		BA9A7D7F1CDA857D0087C0D7 /* TestCoercion.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9A7D7C1CDA857D0087C0D7 /* TestCoercion.swift */; };
 		BAA6500D1CB599E8006F561A /* Medea_watchOS.h in Headers */ = {isa = PBXBuildFile; fileRef = BAA6500C1CB599E8006F561A /* Medea_watchOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BAA650121CB5AE69006F561A /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B9B6F1CB46249003EF1CA /* JSON.swift */; };
 		BAA650131CB5AE6A006F561A /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B9B6F1CB46249003EF1CA /* JSON.swift */; };
@@ -293,6 +296,7 @@
 		BA9A7D6E1CDA2EF40087C0D7 /* TestInspection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestInspection.swift; path = "Tests/Black-box/TestInspection.swift"; sourceTree = "<group>"; };
 		BA9A7D721CDA32490087C0D7 /* JSON+Unwrapping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSON+Unwrapping.swift"; path = "Sources/JSON+Unwrapping.swift"; sourceTree = "<group>"; };
 		BA9A7D771CDA35C50087C0D7 /* JSON+Coercion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSON+Coercion.swift"; path = "Sources/JSON+Coercion.swift"; sourceTree = "<group>"; };
+		BA9A7D7C1CDA857D0087C0D7 /* TestCoercion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestCoercion.swift; path = "Tests/Black-box/TestCoercion.swift"; sourceTree = "<group>"; };
 		BAA6500A1CB599E8006F561A /* Medea.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Medea.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAA6500C1CB599E8006F561A /* Medea_watchOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Medea_watchOS.h; path = Sources/Medea_watchOS.h; sourceTree = "<group>"; };
 		BAA6500E1CB599E8006F561A /* Info-watchOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-watchOS.plist"; path = "Support/Info-watchOS.plist"; sourceTree = "<group>"; };
@@ -520,6 +524,7 @@
 				BA6C1CB41CD31D2500536672 /* TestLiteralConvertible.swift */,
 				BA9A7D6E1CDA2EF40087C0D7 /* TestInspection.swift */,
 				BA568D031CD632D0007CCE56 /* TestUnwrapping.swift */,
+				BA9A7D7C1CDA857D0087C0D7 /* TestCoercion.swift */,
 				BA862F091CCEB7190016E610 /* TestDecodable.swift */,
 				BAF4002F1CB98A6E006A72AD /* TestDeserialization.swift */,
 				BA6306FD1CC0BCC5000D98EA /* TestSerialization.swift */,
@@ -911,6 +916,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BAF400301CB98A6E006A72AD /* TestDeserialization.swift in Sources */,
+				BA9A7D7D1CDA857D0087C0D7 /* TestCoercion.swift in Sources */,
 				BA568CE81CD4E556007CCE56 /* TestPerformanceSerialization.swift in Sources */,
 				BA6306FE1CC0BCC5000D98EA /* TestSerialization.swift in Sources */,
 				BA9A7D6F1CDA2EF40087C0D7 /* TestInspection.swift in Sources */,
@@ -974,6 +980,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BAF400311CB98A6E006A72AD /* TestDeserialization.swift in Sources */,
+				BA9A7D7E1CDA857D0087C0D7 /* TestCoercion.swift in Sources */,
 				BA568CE91CD4E556007CCE56 /* TestPerformanceSerialization.swift in Sources */,
 				BA6306FF1CC0BCC5000D98EA /* TestSerialization.swift in Sources */,
 				BA9A7D701CDA2EF40087C0D7 /* TestInspection.swift in Sources */,
@@ -1037,6 +1044,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BAF400321CB98A6E006A72AD /* TestDeserialization.swift in Sources */,
+				BA9A7D7F1CDA857D0087C0D7 /* TestCoercion.swift in Sources */,
 				BA568CEA1CD4E556007CCE56 /* TestPerformanceSerialization.swift in Sources */,
 				BA6307001CC0BCC5000D98EA /* TestSerialization.swift in Sources */,
 				BA9A7D711CDA2EF40087C0D7 /* TestInspection.swift in Sources */,

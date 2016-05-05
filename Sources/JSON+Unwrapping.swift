@@ -35,7 +35,6 @@ extension JSON {
         return boolean
     }
     
-    
     /// Unwrapping accessor to contained `Int` value.
     public var unwrappedInteger: Swift.Int? {
         guard case .Integer(let integer) = self else {
@@ -44,7 +43,6 @@ extension JSON {
         return integer
     }
     
-    
     /// Unwrapping accessor to contained `Double` value.
     public var unwrappedDouble: Swift.Double? {
         guard case .Double(let double) = self else {
@@ -52,7 +50,6 @@ extension JSON {
         }
         return double
     }
-    
     
     /// Unwrapping accessor to contained `String` value.
     public var unwrappedString: Swift.String? {

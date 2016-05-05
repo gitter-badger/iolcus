@@ -50,14 +50,16 @@ extension JSON {
         self = .Array(newElements)
     }
     
+    
     /// Subscript-accessor to the elements of a `JSON` array.
     ///
-    /// - note: An attempt to assign a new value via this accessor will produce runtime exception if
-    ///         `self` is not `.Array`.
+    /// - note: If `self` is not `.Array`, then an attempt to assign value via this accessor will 
+    ///         produce a runtime exception.
     ///
-    /// - returns: ⁃ If `self` is `.Array` then a particular element at given `index`. \
-    ///            ⁃ If `index` is out of bounds then result is `.Null`. \
-    ///            ⁃ If `self` is _not_ `.Array` then `.Null`.
+    /// - returns: ⁃ If `self` is `.Array`, then this accessor returns an element at the given
+    ///              `index` of the array. \
+    ///            ⁃ If `index` is out of bounds, then the result is `.Null`. \
+    ///            ⁃ If `self` is _not_ `.Array`, then the result is `.Null`.
     public subscript(index: Swift.Int) -> JSON {
         get { return getValue(at: index) }
         set { setValue(at: index, value: newValue) }
@@ -84,20 +86,22 @@ extension JSON {
         self = .Object(newProperties)
     }
     
+    
     /// Subscript-accessor to the elements of a `JSON` object (a.k.a. dictionary).
     ///
-    /// - note: An attempt to assign a new value via this accessor will produce runtime exception if
-    ///         `self` is not `.Object`.
+    /// - note: If `self` is not `.Object`, then an attempt to assign value via this accessor will
+    ///         produce a runtime exception.
     ///
-    /// - returns: ⁃ If `self` is `.Object` then a particular element at given `key`.
-    ///            ⁃ If there is no such `key` then result is `.Null`.
-    ///            ⁃ If `self` is _not_ `.Object` then `.Null`.
+    /// - returns: ⁃ If `self` is `.Object`, then this accessor returns an element associated with 
+    ///              the given `key`. \
+    ///            ⁃ If there is no such `key`, then the result is `.Null`. \
+    ///            ⁃ If `self` is _not_ `.Object`, then the result is `.Null`.
     public subscript(key: Swift.String) -> JSON {
         get { return getValue(at: key) }
         set { setValue(at: key, value: newValue) }
     }
 
-    // MARK: - JSONPathElement accessor subscript
+    // MARK: - `JSONPathElement` accessor subscript
     
     private func getValue(at pathElement: JSONPathElement) -> JSON {
         switch pathElement {
@@ -123,13 +127,17 @@ extension JSON {
         }
     }
 
-    /// TODO
+    
+    /// Combined subscript-accessor to the elements of `JSON` arrays and objects.
+    ///
+    /// - note: See the description of subscripts for `Int` and `String` for detailed behaviour
+    ///         of this subscript (it is a combination of both).
     public subscript(pathElement: JSONPathElement) -> JSON {
         get { return getValue(at: pathElement) }
         set { setValue(at: pathElement, value: newValue) }
     }
 
-    // MARK: - Private accessor for ArraySlice<JSONPathElement>
+    // MARK: - Private accessor for `ArraySlice<JSONPathElement>`
     
     private mutating func setValue(at pathSlice: ArraySlice<JSONPathElement>, value newValue: JSON) {
         if let head = pathSlice.first {
@@ -153,7 +161,7 @@ extension JSON {
         set { setValue(at: pathSlice, value: newValue) }
     }
 
-    // MARK: - JSONPath accessor subscript
+    // MARK: - `JSONPath` accessor subscript
     
     private func getValue(at path: JSONPath) -> JSON {
         return path.reduce(self) {
@@ -168,9 +176,12 @@ extension JSON {
         self[pathSlice] = newValue
     }
     
-    public subscript(path: JSONPath) -> JSON {
-        get { return getValue(at: path) }
-        set { setValue(at: path, value: newValue) }
+    /// JSON path subscript-accessor.
+    ///
+    /// Provides read/write access by traversing specified `jsonPath`.
+    public subscript(jsonPath: JSONPath) -> JSON {
+        get { return getValue(at: jsonPath) }
+        set { setValue(at: jsonPath, value: newValue) }
     }
     
 }

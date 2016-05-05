@@ -24,79 +24,79 @@
 //
 
 #if os(OSX) || os(iOS) || os(tvOS)
-
-import Foundation
-
-extension JSONDeserialization {
     
-    // MARK: - Public API
+    import Foundation
     
-    /// Makes Medea `JSON` value using Foundation's `AnyObject` representation of JSON.
-    ///
-    /// - note: Foundation represents JSON's number and boolean as the same internal type, namely
-    ///         `NSNumber`.  This means that there is really no way to tell one from another while
-    ///         converting from Foundation to Medea.  JSON's `true` will end up as `.Integer(1)` 
-    ///         this way and `false` will be `.Integer(0)`.
-    public static func makeJSON(withFoundationJSON nsjson: AnyObject) throws -> JSON {
-        if let json = nsjson as? [NSString: AnyObject] {
-            return try makeJSON(withFoundationJSON: json)
+    extension JSONDeserialization {
+        
+        // MARK: - Public API
+        
+        /// Makes Medea `JSON` value using Foundation's `AnyObject` representation of JSON.
+        ///
+        /// - note: Foundation represents JSON's number and boolean as the same internal type, namely
+        ///         `NSNumber`.  This means that there is really no way to tell one from another while
+        ///         converting from Foundation to Medea.  JSON's `true` will end up as `.Integer(1)`
+        ///         this way and `false` will be `.Integer(0)`.
+        public static func makeJSON(withFoundationJSON nsjson: AnyObject) throws -> JSON {
+            if let json = nsjson as? [NSString: AnyObject] {
+                return try makeJSON(withFoundationJSON: json)
+            }
+            
+            if let json = nsjson as? [AnyObject] {
+                return try makeJSON(withFoundationJSON: json)
+            }
+            
+            if let json = nsjson as? NSString {
+                return try makeJSON(withFoundationJSON: json)
+            }
+            
+            if let json = nsjson as? NSNumber {
+                return try makeJSON(withFoundationJSON: json)
+            }
+            
+            if let json = nsjson as? NSNull {
+                return try makeJSON(withFoundationJSON: json)
+            }
+            
+            throw JSON.Error.Foundation.FailedToConvertFromFoundationJSON(type: nsjson.dynamicType)
         }
         
-        if let json = nsjson as? [AnyObject] {
-            return try makeJSON(withFoundationJSON: json)
+        // MARK: - Internal
+        
+        private static func makeJSON(withFoundationJSON nsjson: NSNull) throws -> JSON {
+            return .Null
         }
         
-        if let json = nsjson as? NSString {
-            return try makeJSON(withFoundationJSON: json)
+        private static func makeJSON(withFoundationJSON nsjson: NSNumber) throws -> JSON {
+            if Double(nsjson.integerValue) == nsjson.doubleValue {
+                return .Integer(nsjson.integerValue)
+            } else {
+                return .Double(nsjson.doubleValue)
+            }
         }
         
-        if let json = nsjson as? NSNumber {
-            return try makeJSON(withFoundationJSON: json)
+        private static func makeJSON(withFoundationJSON nsjson: NSString) throws -> JSON {
+            let string = nsjson as Swift.String
+            return .String(string)
         }
         
-        if let json = nsjson as? NSNull {
-            return try makeJSON(withFoundationJSON: json)
+        private static func makeJSON(withFoundationJSON nsjson: [AnyObject]) throws -> JSON {
+            let array = try nsjson.map() {
+                try makeJSON(withFoundationJSON: $0)
+            }
+            return .Array(array)
         }
         
-        throw JSON.Error.Foundation.FailedToConvertFromFoundationJSON(type: nsjson.dynamicType)
-    }
-    
-    // MARK: - Internal
-    
-    private static func makeJSON(withFoundationJSON nsjson: NSNull) throws -> JSON {
-        return .Null
-    }
-    
-    private static func makeJSON(withFoundationJSON nsjson: NSNumber) throws -> JSON {
-        if Double(nsjson.integerValue) == nsjson.doubleValue {
-            return .Integer(nsjson.integerValue)
-        } else {
-            return .Double(nsjson.doubleValue)
+        private static func makeJSON(withFoundationJSON nsjson: [NSString: AnyObject]) throws -> JSON {
+            var properties: [Swift.String: JSON] = [:]
+            try nsjson.forEach() {
+                let key = $0 as Swift.String
+                let value = try makeJSON(withFoundationJSON: $1)
+                properties[key] = value
+            }
+            return .Object(properties)
         }
+        
     }
     
-    private static func makeJSON(withFoundationJSON nsjson: NSString) throws -> JSON {
-        let string = nsjson as Swift.String
-        return .String(string)
-    }
-    
-    private static func makeJSON(withFoundationJSON nsjson: [AnyObject]) throws -> JSON {
-        let array = try nsjson.map() {
-            try makeJSON(withFoundationJSON: $0)
-        }
-        return .Array(array)
-    }
-    
-    private static func makeJSON(withFoundationJSON nsjson: [NSString: AnyObject]) throws -> JSON {
-        var properties: [Swift.String: JSON] = [:]
-        try nsjson.forEach() {
-            let key = $0 as Swift.String
-            let value = try makeJSON(withFoundationJSON: $1)
-            properties[key] = value
-        }
-        return .Object(properties)
-    }
-    
-}
-
 #endif

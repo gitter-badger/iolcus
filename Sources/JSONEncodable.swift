@@ -137,7 +137,6 @@ extension Dictionary where Key: StringLiteralConvertible, Value: JSONEncodable {
         return .Object(properties)
     }
     
-    
     /// Serialize `self` into a JSON string.
     public func serializeJSON() -> Swift.String {
         return JSONSerialization.makeString(json: self.encodeJSON())

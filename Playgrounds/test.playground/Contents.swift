@@ -4,7 +4,8 @@ let json0: JSON = ["Lorem", "ipsum"]
 
 let json1: JSON = [false, 1, 2.0, "false", json0]
 
-json1[3].asBoolean
+json1[3].asString
+
 
 var json2: JSON = [
     "name"  : "Object",
