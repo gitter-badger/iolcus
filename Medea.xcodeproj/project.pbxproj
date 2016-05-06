@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA35A9FC1CDB8B7400370516 /* TestSubscriptingWithString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA35A9FB1CDB8B7400370516 /* TestSubscriptingWithString.swift */; };
+		BA35A9FD1CDB8B7400370516 /* TestSubscriptingWithString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA35A9FB1CDB8B7400370516 /* TestSubscriptingWithString.swift */; };
+		BA35A9FE1CDB8B7400370516 /* TestSubscriptingWithString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA35A9FB1CDB8B7400370516 /* TestSubscriptingWithString.swift */; };
+		BA35AA001CDB8FF300370516 /* TestSubscriptingWithJSONPathElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA35A9FF1CDB8FF300370516 /* TestSubscriptingWithJSONPathElement.swift */; };
+		BA35AA011CDB8FF300370516 /* TestSubscriptingWithJSONPathElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA35A9FF1CDB8FF300370516 /* TestSubscriptingWithJSONPathElement.swift */; };
+		BA35AA021CDB8FF300370516 /* TestSubscriptingWithJSONPathElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA35A9FF1CDB8FF300370516 /* TestSubscriptingWithJSONPathElement.swift */; };
 		BA568CE81CD4E556007CCE56 /* TestPerformanceSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA568CE71CD4E556007CCE56 /* TestPerformanceSerialization.swift */; };
 		BA568CE91CD4E556007CCE56 /* TestPerformanceSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA568CE71CD4E556007CCE56 /* TestPerformanceSerialization.swift */; };
 		BA568CEA1CD4E556007CCE56 /* TestPerformanceSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA568CE71CD4E556007CCE56 /* TestPerformanceSerialization.swift */; };
@@ -144,6 +150,9 @@
 		BA9A7D891CDB10A60087C0D7 /* TestCoercionToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9A7D881CDB10A60087C0D7 /* TestCoercionToString.swift */; };
 		BA9A7D8A1CDB10A60087C0D7 /* TestCoercionToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9A7D881CDB10A60087C0D7 /* TestCoercionToString.swift */; };
 		BA9A7D8B1CDB10A60087C0D7 /* TestCoercionToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9A7D881CDB10A60087C0D7 /* TestCoercionToString.swift */; };
+		BA9A7D8D1CDB2EC30087C0D7 /* TestSubscriptingWithInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9A7D8C1CDB2EC30087C0D7 /* TestSubscriptingWithInt.swift */; };
+		BA9A7D8E1CDB2EC30087C0D7 /* TestSubscriptingWithInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9A7D8C1CDB2EC30087C0D7 /* TestSubscriptingWithInt.swift */; };
+		BA9A7D8F1CDB2EC30087C0D7 /* TestSubscriptingWithInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9A7D8C1CDB2EC30087C0D7 /* TestSubscriptingWithInt.swift */; };
 		BAA6500D1CB599E8006F561A /* Medea_watchOS.h in Headers */ = {isa = PBXBuildFile; fileRef = BAA6500C1CB599E8006F561A /* Medea_watchOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BAA650121CB5AE69006F561A /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B9B6F1CB46249003EF1CA /* JSON.swift */; };
 		BAA650131CB5AE6A006F561A /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B9B6F1CB46249003EF1CA /* JSON.swift */; };
@@ -181,6 +190,9 @@
 		BAD254BD1CD173AB0055FAE7 /* JSON+CustomReflectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD254BB1CD173AB0055FAE7 /* JSON+CustomReflectable.swift */; };
 		BAD254BE1CD173AB0055FAE7 /* JSON+CustomReflectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD254BB1CD173AB0055FAE7 /* JSON+CustomReflectable.swift */; };
 		BAD254BF1CD173AB0055FAE7 /* JSON+CustomReflectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD254BB1CD173AB0055FAE7 /* JSON+CustomReflectable.swift */; };
+		BAE938701CDB953500DEA2DA /* TestSubscriptingWithJSONPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE9386F1CDB953500DEA2DA /* TestSubscriptingWithJSONPath.swift */; };
+		BAE938711CDB953500DEA2DA /* TestSubscriptingWithJSONPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE9386F1CDB953500DEA2DA /* TestSubscriptingWithJSONPath.swift */; };
+		BAE938721CDB953500DEA2DA /* TestSubscriptingWithJSONPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE9386F1CDB953500DEA2DA /* TestSubscriptingWithJSONPath.swift */; };
 		BAF4000D1CB8FFF2006A72AD /* JSONDeserialization+Null.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF4000C1CB8FFF2006A72AD /* JSONDeserialization+Null.swift */; };
 		BAF4000E1CB8FFF2006A72AD /* JSONDeserialization+Null.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF4000C1CB8FFF2006A72AD /* JSONDeserialization+Null.swift */; };
 		BAF4000F1CB8FFF2006A72AD /* JSONDeserialization+Null.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF4000C1CB8FFF2006A72AD /* JSONDeserialization+Null.swift */; };
@@ -246,6 +258,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BA35A9FB1CDB8B7400370516 /* TestSubscriptingWithString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestSubscriptingWithString.swift; path = "Tests/Black-box/TestSubscriptingWithString.swift"; sourceTree = "<group>"; };
+		BA35A9FF1CDB8FF300370516 /* TestSubscriptingWithJSONPathElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestSubscriptingWithJSONPathElement.swift; path = "Tests/Black-box/TestSubscriptingWithJSONPathElement.swift"; sourceTree = "<group>"; };
 		BA568CE71CD4E556007CCE56 /* TestPerformanceSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestPerformanceSerialization.swift; path = Tests/Performance/TestPerformanceSerialization.swift; sourceTree = "<group>"; };
 		BA568CEC1CD50209007CCE56 /* itunes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = itunes.json; path = Tests/Performance/itunes.json; sourceTree = "<group>"; };
 		BA568CF61CD5E086007CCE56 /* twitter.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = twitter.json; path = Tests/Performance/twitter.json; sourceTree = "<group>"; };
@@ -309,10 +323,12 @@
 		BA9A7D801CDB0F020087C0D7 /* TestCoercionToInteger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestCoercionToInteger.swift; path = "Tests/Black-box/TestCoercionToInteger.swift"; sourceTree = "<group>"; };
 		BA9A7D841CDB10320087C0D7 /* TestCoercionToDouble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestCoercionToDouble.swift; path = "Tests/Black-box/TestCoercionToDouble.swift"; sourceTree = "<group>"; };
 		BA9A7D881CDB10A60087C0D7 /* TestCoercionToString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestCoercionToString.swift; path = "Tests/Black-box/TestCoercionToString.swift"; sourceTree = "<group>"; };
+		BA9A7D8C1CDB2EC30087C0D7 /* TestSubscriptingWithInt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestSubscriptingWithInt.swift; path = "Tests/Black-box/TestSubscriptingWithInt.swift"; sourceTree = "<group>"; };
 		BAA6500A1CB599E8006F561A /* Medea.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Medea.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAA6500C1CB599E8006F561A /* Medea_watchOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Medea_watchOS.h; path = Sources/Medea_watchOS.h; sourceTree = "<group>"; };
 		BAA6500E1CB599E8006F561A /* Info-watchOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-watchOS.plist"; path = "Support/Info-watchOS.plist"; sourceTree = "<group>"; };
 		BAD254BB1CD173AB0055FAE7 /* JSON+CustomReflectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSON+CustomReflectable.swift"; path = "Sources/JSON+CustomReflectable.swift"; sourceTree = "<group>"; };
+		BAE9386F1CDB953500DEA2DA /* TestSubscriptingWithJSONPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestSubscriptingWithJSONPath.swift; path = "Tests/Black-box/TestSubscriptingWithJSONPath.swift"; sourceTree = "<group>"; };
 		BAF4000C1CB8FFF2006A72AD /* JSONDeserialization+Null.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSONDeserialization+Null.swift"; path = "Sources/JSONDeserialization+Null.swift"; sourceTree = "<group>"; };
 		BAF400111CB9435E006A72AD /* JSONDeserialization+Bool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSONDeserialization+Bool.swift"; path = "Sources/JSONDeserialization+Bool.swift"; sourceTree = "<group>"; };
 		BAF400161CB95B1F006A72AD /* JSONDeserialization+Number.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSONDeserialization+Number.swift"; path = "Sources/JSONDeserialization+Number.swift"; sourceTree = "<group>"; };
@@ -540,6 +556,10 @@
 				BA9A7D801CDB0F020087C0D7 /* TestCoercionToInteger.swift */,
 				BA9A7D841CDB10320087C0D7 /* TestCoercionToDouble.swift */,
 				BA9A7D881CDB10A60087C0D7 /* TestCoercionToString.swift */,
+				BA9A7D8C1CDB2EC30087C0D7 /* TestSubscriptingWithInt.swift */,
+				BA35A9FB1CDB8B7400370516 /* TestSubscriptingWithString.swift */,
+				BA35A9FF1CDB8FF300370516 /* TestSubscriptingWithJSONPathElement.swift */,
+				BAE9386F1CDB953500DEA2DA /* TestSubscriptingWithJSONPath.swift */,
 				BA862F091CCEB7190016E610 /* TestDecodable.swift */,
 				BAF4002F1CB98A6E006A72AD /* TestDeserialization.swift */,
 				BA6306FD1CC0BCC5000D98EA /* TestSerialization.swift */,
@@ -931,16 +951,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				BAF400301CB98A6E006A72AD /* TestDeserialization.swift in Sources */,
+				BAE938701CDB953500DEA2DA /* TestSubscriptingWithJSONPath.swift in Sources */,
 				BA9A7D7D1CDA857D0087C0D7 /* TestCoercionToBoolean.swift in Sources */,
 				BA568CE81CD4E556007CCE56 /* TestPerformanceSerialization.swift in Sources */,
 				BA9A7D811CDB0F020087C0D7 /* TestCoercionToInteger.swift in Sources */,
 				BA6306FE1CC0BCC5000D98EA /* TestSerialization.swift in Sources */,
 				BA9A7D6F1CDA2EF40087C0D7 /* TestInspection.swift in Sources */,
+				BA35A9FC1CDB8B7400370516 /* TestSubscriptingWithString.swift in Sources */,
 				BA9A7D891CDB10A60087C0D7 /* TestCoercionToString.swift in Sources */,
+				BA35AA001CDB8FF300370516 /* TestSubscriptingWithJSONPathElement.swift in Sources */,
 				BA862F0A1CCEB7190016E610 /* TestDecodable.swift in Sources */,
 				BA568D041CD632D0007CCE56 /* TestUnwrapping.swift in Sources */,
 				BA9A7D851CDB10320087C0D7 /* TestCoercionToDouble.swift in Sources */,
 				BA6C1CB51CD31D2500536672 /* TestLiteralConvertible.swift in Sources */,
+				BA9A7D8D1CDB2EC30087C0D7 /* TestSubscriptingWithInt.swift in Sources */,
 				BA6C1CBB1CD33A7300536672 /* TestInitializers.swift in Sources */,
 				BAF400681CBC6AE9006A72AD /* TestRingBuffer.swift in Sources */,
 			);
@@ -998,16 +1022,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				BAF400311CB98A6E006A72AD /* TestDeserialization.swift in Sources */,
+				BAE938711CDB953500DEA2DA /* TestSubscriptingWithJSONPath.swift in Sources */,
 				BA9A7D7E1CDA857D0087C0D7 /* TestCoercionToBoolean.swift in Sources */,
 				BA568CE91CD4E556007CCE56 /* TestPerformanceSerialization.swift in Sources */,
 				BA9A7D821CDB0F020087C0D7 /* TestCoercionToInteger.swift in Sources */,
 				BA6306FF1CC0BCC5000D98EA /* TestSerialization.swift in Sources */,
 				BA9A7D701CDA2EF40087C0D7 /* TestInspection.swift in Sources */,
+				BA35A9FD1CDB8B7400370516 /* TestSubscriptingWithString.swift in Sources */,
 				BA9A7D8A1CDB10A60087C0D7 /* TestCoercionToString.swift in Sources */,
+				BA35AA011CDB8FF300370516 /* TestSubscriptingWithJSONPathElement.swift in Sources */,
 				BA862F0B1CCEB7190016E610 /* TestDecodable.swift in Sources */,
 				BA568D051CD632D0007CCE56 /* TestUnwrapping.swift in Sources */,
 				BA9A7D861CDB10320087C0D7 /* TestCoercionToDouble.swift in Sources */,
 				BA6C1CB61CD31D2500536672 /* TestLiteralConvertible.swift in Sources */,
+				BA9A7D8E1CDB2EC30087C0D7 /* TestSubscriptingWithInt.swift in Sources */,
 				BA6C1CBC1CD33A7300536672 /* TestInitializers.swift in Sources */,
 				BAF400691CBC6AE9006A72AD /* TestRingBuffer.swift in Sources */,
 			);
@@ -1065,16 +1093,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				BAF400321CB98A6E006A72AD /* TestDeserialization.swift in Sources */,
+				BAE938721CDB953500DEA2DA /* TestSubscriptingWithJSONPath.swift in Sources */,
 				BA9A7D7F1CDA857D0087C0D7 /* TestCoercionToBoolean.swift in Sources */,
 				BA568CEA1CD4E556007CCE56 /* TestPerformanceSerialization.swift in Sources */,
 				BA9A7D831CDB0F020087C0D7 /* TestCoercionToInteger.swift in Sources */,
 				BA6307001CC0BCC5000D98EA /* TestSerialization.swift in Sources */,
 				BA9A7D711CDA2EF40087C0D7 /* TestInspection.swift in Sources */,
+				BA35A9FE1CDB8B7400370516 /* TestSubscriptingWithString.swift in Sources */,
 				BA9A7D8B1CDB10A60087C0D7 /* TestCoercionToString.swift in Sources */,
+				BA35AA021CDB8FF300370516 /* TestSubscriptingWithJSONPathElement.swift in Sources */,
 				BA862F0C1CCEB7190016E610 /* TestDecodable.swift in Sources */,
 				BA568D061CD632D0007CCE56 /* TestUnwrapping.swift in Sources */,
 				BA9A7D871CDB10320087C0D7 /* TestCoercionToDouble.swift in Sources */,
 				BA6C1CB71CD31D2500536672 /* TestLiteralConvertible.swift in Sources */,
+				BA9A7D8F1CDB2EC30087C0D7 /* TestSubscriptingWithInt.swift in Sources */,
 				BA6C1CBD1CD33A7300536672 /* TestInitializers.swift in Sources */,
 				BAF4006A1CBC6AE9006A72AD /* TestRingBuffer.swift in Sources */,
 			);
