@@ -186,6 +186,14 @@
 		BAA650731CB5AEBD006F561A /* JSONDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B9BA51CB467BC003EF1CA /* JSONDecodable.swift */; };
 		BAA650741CB5AEBE006F561A /* JSONDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B9BA51CB467BC003EF1CA /* JSONDecodable.swift */; };
 		BAA650751CB5AEBE006F561A /* JSONDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B9BA51CB467BC003EF1CA /* JSONDecodable.swift */; };
+		BAB7BF271CDCAFFA007F6D53 /* JSON+Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB7BF261CDCAFFA007F6D53 /* JSON+Encodable.swift */; };
+		BAB7BF281CDCAFFA007F6D53 /* JSON+Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB7BF261CDCAFFA007F6D53 /* JSON+Encodable.swift */; };
+		BAB7BF291CDCAFFA007F6D53 /* JSON+Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB7BF261CDCAFFA007F6D53 /* JSON+Encodable.swift */; };
+		BAB7BF2A1CDCAFFA007F6D53 /* JSON+Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB7BF261CDCAFFA007F6D53 /* JSON+Encodable.swift */; };
+		BAB7BF2C1CDCB3F9007F6D53 /* JSON+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB7BF2B1CDCB3F9007F6D53 /* JSON+Decodable.swift */; };
+		BAB7BF2D1CDCB3F9007F6D53 /* JSON+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB7BF2B1CDCB3F9007F6D53 /* JSON+Decodable.swift */; };
+		BAB7BF2E1CDCB3F9007F6D53 /* JSON+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB7BF2B1CDCB3F9007F6D53 /* JSON+Decodable.swift */; };
+		BAB7BF2F1CDCB3F9007F6D53 /* JSON+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB7BF2B1CDCB3F9007F6D53 /* JSON+Decodable.swift */; };
 		BAD254BC1CD173AB0055FAE7 /* JSON+CustomReflectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD254BB1CD173AB0055FAE7 /* JSON+CustomReflectable.swift */; };
 		BAD254BD1CD173AB0055FAE7 /* JSON+CustomReflectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD254BB1CD173AB0055FAE7 /* JSON+CustomReflectable.swift */; };
 		BAD254BE1CD173AB0055FAE7 /* JSON+CustomReflectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD254BB1CD173AB0055FAE7 /* JSON+CustomReflectable.swift */; };
@@ -327,6 +335,8 @@
 		BAA6500A1CB599E8006F561A /* Medea.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Medea.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAA6500C1CB599E8006F561A /* Medea_watchOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Medea_watchOS.h; path = Sources/Medea_watchOS.h; sourceTree = "<group>"; };
 		BAA6500E1CB599E8006F561A /* Info-watchOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-watchOS.plist"; path = "Support/Info-watchOS.plist"; sourceTree = "<group>"; };
+		BAB7BF261CDCAFFA007F6D53 /* JSON+Encodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSON+Encodable.swift"; path = "Sources/JSON+Encodable.swift"; sourceTree = "<group>"; };
+		BAB7BF2B1CDCB3F9007F6D53 /* JSON+Decodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSON+Decodable.swift"; path = "Sources/JSON+Decodable.swift"; sourceTree = "<group>"; };
 		BAD254BB1CD173AB0055FAE7 /* JSON+CustomReflectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSON+CustomReflectable.swift"; path = "Sources/JSON+CustomReflectable.swift"; sourceTree = "<group>"; };
 		BAE9386F1CDB953500DEA2DA /* TestSubscriptingWithJSONPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestSubscriptingWithJSONPath.swift; path = "Tests/Black-box/TestSubscriptingWithJSONPath.swift"; sourceTree = "<group>"; };
 		BAF4000C1CB8FFF2006A72AD /* JSONDeserialization+Null.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSONDeserialization+Null.swift"; path = "Sources/JSONDeserialization+Null.swift"; sourceTree = "<group>"; };
@@ -472,6 +482,8 @@
 				BA9A7D771CDA35C50087C0D7 /* JSON+Coercion.swift */,
 				BA5B9B701CB46249003EF1CA /* JSON+Subscripts.swift */,
 				BA862F171CD120EC0016E610 /* JSON+Sequence.swift */,
+				BAB7BF261CDCAFFA007F6D53 /* JSON+Encodable.swift */,
+				BAB7BF2B1CDCB3F9007F6D53 /* JSON+Decodable.swift */,
 				BAD254BB1CD173AB0055FAE7 /* JSON+CustomReflectable.swift */,
 				BA6C1CAC1CD2AD9200536672 /* JSON+CustomStringConvertible.swift */,
 			);
@@ -928,6 +940,7 @@
 				BAF400621CBBF6FC006A72AD /* RingBuffer.swift in Sources */,
 				BAA6506E1CB5AEB4006F561A /* JSONEncodable.swift in Sources */,
 				BA6307311CC6CF71000D98EA /* JSONSerialization+Array.swift in Sources */,
+				BAB7BF2C1CDCB3F9007F6D53 /* JSON+Decodable.swift in Sources */,
 				BAA650121CB5AE69006F561A /* JSON.swift in Sources */,
 				BAA6502E1CB5AE9E006F561A /* JSONDeserialization.swift in Sources */,
 				BAA6504E1CB5AEAB006F561A /* JSONSerialization.swift in Sources */,
@@ -942,6 +955,7 @@
 				BAF400171CB95B1F006A72AD /* JSONDeserialization+Number.swift in Sources */,
 				BA6307451CC919A5000D98EA /* JSONDeserialization+Error.swift in Sources */,
 				BA6307071CC17B0A000D98EA /* JSONSerialization+Bool.swift in Sources */,
+				BAB7BF271CDCAFFA007F6D53 /* JSON+Encodable.swift in Sources */,
 				BAF400121CB9435E006A72AD /* JSONDeserialization+Bool.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -999,6 +1013,7 @@
 				BAF400631CBBF6FC006A72AD /* RingBuffer.swift in Sources */,
 				BAA6506F1CB5AEB5006F561A /* JSONEncodable.swift in Sources */,
 				BA6307321CC6CF71000D98EA /* JSONSerialization+Array.swift in Sources */,
+				BAB7BF2D1CDCB3F9007F6D53 /* JSON+Decodable.swift in Sources */,
 				BAA650131CB5AE6A006F561A /* JSON.swift in Sources */,
 				BAA650361CB5AE9F006F561A /* JSONDeserialization.swift in Sources */,
 				BAA650561CB5AEAB006F561A /* JSONSerialization.swift in Sources */,
@@ -1013,6 +1028,7 @@
 				BAF400181CB95B1F006A72AD /* JSONDeserialization+Number.swift in Sources */,
 				BA6307461CC919A5000D98EA /* JSONDeserialization+Error.swift in Sources */,
 				BA6307081CC17B0A000D98EA /* JSONSerialization+Bool.swift in Sources */,
+				BAB7BF281CDCAFFA007F6D53 /* JSON+Encodable.swift in Sources */,
 				BAF400131CB9435E006A72AD /* JSONDeserialization+Bool.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1070,6 +1086,7 @@
 				BAF400641CBBF6FC006A72AD /* RingBuffer.swift in Sources */,
 				BAA650701CB5AEB6006F561A /* JSONEncodable.swift in Sources */,
 				BA6307331CC6CF71000D98EA /* JSONSerialization+Array.swift in Sources */,
+				BAB7BF2E1CDCB3F9007F6D53 /* JSON+Decodable.swift in Sources */,
 				BAA650141CB5AE6B006F561A /* JSON.swift in Sources */,
 				BAA6503E1CB5AEA0006F561A /* JSONDeserialization.swift in Sources */,
 				BAA6505E1CB5AEAC006F561A /* JSONSerialization.swift in Sources */,
@@ -1084,6 +1101,7 @@
 				BAF400191CB95B1F006A72AD /* JSONDeserialization+Number.swift in Sources */,
 				BA6307471CC919A5000D98EA /* JSONDeserialization+Error.swift in Sources */,
 				BA6307091CC17B0A000D98EA /* JSONSerialization+Bool.swift in Sources */,
+				BAB7BF291CDCAFFA007F6D53 /* JSON+Encodable.swift in Sources */,
 				BAF400141CB9435E006A72AD /* JSONDeserialization+Bool.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1141,6 +1159,7 @@
 				BAF400651CBBF6FC006A72AD /* RingBuffer.swift in Sources */,
 				BAA650711CB5AEB7006F561A /* JSONEncodable.swift in Sources */,
 				BA6307341CC6CF71000D98EA /* JSONSerialization+Array.swift in Sources */,
+				BAB7BF2F1CDCB3F9007F6D53 /* JSON+Decodable.swift in Sources */,
 				BAA650151CB5AE6D006F561A /* JSON.swift in Sources */,
 				BAA650461CB5AEA0006F561A /* JSONDeserialization.swift in Sources */,
 				BAA650661CB5AEAD006F561A /* JSONSerialization.swift in Sources */,
@@ -1155,6 +1174,7 @@
 				BAF4001A1CB95B1F006A72AD /* JSONDeserialization+Number.swift in Sources */,
 				BA6307481CC919A5000D98EA /* JSONDeserialization+Error.swift in Sources */,
 				BA63070A1CC17B0A000D98EA /* JSONSerialization+Bool.swift in Sources */,
+				BAB7BF2A1CDCAFFA007F6D53 /* JSON+Encodable.swift in Sources */,
 				BAF400151CB9435E006A72AD /* JSONDeserialization+Bool.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

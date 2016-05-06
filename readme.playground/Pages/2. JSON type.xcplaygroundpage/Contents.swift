@@ -64,7 +64,3 @@
  Every `JSON` value (well, except `.Null`) is either a wrapper for some concrete basic type like `Bool`, `Int`, `Double` or `String`, or a container type (array or a dictionary).  There are accessor-properties for every such wrapped type:
  
  */
-json = "df"
-json.array?.append(43)
-
-json

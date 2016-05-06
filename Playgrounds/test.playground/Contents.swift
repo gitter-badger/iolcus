@@ -21,3 +21,7 @@
 //
 //print(json2)
 //
+
+import Medea
+
+let json = try! JSON(jsonSerialization: "true")

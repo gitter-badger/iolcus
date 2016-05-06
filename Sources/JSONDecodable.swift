@@ -100,7 +100,6 @@ extension JSON {
         return try T(json: self, at: key)
     }
     
-    
     /// Decodes an element of `self` into a new instance.
     ///
     /// - Throws: `JSON.Error.Decodable`

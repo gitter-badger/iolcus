@@ -41,7 +41,7 @@
 
         extension Book: JSONEncodable {
             
-            func encodeJSON() -> JSON {
+            func jsonEncoded() -> JSON {
                 let jsonBook: JSON = [
                     "title"       : title,
                     "pages"       : pages,
@@ -55,10 +55,10 @@
         }
 /*:
  
- Now that this is done, we can serialize `book` into a JSON string by simply calling `serializeJSON()` method:
+ Now that this is done, we can serialize `book` into a JSON string by simply calling `jsonSerialized()` method:
  
  */
-        let serializedBook = book.serializeJSON()
+        let serializedBook = book.jsonSerialized()
 
         // {"title": "Dune", "isPaperback": true, "authors": ["Frank Herbert"], "notes": {"series": "Dune", "seriesNo": "1"}, "pages": 896}
 /*:
@@ -86,4 +86,4 @@
  */
         let anotherBook = try! Book(jsonSerialization: serializedBook)
 
-        // Book(title: "Dune", pages: 896, isPaperback: true, authors: ["Frank Herbert"], notes: ["series": "Dune", "seriesNo": "1"])
+        // Book(title: "Dune", pages: 896, isPaperback: true, authors: ["Frank Herbert"], notes: ["series": "Dune", "seriesNo": "1"]

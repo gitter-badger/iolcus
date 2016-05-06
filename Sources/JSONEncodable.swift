@@ -31,26 +31,15 @@ import Foundation
 public protocol JSONEncodable {
     
     /// Encode `self` into a `JSON` value.
-    func encodeJSON() -> JSON
+    func jsonEncoded() -> JSON
     
 }
 
 extension JSONEncodable {
     
     /// Serialize `self` into a JSON string.
-    public func serializeJSON() -> Swift.String {
-        return JSONSerialization.makeString(json: self.encodeJSON())
-    }
-    
-}
-
-// MARK: - JSON: JSONEncodable
-
-extension JSON: JSONEncodable {
-    
-    /// Encodes `self` into a `JSON` value.
-    public func encodeJSON() -> JSON {
-        return self
+    public func jsonSerialized() -> Swift.String {
+        return JSONSerialization.makeString(json: self.jsonEncoded())
     }
     
 }
@@ -60,7 +49,7 @@ extension JSON: JSONEncodable {
 extension Bool: JSONEncodable {
     
     /// Encode `self` into a `JSON` value.
-    public func encodeJSON() -> JSON {
+    public func jsonEncoded() -> JSON {
         return JSON(boolean: self)
     }
     
@@ -71,7 +60,7 @@ extension Bool: JSONEncodable {
 extension Int: JSONEncodable {
     
     /// Encode `self` into a `JSON` value.
-    public func encodeJSON() -> JSON {
+    public func jsonEncoded() -> JSON {
         return JSON(integer: self)
     }
     
@@ -82,7 +71,7 @@ extension Int: JSONEncodable {
 extension Double: JSONEncodable {
     
     /// Encode `self` into a `JSON` value.
-    public func encodeJSON() -> JSON {
+    public func jsonEncoded() -> JSON {
         return JSON(double: self)
     }
     
@@ -93,7 +82,7 @@ extension Double: JSONEncodable {
 extension String: JSONEncodable {
     
     /// Encode `self` into a `JSON` value.
-    public func encodeJSON() -> JSON {
+    public func jsonEncoded() -> JSON {
         return JSON(string: self)
     }
     
@@ -104,18 +93,17 @@ extension String: JSONEncodable {
 extension Array where Element: JSONEncodable {
     
     /// Encode `self` into a `JSON` value.
-    public func encodeJSON() -> JSON {
+    public func jsonEncoded() -> JSON {
         let json = self.map() {
-            $0.encodeJSON()
+            $0.jsonEncoded()
         }
         
         return .Array(json)
     }
     
-
     /// Serialize `self` into a JSON string.
-    public func serializeJSON() -> Swift.String {
-        return JSONSerialization.makeString(json: self.encodeJSON())
+    public func jsonSerialized() -> Swift.String {
+        return JSONSerialization.makeString(json: self.jsonEncoded())
     }
     
 }
@@ -125,21 +113,21 @@ extension Array where Element: JSONEncodable {
 extension Dictionary where Key: StringLiteralConvertible, Value: JSONEncodable {
     
     /// Encode `self` into a `JSON` value.
-    public func encodeJSON() -> JSON {
+    public func jsonEncoded() -> JSON {
         assert(Key.self == Swift.String || Key.self == Foundation.NSString, "The key is \(Dictionary.self) while it must be \(Swift.String) or \(Foundation.NSString)")
         
         var properties: [Swift.String: JSON] = [:]
         
         self.forEach() {
-            properties[$0 as! Swift.String] = $1.encodeJSON()
+            properties[$0 as! Swift.String] = $1.jsonEncoded()
         }
         
         return .Object(properties)
     }
     
     /// Serialize `self` into a JSON string.
-    public func serializeJSON() -> Swift.String {
-        return JSONSerialization.makeString(json: self.encodeJSON())
+    public func jsonSerialized() -> Swift.String {
+        return JSONSerialization.makeString(json: self.jsonEncoded())
     }
 
 }

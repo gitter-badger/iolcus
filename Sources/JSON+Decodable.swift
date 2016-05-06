@@ -1,5 +1,5 @@
 //
-//  JSON+CustomStringConvertible.swift
+//  JSON+Decodable.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -23,10 +23,10 @@
 //  SOFTWARE.
 //
 
-extension JSON: CustomStringConvertible {
+extension JSON: JSONDecodable {
     
-    public var description: Swift.String {
-        return self.jsonSerialized()
+    public init(json: JSON) throws {
+        self = json
     }
     
 }

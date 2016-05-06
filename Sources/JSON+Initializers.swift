@@ -47,18 +47,18 @@ extension JSON {
     
     /// Creates a `JSON` value from an instance of `JSONEncodable`.
     public init(encodable: JSONEncodable) {
-        self = encodable.encodeJSON()
+        self = encodable.jsonEncoded()
     }
     
     /// Creates a `JSON` value from an array of `JSONEncodable`'s.
     public init<Encodable: JSONEncodable>(encodable: [Encodable]) {
-        self = encodable.encodeJSON()
+        self = encodable.jsonEncoded()
     }
     
     /// Creates a `JSON` value from an array of `JSONEncodable`'s.
     public init(encodable: [JSONEncodable]) {
         let json = encodable.map() {
-            $0.encodeJSON()
+            $0.jsonEncoded()
         }
         
         self = .Array(json)
@@ -66,7 +66,7 @@ extension JSON {
     
     /// Creates a `JSON` value from a dictionary of `[String: JSONEncodable]`.
     public init<Encodable: JSONEncodable>(encodable: [Swift.String: Encodable]) {
-        self = encodable.encodeJSON()
+        self = encodable.jsonEncoded()
     }
     
     /// Creates a `JSON` value from a dictionary of `[String: JSONEncodable]`.
@@ -74,7 +74,7 @@ extension JSON {
         var properties: [Swift.String: JSON] = [:]
         
         encodable.forEach() {
-            properties[$0] = $1.encodeJSON()
+            properties[$0] = $1.jsonEncoded()
         }
         
         self = .Object(properties)
@@ -146,7 +146,7 @@ extension JSON: ArrayLiteralConvertible {
     
     public init(arrayLiteral array: JSONEncodable...) {
         let elements = array.map() {
-            $0.encodeJSON()
+            $0.jsonEncoded()
         }
         
         self = .Array(elements)
@@ -162,7 +162,7 @@ extension JSON: DictionaryLiteralConvertible {
         var properties: [Swift.String: JSON] = [:]
         
         dictionary.forEach() { (key: Swift.String, value: JSONEncodable) in
-            properties[key] = value.encodeJSON()
+            properties[key] = value.jsonEncoded()
         }
         
         self = .Object(properties)
