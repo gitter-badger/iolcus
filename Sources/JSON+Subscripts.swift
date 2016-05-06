@@ -50,7 +50,6 @@ extension JSON {
         self = .Array(newElements)
     }
     
-    
     /// Subscript-accessor to the elements of a `JSON` array.
     ///
     /// - note: If `self` is not `.Array`, then an attempt to assign value via this accessor will 
@@ -85,7 +84,6 @@ extension JSON {
         
         self = .Object(newProperties)
     }
-    
     
     /// Subscript-accessor to the elements of a `JSON` object (a.k.a. dictionary).
     ///
@@ -126,7 +124,6 @@ extension JSON {
 
         }
     }
-
     
     /// Combined subscript-accessor to the elements of `JSON` arrays and objects.
     ///

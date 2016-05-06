@@ -70,10 +70,10 @@ extension JSONPathElement: CustomStringConvertible {
         switch self {
             
         case .Index(let index):
-            return Swift.String(index)
+            return "[\(index)]"
         
         case .Key(let key):
-            return key
+            return "[\(key)]"
             
         }
     }

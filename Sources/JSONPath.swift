@@ -33,11 +33,6 @@ public struct JSONPath {
         return path.count
     }
 
-    /// First element in the path.
-    public var first: JSONPathElement? {
-        return path.first
-    }
-    
     /// Creates a path from an array of path elements.
     public init(elements: [JSONPathElement]) {
         path = elements
@@ -90,7 +85,7 @@ extension JSONPath: SequenceType {
 extension JSONPath: CustomStringConvertible {
     
     public var description: String {
-        return path.map({ "[\($0)]" }).joinWithSeparator("")
+        return path.map({ $0.description }).joinWithSeparator("")
     }
 
 }
