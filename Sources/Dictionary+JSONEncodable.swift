@@ -1,5 +1,5 @@
 //
-//  JSONEncodable.swift
+//  Dictionary+JSONEncodable.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -25,19 +25,20 @@
 
 import Foundation
 
-// MARK: JSONEncodable
-
-/// Instance of the conforming type can be encoded into a `JSON` value.
-public protocol JSONEncodable {
+extension Dictionary where Key: StringLiteralConvertible, Value: JSONEncodable {
     
     /// Encode `self` into a `JSON` value.
-    func jsonEncoded() -> JSON
-    
-}
-
-// MARK: - Default implementations
-
-extension JSONEncodable {
+    public func jsonEncoded() -> JSON {
+        assert(Key.self == Swift.String || Key.self == Foundation.NSString, "The key is \(Dictionary.self) while it must be \(Swift.String) or \(Foundation.NSString)")
+        
+        var properties: [Swift.String: JSON] = [:]
+        
+        self.forEach() {
+            properties[$0 as! Swift.String] = $1.jsonEncoded()
+        }
+        
+        return .Object(properties)
+    }
     
     /// Serialize `self` into a JSON string.
     public func jsonSerialized() -> Swift.String {

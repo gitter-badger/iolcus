@@ -1,5 +1,5 @@
 //
-//  JSONEncodable.swift
+//  String+JSONEncodable.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -23,25 +23,11 @@
 //  SOFTWARE.
 //
 
-import Foundation
-
-// MARK: JSONEncodable
-
-/// Instance of the conforming type can be encoded into a `JSON` value.
-public protocol JSONEncodable {
+extension String: JSONEncodable {
     
     /// Encode `self` into a `JSON` value.
-    func jsonEncoded() -> JSON
-    
-}
-
-// MARK: - Default implementations
-
-extension JSONEncodable {
-    
-    /// Serialize `self` into a JSON string.
-    public func jsonSerialized() -> Swift.String {
-        return JSONSerialization.makeString(json: self.jsonEncoded())
+    public func jsonEncoded() -> JSON {
+        return JSON(string: self)
     }
     
 }

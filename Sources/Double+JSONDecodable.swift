@@ -1,5 +1,5 @@
 //
-//  JSONEncodable.swift
+//  Double+JSONDecodable.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -23,25 +23,17 @@
 //  SOFTWARE.
 //
 
-import Foundation
-
-// MARK: JSONEncodable
-
-/// Instance of the conforming type can be encoded into a `JSON` value.
-public protocol JSONEncodable {
+extension Double: JSONDecodable {
     
-    /// Encode `self` into a `JSON` value.
-    func jsonEncoded() -> JSON
-    
-}
-
-// MARK: - Default implementations
-
-extension JSONEncodable {
-    
-    /// Serialize `self` into a JSON string.
-    public func jsonSerialized() -> Swift.String {
-        return JSONSerialization.makeString(json: self.jsonEncoded())
+    /// Initializes an instance by decoding given `JSON` value.
+    ///
+    /// - Throws: `JSON.Error.Decodable`
+    public init(json: JSON) throws {
+        guard let double = json.unwrappedDouble else {
+            throw JSON.Error.Decodable.FailedToDecodeInstanceFromJSON(json: json, type: Double.self)
+        }
+        
+        self = double
     }
     
 }

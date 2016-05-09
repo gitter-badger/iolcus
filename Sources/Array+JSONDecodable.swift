@@ -1,5 +1,5 @@
 //
-//  JSONDecodable.swift
+//  Array+JSONDecodable.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -23,60 +23,46 @@
 //  SOFTWARE.
 //
 
-import Foundation
-
-// MARK: JSONDecodable
-
-/// Instance of the conforming type can be initialized (decoded) from a `JSON` value.
-public protocol JSONDecodable {
+extension Array where Element: JSONDecodable {
     
-    /// Initializes (decodes) a new instance of `Self` from given `JSON` value.
+    /// Initializes an array by decoding given `JSON` value.
+    ///
+    /// - Precondition: `json == .Array(_)`.
     ///
     /// - Throws: `JSON.Error.Decodable`
-    init(json: JSON) throws
+    public init(json: JSON) throws {
+        switch json {
+            
+        case .Array(let elements):
+            self = try elements.map() {
+                try Element(json: $0)
+            }
+            
+        default:
+            throw JSON.Error.Decodable.FailedToDecodeArrayFromJSON(json: json, type: Array.self)
+            
+        }
+    }
     
-}
-
-// MARK: - Default implementations
-
-extension JSONDecodable {
-    
-    /// Initializes (decodes) a new instance of `Self` from `JSON` value at specified index of a
-    /// given `JSON` array.
+    /// Initializes an array by decoding `JSON` value at specified index of `json` parameter.
     ///
-    ///     // Get first two strings from the JSON array.
-    ///     let first = String(json: inputJSON, at: 0)
-    ///     let second = String(json: inputJSON, at: 1)
-    ///
-    /// - Precondition: `json == .Array(_)`
-    ///
-    /// - Parameters:
-    ///   - json: Input `JSON` value to decode a new instance from.
-    ///   - at:   Index of the input `JSON` value in the JSON array.
+    /// - Precondition: `json == .Array(_) && json[index] == .Array(_)`
     ///
     /// - Throws: `JSON.Error.Decodable`
     public init(json: JSON, at index: Swift.Int) throws {
         try self.init(json: json[index])
     }
     
-    /// Initializes (decodes) a new instance of `Self` from `JSON` value at specified key of a given
-    /// `JSON` object.
+    /// Initializes an array by decoding `JSON` value at specified key of `json` parameter.
     ///
-    ///     // Get a string from the value of "name" property
-    ///     let name = String(json: inputJSON, at: "name")
-    ///
-    /// - Precondition: `json == .Object(_)`
-    ///
-    /// - Parameters:
-    ///   - json: Input `JSON` value to decode a new instance from.
-    ///   - at:   Value of the dictionary key to get the input `JSON` value from.
+    /// - Precondition: `json == .Object(_) && json[key] == .Array(_)`
     ///
     /// - Throws: `JSON.Error.Decodable`
     public init(json: JSON, at key: Swift.String) throws {
         try self.init(json: json[key])
     }
     
-    /// Initializes (deserializes) a new instance of `Self` from a given JSON string.
+    /// Initializes (deserializes) a new `Array` from a given JSON string.
     ///
     /// - Throws: `JSON.Error.Decodable`
     public init(jsonSerialization: Swift.String) throws {
