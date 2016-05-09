@@ -29,7 +29,7 @@ import XCTest
 class TestSubscriptingWithJSONPathElement: XCTestCase {
 
     func testIndexElementGetterWithNonArray() {
-        let element = JSONPathElement.Index(0)
+        let element = JSONIndex.Position(0)
         
         do {
             let json: JSON = nil
@@ -65,17 +65,17 @@ class TestSubscriptingWithJSONPathElement: XCTestCase {
     func testIndexElementGetterWithArray() {
         let json: JSON = [false, 1, 2.0, "III"]
         
-        XCTAssertEqual(json[JSONPathElement.Index(0)], JSON.Boolean(false))
-        XCTAssertEqual(json[JSONPathElement.Index(1)], JSON.Integer(1))
-        XCTAssertEqual(json[JSONPathElement.Index(2)], JSON.Double(2.0))
-        XCTAssertEqual(json[JSONPathElement.Index(3)], JSON.String("III"))
+        XCTAssertEqual(json[JSONIndex.Position(0)], JSON.Boolean(false))
+        XCTAssertEqual(json[JSONIndex.Position(1)], JSON.Integer(1))
+        XCTAssertEqual(json[JSONIndex.Position(2)], JSON.Double(2.0))
+        XCTAssertEqual(json[JSONIndex.Position(3)], JSON.String("III"))
         
-        XCTAssertEqual(json[JSONPathElement.Index(4)], JSON.Null)
-        XCTAssertEqual(json[JSONPathElement.Index(-1)], JSON.Null)
+        XCTAssertEqual(json[JSONIndex.Position(4)], JSON.Null)
+        XCTAssertEqual(json[JSONIndex.Position(-1)], JSON.Null)
     }
     
     func testKeyElementGetterWithNonObject() {
-        let element = JSONPathElement.Key("")
+        let element = JSONIndex.Name("")
 
         do {
             let json: JSON = nil
@@ -116,12 +116,12 @@ class TestSubscriptingWithJSONPathElement: XCTestCase {
             "string"  : "III"
         ]
         
-        XCTAssertEqual(json[JSONPathElement.Key("boolean")], JSON.Boolean(false))
-        XCTAssertEqual(json[JSONPathElement.Key("integer")], JSON.Integer(1))
-        XCTAssertEqual(json[JSONPathElement.Key("double")], JSON.Double(2.0))
-        XCTAssertEqual(json[JSONPathElement.Key("string")], JSON.String("III"))
+        XCTAssertEqual(json[JSONIndex.Name("boolean")], JSON.Boolean(false))
+        XCTAssertEqual(json[JSONIndex.Name("integer")], JSON.Integer(1))
+        XCTAssertEqual(json[JSONIndex.Name("double")], JSON.Double(2.0))
+        XCTAssertEqual(json[JSONIndex.Name("string")], JSON.String("III"))
         
-        XCTAssertEqual(json[JSONPathElement.Key("somethingElse")], JSON.Null)
+        XCTAssertEqual(json[JSONIndex.Name("somethingElse")], JSON.Null)
     }
     
     func disabled_testIndexElementSetterWithNonArray() {
@@ -131,10 +131,10 @@ class TestSubscriptingWithJSONPathElement: XCTestCase {
     func testIndexElementSetterWithArray() {
         var json: JSON = [false, 1, 2.0, "III"]
         
-        json[JSONPathElement.Index(0)] = "-IV"
-        json[JSONPathElement.Index(1)] = -2.0
-        json[JSONPathElement.Index(2)] = -1
-        json[JSONPathElement.Index(3)] = true
+        json[JSONIndex.Position(0)] = "-IV"
+        json[JSONIndex.Position(1)] = -2.0
+        json[JSONIndex.Position(2)] = -1
+        json[JSONIndex.Position(3)] = true
         
         XCTAssertEqual(json[0], JSON.String("-IV"))
         XCTAssertEqual(json[1], JSON.Double(-2.0))
@@ -154,10 +154,10 @@ class TestSubscriptingWithJSONPathElement: XCTestCase {
             "string"  : "III"
         ]
         
-        json[JSONPathElement.Key("boolean")] = true
-        json[JSONPathElement.Key("integer")] = -1
-        json[JSONPathElement.Key("double")] = -2.0
-        json[JSONPathElement.Key("string")] = "-III"
+        json[JSONIndex.Name("boolean")] = true
+        json[JSONIndex.Name("integer")] = -1
+        json[JSONIndex.Name("double")] = -2.0
+        json[JSONIndex.Name("string")] = "-III"
         
         XCTAssertEqual(json["boolean"], JSON.Boolean(true))
         XCTAssertEqual(json["integer"], JSON.Integer(-1))

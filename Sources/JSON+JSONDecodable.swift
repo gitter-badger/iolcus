@@ -1,5 +1,5 @@
 //
-//  JSON+Encodable.swift
+//  JSON+JSONDecodable.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -23,11 +23,10 @@
 //  SOFTWARE.
 //
 
-extension JSON: JSONEncodable {
+extension JSON: JSONDecodable {
     
-    /// Encodes `self` into a `JSON` value.
-    public func jsonEncoded() -> JSON {
-        return self
+    public init(json: JSON) throws {
+        self = json
     }
     
 }

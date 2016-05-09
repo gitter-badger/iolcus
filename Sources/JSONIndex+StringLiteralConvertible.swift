@@ -1,5 +1,5 @@
 //
-//  JSONPath.swift
+//  JSONIndex+StringLiteralConvertible.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -23,34 +23,18 @@
 //  SOFTWARE.
 //
 
-/// A path to the sub-value within a `JSON` value.
-public struct JSONPath {
+extension JSONIndex: StringLiteralConvertible {
     
-    // MARK: - Public API
-    
-    /// Count of elements in a path.
-    public var count: Int {
-        return path.count
-    }
-
-    /// Creates a path from an array of path elements.
-    public init(path: [JSONIndex]) {
-        self.path = path
+    public init(stringLiteral string: Swift.String.StringLiteralType) {
+        self = Name(string)
     }
     
-    /// Creates a path from an array-slice of path elements.
-    init(elements: ArraySlice<JSONIndex>) {
-        self.init(path: Array(elements))
+    public init(unicodeScalarLiteral string: Swift.String.UnicodeScalarLiteralType) {
+        self = Name(string)
     }
     
-    /// An element at specific position of the path.
-    public subscript(index: Int) -> JSONIndex {
-        get { return path[index] }
-        set { path[index] = newValue }
+    public init(extendedGraphemeClusterLiteral string: Swift.String.ExtendedGraphemeClusterLiteralType) {
+        self = Name(string)
     }
- 
-    // MARK: - Internal
     
-    var path: [JSONIndex]
-
 }

@@ -28,62 +28,44 @@ import XCTest
 
 class TestDeserialization: XCTestCase {
     
-    let whitespace: [String] = [ "", " ", "\t", "\n", "\r" ]
-    
-    let validRepresentations: [JSON: String] = [
-        .Null                           : "null",
-        .Boolean(true)                  : "true",
-        .Boolean(false)                 : "false",
-        .Integer(0)                     : "0",
-        .Integer(Int.min)               : "\(Int.min)",
-        .Integer(Int.max)               : "\(Int.max)",
-        .Double(0.0)                    : "0.0",
-        .Double(-12345.6789)            : "-12345.6789",
-        .Double(12345.6789)             : "12345.6789",
-        .Array([false, 1, 2.0, "3"])    : "[false, 1, 2.0, \"3\"]",
-        .Object([
-            "name": "John Do",
-            "age": 42,
-            "weight": 66.6,
-            "married": true,
-            "children": ["Sid", "Mary"]
-        ])                              :
-        "{\"name\":\"John Do\", \"age\": 42, \"weight\":66.6, \"married\": true, \"children\": [\"Sid\", \"Mary\"]}"
-    ]
-    
-    func verifyThat(representation representation: String, deserializesInto expectation: JSON) {
+    func testDeserializingNull() {
         do {
-            let json = try JSONDeserialization.makeJSON(string: representation)
-            XCTAssertEqual(json, expectation, "String \"\(representation)\" should deserialize into \(expectation)")
+            let json = try JSON(jsonSerialization: "\t  null\n\r")
+            XCTAssertEqual(json, JSON.Null)
         }
         catch {
-            XCTFail("Deserialization of \"\(representation)\" failed with error \(error)")
+            XCTFail("Test failed due to error \(error)")
         }
     }
-    
-    func produce(combinationsOf elements: [String], withDepth depth: Int) -> [String] {
-        assert(depth >= 0)
-        
-        if depth == 0 {
-            return elements
+
+    func testDeserializingTrue() {
+        do {
+            let json = try JSON(jsonSerialization: "\t  true \n\r")
+            XCTAssertEqual(json, JSON.Boolean(true))
         }
-        
-        return elements.flatMap() { (element: String) in
-            self.produce(combinationsOf: elements, withDepth: depth - 1).map() {
-                $0 + element
-            }
+        catch {
+            XCTFail("Test failed due to error \(error)")
         }
     }
-    
-    func testThatJSONDeserializesCorrectly() {
-        validRepresentations.forEach() { (let json: JSON, let representation: String) in
-            self.verifyThat(
-                representation: representation,
-                deserializesInto: json
-            )
-            
+
+    func testDeserializingFalse() {
+        do {
+            let json = try JSON(jsonSerialization: "\t  false \n\r")
+            XCTAssertEqual(json, JSON.Boolean(false))
         }
-        
+        catch {
+            XCTFail("Test failed due to error \(error)")
+        }
+    }
+
+    func testDeserializingInteger() {
+        do {
+            let json = try JSON(jsonSerialization: "\t  42 \n\r")
+            XCTAssertEqual(json, JSON.Integer(42))
+        }
+        catch {
+            XCTFail("Test failed due to error \(error)")
+        }
     }
 
 }

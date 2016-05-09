@@ -1,5 +1,5 @@
 //
-//  JSONPathElement.swift
+//  JSONIndex+CustomStringConvertible.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -23,56 +23,18 @@
 //  SOFTWARE.
 //
 
-/// An element of `JSONPath`.
-public enum JSONPathElement {
-    
-    /// Resolves an element of a `JSON` array by its index.
-    case Index(Int)
-    
-    /// Resolves a property of a `JSON` object by its key.
-    case Key(String)
- 
-}
-
-// MARK: - IntegerLiteralConvertible
-
-extension JSONPathElement: IntegerLiteralConvertible {
-    
-    public init(integerLiteral integer: Swift.Int.IntegerLiteralType) {
-        self = .Index(integer)
-    }
-    
-}
-
-// MARK: - StringLiteralConvertible
-
-extension JSONPathElement: StringLiteralConvertible {
-    
-    public init(stringLiteral string: Swift.String.StringLiteralType) {
-        self = Key(string)
-    }
-    
-    public init(unicodeScalarLiteral string: Swift.String.UnicodeScalarLiteralType) {
-        self = Key(string)
-    }
-    
-    public init(extendedGraphemeClusterLiteral string: Swift.String.ExtendedGraphemeClusterLiteralType) {
-        self = Key(string)
-    }
-    
-}
-
-// MARK: - CustomStringConvertible
-
-extension JSONPathElement: CustomStringConvertible {
+extension JSONIndex: CustomStringConvertible {
     
     public var description: String {
         switch self {
             
-        case .Index(let index):
-            return "[\(index)]"
-        
-        case .Key(let key):
+        case .This:
+            return "[]"
+            
+        case .Position(let position):
+            return "[\(position)]"
+            
+        case .Name(let key):
             return "[\(key)]"
             
         }

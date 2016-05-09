@@ -1,5 +1,5 @@
 //
-//  JSONPath.swift
+//  JSONGenerator.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -23,34 +23,35 @@
 //  SOFTWARE.
 //
 
-/// A path to the sub-value within a `JSON` value.
-public struct JSONPath {
+public struct JSONGenerator: GeneratorType {
     
-    // MARK: - Public API
+    public typealias Element = (index: JSONIndex, json: JSON)
     
-    /// Count of elements in a path.
-    public var count: Int {
-        return path.count
+    private let wrappedNext: Void -> Element?
+    
+    init(json: JSON) {
+        switch json {
+            
+        case .Null, .Boolean(_), .Integer(_), .Double(_), .String(_):
+            let wrappedSequence = (JSONIndex.This, json)
+            var wrappedGenerator = GeneratorOfOne(wrappedSequence)
+            wrappedNext = { wrappedGenerator.next() }
+            
+        case .Array(let elements):
+            let wrappedSequence = elements.enumerate().map({ (JSONIndex.Position($0), $1) })
+            var wrappedGenerator = wrappedSequence.generate()
+            wrappedNext = { wrappedGenerator.next() }
+            
+        case .Object(let properties):
+            let wrappedSequence = properties.map({ (JSONIndex.Name($0), $1) })
+            var wrappedGenerator = wrappedSequence.generate()
+            wrappedNext = { wrappedGenerator.next() }
+            
+        }
     }
-
-    /// Creates a path from an array of path elements.
-    public init(path: [JSONIndex]) {
-        self.path = path
+    
+    public mutating func next() -> Element? {
+        return wrappedNext()
     }
     
-    /// Creates a path from an array-slice of path elements.
-    init(elements: ArraySlice<JSONIndex>) {
-        self.init(path: Array(elements))
-    }
-    
-    /// An element at specific position of the path.
-    public subscript(index: Int) -> JSONIndex {
-        get { return path[index] }
-        set { path[index] = newValue }
-    }
- 
-    // MARK: - Internal
-    
-    var path: [JSONIndex]
-
 }

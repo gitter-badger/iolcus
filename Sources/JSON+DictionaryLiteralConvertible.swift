@@ -1,5 +1,5 @@
 //
-//  JSON+Decodable.swift
+//  JSON+DictionaryLiteralConvertible.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -23,10 +23,16 @@
 //  SOFTWARE.
 //
 
-extension JSON: JSONDecodable {
+extension JSON: DictionaryLiteralConvertible {
     
-    public init(json: JSON) throws {
-        self = json
+    public init(dictionaryLiteral dictionary: (Swift.String, JSONEncodable)...) {
+        var properties: [Swift.String: JSON] = [:]
+        
+        dictionary.forEach() { (key: Swift.String, value: JSONEncodable) in
+            properties[key] = value.jsonEncoded()
+        }
+        
+        self = .Object(properties)
     }
     
 }

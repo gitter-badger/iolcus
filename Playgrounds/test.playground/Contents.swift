@@ -15,13 +15,50 @@
 //
 //let path: JSONPath = ["array", 4, 0]
 //
-//print(json2)
-//
 //json2[path] = "Dolor"
 //
-//print(json2)
+//for foo in json2 {
+//    print(foo.index, foo.json)
+//}
 //
+//extension JSON: CollectionType {
+//
+//    typealias Index = JSONIndex
+//    
+//    public var startIndex: JSONIndex {
+//        switch self {
+//            
+//        case .Null, .Boolean(_), .Integer(_), .Double(_), .String(_):
+//            return JSONIndex.This
+//            
+//        case .Array(let elements):
+//            let position = elements.startIndex
+//            return JSONIndex.Position(position)
+//            
+//        case .Object(let properties):
+//            let index = properties.startIndex
+//            let (name, _) = properties[index]
+//            return JSONIndex.Name(name)
+//            
+//        }
+//    }
+//    
+//    public var endIndex: JSONIndex {
+//        return JSONIndex.This
+//    }
+//    
+//}
 
-import Medea
+var dict = [1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8]
 
-let json = try! JSON(jsonSerialization: "true")
+for index in dict.startIndex..<dict.endIndex {
+    print(dict.startIndex.distanceTo(index), dict[index])
+    
+    if dict.startIndex.distanceTo(index) == 1 {
+        let anotherIndex = index.advancedBy(5)
+        dict.removeAtIndex(anotherIndex)
+    }
+}
+
+
+

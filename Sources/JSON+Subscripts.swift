@@ -25,120 +25,123 @@
 
 extension JSON {
     
-    // MARK: - Array accessor subscript
+    // MARK: - `Int` subscript
     
-    private func getValue(at index: Swift.Int) -> JSON {
+    private func getValue(at position: Swift.Int) -> JSON {
         guard case .Array(let elements) = self else {
             return .Null
         }
         
-        guard index >= 0 && index < elements.count else {
+        guard position >= 0 && position < elements.count else {
             return .Null
         }
         
-        return elements[index]
+        return elements[position]
     }
     
-    private mutating func setValue(at index: Swift.Int, value newValue: JSON) {
+    private mutating func setValue(at position: Swift.Int, value newValue: JSON) {
         guard case .Array(let elements) = self else {
             fatalError("`self` is not `.Array`")
         }
         
         var newElements = elements
-        newElements[index] = newValue
+        newElements[position] = newValue
         
         self = .Array(newElements)
     }
     
-    /// Subscript-accessor to the elements of a `JSON` array.
+    /// `Int` subscript.  Suitable for `JSON.Array`.
     ///
-    /// - note: If `self` is not `.Array`, then an attempt to assign value via this accessor will 
-    ///         produce a runtime exception.
+    /// - note: If `self` is not `.Array`, then this subscript's setter produces runtime exception 
+    ///         (getter simply returns `.Null` value).
     ///
     /// - returns: ⁃ If `self` is `.Array`, then this accessor returns an element at the given
-    ///              `index` of the array. \
-    ///            ⁃ If `index` is out of bounds, then the result is `.Null`. \
+    ///              `position` of the array. \
+    ///            ⁃ If `position` is out of bounds, then the result is `.Null`. \
     ///            ⁃ If `self` is _not_ `.Array`, then the result is `.Null`.
-    public subscript(index: Swift.Int) -> JSON {
-        get { return getValue(at: index) }
-        set { setValue(at: index, value: newValue) }
+    public subscript(position: Swift.Int) -> JSON {
+        get { return getValue(at: position) }
+        set { setValue(at: position, value: newValue) }
     }
     
-    // MARK: - Object accessor subscript
+    // MARK: - `String` subscript
     
-    private func getValue(at key: Swift.String) -> JSON {
+    private func getValue(at name: Swift.String) -> JSON {
         guard case .Object(let properties) = self else {
             return .Null
         }
         
-        return properties[key] ?? .Null
+        return properties[name] ?? .Null
     }
     
-    private mutating func setValue(at key: Swift.String, value newValue: JSON) {
+    private mutating func setValue(at name: Swift.String, value newValue: JSON) {
         guard case .Object(let properties) = self else {
             fatalError("`self` is not `.Object`")
         }
         
         var newProperties = properties
-        newProperties[key] = newValue
+        newProperties[name] = newValue
         
         self = .Object(newProperties)
     }
     
-    /// Subscript-accessor to the elements of a `JSON` object (a.k.a. dictionary).
+    /// `String` subscript.  Suitable for `JSON.Object`.
     ///
-    /// - note: If `self` is not `.Object`, then an attempt to assign value via this accessor will
-    ///         produce a runtime exception.
+    /// - note: If `self` is not `.Object`, then this subscript's setter produces runtime exception
+    ///         (getter simply returns `.Null` value).
     ///
     /// - returns: ⁃ If `self` is `.Object`, then this accessor returns an element associated with 
-    ///              the given `key`. \
-    ///            ⁃ If there is no such `key`, then the result is `.Null`. \
+    ///              the given property `name`. \
+    ///            ⁃ If there is no such property `name`, then the result is `.Null`. \
     ///            ⁃ If `self` is _not_ `.Object`, then the result is `.Null`.
-    public subscript(key: Swift.String) -> JSON {
-        get { return getValue(at: key) }
-        set { setValue(at: key, value: newValue) }
+    public subscript(name: Swift.String) -> JSON {
+        get { return getValue(at: name) }
+        set { setValue(at: name, value: newValue) }
     }
 
-    // MARK: - `JSONPathElement` accessor subscript
+    // MARK: - `JSONIndex` subscript.
     
-    private func getValue(at pathElement: JSONPathElement) -> JSON {
-        switch pathElement {
+    private func getValue(at index: JSONIndex) -> JSON {
+        switch index {
             
-        case .Index(let index):
-            return self[index]
+        case .This:
+            return self
             
-        case .Key(let key):
-            return self[key]
+        case .Position(let position):
+            return self[position]
+            
+        case .Name(let name):
+            return self[name]
             
         }
     }
     
-    private mutating func setValue(at pathElement: JSONPathElement, value newValue: JSON) {
-        switch pathElement {
+    private mutating func setValue(at index: JSONIndex, value newValue: JSON) {
+        switch index {
             
-        case .Index(let index):
-            self[index] = newValue
+        case .This:
+            self = newValue
             
-        case .Key(let key):
-            self[key] = newValue
+        case .Position(let position):
+            self[position] = newValue
+            
+        case .Name(let name):
+            self[name] = newValue
 
         }
     }
     
-    /// Combined subscript-accessor to the elements of `JSON` arrays and objects.
-    ///
-    /// - note: See the description of subscripts for `Int` and `String` for detailed behaviour
-    ///         of this subscript (it is a combination of both).
-    public subscript(pathElement: JSONPathElement) -> JSON {
-        get { return getValue(at: pathElement) }
-        set { setValue(at: pathElement, value: newValue) }
+    /// `JSONIndex` subscript.
+    public subscript(index: JSONIndex) -> JSON {
+        get { return getValue(at: index) }
+        set { setValue(at: index, value: newValue) }
     }
 
-    // MARK: - Private accessor for `ArraySlice<JSONPathElement>`
+    // MARK: - `ArraySlice<JSONIndex>` subscript.
     
-    private mutating func setValue(at pathSlice: ArraySlice<JSONPathElement>, value newValue: JSON) {
-        if let head = pathSlice.first {
-            let tail = pathSlice[(pathSlice.startIndex + 1)..<pathSlice.endIndex]
+    private mutating func setValue(at path: ArraySlice<JSONIndex>, value newValue: JSON) {
+        if let head = path.first {
+            let tail = path[(path.startIndex + 1)..<path.endIndex]
             var headValue = self[head]
             headValue[tail] = newValue
             self[head] = headValue
@@ -147,18 +150,18 @@ extension JSON {
         }
     }
     
-    private func getValue(at pathSlice: ArraySlice<JSONPathElement>) -> JSON {
+    private func getValue(at pathSlice: ArraySlice<JSONIndex>) -> JSON {
         return pathSlice.reduce(self) {
             $0[$1]
         }
     }
 
-    private subscript(pathSlice: ArraySlice<JSONPathElement>) -> JSON {
+    private subscript(pathSlice: ArraySlice<JSONIndex>) -> JSON {
         get { return getValue(at: pathSlice) }
         set { setValue(at: pathSlice, value: newValue) }
     }
 
-    // MARK: - `JSONPath` accessor subscript
+    // MARK: - `JSONPath` subscript.
     
     private func getValue(at path: JSONPath) -> JSON {
         return path.reduce(self) {
@@ -173,12 +176,10 @@ extension JSON {
         self[pathSlice] = newValue
     }
     
-    /// JSON path subscript-accessor.
-    ///
-    /// Provides read/write access by traversing specified `jsonPath`.
-    public subscript(jsonPath: JSONPath) -> JSON {
-        get { return getValue(at: jsonPath) }
-        set { setValue(at: jsonPath, value: newValue) }
+    /// `JSONPath` subscript.
+    public subscript(path: JSONPath) -> JSON {
+        get { return getValue(at: path) }
+        set { setValue(at: path, value: newValue) }
     }
     
 }
