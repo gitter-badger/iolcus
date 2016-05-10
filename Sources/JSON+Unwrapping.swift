@@ -25,9 +25,7 @@
 
 extension JSON {
     
-    /// Unwrapping accessor to contained `Bool` value.
-    ///
-    /// - returns: Wrapped `Bool` value in case is `self` is `.Boolean`, `nil` otherwise
+    /// Unwrapped `Bool` value or `nil`.
     public var unwrappedBoolean: Swift.Bool? {
         guard case .Boolean(let boolean) = self else {
             return nil
@@ -35,7 +33,7 @@ extension JSON {
         return boolean
     }
     
-    /// Unwrapping accessor to contained `Int` value.
+    /// Unwrapped `Int` value or `nil`.
     public var unwrappedInteger: Swift.Int? {
         guard case .Integer(let integer) = self else {
             return nil
@@ -43,7 +41,7 @@ extension JSON {
         return integer
     }
     
-    /// Unwrapping accessor to contained `Double` value.
+    /// Unwrapped `Double` value or `nil`.
     public var unwrappedDouble: Swift.Double? {
         guard case .Double(let double) = self else {
             return nil
@@ -51,12 +49,28 @@ extension JSON {
         return double
     }
     
-    /// Unwrapping accessor to contained `String` value.
+    /// Unwrapped `String` value or `nil`.
     public var unwrappedString: Swift.String? {
         guard case .String(let string) = self else {
             return nil
         }
         return string
     }
-    
+ 
+    /// Unwrapped `[JSON]` array or `nil`.
+    public var unwrappedArray: [JSON]? {
+        guard case .Array(let elements) = self else {
+            return nil
+        }
+        return elements
+    }
+
+    /// Unwrapped `[String: JSON]` ditionary of object properties or `nil`.
+    public var unwrappedObject: [Swift.String: JSON]? {
+        guard case .Object(let properties) = self else {
+            return nil
+        }
+        return properties
+    }
+
 }
