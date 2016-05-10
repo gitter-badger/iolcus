@@ -30,7 +30,7 @@ extension JSON: ArrayLiteralConvertible {
             $0.jsonEncoded()
         }
         
-        self = .Array(elements)
+        self = .Array(elements: elements)
     }
     
 }

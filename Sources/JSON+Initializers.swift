@@ -57,11 +57,11 @@ extension JSON {
     
     /// Creates a `JSON` value from an array of `JSONEncodable`'s.
     public init(encodable: [JSONEncodable]) {
-        let json = encodable.map() {
+        let elements = encodable.map() {
             $0.jsonEncoded()
         }
         
-        self = .Array(json)
+        self = .Array(elements: elements)
     }
     
     /// Creates a `JSON` value from a dictionary of `[String: JSONEncodable]`.
@@ -77,7 +77,7 @@ extension JSON {
             properties[$0] = $1.jsonEncoded()
         }
         
-        self = .Object(properties)
+        self = .Object(properties: properties)
     }
     
 }

@@ -81,10 +81,10 @@
         }
         
         private static func makeJSON(withFoundationJSON nsjson: [AnyObject]) throws -> JSON {
-            let array = try nsjson.map() {
+            let elements = try nsjson.map() {
                 try makeJSON(withFoundationJSON: $0)
             }
-            return .Array(array)
+            return .Array(elements: elements)
         }
         
         private static func makeJSON(withFoundationJSON nsjson: [NSString: AnyObject]) throws -> JSON {
@@ -94,7 +94,7 @@
                 let value = try makeJSON(withFoundationJSON: $1)
                 properties[key] = value
             }
-            return .Object(properties)
+            return .Object(properties: properties)
         }
         
     }

@@ -26,8 +26,8 @@
 extension JSONDeserialization {
 
     mutating func deserializeObject() throws -> JSON {
-        let object = try readObject()
-        return JSON.Object(object)
+        let properties = try readObject()
+        return JSON.Object(properties: properties)
     }
 
     private mutating func readObject() throws -> [String: JSON] {

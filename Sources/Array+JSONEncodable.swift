@@ -27,11 +27,11 @@ extension Array where Element: JSONEncodable {
     
     /// Encode `self` into a `JSON` value.
     public func jsonEncoded() -> JSON {
-        let json = self.map() {
+        let elements = self.map() {
             $0.jsonEncoded()
         }
         
-        return .Array(json)
+        return .Array(elements: elements)
     }
     
     /// Serialize `self` into a JSON string.
