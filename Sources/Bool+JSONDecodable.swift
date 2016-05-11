@@ -27,10 +27,11 @@ extension Bool: JSONDecodable {
     
     /// Initializes an instance by decoding given `JSON` value.
     ///
-    /// - Throws: `JSON.Error.Decodable`
+    /// - Throws: `JSON.Error.Decoding`
     public init(json: JSON) throws {
-        guard let boolean = json.unwrappedBoolean else {
-            throw JSON.Error.Decodable.FailedToDecodeInstanceFromJSON(json: json, type: Bool.self)
+        // We will try to coerce, unwrapping might be too strict
+        guard let boolean = json.coercedBoolean else {
+            throw JSON.Error.Decoding.FailedToDecodeInstanceFromJSON(json: json, type: Bool.self)
         }
         
         self = boolean

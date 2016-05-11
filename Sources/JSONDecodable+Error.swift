@@ -26,7 +26,7 @@
 extension JSON.Error {
     
     /// Error while decoding a `JSONDecodable` instance.
-    public enum Decodable: ErrorType {
+    public enum Decoding: ErrorType {
         
         /// Failed to decode single instance from `JSON` value.
         ///

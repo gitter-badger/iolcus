@@ -27,10 +27,11 @@ extension Int: JSONDecodable {
     
     /// Initializes an instance by decoding given `JSON` value.
     ///
-    /// - Throws: `JSON.Error.Decodable`
+    /// - Throws: `JSON.Error.Decoding`
     public init(json: JSON) throws {
-        guard let integer = json.unwrappedInteger else {
-            throw JSON.Error.Decodable.FailedToDecodeInstanceFromJSON(json: json, type: Int.self)
+        // We will try to coerce, unwrapping might be too strict
+        guard let integer = json.coercedInteger else {
+            throw JSON.Error.Decoding.FailedToDecodeInstanceFromJSON(json: json, type: Int.self)
         }
         
         self = integer

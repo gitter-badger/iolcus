@@ -27,10 +27,11 @@ extension String: JSONDecodable {
     
     /// Initializes an instance by decoding given `JSON` value.
     ///
-    /// - Throws: `JSON.Error.Decodable`
+    /// - Throws: `JSON.Error.Decoding`
     public init(json: JSON) throws {
-        guard let string = json.unwrappedString else {
-            throw JSON.Error.Decodable.FailedToDecodeInstanceFromJSON(json: json, type: String.self)
+        // We will try to coerce, unwrapping might be too strict
+        guard let string = json.coercedString else {
+            throw JSON.Error.Decoding.FailedToDecodeInstanceFromJSON(json: json, type: String.self)
         }
         
         self = string

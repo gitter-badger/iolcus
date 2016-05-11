@@ -37,63 +37,63 @@ extension JSON {
     
     /// Decodes `self` into a new instance.
     ///
-    /// - Throws: `JSON.Error.Decodable`
+    /// - Throws: `JSON.Error.Decoding`
     public func decode<T: JSONDecodable>() throws -> T {
         return try T(json: self)
     }
     
     /// Decodes a property of `self` into a new instance.
     ///
-    /// - Throws: `JSON.Error.Decodable`
+    /// - Throws: `JSON.Error.Decoding`
     public func decode<T: JSONDecodable>(at key: Swift.String) throws -> T {
         return try T(json: self, at: key)
     }
     
     /// Decodes an element of `self` into a new instance.
     ///
-    /// - Throws: `JSON.Error.Decodable`
+    /// - Throws: `JSON.Error.Decoding`
     public func decode<T: JSONDecodable>(at index: Swift.Int) throws -> T {
         return try T(json: self, at: index)
     }
     
     /// Decodes `self` into an array.
     ///
-    /// - Throws: `JSON.Error.Decodable`
+    /// - Throws: `JSON.Error.Decoding`
     public func decode<T: JSONDecodable>() throws -> [T] {
         return try Swift.Array(json: self)
     }
     
     /// Decodes a property of `self` into an array.
     ///
-    /// - Throws: `JSON.Error.Decodable`
+    /// - Throws: `JSON.Error.Decoding`
     public func decode<T: JSONDecodable>(at key: Swift.String) throws -> [T] {
         return try Swift.Array(json: self, at: key)
     }
     
     /// Decodes an element of `self` into an array.
     ///
-    /// - Throws: `JSON.Error.Decodable`
+    /// - Throws: `JSON.Error.Decoding`
     public func decode<T: JSONDecodable>(at index: Swift.Int) throws -> [T] {
         return try Swift.Array(json: self, at: index)
     }
     
     /// Decodes `self` into a dictionary.
     ///
-    /// - Throws: `JSON.Error.Decodable`
+    /// - Throws: `JSON.Error.Decoding`
     public func decode<D: JSONDecodable>() throws -> [Swift.String: D] {
         return try Swift.Dictionary(json: self)
     }
     
     /// Decodes a property of `self` into a dictionary.
     ///
-    /// - Throws: `JSON.Error.Decodable`
+    /// - Throws: `JSON.Error.Decoding`
     public func decode<D: JSONDecodable>(at key: Swift.String) throws -> [Swift.String: D] {
         return try Swift.Dictionary(json: self, at: key)
     }
     
     /// Decodes an element of `self` into a dictionary.
     ///
-    /// - Throws: `JSON.Error.Decodable`
+    /// - Throws: `JSON.Error.Decoding`
     public func decode<D: JSONDecodable>(at index: Swift.Int) throws -> [Swift.String: D] {
         return try Swift.Dictionary(json: self, at: index)
     }

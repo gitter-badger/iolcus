@@ -30,58 +30,58 @@ class TestCoercionToString: XCTestCase {
     
     func testNullToStrincCoercion() {
         let json: JSON = nil
-        XCTAssertEqual(json.asString, "null")
+        XCTAssertEqual(json.coercedString, "null")
     }
     
     func testBooleanToStringCoercion() {
         do {
             let json: JSON = true
-            XCTAssertEqual(json.asString, "true")
+            XCTAssertEqual(json.coercedString, "true")
         }
         
         do {
             let json: JSON = false
-            XCTAssertEqual(json.asString, "false")
+            XCTAssertEqual(json.coercedString, "false")
         }
     }
     
     func testIntegerToSringCoercion() {
         do {
             let json: JSON = -123456789
-            XCTAssertEqual(json.asString, "-123456789")
+            XCTAssertEqual(json.coercedString, "-123456789")
         }
         
         do {
             let json: JSON = 987654321
-            XCTAssertEqual(json.asString, "987654321")
+            XCTAssertEqual(json.coercedString, "987654321")
         }
     }
     
     func testDoubleToSringCoercion() {
         do {
             let json: JSON = -13579.02468
-            XCTAssertEqual(json.asString, "-13579.02468")
+            XCTAssertEqual(json.coercedString, "-13579.02468")
         }
         
         do {
             let json: JSON = 24680.13579
-            XCTAssertEqual(json.asString, "24680.13579")
+            XCTAssertEqual(json.coercedString, "24680.13579")
         }
     }
     
     func testStringToStringCoercion() {
         let json: JSON = "Съешь этих мягких французских булок"
-        XCTAssertEqual(json.asString, "Съешь этих мягких французских булок")
+        XCTAssertEqual(json.coercedString, "Съешь этих мягких французских булок")
     }
     
     func testArrayToStringCoercion() {
         let json: JSON = ["Lorem ipsum"]
-        XCTAssertNil(json.asString)
+        XCTAssertNil(json.coercedString)
     }
     
     func testObjectToStringCoercion() {
         let json: JSON = ["": "dolor sit amet"]
-        XCTAssertNil(json.asString)
+        XCTAssertNil(json.coercedString)
     }
 
 }

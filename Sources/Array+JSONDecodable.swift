@@ -29,7 +29,7 @@ extension Array where Element: JSONDecodable {
     ///
     /// - Precondition: `json == .Array(_)`.
     ///
-    /// - Throws: `JSON.Error.Decodable`
+    /// - Throws: `JSON.Error.Decoding`
     public init(json: JSON) throws {
         switch json {
             
@@ -39,7 +39,7 @@ extension Array where Element: JSONDecodable {
             }
             
         default:
-            throw JSON.Error.Decodable.FailedToDecodeArrayFromJSON(json: json, type: Array.self)
+            throw JSON.Error.Decoding.FailedToDecodeArrayFromJSON(json: json, type: Array.self)
             
         }
     }
@@ -48,7 +48,7 @@ extension Array where Element: JSONDecodable {
     ///
     /// - Precondition: `json == .Array(_) && json[index] == .Array(_)`
     ///
-    /// - Throws: `JSON.Error.Decodable`
+    /// - Throws: `JSON.Error.Decoding`
     public init(json: JSON, at index: Swift.Int) throws {
         try self.init(json: json[index])
     }
@@ -57,14 +57,14 @@ extension Array where Element: JSONDecodable {
     ///
     /// - Precondition: `json == .Object(_) && json[key] == .Array(_)`
     ///
-    /// - Throws: `JSON.Error.Decodable`
+    /// - Throws: `JSON.Error.Decoding`
     public init(json: JSON, at key: Swift.String) throws {
         try self.init(json: json[key])
     }
     
     /// Initializes (deserializes) a new `Array` from a given JSON string.
     ///
-    /// - Throws: `JSON.Error.Decodable`
+    /// - Throws: `JSON.Error.Decoding`
     public init(jsonSerialization: Swift.String) throws {
         let json = try JSONDeserialization.makeJSON(string: jsonSerialization)
         try self.init(json: json)

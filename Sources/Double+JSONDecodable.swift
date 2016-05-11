@@ -27,10 +27,11 @@ extension Double: JSONDecodable {
     
     /// Initializes an instance by decoding given `JSON` value.
     ///
-    /// - Throws: `JSON.Error.Decodable`
+    /// - Throws: `JSON.Error.Decoding`
     public init(json: JSON) throws {
-        guard let double = json.unwrappedDouble else {
-            throw JSON.Error.Decodable.FailedToDecodeInstanceFromJSON(json: json, type: Double.self)
+        // We will try to coerce, unwrapping might be too strict
+        guard let double = json.coercedDouble else {
+            throw JSON.Error.Decoding.FailedToDecodeInstanceFromJSON(json: json, type: Double.self)
         }
         
         self = double

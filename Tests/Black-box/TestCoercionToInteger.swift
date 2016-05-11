@@ -30,73 +30,73 @@ class TestCoercionToInteger: XCTestCase {
     
     func testNullToIntegerCoercion() {
         let json: JSON = nil
-        XCTAssertNil(json.asInteger)
+        XCTAssertNil(json.coercedInteger)
     }
     
     func testBooleanToIntegerCoercion() {
         do {
             let json: JSON = true
-            XCTAssertEqual(json.asInteger, 1)
+            XCTAssertEqual(json.coercedInteger, 1)
         }
         
         do {
             let json: JSON = false
-            XCTAssertEqual(json.asInteger, 0)
+            XCTAssertEqual(json.coercedInteger, 0)
         }
     }
     
     func testIntegerToIntegerCoercion() {
         let json: JSON = 42
-        XCTAssertEqual(json.asInteger, 42)
+        XCTAssertEqual(json.coercedInteger, 42)
     }
     
     func testDoubleToIntegerCoercion() {
         do {
             let json: JSON = -123.4
-            XCTAssertEqual(json.asInteger, -123)
+            XCTAssertEqual(json.coercedInteger, -123)
         }
         
         do {
             let json: JSON = 987.6
-            XCTAssertEqual(json.asInteger, 987)
+            XCTAssertEqual(json.coercedInteger, 987)
         }
         
         do {
             let json: JSON = 1.0e21
-            XCTAssertNil(json.asInteger)
+            XCTAssertNil(json.coercedInteger)
         }
         
         do {
             let json: JSON = -1.0e21
-            XCTAssertNil(json.asInteger)
+            XCTAssertNil(json.coercedInteger)
         }
     }
     
     func testStringToIntegerCoercion() {
         do {
             let json: JSON = "65536"
-            XCTAssertEqual(json.asInteger, 65536)
+            XCTAssertEqual(json.coercedInteger, 65536)
         }
         
         do {
             let json: JSON = "-32768"
-            XCTAssertEqual(json.asInteger, -32768)
+            XCTAssertEqual(json.coercedInteger, -32768)
         }
         
         do {
             let json: JSON = "1O24"
-            XCTAssertNil(json.asInteger)
+            XCTAssertNil(json.coercedInteger)
         }
     }
     
     func testArrayToIntegerCoercion() {
         let json: JSON = [555]
-        XCTAssertNil(json.asInteger)
+        XCTAssertNil(json.coercedInteger)
     }
     
     func testObjectToIntegerCoercion() {
         let json: JSON = ["": 555]
-        XCTAssertNil(json.asInteger)
+        XCTAssertNil(json.coercedInteger)
     }
     
 }

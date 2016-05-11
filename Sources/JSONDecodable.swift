@@ -32,7 +32,7 @@ public protocol JSONDecodable {
     
     /// Initializes (decodes) a new instance of `Self` from given `JSON` value.
     ///
-    /// - Throws: `JSON.Error.Decodable`
+    /// - Throws: `JSON.Error.Decoding`
     init(json: JSON) throws
     
 }
@@ -54,7 +54,7 @@ extension JSONDecodable {
     ///   - json: Input `JSON` value to decode a new instance from.
     ///   - at:   Index of the input `JSON` value in the JSON array.
     ///
-    /// - Throws: `JSON.Error.Decodable`
+    /// - Throws: `JSON.Error.Decoding`
     public init(json: JSON, at index: Swift.Int) throws {
         try self.init(json: json[index])
     }
@@ -71,17 +71,29 @@ extension JSONDecodable {
     ///   - json: Input `JSON` value to decode a new instance from.
     ///   - at:   Value of the dictionary key to get the input `JSON` value from.
     ///
-    /// - Throws: `JSON.Error.Decodable`
+    /// - Throws: `JSON.Error.Decoding`
     public init(json: JSON, at key: Swift.String) throws {
         try self.init(json: json[key])
     }
     
     /// Initializes (deserializes) a new instance of `Self` from a given JSON string.
     ///
-    /// - Throws: `JSON.Error.Decodable`
+    /// - Throws: `JSON.Error.Decoding`
     public init(serialization: Swift.String) throws {
         let json = try JSONDeserialization.makeJSON(string: serialization)
         try self.init(json: json)
     }
+    
+    #if os(OSX) || os(iOS) || os(tvOS)
+    
+    /// Initializes (deserializes) a new instance of `Self` from a given JSON `AnyObject`.
+    ///
+    /// - Throws: `JSON.Error.Decoding`, `JSON.Error.Converting`
+    public init(jsonAnyObject: AnyObject) throws {
+        let json = try JSONDeserialization.makeJSON(jsonAnyObject: jsonAnyObject)
+        try self.init(json: json)
+    }
+    
+    #endif
     
 }

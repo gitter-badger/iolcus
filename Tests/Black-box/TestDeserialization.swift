@@ -30,7 +30,7 @@ class TestDeserialization: XCTestCase {
     
     func testDeserializingNull() {
         do {
-            let json = try JSON(jsonSerialization: "\t  null\n\r")
+            let json = try JSON(serialization: "\t  null\n\r")
             XCTAssertEqual(json, JSON.Null)
         }
         catch {
@@ -40,7 +40,7 @@ class TestDeserialization: XCTestCase {
 
     func testDeserializingTrue() {
         do {
-            let json = try JSON(jsonSerialization: "\t  true \n\r")
+            let json = try JSON(serialization: "\t  true \n\r")
             XCTAssertEqual(json, JSON.Boolean(true))
         }
         catch {
@@ -50,7 +50,7 @@ class TestDeserialization: XCTestCase {
 
     func testDeserializingFalse() {
         do {
-            let json = try JSON(jsonSerialization: "\t  false \n\r")
+            let json = try JSON(serialization: "\t  false \n\r")
             XCTAssertEqual(json, JSON.Boolean(false))
         }
         catch {
@@ -60,7 +60,7 @@ class TestDeserialization: XCTestCase {
 
     func testDeserializingInteger() {
         do {
-            let json = try JSON(jsonSerialization: "\t  42 \n\r")
+            let json = try JSON(serialization: "\t  42 \n\r")
             XCTAssertEqual(json, JSON.Integer(42))
         }
         catch {

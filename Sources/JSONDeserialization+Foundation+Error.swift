@@ -28,10 +28,10 @@ import Foundation
 extension JSON.Error {
     
     /// Exception while coverting to/from Foundation representation of JSON.
-    public enum Foundation: ErrorType {
+    public enum Converting: ErrorType {
         
         /// Failed to convert from Foundation `JSON` representation into Medea `JSON`.
-        case FailedToConvertFromFoundationJSON(type: Any.Type)
+        case FailedToConvertFromAnyObject(type: Any.Type)
         
     }
     

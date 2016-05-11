@@ -31,7 +31,7 @@ extension Dictionary where Key: StringLiteralConvertible, Value: JSONDecodable {
     ///
     /// - Precondition: `json == .Object(_)`.
     ///
-    /// - Throws: `JSON.Error.Decodable`
+    /// - Throws: `JSON.Error.Decoding`
     public init(json: JSON) throws {
         assert(
             Key.self == Swift.String || Key.self == Foundation.NSString,
@@ -50,7 +50,7 @@ extension Dictionary where Key: StringLiteralConvertible, Value: JSONDecodable {
             self = dictionary
             
         default:
-            throw JSON.Error.Decodable.FailedToDecodeDictionaryFromJSON(json: json, type: Dictionary.self)
+            throw JSON.Error.Decoding.FailedToDecodeDictionaryFromJSON(json: json, type: Dictionary.self)
             
         }
     }
@@ -59,7 +59,7 @@ extension Dictionary where Key: StringLiteralConvertible, Value: JSONDecodable {
     ///
     /// - Precondition: `json == .Array(_) && json[index] == .Object(_)`
     ///
-    /// - Throws: `JSON.Error.Decodable`
+    /// - Throws: `JSON.Error.Decoding`
     public init(json: JSON, at key: Swift.String) throws {
         try self.init(json: json[key])
     }
@@ -68,14 +68,14 @@ extension Dictionary where Key: StringLiteralConvertible, Value: JSONDecodable {
     ///
     /// - Precondition: `json == .Object(_) && json[key] == .Object(_)`
     ///
-    /// - Throws: `JSON.Error.Decodable`
+    /// - Throws: `JSON.Error.Decoding`
     public init(json: JSON, at index: Swift.Int) throws {
         try self.init(json: json[index])
     }
     
     /// Initializes (deserializes) a new `Dictionary` from a given JSON string.
     ///
-    /// - Throws: `JSON.Error.Decodable`
+    /// - Throws: `JSON.Error.Decoding`
     public init(jsonSerialization: Swift.String) throws {
         let json = try JSONDeserialization.makeJSON(string: jsonSerialization)
         try self.init(json: json)

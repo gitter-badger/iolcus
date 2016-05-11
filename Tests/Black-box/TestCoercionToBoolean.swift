@@ -30,70 +30,70 @@ class TestCoercionToBoolean: XCTestCase {
     
     func testNullToBoolCoercion() {
         let json: JSON = nil
-        XCTAssertNil(json.asBoolean)
+        XCTAssertNil(json.coercedBoolean)
     }
     
     func testBooleanToBooleanCoercion() {
         do {
             let json: JSON = true
-            XCTAssertEqual(json.asBoolean, true)
+            XCTAssertEqual(json.coercedBoolean, true)
         }
         
         do {
             let json: JSON = false
-            XCTAssertEqual(json.asBoolean, false)
+            XCTAssertEqual(json.coercedBoolean, false)
         }
     }
     
     func testIntegerToBooleanCoercion() {
         do {
             let json: JSON = 0
-            XCTAssertEqual(json.asBoolean, false)
+            XCTAssertEqual(json.coercedBoolean, false)
         }
         
         do {
             let json: JSON = 1
-            XCTAssertEqual(json.asBoolean, true)
+            XCTAssertEqual(json.coercedBoolean, true)
         }
     }
     
     func testDoubleToBooleanCoercion() {
         do {
             let json: JSON = 0.0
-            XCTAssertEqual(json.asBoolean, false)
+            XCTAssertEqual(json.coercedBoolean, false)
         }
         
         do {
             let json: JSON = 1.0
-            XCTAssertEqual(json.asBoolean, true)
+            XCTAssertEqual(json.coercedBoolean, true)
         }
     }
     
     func testStringToBooleanCoercion() {
         do {
             let json: JSON = "false"
-            XCTAssertEqual(json.asBoolean, false)
+            XCTAssertEqual(json.coercedBoolean, false)
         }
         
         do {
             let json: JSON = "true"
-            XCTAssertEqual(json.asBoolean, true)
+            XCTAssertEqual(json.coercedBoolean, true)
         }
         
         do {
             let json: JSON = "Ook"
-            XCTAssertNil(json.asBoolean)
+            XCTAssertNil(json.coercedBoolean)
         }
     }
     
     func testArrayToBooleanCoercion() {
         let json: JSON = [true]
-        XCTAssertNil(json.asBoolean)
+        XCTAssertNil(json.coercedBoolean)
     }
     
     func testObjectToBooleanCoercion() {
         let json: JSON = ["": true]
-        XCTAssertNil(json.asBoolean)
+        XCTAssertNil(json.coercedBoolean)
     }
     
 }

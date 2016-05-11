@@ -32,65 +32,65 @@
         // MARK: - Public API
         
         /// Makes Foundation's `AnyObject` representation of JSON using Medea's `JSON` value.
-        public static func makeFoundationJSON(withJSON json: JSON) -> AnyObject {
+        public static func makeAnyObject(json json: JSON) -> AnyObject {
             switch json {
                 
             case .Null:
-                return makeFoundationJSONWithNull()
+                return makeAnyObject(null: ())
                 
             case .Boolean(let boolean):
-                return makeFoundationJSON(withBoolean: boolean)
+                return makeAnyObject(boolean: boolean)
                 
             case .Integer(let integer):
-                return makeFoundationJSON(withInteger: integer)
+                return makeAnyObject(integer: integer)
                 
             case .Double(let double):
-                return makeFoundationJSON(withDouble: double)
+                return makeAnyObject(double: double)
                 
             case .String(let string):
-                return makeFoundationJSON(withString: string)
+                return makeAnyObject(string: string)
                 
             case .Array(let elements):
-                return makeFoundationJSON(withArray: elements)
+                return makeAnyObject(array: elements)
                 
             case .Object(let properties):
-                return makeFoundationJSON(withObject: properties)
+                return makeAnyObject(object: properties)
                 
             }
         }
         
         // MARK: - Internal
         
-        private static func makeFoundationJSONWithNull() -> AnyObject {
+        private static func makeAnyObject(null null: Void) -> AnyObject {
             return NSNull()
         }
         
-        private static func makeFoundationJSON(withBoolean boolean: Bool) -> AnyObject {
+        private static func makeAnyObject(boolean boolean: Bool) -> AnyObject {
             return NSNumber.init(bool: boolean)
         }
         
-        private static func makeFoundationJSON(withInteger integer: Int) -> AnyObject {
+        private static func makeAnyObject(integer integer: Int) -> AnyObject {
             return NSNumber(integer: integer)
         }
         
-        private static func makeFoundationJSON(withDouble double: Swift.Double) -> AnyObject {
+        private static func makeAnyObject(double double: Swift.Double) -> AnyObject {
             return NSNumber(double: double)
         }
         
-        private static func makeFoundationJSON(withString string: Swift.String) -> AnyObject {
+        private static func makeAnyObject(string string: Swift.String) -> AnyObject {
             return NSString(string: string)
         }
         
-        private static func makeFoundationJSON(withArray elements: [JSON]) -> AnyObject {
+        private static func makeAnyObject(array elements: [JSON]) -> AnyObject {
             return elements.map() {
-                makeFoundationJSON(withJSON: $0)
+                makeAnyObject(json: $0)
             }
         }
         
-        private static func makeFoundationJSON(withObject properties: [Swift.String: JSON]) -> AnyObject {
+        private static func makeAnyObject(object properties: [Swift.String: JSON]) -> AnyObject {
             var nsjsonProperties: [NSString: AnyObject] = [:]
             properties.forEach() {
-                nsjsonProperties[$0] = makeFoundationJSON(withJSON: $1)
+                nsjsonProperties[$0] = makeAnyObject(json: $1)
             }
             return nsjsonProperties
         }

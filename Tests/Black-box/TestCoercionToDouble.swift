@@ -30,63 +30,63 @@ class TestCoercionToDouble: XCTestCase {
     
     func testNullToDoubleCoercion() {
         let json: JSON = nil
-        XCTAssertNil(json.asDouble)
+        XCTAssertNil(json.coercedDouble)
     }
     
     func testBooleanToDoubleCoercion() {
         do {
             let json: JSON = true
-            XCTAssertEqual(json.asDouble, 1.0)
+            XCTAssertEqual(json.coercedDouble, 1.0)
         }
         
         do {
             let json: JSON = false
-            XCTAssertEqual(json.asDouble, 0.0)
+            XCTAssertEqual(json.coercedDouble, 0.0)
         }
     }
     
     func testIntegerToDoubleCoercion() {
         do {
             let json: JSON = -256
-            XCTAssertEqual(json.asDouble, -256.0)
+            XCTAssertEqual(json.coercedDouble, -256.0)
         }
         
         do {
             let json: JSON = 1031
-            XCTAssertEqual(json.asDouble, 1031)
+            XCTAssertEqual(json.coercedDouble, 1031)
         }
     }
     
     func testDoubleToDoubleCoercion() {
         let json: JSON = -987654.321
-        XCTAssertEqual(json.asDouble, -987654.321)
+        XCTAssertEqual(json.coercedDouble, -987654.321)
     }
     
     func testStringToDoubleCoercion() {
         do {
             let json: JSON = "1000.0001"
-            XCTAssertEqual(json.asDouble, 1000.0001)
+            XCTAssertEqual(json.coercedDouble, 1000.0001)
         }
         
         do {
             let json: JSON = "-555.555"
-            XCTAssertEqual(json.asDouble, -555.555)
+            XCTAssertEqual(json.coercedDouble, -555.555)
         }
         
         do {
             let json: JSON = "1O24"
-            XCTAssertNil(json.asDouble)
+            XCTAssertNil(json.coercedDouble)
         }
     }
     
     func testArrayToDoubleCoercion() {
         let json: JSON = [55.5]
-        XCTAssertNil(json.asDouble)
+        XCTAssertNil(json.coercedDouble)
     }
     
     func testObjectToDoubleCoercion() {
         let json: JSON = ["": 5.55]
-        XCTAssertNil(json.asDouble)
+        XCTAssertNil(json.coercedDouble)
     }
 
 }

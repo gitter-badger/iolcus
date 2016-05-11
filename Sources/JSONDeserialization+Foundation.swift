@@ -37,63 +37,67 @@
         ///         `NSNumber`.  This means that there is really no way to tell one from another while
         ///         converting from Foundation to Medea.  JSON's `true` will end up as `.Integer(1)`
         ///         this way and `false` will be `.Integer(0)`.
-        public static func makeJSON(withFoundationJSON nsjson: AnyObject) throws -> JSON {
-            if let json = nsjson as? [NSString: AnyObject] {
-                return try makeJSON(withFoundationJSON: json)
+        ///
+        /// - Throws: `JSON.Error.Converting`
+        public static func makeJSON(jsonAnyObject anyObject: AnyObject) throws -> JSON {
+            if let null = anyObject as? NSNull {
+                return try makeJSON(null: null)
+            }
+
+            if let number = anyObject as? NSNumber {
+                return try makeJSON(number: number)
+            }
+
+            if let string = anyObject as? NSString {
+                return try makeJSON(string: string)
+            }
+
+            if let array = anyObject as? [AnyObject] {
+                return try makeJSON(array: array)
             }
             
-            if let json = nsjson as? [AnyObject] {
-                return try makeJSON(withFoundationJSON: json)
+            if let object = anyObject as? [NSString: AnyObject] {
+                return try makeJSON(object: object)
             }
             
-            if let json = nsjson as? NSString {
-                return try makeJSON(withFoundationJSON: json)
-            }
-            
-            if let json = nsjson as? NSNumber {
-                return try makeJSON(withFoundationJSON: json)
-            }
-            
-            if let json = nsjson as? NSNull {
-                return try makeJSON(withFoundationJSON: json)
-            }
-            
-            throw JSON.Error.Foundation.FailedToConvertFromFoundationJSON(type: nsjson.dynamicType)
+            throw JSON.Error.Converting.FailedToConvertFromAnyObject(type: anyObject.dynamicType)
         }
         
         // MARK: - Internal
         
-        private static func makeJSON(withFoundationJSON nsjson: NSNull) throws -> JSON {
+        private static func makeJSON(null null: NSNull) throws -> JSON {
             return .Null
         }
         
-        private static func makeJSON(withFoundationJSON nsjson: NSNumber) throws -> JSON {
-            if Double(nsjson.integerValue) == nsjson.doubleValue {
-                return .Integer(nsjson.integerValue)
+        private static func makeJSON(number number: NSNumber) throws -> JSON {
+            if Double(number.integerValue) == number.doubleValue {
+                return .Integer(number.integerValue)
             } else {
-                return .Double(nsjson.doubleValue)
+                return .Double(number.doubleValue)
             }
         }
         
-        private static func makeJSON(withFoundationJSON nsjson: NSString) throws -> JSON {
-            let string = nsjson as Swift.String
+        private static func makeJSON(string string: NSString) throws -> JSON {
+            let string = string as Swift.String
             return .String(string)
         }
         
-        private static func makeJSON(withFoundationJSON nsjson: [AnyObject]) throws -> JSON {
-            let elements = try nsjson.map() {
-                try makeJSON(withFoundationJSON: $0)
+        private static func makeJSON(array array: [AnyObject]) throws -> JSON {
+            let elements = try array.map() {
+                try makeJSON(jsonAnyObject: $0)
             }
             return .Array(elements: elements)
         }
         
-        private static func makeJSON(withFoundationJSON nsjson: [NSString: AnyObject]) throws -> JSON {
+        private static func makeJSON(object object: [NSString: AnyObject]) throws -> JSON {
             var properties: [Swift.String: JSON] = [:]
-            try nsjson.forEach() {
+            
+            try object.forEach() {
                 let key = $0 as Swift.String
-                let value = try makeJSON(withFoundationJSON: $1)
+                let value = try makeJSON(jsonAnyObject: $1)
                 properties[key] = value
             }
+            
             return .Object(properties: properties)
         }
         

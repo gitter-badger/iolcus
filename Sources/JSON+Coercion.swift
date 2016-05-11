@@ -35,7 +35,7 @@ extension JSON {
     ///     `"true"`, and `false` if the wrapped string equals to `"false"`.  All other cases 
     ///     produce `nil`. \
     ///   ⁃ In all other scenarios the result is `nil`.
-    public var asBoolean: Swift.Bool? {
+    public var coercedBoolean: Swift.Bool? {
         switch self {
             
         case .Null, .Array(_), .Object(_):
@@ -73,7 +73,7 @@ extension JSON {
     ///   ⁃ If `self` is `.String`, then it converts wrapped `String` into an `Int`, or returns 
     ///     `nil` if the conversion is not possible. \
     ///   ⁃ In all other scenarios the result is `nil`.
-    public var asInteger: Swift.Int? {
+    public var coercedInteger: Swift.Int? {
         switch self {
             
         case .Null, .Array(_), .Object(_):
@@ -110,7 +110,7 @@ extension JSON {
     ///   ⁃ If `self` is `.String`, then it converts wrapped `String` into a `Double`, or returns
     ///     `nil` if the conversion is not possible. \
     ///   ⁃ In all other scenarios the result is `nil`.
-    public var asDouble: Swift.Double? {
+    public var coercedDouble: Swift.Double? {
         switch self {
 
         case .Null, .Array(_), .Object(_):
@@ -140,7 +140,7 @@ extension JSON {
     ///     the wrapped number. \
     ///   ⁃ If `self` is `.String`, then it returns a wrapped `String` value. \
     ///   ⁃ In all other scenarios the result is `nil`.
-    public var asString: Swift.String? {
+    public var coercedString: Swift.String? {
         switch self {
             
         case .Null:

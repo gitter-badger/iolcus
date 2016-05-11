@@ -117,7 +117,7 @@ class TestLiteralConvertible: XCTestCase {
         ]
         XCTAssertEqual(
             json,
-            JSON.Array(
+            JSON.Array(elements:
                 [
                     JSON.Boolean(true), JSON.Boolean(false),
                     JSON.Integer(-2147483648), JSON.Integer(0), JSON.Integer(2147483647),
@@ -142,7 +142,7 @@ class TestLiteralConvertible: XCTestCase {
         ]
         XCTAssertEqual(
             json,
-            JSON.Object(
+            JSON.Object(properties:
                 [
                     "true"          : JSON.Boolean(true),
                     "false"         : JSON.Boolean(false),
