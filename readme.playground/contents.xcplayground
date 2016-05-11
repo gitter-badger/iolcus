@@ -1,10 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<playground version='6.0' target-platform='osx' display-mode='rendered'>
-    <pages>
-        <page name='0. Summary'/>
-        <page name='1. Quick start guide'/>
-        <page name='2. JSON type'/>
-        <page name='3. Encoding and decoding'/>
-        <page name='4. Serializing and deserializing'/>
-    </pages>
+<playground version='5.0' target-platform='osx' display-mode='rendered'>
+    <timeline fileName='timeline.xctimeline'/>
 </playground>

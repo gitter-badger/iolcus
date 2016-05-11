@@ -370,6 +370,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BA04C4BB1CE2884600DB6F83 /* readme.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = readme.playground; sourceTree = "<group>"; };
 		BA35A9FB1CDB8B7400370516 /* TestSubscriptingWithString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestSubscriptingWithString.swift; path = "Tests/Black-box/TestSubscriptingWithString.swift"; sourceTree = "<group>"; };
 		BA35A9FF1CDB8FF300370516 /* TestSubscriptingWithJSONPathElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestSubscriptingWithJSONPathElement.swift; path = "Tests/Black-box/TestSubscriptingWithJSONPathElement.swift"; sourceTree = "<group>"; };
 		BA568CE71CD4E556007CCE56 /* TestPerformanceSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestPerformanceSerialization.swift; path = Tests/Performance/TestPerformanceSerialization.swift; sourceTree = "<group>"; };
@@ -415,7 +416,6 @@
 		BA6307441CC919A5000D98EA /* JSONDeserialization+Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSONDeserialization+Error.swift"; path = "Sources/JSONDeserialization+Error.swift"; sourceTree = "<group>"; };
 		BA63074E1CC91BEA000D98EA /* JSONDeserialization+Foundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSONDeserialization+Foundation.swift"; path = "Sources/JSONDeserialization+Foundation.swift"; sourceTree = "<group>"; };
 		BA6307531CC924AA000D98EA /* JSONSerialization+Foundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSONSerialization+Foundation.swift"; path = "Sources/JSONSerialization+Foundation.swift"; sourceTree = "<group>"; };
-		BA6307581CCAC674000D98EA /* readme.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = readme.playground; sourceTree = "<group>"; };
 		BA6AC9D41CB6A09D00D301DD /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		BA6C1CAC1CD2AD9200536672 /* JSON+CustomStringConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSON+CustomStringConvertible.swift"; path = "Sources/JSON+CustomStringConvertible.swift"; sourceTree = "<group>"; };
 		BA6C1CB41CD31D2500536672 /* TestLiteralConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestLiteralConvertible.swift; path = "Tests/Black-box/TestLiteralConvertible.swift"; sourceTree = "<group>"; };
@@ -796,7 +796,7 @@
 		BAF809201CB38E000055F146 = {
 			isa = PBXGroup;
 			children = (
-				BA6307581CCAC674000D98EA /* readme.playground */,
+				BA04C4BB1CE2884600DB6F83 /* readme.playground */,
 				BA5B9B681CB42EE9003EF1CA /* Support */,
 				BA5B9B6D1CB45012003EF1CA /* Sources */,
 				BA5B9BC31CB4DDF3003EF1CA /* Tests */,
