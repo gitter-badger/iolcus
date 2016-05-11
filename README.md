@@ -1,5 +1,19 @@
 # Medea
 
+1. [Usage](#usage)
+        1. [Literals](#literals)
+        1. [Initializers](#initializers)
+        1. [Unwrapping](#unwrapping)
+        1. [Subscripting](#subscripting)
+        1. [Coercing](#coercing)
+        1. [Encoding](#encoding)
+        1. [Decoding](#decoding)
+        1. [Iterating](#iterating)
+        1. [Error handling](#error-handling)
+        1. [Converting from/to Foundation JSON](#converting-from-to-foundation-json)
+
+## Usage
+
 The core of `Medea` framework is `JSON` type.  In practice it's just an `enum` like:
 ````swift
 enum JSON {
@@ -13,7 +27,7 @@ enum JSON {
 }
 ````
  
-## Literals
+### Literals
  
 It's possible to create an instance of `JSON` by just assigning a variable with literal value:
   
@@ -33,7 +47,7 @@ var objectJSON: JSON = [
 ]
 ````
  
-## Initializers
+### Initializers
  
 Alternative ways to instantiate `JSON`:
  
@@ -44,7 +58,7 @@ let anotherStringJSON = try! JSON(json: objectJSON, at: "string")
 let anotherArrayJSON = try! JSON(serialization: "[false, 1, 2.0, \"3\"]")
 ````
 
-## Unwrapping
+### Unwrapping
  
 Every `JSON` value (except `.Null`) is a wrapper around some basic value (`Bool`, `Int`, `Double`, `String`) or around a container (`[JSON]` or `[String: JSON]`).  It is possible to access a particular kind of wrapped instance via dedicated optional property.  For example:
   
@@ -64,7 +78,7 @@ if let properties = objectJSON.unwrappedObject {
 }
 ````
 
-## Subscripting
+### Subscripting
  
 Elements in an array and object `JSON` kinds can be reached via subscripts:
   
@@ -82,7 +96,7 @@ if let string = objectJSON["array"][3].unwrappedString {
 }
 ````
 
-## Coercing
+### Coercing
   
 Sometimes JSON messages come serialized as a pile strings for just everything: boolean, integer, float, whatever.  This is when coercion could be handy.  E.g.:
   
@@ -94,7 +108,7 @@ if let integer = something.coercedInteger {
 }
 ````
 
-## Encoding
+### Encoding
 
 If you want to encode/serialize some type into `JSON` then it will suffice to just adopt `JSONEncodable` protocol.  Let say we have a `Book` type:
  
@@ -148,7 +162,7 @@ let serializedBook = book.jsonSerialized()
 let serializedArray = [book, book, book].jsonSerialized()
 ````
 
-## Decoding
+### Decoding
  
 Reverse task, that is decoding/deserializing an instance from `JSON` requires `JSONDecodable` protocol implemented.  For example:
  
@@ -176,7 +190,7 @@ let anotherBook = try! Book(json: jsonBook)
 let yetAnotherBook = try! Book(serialization: serializedBook)
 ````
 
-## Traversing
+### Iterating
  
 Container `JSON` (object and array) can be looped through:
  
@@ -190,7 +204,7 @@ for (key, node) in objectJSON {
 }
 ````
 
-## Error handling
+### Error handling
 
 You have probably noticed that some initializers or methods use `try!` signature.  This is because firstly, not every string can be deserialized in a `JSON`, and secondly, not every `JSON` can be translated into the desired destination type.  All errors that can occur during deserialization/decoding are grouped under `JSON.Error` structure.  There are three of them:
 
@@ -198,9 +212,9 @@ You have probably noticed that some initializers or methods use `try!` signature
 - `JSON.Error.Decoding`
 - `jSON.Error.Converting`
 
-## Converting from/to Foundation JSON
+### Converting from/to Foundation JSON
 
-Stadard library provides `NSJSONSerialization` class that has (de-)serialization API (serialization is not yet working in Swift 2, though).  This class used different hierarchy of types to represent JSON (namely, `NSNull`, `NSNumber`, `NSString`, `NSArray` and `NSDictionary`).  Medea can convert to/from Foundation JSON representation like follows:
+Stadard library provides `NSJSONSerialization` class that has (de-)serialization API (serialization is not yet working in Swift 2, though).  This class uses Foundation's' hierarchy of types to represent JSON instances (namely, `NSNull`, `NSNumber`, `NSString`, `NSArray` and `NSDictionary`).  Medea can convert to/from Foundation JSON representation like follows:
 
 ````swift
 let jsonAnyObject = JSONSerialization.makeAnyObject(json: jsonBook)

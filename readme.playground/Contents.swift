@@ -202,7 +202,7 @@
  
  ## Converting from/to Foundation JSON
  
- Stadard library provides `NSJSONSerialization` class that has (de-)serialization API (serialization is not yet working in Swift 2, though).  This class used different hierarchy of types to represent JSON (namely, `NSNull`, `NSNumber`, `NSString`, `NSArray` and `NSDictionary`).  Medea can convert to/from Foundation JSON representation like follows:
+ Stadard library provides `NSJSONSerialization` class that has (de-)serialization API (serialization is not yet working in Swift 2, though).  This class uses Foundation's hierarchy of types to represent JSON intances (namely, `NSNull`, `NSNumber`, `NSString`, `NSArray` and `NSDictionary`).  Medea can convert to/from Foundation JSON representation like follows:
  
  */
         let jsonAnyObject = JSONSerialization.makeAnyObject(json: jsonBook)
