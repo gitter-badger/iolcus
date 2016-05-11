@@ -1,16 +1,16 @@
 # Medea
 
 - [Usage](#usage)
-        - [Literals](#literals)
-        - [Initializers](#initializers)
-        - [Unwrapping](#unwrapping)
-        - [Subscripting](#subscripting)
-        - [Coercing](#coercing)
-        - [Encoding](#encoding)
-        - [Decoding](#decoding)
-        - [Iterating](#iterating)
-        - [Error handling](#error-handling)
-        - [Converting from/to Foundation JSON](#converting-fromto-foundation-json)
+  - [Literals](#literals)
+  - [Initializers](#initializers)
+  - [Unwrapping](#unwrapping)
+  - [Subscripting](#subscripting) 
+  - [Coercing](#coercing)
+  - [Encoding](#encoding)
+  - [Decoding](#decoding)
+  - [Iterating](#iterating)
+  - [Error handling](#error-handling)
+  - [Converting from/to Foundation JSON](#converting-fromto-foundation-json)
 
 ## Usage
 
