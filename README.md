@@ -1,17 +1,17 @@
 # Medea
 
- The core of `Medea` framework is `JSON` type.  In practice it's just an `enum` like:
- ````swift
- enum JSON {
-     case Null
-     case Boolean(Bool)
-     case Integer(Int)
-     case Double(Double)
-     case String(String )
-     case Array([JSON])
-     case Object([String: JSON])
- }
- ````
+The core of `Medea` framework is `JSON` type.  In practice it's just an `enum` like:
+````swift
+enum JSON {
+    case Null
+    case Boolean(Bool)
+    case Integer(Int)
+    case Double(Double)
+    case String(String )
+    case Array([JSON])
+    case Object([String: JSON])
+}
+````
  
 ## Literals
  
@@ -76,6 +76,10 @@ if let integer = objectJSON["integer"].unwrappedInteger {
 if let double = arrayJSON[2].unwrappedDouble {
     print(double) // Prints "2.0"
 }
+
+if let string = objectJSON["array"][3].unwrappedString {
+    print(string) // Prints "3"
+}
 ````
 
 ## Coercing
@@ -85,7 +89,7 @@ Sometimes JSON messages come serialized as a pile strings for just everything: b
 ````swift
 let something: JSON = "365"
 
-if let integer = something.asInteger {
+if let integer = something.coercedInteger {
     print(integer) // Prints "365"
 }
 ````
@@ -174,7 +178,7 @@ let yetAnotherBook = try! Book(serialization: serializedBook)
 
 ## Traversing
  
-Container `JSON` kinds (object and array) can be looped trhough:
+Container `JSON` (object and array) can be looped through:
  
 ````swift
 arrayJSON.forEach() {
@@ -184,4 +188,27 @@ arrayJSON.forEach() {
 for (key, node) in objectJSON {
     print(key, node)
 }
+````
+
+## Error handling
+
+You have probably noticed that some initializers or methods use `try!` signature.  This is because firstly, not every string can be deserialized in a `JSON`, and secondly, not every `JSON` can be translated into the desired destination type.  All errors that can occur during deserialization/decoding are grouped under `JSON.Error` structure.  There are three of them:
+
+- `JSON.Error.Deserializing`
+- `JSON.Error.Decoding`
+- `jSON.Error.Converting`
+
+## Converting from/to Foundation JSON
+
+Stadard library provides `NSJSONSerialization` class that has (de-)serialization API (serialization is not yet working in Swift 2, though).  This class used different hierarchy of types to represent JSON (namely, `NSNull`, `NSNumber`, `NSString`, `NSArray` and `NSDictionary`).  Medea can convert to/from Foundation JSON representation like follows:
+
+````swift
+let jsonAnyObject = JSONSerialization.makeAnyObject(json: jsonBook)
+let convertedJSON = try! JSONDeserialization.makeJSON(jsonAnyObject: jsonAnyObject)
+````
+
+It's even possible to instantiate an instance of `JSONDecodable` type from Foundation's JSON:
+
+````swift
+let ohNoNotThatBookAgain = try! Book(jsonAnyObject: jsonAnyObject)
 ````
