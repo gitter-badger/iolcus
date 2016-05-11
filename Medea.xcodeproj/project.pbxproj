@@ -15,6 +15,10 @@
 		BA04C4C31CE36B1C00DB6F83 /* JSONIndex+Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA04C4C11CE36B1C00DB6F83 /* JSONIndex+Hashable.swift */; };
 		BA04C4C41CE36B1C00DB6F83 /* JSONIndex+Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA04C4C11CE36B1C00DB6F83 /* JSONIndex+Hashable.swift */; };
 		BA04C4C51CE36B1C00DB6F83 /* JSONIndex+Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA04C4C11CE36B1C00DB6F83 /* JSONIndex+Hashable.swift */; };
+		BA04C4C71CE36BC500DB6F83 /* JSONPath+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA04C4C61CE36BC500DB6F83 /* JSONPath+Equatable.swift */; };
+		BA04C4C81CE36BC500DB6F83 /* JSONPath+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA04C4C61CE36BC500DB6F83 /* JSONPath+Equatable.swift */; };
+		BA04C4C91CE36BC500DB6F83 /* JSONPath+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA04C4C61CE36BC500DB6F83 /* JSONPath+Equatable.swift */; };
+		BA04C4CA1CE36BC500DB6F83 /* JSONPath+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA04C4C61CE36BC500DB6F83 /* JSONPath+Equatable.swift */; };
 		BA35A9FC1CDB8B7400370516 /* TestSubscriptingWithString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA35A9FB1CDB8B7400370516 /* TestSubscriptingWithString.swift */; };
 		BA35A9FD1CDB8B7400370516 /* TestSubscriptingWithString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA35A9FB1CDB8B7400370516 /* TestSubscriptingWithString.swift */; };
 		BA35A9FE1CDB8B7400370516 /* TestSubscriptingWithString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA35A9FB1CDB8B7400370516 /* TestSubscriptingWithString.swift */; };
@@ -381,6 +385,7 @@
 		BA04C4BB1CE2884600DB6F83 /* readme.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = readme.playground; sourceTree = "<group>"; };
 		BA04C4BC1CE36A0A00DB6F83 /* JSONIndex+Equatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSONIndex+Equatable.swift"; path = "Sources/JSONIndex+Equatable.swift"; sourceTree = "<group>"; };
 		BA04C4C11CE36B1C00DB6F83 /* JSONIndex+Hashable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSONIndex+Hashable.swift"; path = "Sources/JSONIndex+Hashable.swift"; sourceTree = "<group>"; };
+		BA04C4C61CE36BC500DB6F83 /* JSONPath+Equatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSONPath+Equatable.swift"; path = "Sources/JSONPath+Equatable.swift"; sourceTree = "<group>"; };
 		BA35A9FB1CDB8B7400370516 /* TestSubscriptingWithString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestSubscriptingWithString.swift; path = "Tests/Black-box/TestSubscriptingWithString.swift"; sourceTree = "<group>"; };
 		BA35A9FF1CDB8FF300370516 /* TestSubscriptingWithJSONPathElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestSubscriptingWithJSONPathElement.swift; path = "Tests/Black-box/TestSubscriptingWithJSONPathElement.swift"; sourceTree = "<group>"; };
 		BA568CE71CD4E556007CCE56 /* TestPerformanceSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestPerformanceSerialization.swift; path = Tests/Performance/TestPerformanceSerialization.swift; sourceTree = "<group>"; };
@@ -774,6 +779,7 @@
 			children = (
 				BA568D171CD880A8007CCE56 /* JSONPath.swift */,
 				BAE182A71CE1309E00E9264E /* JSONPath+ArrayLiteralConvertible.swift */,
+				BA04C4C61CE36BC500DB6F83 /* JSONPath+Equatable.swift */,
 				BAE182AC1CE130D000E9264E /* JSONPath+CustomStringConvertible.swift */,
 				BAE182B11CE1311A00E9264E /* JSONPath+SequenceType.swift */,
 			);
@@ -1171,6 +1177,7 @@
 				BA862EFD1CCCD5950016E610 /* JSONDeserialization+Foundation+Error.swift in Sources */,
 				BA04C4C21CE36B1C00DB6F83 /* JSONIndex+Hashable.swift in Sources */,
 				BAE182B21CE1311A00E9264E /* JSONPath+SequenceType.swift in Sources */,
+				BA04C4C71CE36BC500DB6F83 /* JSONPath+Equatable.swift in Sources */,
 				BA6307361CC6CFFC000D98EA /* JSONSerialization+Object.swift in Sources */,
 				BAA6502A1CB5AE93006F561A /* Set+PatternMatch.swift in Sources */,
 				BAF4001C1CB96D92006A72AD /* JSONDeserialization+String.swift in Sources */,
@@ -1272,6 +1279,7 @@
 				BA862EFE1CCCD5950016E610 /* JSONDeserialization+Foundation+Error.swift in Sources */,
 				BA04C4C31CE36B1C00DB6F83 /* JSONIndex+Hashable.swift in Sources */,
 				BAE182B31CE1311A00E9264E /* JSONPath+SequenceType.swift in Sources */,
+				BA04C4C81CE36BC500DB6F83 /* JSONPath+Equatable.swift in Sources */,
 				BA6307371CC6CFFC000D98EA /* JSONSerialization+Object.swift in Sources */,
 				BAA6502B1CB5AE94006F561A /* Set+PatternMatch.swift in Sources */,
 				BAF4001D1CB96D92006A72AD /* JSONDeserialization+String.swift in Sources */,
@@ -1373,6 +1381,7 @@
 				BA862EFF1CCCD5950016E610 /* JSONDeserialization+Foundation+Error.swift in Sources */,
 				BA04C4C41CE36B1C00DB6F83 /* JSONIndex+Hashable.swift in Sources */,
 				BAE182B41CE1311A00E9264E /* JSONPath+SequenceType.swift in Sources */,
+				BA04C4C91CE36BC500DB6F83 /* JSONPath+Equatable.swift in Sources */,
 				BA6307381CC6CFFC000D98EA /* JSONSerialization+Object.swift in Sources */,
 				BAA6502C1CB5AE95006F561A /* Set+PatternMatch.swift in Sources */,
 				BAF4001E1CB96D92006A72AD /* JSONDeserialization+String.swift in Sources */,
@@ -1474,6 +1483,7 @@
 				BA862F001CCCD5950016E610 /* JSONDeserialization+Foundation+Error.swift in Sources */,
 				BA04C4C51CE36B1C00DB6F83 /* JSONIndex+Hashable.swift in Sources */,
 				BAE182B51CE1311A00E9264E /* JSONPath+SequenceType.swift in Sources */,
+				BA04C4CA1CE36BC500DB6F83 /* JSONPath+Equatable.swift in Sources */,
 				BA6307391CC6CFFC000D98EA /* JSONSerialization+Object.swift in Sources */,
 				BAA6502D1CB5AE96006F561A /* Set+PatternMatch.swift in Sources */,
 				BAF4001F1CB96D92006A72AD /* JSONDeserialization+String.swift in Sources */,
