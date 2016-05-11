@@ -27,7 +27,7 @@ extension Double: JSONEncodable {
     
     /// Encode `self` into a `JSON` value.
     public func jsonEncoded() -> JSON {
-        return JSON(double: self)
+        return JSON.Double(self)
     }
     
 }

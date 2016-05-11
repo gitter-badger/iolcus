@@ -27,7 +27,7 @@ extension String: JSONEncodable {
     
     /// Encode `self` into a `JSON` value.
     public func jsonEncoded() -> JSON {
-        return JSON(string: self)
+        return JSON.String(self)
     }
     
 }

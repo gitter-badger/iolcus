@@ -79,8 +79,8 @@ extension JSONDecodable {
     /// Initializes (deserializes) a new instance of `Self` from a given JSON string.
     ///
     /// - Throws: `JSON.Error.Decodable`
-    public init(jsonSerialization: Swift.String) throws {
-        let json = try JSONDeserialization.makeJSON(string: jsonSerialization)
+    public init(serialization: Swift.String) throws {
+        let json = try JSONDeserialization.makeJSON(string: serialization)
         try self.init(json: json)
     }
     

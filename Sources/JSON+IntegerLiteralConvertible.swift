@@ -26,7 +26,7 @@
 extension JSON: IntegerLiteralConvertible {
     
     public init(integerLiteral: IntegerLiteralType) {
-        self = JSON(integer: integerLiteral)
+        self = JSON.Integer(Swift.Int(integerLiteral))
     }
     
 }

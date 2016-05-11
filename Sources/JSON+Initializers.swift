@@ -25,26 +25,6 @@
 
 extension JSON {
     
-    /// Creates a `JSON` value from a `Bool` instance.
-    public init(boolean: Swift.Bool) {
-        self = .Boolean(boolean)
-    }
-    
-    /// Creates a `JSON` value from an `Int` instance.
-    public init(integer: Swift.Int) {
-        self = .Integer(integer)
-    }
-    
-    /// Creates a `JSON` value from a `Double` instance.
-    public init(double: Swift.Double) {
-        self = .Double(double)
-    }
-    
-    /// Creates a `JSON` value from a `String` instance.
-    public init(string: Swift.String) {
-        self = .String(string)
-    }
-    
     /// Creates a `JSON` value from an instance of `JSONEncodable`.
     public init(encodable: JSONEncodable) {
         self = encodable.jsonEncoded()

@@ -26,15 +26,15 @@
 extension JSON: StringLiteralConvertible {
     
     public init(stringLiteral: Swift.String.StringLiteralType) {
-        self = JSON(string: stringLiteral)
+        self = JSON.String(Swift.String(stringLiteral))
     }
     
     public init(extendedGraphemeClusterLiteral: Swift.String.ExtendedGraphemeClusterLiteralType) {
-        self = JSON(string: extendedGraphemeClusterLiteral)
+        self = JSON.String(Swift.String(extendedGraphemeClusterLiteral))
     }
     
     public init(unicodeScalarLiteral: Swift.String.UnicodeScalarLiteralType) {
-        self = JSON(string: unicodeScalarLiteral)
+        self = JSON.String(Swift.String(unicodeScalarLiteral))
     }
     
 }

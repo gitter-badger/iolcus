@@ -57,27 +57,6 @@ public indirect enum JSON {
     case Object(properties: [Swift.String: JSON])
     
     /// Generic JSON-related error.
-    public struct Error {
-        private init() {}
-    }
-    
-}
-
-extension JSON {
-    
-    mutating public func append(json: JSON) {
-        switch self {
-            
-        case .Array(let elements):
-            var newElements = elements
-            newElements.append(json)
-            self = .Array(elements: newElements)
-            
-        default:
-            let newElements = [self, json]
-            self = .Array(elements: newElements)
-            
-        }
-    }
+    public struct Error { }
     
 }

@@ -26,7 +26,7 @@
 extension JSON: FloatLiteralConvertible {
     
     public init(floatLiteral: FloatLiteralType) {
-        self = JSON(double: floatLiteral)
+        self = JSON.Double(Swift.Double(floatLiteral))
     }
     
 }

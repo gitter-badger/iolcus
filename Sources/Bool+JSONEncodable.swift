@@ -27,7 +27,7 @@ extension Bool: JSONEncodable {
     
     /// Encode `self` into a `JSON` value.
     public func jsonEncoded() -> JSON {
-        return JSON(boolean: self)
+        return JSON.Boolean(self)
     }
     
 }

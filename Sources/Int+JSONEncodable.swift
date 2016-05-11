@@ -27,7 +27,7 @@ extension Int: JSONEncodable {
     
     /// Encode `self` into a `JSON` value.
     public func jsonEncoded() -> JSON {
-        return JSON(integer: self)
+        return JSON.Integer(self)
     }
     
 }
