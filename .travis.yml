@@ -3,6 +3,6 @@ osx_image: xcode7.3
 xcode_project: Medea.xcodeproj
 
 script:
-   - xcodebuild -project Medea.xcodeproj -scheme Medea_OSX test
+   - xcodebuild -project Medea.xcodeproj -scheme Medea_OSX CODE_SIGNING_REQUIRED=NO test
    - xcodebuild -project Medea.xcodeproj -scheme Medea_iOS -destination "platform=iOS Simulator,name=iPad Pro" test
    - xcodebuild -project Medea.xcodeproj -scheme Medea_tvOS -destination "platform=tvOS Simulator,name=Apple TV 1080p" test
