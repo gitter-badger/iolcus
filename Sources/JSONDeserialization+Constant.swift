@@ -60,8 +60,8 @@ extension JSONDeserialization {
         static let stringUnescapeUnicodeScalar: UnicodeScalar = "u"
         
         static let stringUnescapeScalarMap: [UnicodeScalar: UnicodeScalar] =
-            [ "\"" : "\u{22}",  "n" : "\u{0a}",  "t" : "\u{09}",  "b" : "\u{08}",
-              "\\" : "\u{5c}",  "r" : "\u{0d}",  "f" : "\u{0c}",  "/" : "\u{2f}" ]
+            [ "\"": "\u{22}", "n": "\u{0a}", "t": "\u{09}", "b": "\u{08}",
+              "\\": "\u{5c}", "r": "\u{0d}", "f": "\u{0c}", "/": "\u{2f}" ]
         
         static let stringForbiddenScalars: Set<UnicodeScalar> =
             [ "\u{00}", "\u{01}", "\u{02}", "\u{03}", "\u{04}", "\u{05}", "\u{06}", "\u{07}",

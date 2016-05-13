@@ -60,8 +60,12 @@ extension JSON {
     ///            ⁃ If `position` is out of bounds, then the result is `.Null`. \
     ///            ⁃ If `self` is _not_ `.Array`, then the result is `.Null`.
     public subscript(position: Swift.Int) -> JSON {
-        get { return getValue(at: position) }
-        set { setValue(at: position, value: newValue) }
+        get {
+            return getValue(at: position)
+        }
+        set {
+            setValue(at: position, value: newValue)
+        }
     }
     
     // MARK: - `String` subscript
@@ -95,8 +99,12 @@ extension JSON {
     ///            ⁃ If there is no such property `name`, then the result is `.Null`. \
     ///            ⁃ If `self` is _not_ `.Object`, then the result is `.Null`.
     public subscript(name: Swift.String) -> JSON {
-        get { return getValue(at: name) }
-        set { setValue(at: name, value: newValue) }
+        get {
+            return getValue(at: name)
+        }
+        set {
+            setValue(at: name, value: newValue)
+        }
     }
 
     // MARK: - `JSONIndex` subscript.

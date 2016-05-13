@@ -38,7 +38,9 @@ public struct JSONGenerator: GeneratorType {
             wrappedNext = { wrappedGenerator.next() }
             
         case .Array(let elements):
-            let wrappedSequence = elements.enumerate().map({ (JSONIndex.Position($0), $1) })
+            let wrappedSequence = elements.enumerate().map {
+                (JSONIndex.Position($0), $1)
+            }
             var wrappedGenerator = wrappedSequence.generate()
             wrappedNext = { wrappedGenerator.next() }
             

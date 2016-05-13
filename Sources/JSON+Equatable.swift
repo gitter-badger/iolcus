@@ -49,7 +49,7 @@ public func == (lhs: JSON, rhs: JSON) -> Swift.Bool {
         
     case (.Object(let lhsObject), .Object(let rhsObject)):
         return lhsObject.count == rhsObject.count
-            && !lhsObject.contains() {
+            && !lhsObject.contains {
                 rhsObject[$0] != $1
         }
         
