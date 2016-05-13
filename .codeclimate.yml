@@ -11,6 +11,3 @@ engines:
 ratings:
   paths:
   - "**.swift"
-
-except:
-  - trailing-whitespace
