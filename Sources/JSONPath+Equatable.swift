@@ -23,7 +23,7 @@
 //  SOFTWARE.
 //
 
-extension JSONPath: Equatable { }
+extension JSONPath: Equatable {}
 
 public func == (lhs: JSONPath, rhs: JSONPath) -> Swift.Bool {
     return lhs.path.count == rhs.path.count

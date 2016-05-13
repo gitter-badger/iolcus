@@ -34,7 +34,7 @@ extension Array where Element: JSONDecodable {
         switch json {
             
         case .Array(let elements):
-            self = try elements.map() {
+            self = try elements.map {
                 try Element(json: $0)
             }
             

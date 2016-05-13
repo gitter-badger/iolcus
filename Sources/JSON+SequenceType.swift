@@ -30,59 +30,59 @@ extension JSON: SequenceType {
     }
     
 }
-
-//extension JSON: SequenceType {
-//    
-//    public typealias Generator = AnyGenerator<(path: JSONPath, json: JSON)>
-//    
-//    public func generate() -> Generator {
-//        let sequence = reversePathEnumeration().map() {
-//            (JSONPath(pathElements: $0.reverse()), $1)
-//        }
-//        
-//        let generator = sequence.generate()
-//        
-//        return Generator(generator)
-//    }
-//    
-//    private func reversePathEnumeration() -> [(reversePath: [JSONIndex], json: JSON)] {
-//        switch self {
-//            
-//        case .Null, .Boolean(_), .Integer(_), .Double(_), .String(_):
-//            return [([], self)]
-//            
-//        case .Array(let elements):
-//            return elements.enumerate().flatMap() {
-//                (index: Swift.Int, element: JSON) -> [(reversePath: [JSONIndex], json: JSON)] in
-//                
-//                let suffix = JSONIndex.Index(index)
-//                return element.reversePathEnumeration().map() {
-//                    (reversePath: [JSONIndex], json: JSON) -> (reversePath: [JSONIndex], json: JSON) in
-//                    
-//                    var reversePathWithSuffix = reversePath
-//                    reversePathWithSuffix.append(suffix)
-//                    
-//                    return (reversePathWithSuffix, json)
-//                }
-//            }
-//            
-//        case .Object(let properties):
-//            return properties.flatMap() {
-//                (key: Swift.String, element: JSON) -> [(reversePath: [JSONIndex], json: JSON)] in
-//                
-//                let suffix = JSONIndex.Key(key)
-//                return element.reversePathEnumeration().map() {
-//                    (reversePath: [JSONIndex], json: JSON) -> (reversePath: [JSONIndex], json: JSON) in
-//                    
-//                    var reversePathWithSuffix = reversePath
-//                    reversePathWithSuffix.append(suffix)
-//                    
-//                    return (reversePathWithSuffix, json)
-//                }
-//            }
-//            
-//        }
-//    }
-//    
-//}
-
+/*
+extension JSON: SequenceType {
+    
+    public typealias Generator = AnyGenerator<(path: JSONPath, json: JSON)>
+    
+    public func generate() -> Generator {
+        let sequence = reversePathEnumeration().map {
+            (JSONPath(pathElements: $0.reverse()), $1)
+        }
+        
+        let generator = sequence.generate()
+        
+        return Generator(generator)
+    }
+    
+    private func reversePathEnumeration() -> [(reversePath: [JSONIndex], json: JSON)] {
+        switch self {
+            
+        case .Null, .Boolean(_), .Integer(_), .Double(_), .String(_):
+            return [([], self)]
+            
+        case .Array(let elements):
+            return elements.enumerate().flatMap() {
+                (index: Swift.Int, element: JSON) -> [(reversePath: [JSONIndex], json: JSON)] in
+                
+                let suffix = JSONIndex.Index(index)
+                return element.reversePathEnumeration().map {
+                    (reversePath: [JSONIndex], json: JSON) -> (reversePath: [JSONIndex], json: JSON) in
+                    
+                    var reversePathWithSuffix = reversePath
+                    reversePathWithSuffix.append(suffix)
+                    
+                    return (reversePathWithSuffix, json)
+                }
+            }
+            
+        case .Object(let properties):
+            return properties.flatMap() {
+                (key: Swift.String, element: JSON) -> [(reversePath: [JSONIndex], json: JSON)] in
+                
+                let suffix = JSONIndex.Key(key)
+                return element.reversePathEnumeration().map {
+                    (reversePath: [JSONIndex], json: JSON) -> (reversePath: [JSONIndex], json: JSON) in
+                    
+                    var reversePathWithSuffix = reversePath
+                    reversePathWithSuffix.append(suffix)
+                    
+                    return (reversePathWithSuffix, json)
+                }
+            }
+            
+        }
+    }
+    
+}
+*/

@@ -83,7 +83,7 @@
         }
         
         private static func makeJSON(array array: [AnyObject]) throws -> JSON {
-            let elements = try array.map() {
+            let elements = try array.map {
                 try makeJSON(jsonAnyObject: $0)
             }
             return .Array(elements: elements)
@@ -92,7 +92,7 @@
         private static func makeJSON(object object: [NSString: AnyObject]) throws -> JSON {
             var properties: [Swift.String: JSON] = [:]
             
-            try object.forEach() {
+            try object.forEach {
                 let key = $0 as Swift.String
                 let value = try makeJSON(jsonAnyObject: $1)
                 properties[key] = value

@@ -54,15 +54,30 @@ extension JSON: CustomReflectable {
             return Mirror(self, unlabeledChildren: elements, displayStyle: .Collection)
             
         case .Object(let properties):
-            let children: [(Swift.String?, Any)] = properties.map() { (key: Swift.String, json: JSON) -> (Swift.String?, Any) in
+            let children: [(Swift.String?, Any)] = properties.map { (key: Swift.String, json: JSON) -> (Swift.String?, Any) in
                 switch json {
-                case .Null                   : return (key, JSON.null)
-                case .Boolean(let boolean)   : return (key, boolean)
-                case .Integer(let integer)   : return (key, integer)
-                case .Double(let double)     : return (key, double)
-                case .String(let string)     : return (key, string)
-                case .Array(let elements)    : return (key, elements)
-                case .Object(let properties) : return (key, properties)
+
+                case .Null:
+                    return (key, JSON.null)
+
+                case .Boolean(let boolean):
+                    return (key, boolean)
+
+                case .Integer(let integer):
+                    return (key, integer)
+
+                case .Double(let double):
+                    return (key, double)
+
+                case .String(let string):
+                    return (key, string)
+
+                case .Array(let elements):
+                    return (key, elements)
+
+                case .Object(let properties):
+                    return (key, properties)
+                    
                 }
             }
             return Mirror(self, children: children, displayStyle: .Dictionary)

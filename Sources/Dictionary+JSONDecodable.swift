@@ -43,7 +43,7 @@ extension Dictionary where Key: StringLiteralConvertible, Value: JSONDecodable {
         case .Object(let properties):
             var dictionary: Dictionary = [:]
             
-            try properties.forEach() {
+            try properties.forEach {
                 dictionary[$0 as! Key] = try Value(json: $1)
             }
             

@@ -37,7 +37,7 @@ class MedeaTestRingBuffer: XCTestCase {
     func testThatOutputIsConsistentWithPushPopPattern() {
         var buffer = RingBuffer<Int>()
         
-        MedeaTestRingBuffer.primeNumbers.forEach() {
+        MedeaTestRingBuffer.primeNumbers.forEach {
             buffer.push($0)
             XCTAssertEqual($0, buffer.pop())
         }
@@ -50,7 +50,7 @@ class MedeaTestRingBuffer: XCTestCase {
         var output: [Int] = []
         var flag = 0
         
-        MedeaTestRingBuffer.primeNumbers.forEach() {
+        MedeaTestRingBuffer.primeNumbers.forEach {
             buffer.push($0)
             flag += 1
             if flag % 2 == 0 {
@@ -71,7 +71,7 @@ class MedeaTestRingBuffer: XCTestCase {
         var output: [Int] = []
         var counter = 0
         
-        MedeaTestRingBuffer.primeNumbers.forEach() {
+        MedeaTestRingBuffer.primeNumbers.forEach {
             buffer.push($0)
             counter += 1
             if counter % 3 != 0 {
@@ -93,7 +93,7 @@ class MedeaTestRingBuffer: XCTestCase {
         var flag = 0
         var count = 0
         
-        MedeaTestRingBuffer.primeNumbers.forEach() {
+        MedeaTestRingBuffer.primeNumbers.forEach {
             buffer.push($0)
             count += 1
             XCTAssertEqual(count, buffer.count)
@@ -118,7 +118,7 @@ class MedeaTestRingBuffer: XCTestCase {
         var counter = 0
         var offset = 0
 
-        MedeaTestRingBuffer.primeNumbers.forEach() {
+        MedeaTestRingBuffer.primeNumbers.forEach {
             buffer.push($0)
             counter += 1
             
@@ -142,11 +142,11 @@ class MedeaTestRingBuffer: XCTestCase {
         var counter = 0
         var offset = 0
         
-        MedeaTestRingBuffer.primeNumbers.forEach() {
+        MedeaTestRingBuffer.primeNumbers.forEach {
             buffer.push($0)
             counter += 1
             
-            zip(buffer, MedeaTestRingBuffer.primeNumbers[offset..<(offset + buffer.count)]).forEach() {
+            zip(buffer, MedeaTestRingBuffer.primeNumbers[offset..<(offset + buffer.count)]).forEach {
                 XCTAssertEqual($0, $1)
             }
             
@@ -154,7 +154,7 @@ class MedeaTestRingBuffer: XCTestCase {
                 buffer.pop()
                 offset += 1
 
-                zip(buffer, MedeaTestRingBuffer.primeNumbers[offset..<(offset + buffer.count)]).forEach() {
+                zip(buffer, MedeaTestRingBuffer.primeNumbers[offset..<(offset + buffer.count)]).forEach {
                     XCTAssertEqual($0, $1)
                 }
             }

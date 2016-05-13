@@ -28,7 +28,7 @@ extension JSON: DictionaryLiteralConvertible {
     public init(dictionaryLiteral dictionary: (Swift.String, JSONEncodable)...) {
         var properties: [Swift.String: JSON] = [:]
         
-        dictionary.forEach() { (key: Swift.String, value: JSONEncodable) in
+        dictionary.forEach { (key: Swift.String, value: JSONEncodable) in
             properties[key] = value.jsonEncoded()
         }
         

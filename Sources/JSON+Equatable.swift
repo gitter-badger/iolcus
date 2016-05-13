@@ -23,7 +23,7 @@
 //  SOFTWARE.
 //
 
-extension JSON: Equatable { }
+extension JSON: Equatable {}
 
 public func == (lhs: JSON, rhs: JSON) -> Swift.Bool {
     switch (lhs, rhs) {

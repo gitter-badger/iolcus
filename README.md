@@ -199,7 +199,7 @@ let yetAnotherBook = try! Book(serialization: serializedBook)
 Container `JSON` (object and array) can be looped through:
  
 ````swift
-arrayJSON.forEach() {
+arrayJSON.forEach {
     print($0, $1) // $0 is `JSONIndex` and `$1` is child-node of `JSON`
 }
 

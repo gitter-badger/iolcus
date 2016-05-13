@@ -36,13 +36,13 @@ extension JSONDeserialization {
     }
 
     private mutating func readTrue() throws {
-        try Constant.booleanTrueSequence.forEach() {
+        try Constant.booleanTrueSequence.forEach {
             try readExpectedScalar($0)
         }
     }
     
     private mutating func readFalse() throws {
-        try Constant.booleanFalseSequence.forEach() {
+        try Constant.booleanFalseSequence.forEach {
             try readExpectedScalar($0)
         }
     }

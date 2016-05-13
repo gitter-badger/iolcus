@@ -82,14 +82,14 @@
         }
         
         private static func makeAnyObject(array elements: [JSON]) -> AnyObject {
-            return elements.map() {
+            return elements.map {
                 makeAnyObject(json: $0)
             }
         }
         
         private static func makeAnyObject(object properties: [Swift.String: JSON]) -> AnyObject {
             var nsjsonProperties: [NSString: AnyObject] = [:]
-            properties.forEach() {
+            properties.forEach {
                 nsjsonProperties[$0] = makeAnyObject(json: $1)
             }
             return nsjsonProperties

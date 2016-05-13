@@ -57,6 +57,6 @@ public indirect enum JSON {
     case Object(properties: [Swift.String: JSON])
     
     /// Generic JSON-related error.
-    public struct Error { }
+    public struct Error {}
     
 }

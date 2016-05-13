@@ -36,7 +36,7 @@ public struct JSONSerialization {
 
     // MARK: - Internal
     
-    struct Constant { }
+    struct Constant {}
 
     static func serialize(json: JSON) -> [String.UnicodeScalarView] {
         switch json {

@@ -73,7 +73,7 @@ struct RingBuffer<T>: SequenceType {
         bufferLastIndex = buffer.count - 1
     }
     
-    init() { }
+    init() {}
     init(reserveCapacity capacity: Int) {
         buffer.reserveCapacity(capacity)
     }
@@ -142,13 +142,13 @@ struct RingBuffer<T>: SequenceType {
     }
     
     mutating func pushContentsOf<C: CollectionType where C.Generator.Element == T>(collection: C) {
-        collection.forEach() {
+        collection.forEach {
             push($0)
         }
     }
     
     mutating func pushContentsOf<S: SequenceType where S.Generator.Element == T>(sequence: S) {
-        sequence.forEach() {
+        sequence.forEach {
             push($0)
         }
     }

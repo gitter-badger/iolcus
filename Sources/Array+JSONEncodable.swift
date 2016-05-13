@@ -27,7 +27,7 @@ extension Array where Element: JSONEncodable {
     
     /// Encode `self` into a `JSON` value.
     public func jsonEncoded() -> JSON {
-        let elements = self.map() {
+        let elements = self.map {
             $0.jsonEncoded()
         }
         

@@ -28,7 +28,7 @@ extension JSONSerialization {
     static func serialize(properties: [Swift.String: JSON]) -> [String.UnicodeScalarView] {
         var result: [String.UnicodeScalarView] = [Constant.objectOpeningSequence]
         
-        let propertyBodies = properties.map() { (key: Swift.String, value: JSON) -> [String.UnicodeScalarView] in
+        let propertyBodies = properties.map { (key: Swift.String, value: JSON) -> [String.UnicodeScalarView] in
             var result = serialize(key)
             result.append(Constant.objectKeyValueSeparatorSequence)
             result.appendContentsOf(serialize(value))

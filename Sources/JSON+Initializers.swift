@@ -37,7 +37,7 @@ extension JSON {
     
     /// Creates a `JSON` value from an array of `JSONEncodable`'s.
     public init(encodable: [JSONEncodable]) {
-        let elements = encodable.map() {
+        let elements = encodable.map {
             $0.jsonEncoded()
         }
         
@@ -53,7 +53,7 @@ extension JSON {
     public init(encodable: [Swift.String: JSONEncodable]) {
         var properties: [Swift.String: JSON] = [:]
         
-        encodable.forEach() {
+        encodable.forEach {
             properties[$0] = $1.jsonEncoded()
         }
         

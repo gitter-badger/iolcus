@@ -23,7 +23,7 @@
 //  SOFTWARE.
 //
 
-extension JSONIndex: Equatable { }
+extension JSONIndex: Equatable {}
 
 public func == (lhs: JSONIndex, rhs: JSONIndex) -> Swift.Bool {
     switch (lhs, rhs) {

@@ -26,7 +26,7 @@
 extension JSON: ArrayLiteralConvertible {
     
     public init(arrayLiteral array: JSONEncodable...) {
-        let elements = array.map() {
+        let elements = array.map {
             $0.jsonEncoded()
         }
         
