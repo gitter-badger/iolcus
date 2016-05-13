@@ -1,5 +1,7 @@
 # Medea
 
+[![Travis CI](https://travis-ci.org/SwiftMedea/Medea.svg?branch=master)](https://travis-ci.org/SwiftMedea/Medea)
+
 - [Usage](#usage)
   - [Literals](#literals)
   - [Initializers](#initializers)
