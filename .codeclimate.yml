@@ -4,7 +4,10 @@ engines:
     exclude_paths:
     - Playgrounds/
     - readme.playground/
-    
+
 ratings:
   paths:
   - "**.swift"
+
+except:
+  - trailing-whitespace
