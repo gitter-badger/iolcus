@@ -24,9 +24,9 @@
 //
 
 extension JSON {
-    
+
     // MARK: - `Int` subscript
-    
+
     private func getValue(at position: Swift.Int) -> JSON {
         guard case .Array(let elements) = self else {
             return .Null
@@ -43,13 +43,13 @@ extension JSON {
         guard case .Array(let elements) = self else {
             fatalError("`self` is not `.Array`")
         }
-        
+
         var newElements = elements
         newElements[position] = newValue
-        
+
         self = .Array(elements: newElements)
     }
-    
+
     /// `Int` subscript.  Suitable for `JSON.Array`.
     ///
     /// - note: If `self` is not `.Array`, then this subscript's setter produces runtime exception 
