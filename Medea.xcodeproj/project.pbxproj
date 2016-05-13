@@ -112,10 +112,6 @@
 		BA6C1CBB1CD33A7300536672 /* TestInitializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6C1CBA1CD33A7300536672 /* TestInitializers.swift */; };
 		BA6C1CBC1CD33A7300536672 /* TestInitializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6C1CBA1CD33A7300536672 /* TestInitializers.swift */; };
 		BA6C1CBD1CD33A7300536672 /* TestInitializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6C1CBA1CD33A7300536672 /* TestInitializers.swift */; };
-		BA862EFD1CCCD5950016E610 /* JSONDeserialization+Foundation+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA862EFC1CCCD5950016E610 /* JSONDeserialization+Foundation+Error.swift */; };
-		BA862EFE1CCCD5950016E610 /* JSONDeserialization+Foundation+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA862EFC1CCCD5950016E610 /* JSONDeserialization+Foundation+Error.swift */; };
-		BA862EFF1CCCD5950016E610 /* JSONDeserialization+Foundation+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA862EFC1CCCD5950016E610 /* JSONDeserialization+Foundation+Error.swift */; };
-		BA862F001CCCD5950016E610 /* JSONDeserialization+Foundation+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA862EFC1CCCD5950016E610 /* JSONDeserialization+Foundation+Error.swift */; };
 		BA862F0A1CCEB7190016E610 /* TestDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA862F091CCEB7190016E610 /* TestDecodable.swift */; };
 		BA862F0B1CCEB7190016E610 /* TestDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA862F091CCEB7190016E610 /* TestDecodable.swift */; };
 		BA862F0C1CCEB7190016E610 /* TestDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA862F091CCEB7190016E610 /* TestDecodable.swift */; };
@@ -428,7 +424,6 @@
 		BA6C1CB41CD31D2500536672 /* TestLiteralConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestLiteralConvertible.swift; path = "Tests/Black-box/TestLiteralConvertible.swift"; sourceTree = "<group>"; };
 		BA6C1CBA1CD33A7300536672 /* TestInitializers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestInitializers.swift; path = "Tests/Black-box/TestInitializers.swift"; sourceTree = "<group>"; };
 		BA6EDC691CBEC87700B0CC93 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = main.swift; path = Tests/main.swift; sourceTree = "<group>"; };
-		BA862EFC1CCCD5950016E610 /* JSONDeserialization+Foundation+Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSONDeserialization+Foundation+Error.swift"; path = "Sources/JSONDeserialization+Foundation+Error.swift"; sourceTree = "<group>"; };
 		BA862F081CCE85940016E610 /* test.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = test.playground; path = Playgrounds/test.playground; sourceTree = "<group>"; };
 		BA862F091CCEB7190016E610 /* TestDecodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestDecodable.swift; path = "Tests/Black-box/TestDecodable.swift"; sourceTree = "<group>"; };
 		BA862F0D1CD120440016E610 /* JSON+Equatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSON+Equatable.swift"; path = "Sources/JSON+Equatable.swift"; sourceTree = "<group>"; };
@@ -621,7 +616,6 @@
 				BAF400251CB97550006A72AD /* JSONDeserialization+Object.swift */,
 				BAF4002A1CB977BF006A72AD /* JSONDeserialization+Value.swift */,
 				BA63074E1CC91BEA000D98EA /* JSONDeserialization+Foundation.swift */,
-				BA862EFC1CCCD5950016E610 /* JSONDeserialization+Foundation+Error.swift */,
 			);
 			name = JSONDeserialization;
 			sourceTree = "<group>";
@@ -1163,7 +1157,6 @@
 				BAE182E01CE1389F00E9264E /* Double+JSONDecodable.swift in Sources */,
 				BAE182881CE12C9300E9264E /* JSON+StringLiteralConvertible.swift in Sources */,
 				BA862F0E1CD120440016E610 /* JSON+Equatable.swift in Sources */,
-				BA862EFD1CCCD5950016E610 /* JSONDeserialization+Foundation+Error.swift in Sources */,
 				BA04C4C21CE36B1C00DB6F83 /* JSONIndex+Hashable.swift in Sources */,
 				BAE182B21CE1311A00E9264E /* JSONPath+SequenceType.swift in Sources */,
 				BA04C4C71CE36BC500DB6F83 /* JSONPath+Equatable.swift in Sources */,
@@ -1263,7 +1256,6 @@
 				BAE182E11CE1389F00E9264E /* Double+JSONDecodable.swift in Sources */,
 				BAE182891CE12C9300E9264E /* JSON+StringLiteralConvertible.swift in Sources */,
 				BA862F0F1CD120440016E610 /* JSON+Equatable.swift in Sources */,
-				BA862EFE1CCCD5950016E610 /* JSONDeserialization+Foundation+Error.swift in Sources */,
 				BA04C4C31CE36B1C00DB6F83 /* JSONIndex+Hashable.swift in Sources */,
 				BAE182B31CE1311A00E9264E /* JSONPath+SequenceType.swift in Sources */,
 				BA04C4C81CE36BC500DB6F83 /* JSONPath+Equatable.swift in Sources */,
@@ -1363,7 +1355,6 @@
 				BAE182E21CE1389F00E9264E /* Double+JSONDecodable.swift in Sources */,
 				BAE1828A1CE12C9300E9264E /* JSON+StringLiteralConvertible.swift in Sources */,
 				BA862F101CD120440016E610 /* JSON+Equatable.swift in Sources */,
-				BA862EFF1CCCD5950016E610 /* JSONDeserialization+Foundation+Error.swift in Sources */,
 				BA04C4C41CE36B1C00DB6F83 /* JSONIndex+Hashable.swift in Sources */,
 				BAE182B41CE1311A00E9264E /* JSONPath+SequenceType.swift in Sources */,
 				BA04C4C91CE36BC500DB6F83 /* JSONPath+Equatable.swift in Sources */,
@@ -1463,7 +1454,6 @@
 				BAE182E31CE1389F00E9264E /* Double+JSONDecodable.swift in Sources */,
 				BAE1828B1CE12C9300E9264E /* JSON+StringLiteralConvertible.swift in Sources */,
 				BA862F111CD120440016E610 /* JSON+Equatable.swift in Sources */,
-				BA862F001CCCD5950016E610 /* JSONDeserialization+Foundation+Error.swift in Sources */,
 				BA04C4C51CE36B1C00DB6F83 /* JSONIndex+Hashable.swift in Sources */,
 				BAE182B51CE1311A00E9264E /* JSONPath+SequenceType.swift in Sources */,
 				BA04C4CA1CE36BC500DB6F83 /* JSONPath+Equatable.swift in Sources */,

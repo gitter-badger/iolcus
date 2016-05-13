@@ -102,5 +102,17 @@
         }
         
     }
-    
+
+    extension JSON.Error {
+
+        /// Exception while coverting to/from Foundation representation of JSON.
+        public enum Converting: ErrorType {
+
+            /// Failed to convert from Foundation `JSON` representation into Medea `JSON`.
+            case FailedToConvertFromAnyObject(type: Any.Type)
+            
+        }
+        
+    }
+
 #endif
