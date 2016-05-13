@@ -1,7 +1,10 @@
 engines:
   tailor:
     enabled: true
-
+    exclude_paths:
+    - Playgrounds/
+    - readme.playground/
+    
 ratings:
   paths:
   - "**.swift"
