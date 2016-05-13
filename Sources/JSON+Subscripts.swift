@@ -35,7 +35,7 @@ extension JSON {
         guard position >= 0 && position < elements.count else {
             return .Null
         }
-        
+
         return elements[position]
     }
     
@@ -65,7 +65,7 @@ extension JSON {
     }
     
     // MARK: - `String` subscript
-    
+
     private func getValue(at name: Swift.String) -> JSON {
         guard case .Object(let properties) = self else {
             return .Null
@@ -90,7 +90,7 @@ extension JSON {
     /// - note: If `self` is not `.Object`, then this subscript's setter produces runtime exception
     ///         (getter simply returns `.Null` value).
     ///
-    /// - returns: ⁃ If `self` is `.Object`, then this accessor returns an element associated with 
+    /// - returns: ⁃ If `self` is `.Object`, then this accessor returns an element associated with
     ///              the given property `name`. \
     ///            ⁃ If there is no such property `name`, then the result is `.Null`. \
     ///            ⁃ If `self` is _not_ `.Object`, then the result is `.Null`.
@@ -103,13 +103,13 @@ extension JSON {
     
     private func getValue(at index: JSONIndex) -> JSON {
         switch index {
-            
+
         case .This:
             return self
             
         case .Position(let position):
             return self[position]
-            
+
         case .Name(let name):
             return self[name]
             
@@ -121,7 +121,7 @@ extension JSON {
             
         case .This:
             self = newValue
-            
+
         case .Position(let position):
             self[position] = newValue
             
@@ -130,11 +130,15 @@ extension JSON {
 
         }
     }
-    
+
     /// `JSONIndex` subscript.
     public subscript(index: JSONIndex) -> JSON {
-        get { return getValue(at: index) }
-        set { setValue(at: index, value: newValue) }
+        get {
+            return getValue(at: index)
+        }
+        set {
+            setValue(at: index, value: newValue)
+        }
     }
 
     // MARK: - `ArraySlice<JSONIndex>` subscript.
@@ -149,7 +153,7 @@ extension JSON {
             self = newValue
         }
     }
-    
+
     private func getValue(at pathSlice: ArraySlice<JSONIndex>) -> JSON {
         return pathSlice.reduce(self) {
             $0[$1]
@@ -157,8 +161,12 @@ extension JSON {
     }
 
     private subscript(pathSlice: ArraySlice<JSONIndex>) -> JSON {
-        get { return getValue(at: pathSlice) }
-        set { setValue(at: pathSlice, value: newValue) }
+        get {
+            return getValue(at: pathSlice)
+        }
+        set {
+            setValue(at: pathSlice, value: newValue)
+        }
     }
 
     // MARK: - `JSONPath` subscript.
@@ -168,18 +176,22 @@ extension JSON {
             $0[$1]
         }
     }
-    
+
     private mutating func setValue(at path: JSONPath, value newValue: JSON) {
         let pathArray = path.map({ $0 })
         let pathSlice = pathArray[pathArray.startIndex..<pathArray.endIndex]
         
         self[pathSlice] = newValue
     }
-    
+
     /// `JSONPath` subscript.
     public subscript(path: JSONPath) -> JSON {
-        get { return getValue(at: path) }
-        set { setValue(at: path, value: newValue) }
+        get {
+            return getValue(at: path)
+        }
+        set {
+            setValue(at: path, value: newValue)
+        }
     }
     
 }
