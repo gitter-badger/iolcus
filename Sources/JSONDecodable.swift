@@ -97,3 +97,35 @@ extension JSONDecodable {
     #endif
     
 }
+
+// MARK: - Errors
+
+extension JSON.Error {
+    
+    /// Error while decoding a `JSONDecodable` instance.
+    public enum Decoding: ErrorType {
+        
+        /// Failed to decode single instance from `JSON` value.
+        ///
+        /// - Parameters:
+        ///   - json: `JSON` value that we were trying to decode from.
+        ///   - type: Target type that we were decoding to.
+        case FailedToDecodeInstanceFromJSON(json: JSON, type: Any.Type)
+        
+        /// Failed to decode an array from `JSON` value.
+        ///
+        /// - Parameters:
+        ///   - json: `JSON` value that we were trying to decode from.
+        ///   - type: Target type that we were decoding to.
+        case FailedToDecodeArrayFromJSON(json: JSON, type: Any.Type)
+        
+        /// Failed to decode a dictionary from `JSON` value.
+        ///
+        /// - Parameters:
+        ///   - json: `JSON` value that we were trying to decode from.
+        ///   - type: Target type that we were decoding to.
+        case FailedToDecodeDictionaryFromJSON(json: JSON, type: Any.Type)
+        
+    }
+    
+}
