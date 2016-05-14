@@ -53,13 +53,13 @@ class TestPerformanceSerialization: XCTestCase {
     }
     
     func testBenchmarkITunesJSON() {
-        self.measureBlock() {
+        self.measureBlock {
             let _ = try! JSONDeserialization.makeJSON(string: self.serializedITunesJSON)
         }
     }
 
     func testBenchmarkTwitterJSON() {
-        self.measureBlock() {
+        self.measureBlock {
             let _ = try! JSONDeserialization.makeJSON(string: self.serializedTwitterJSON)
         }
     }

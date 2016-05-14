@@ -106,4 +106,5 @@ class TestSubscriptingWithJSONPath: XCTestCase {
         XCTAssertEqual(json["list"][4]["array"][2], JSON.Double(-2.0))
         XCTAssertEqual(json["list"][4]["array"][3], JSON.String("-III"))
     }
+
 }

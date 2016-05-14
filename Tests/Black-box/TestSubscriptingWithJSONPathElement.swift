@@ -110,10 +110,10 @@ class TestSubscriptingWithJSONPathElement: XCTestCase {
     
     func testKeyElementGetterWithObject() {
         let json: JSON = [
-            "boolean" : false,
-            "integer" : 1,
-            "double"  : 2.0,
-            "string"  : "III"
+            "boolean": false,
+            "integer": 1,
+            "double": 2.0,
+            "string": "III"
         ]
         
         XCTAssertEqual(json[JSONIndex.Name("boolean")], JSON.Boolean(false))
@@ -148,10 +148,10 @@ class TestSubscriptingWithJSONPathElement: XCTestCase {
     
     func testKeyElementSetterWithObject() {
         var json: JSON = [
-            "boolean" : false,
-            "integer" : 1,
-            "double"  : 2.0,
-            "string"  : "III"
+            "boolean": false,
+            "integer": 1,
+            "double": 2.0,
+            "string": "III"
         ]
         
         json[JSONIndex.Name("boolean")] = true

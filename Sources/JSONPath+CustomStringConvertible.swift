@@ -27,7 +27,8 @@
 extension JSONPath: CustomStringConvertible {
     
     public var description: String {
-        return path.map{ $0.description }.joinWithSeparator("")
+        return path.map { $0.description }
+            .joinWithSeparator("")
     }
     
 }
