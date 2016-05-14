@@ -44,7 +44,7 @@ extension Dictionary where Key: StringLiteralConvertible, Value: JSONDecodable {
             var dictionary: Dictionary = [:]
             
             try properties.forEach {
-                dictionary[$0 as! Key] = try Value(json: $1)
+                dictionary[$0 as! Key] = try Value(json: $1) // tailor:disable
             }
             
             self = dictionary

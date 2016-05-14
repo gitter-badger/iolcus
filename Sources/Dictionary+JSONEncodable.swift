@@ -34,7 +34,7 @@ extension Dictionary where Key: StringLiteralConvertible, Value: JSONEncodable {
         var properties: [Swift.String: JSON] = [:]
         
         self.forEach {
-            properties[$0 as! Swift.String] = $1.jsonEncoded()
+            properties[$0 as! Swift.String] = $1.jsonEncoded() // tailor:disable
         }
         
         return .Object(properties: properties)
