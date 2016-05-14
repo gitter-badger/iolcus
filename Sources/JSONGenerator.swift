@@ -45,7 +45,9 @@ public struct JSONGenerator: GeneratorType {
             wrappedNext = { wrappedGenerator.next() }
             
         case .Object(let properties):
-            let wrappedSequence = properties.map({ (JSONIndex.Name($0), $1) })
+            let wrappedSequence = properties.map {
+                (JSONIndex.Name($0), $1)
+            }
             var wrappedGenerator = wrappedSequence.generate()
             wrappedNext = { wrappedGenerator.next() }
             

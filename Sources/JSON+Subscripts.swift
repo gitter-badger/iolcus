@@ -186,7 +186,9 @@ extension JSON {
     }
 
     private mutating func setValue(at path: JSONPath, value newValue: JSON) {
-        let pathArray = path.map({ $0 })
+        let pathArray = path.map {
+            $0
+        }
         let pathSlice = pathArray[pathArray.startIndex..<pathArray.endIndex]
         
         self[pathSlice] = newValue

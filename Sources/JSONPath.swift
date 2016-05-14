@@ -45,8 +45,12 @@ public struct JSONPath {
     
     /// An element at specific position of the path.
     public subscript(index: Int) -> JSONIndex {
-        get { return path[index] }
-        set { path[index] = newValue }
+        get {
+            return path[index]
+        }
+        set {
+            path[index] = newValue
+        }
     }
  
     // MARK: - Internal

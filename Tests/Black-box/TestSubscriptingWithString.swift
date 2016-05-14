@@ -62,10 +62,10 @@ class TestSubscriptingWithString: XCTestCase {
     
     func testGetterWithObject() {
         let json: JSON = [
-            "boolean" : false,
-            "integer" : 1,
-            "double"  : 2.0,
-            "string"  : "III"
+            "boolean": false,
+            "integer": 1,
+            "double": 2.0,
+            "string": "III"
         ]
         
         XCTAssertEqual(json["boolean"], JSON.Boolean(false))
@@ -82,10 +82,10 @@ class TestSubscriptingWithString: XCTestCase {
     
     func testSetterWithObject() {
         var json: JSON = [
-            "boolean" : false,
-            "integer" : 1,
-            "double"  : 2.0,
-            "string"  : "III"
+            "boolean": false,
+            "integer": 1,
+            "double": 2.0,
+            "string": "III"
         ]
         
         json["boolean"] = true
