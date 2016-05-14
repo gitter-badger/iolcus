@@ -2,6 +2,7 @@
 
 [![license](https://img.shields.io/github/license/swiftmedea/medea.svg?maxAge=2592000)](https://raw.githubusercontent.com/SwiftMedea/Medea/master/LICENSE)
 [![Code Climate](https://codeclimate.com/github/SwiftMedea/Medea/badges/gpa.svg)](https://codeclimate.com/github/SwiftMedea/Medea)
+[![Issue Count](https://codeclimate.com/github/SwiftMedea/Medea/badges/issue_count.svg)](https://codeclimate.com/github/SwiftMedea/Medea)
 [![Travis CI](https://travis-ci.org/SwiftMedea/Medea.svg?branch=master)](https://travis-ci.org/SwiftMedea/Medea)
 
 - [Usage](#usage)
