@@ -6,10 +6,8 @@ addons:
   code_climate:
     repo_token: d74f9806f3845685ee2154bdf097f5caed7651361ea318e79b07a7427dd87a73
 
-env:
-  TARGET=Medea_OSX DESTINATION="\"platform=OS X\""
-  TARGET=Medea_iOS DESTINATION="\"platform=iOS Simulator,name=iPad Pro\""
-  TARGET=Medea_tvOS DESTINATION="\"platform=tvOS Simulator,name=Apple TV 1080p\""
-
-script:
-  - xcodebuild -project Medea.xcodeproj -scheme $TARGET -destination $DESTINATION test
+matrix:
+  include:
+  - script: xcodebuild -project Medea.xcodeproj -scheme Medea_OSX -destination "platform=OS X" test
+  - script: xcodebuild -project Medea.xcodeproj -scheme Medea_iOS -destination "platform=iOS Simulator,name=iPad Pro" test
+  - script: xcodebuild -project Medea.xcodeproj -scheme Medea_tvOS -destination "platform=tvOS Simulator,name=Apple TV 1080p" test
