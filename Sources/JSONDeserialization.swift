@@ -31,7 +31,7 @@ public struct JSONDeserialization {
     public static func makeJSON(string input: Swift.String) throws -> JSON {
         var iterator = input.unicodeScalars.generate()
         
-        return try makeJSON() {
+        return try makeJSON {
             return iterator.next()
         }
     }

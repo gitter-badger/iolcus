@@ -27,5 +27,5 @@ extension JSONPath: Equatable {}
 
 public func == (lhs: JSONPath, rhs: JSONPath) -> Swift.Bool {
     return lhs.path.count == rhs.path.count
-        && !zip(lhs.path, rhs.path).contains({ $0 != $1 })
+        && !zip(lhs.path, rhs.path).contains{ $0 != $1 }
 }

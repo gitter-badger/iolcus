@@ -83,11 +83,11 @@ class TestInitializers: XCTestCase {
     
     func testEncodableDictionaryInitializer() {
         let dictionary: [String: String] = [
-            "0" : "Lorem",
-            "1" : "ipsum",
-            "2" : "dolor",
-            "3" : "sit",
-            "4" : "amet"
+            "0": "Lorem",
+            "1": "ipsum",
+            "2": "dolor",
+            "3": "sit",
+            "4": "amet"
         ]
         let json = JSON(encodable: dictionary)
         XCTAssertTrue(json.isObject)
@@ -95,11 +95,11 @@ class TestInitializers: XCTestCase {
             json,
             JSON.Object(properties:
                 [
-                    "0" : JSON.String("Lorem"),
-                    "1" : JSON.String("ipsum"),
-                    "2" : JSON.String("dolor"),
-                    "3" : JSON.String("sit"),
-                    "4" : JSON.String("amet")
+                    "0": JSON.String("Lorem"),
+                    "1": JSON.String("ipsum"),
+                    "2": JSON.String("dolor"),
+                    "3": JSON.String("sit"),
+                    "4": JSON.String("amet")
                 ]
             )
         )
@@ -107,11 +107,11 @@ class TestInitializers: XCTestCase {
     
     func testEncodableProtocolDictionaryInitializer() {
         let dictionary: [String: JSONEncodable] = [
-            "0" : "Lorem",
-            "1" : "ipsum",
-            "2" : "dolor",
-            "3" : "sit",
-            "4" : "amet"
+            "0": "Lorem",
+            "1": "ipsum",
+            "2": "dolor",
+            "3": "sit",
+            "4": "amet"
         ]
         let json = JSON(encodable: dictionary)
         XCTAssertTrue(json.isObject)
@@ -119,11 +119,11 @@ class TestInitializers: XCTestCase {
             json,
             JSON.Object(properties:
                 [
-                    "0" : JSON.String("Lorem"),
-                    "1" : JSON.String("ipsum"),
-                    "2" : JSON.String("dolor"),
-                    "3" : JSON.String("sit"),
-                    "4" : JSON.String("amet")
+                    "0": JSON.String("Lorem"),
+                    "1": JSON.String("ipsum"),
+                    "2": JSON.String("dolor"),
+                    "3": JSON.String("sit"),
+                    "4": JSON.String("amet")
                 ]
             )
         )

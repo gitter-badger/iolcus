@@ -39,6 +39,7 @@ extension JSONSerialization.Constant {
     static let stringOpeningSequence: String.UnicodeScalarView = "\""
     static let stringClosingSequence: String.UnicodeScalarView = "\""
 
+    // tailor:off
     static let stringEscapeScalarMap: [UnicodeScalar: String.UnicodeScalarView] =
         [ "\u{00}": "\\u0000", "\u{08}": "\\b",     "\u{10}": "\\u0010", "\u{18}": "\\u0018",
           "\u{01}": "\\u0001", "\u{09}": "\\t",     "\u{11}": "\\u0011", "\u{19}": "\\u0019",
@@ -51,6 +52,7 @@ extension JSONSerialization.Constant {
           "\u{22}": "\\\"",
           "\u{2f}": "\\/",
           "\u{5c}": "\\\\" ]
+    // tailor:on
 
     // MARK: - Array
 

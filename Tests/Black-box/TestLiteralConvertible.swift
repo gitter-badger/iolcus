@@ -127,8 +127,9 @@ class TestLiteralConvertible: XCTestCase {
             )
         )
     }
-    
+
     func testDictionaryLiteralConvertible() {
+        // tailor:off
         let json: JSON = [
             "true"          : true,
             "false"         : false,
@@ -156,6 +157,7 @@ class TestLiteralConvertible: XCTestCase {
                 ]
             )
         )
+        // tailor:on
     }
-    
+
 }
