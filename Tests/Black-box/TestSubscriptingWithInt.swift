@@ -72,7 +72,7 @@ class TestSubscriptingWithInt: XCTestCase {
         XCTAssertEqual(json[-1], JSON.Null)
     }
     
-    func disabled_testSetterWithNonArray() { // tailor:disabled
+    func disabled_testSetterWithNonArray() { // tailor:disable
         // no way to catch fatalError in Swift
     }
     

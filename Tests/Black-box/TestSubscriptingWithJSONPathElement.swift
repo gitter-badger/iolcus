@@ -124,7 +124,7 @@ class TestSubscriptingWithJSONPathElement: XCTestCase {
         XCTAssertEqual(json[JSONIndex.Name("somethingElse")], JSON.Null)
     }
     
-    func disabled_testIndexElementSetterWithNonArray() { // tailor:disabled
+    func disabled_testIndexElementSetterWithNonArray() { // tailor:disable
         
     }
     
@@ -142,7 +142,7 @@ class TestSubscriptingWithJSONPathElement: XCTestCase {
         XCTAssertEqual(json[3], JSON.Boolean(true))
     }
     
-    func disabled_testKeyElementSetterWithNonObject() { // tailor:disabled
+    func disabled_testKeyElementSetterWithNonObject() { // tailor:disable
         
     }
     
