@@ -23,7 +23,7 @@
 //  SOFTWARE.
 //
 
-extension Array where Element: JSONEncodable {
+extension Swift.Array where Element: JSONEncodable {
     
     /// Encode `self` into a `JSON` value.
     public func jsonEncoded() -> JSON {

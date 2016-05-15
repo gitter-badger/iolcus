@@ -23,13 +23,21 @@
 //  SOFTWARE.
 //
 
-import Foundation
+#if os(OSX) || os(iOS) || os(tvOS)
 
-extension Dictionary where Key: StringLiteralConvertible, Value: JSONEncodable {
+    import Foundation
+
+#endif
+
+extension Swift.Dictionary where Key: StringLiteralConvertible, Value: JSONEncodable {
     
     /// Encode `self` into a `JSON` value.
     public func jsonEncoded() -> JSON {
-        assert(Key.self == Swift.String || Key.self == Foundation.NSString, "The key is \(Dictionary.self) while it must be \(Swift.String) or \(Foundation.NSString)")
+        #if os(OSX) || os(iOS) || os(tvOS)
+            assert(Key.self == Swift.String || Key.self == Foundation.NSString, "The key is \(Dictionary.self) while it must be \(Swift.String) or \(Foundation.NSString)")
+        #else
+            assert(Key.self == Swift.String, "The key is \(Dictionary.self) while it must be \(Swift.String)")
+        #endif
         
         var properties: [Swift.String: JSON] = [:]
         

@@ -23,7 +23,7 @@
 //  SOFTWARE.
 //
 
-extension String: JSONEncodable {
+extension Swift.String: JSONEncodable {
     
     /// Encode `self` into a `JSON` value.
     public func jsonEncoded() -> JSON {

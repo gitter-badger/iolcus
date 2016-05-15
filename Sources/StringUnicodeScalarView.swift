@@ -25,16 +25,16 @@
 
 extension String.UnicodeScalarView: StringLiteralConvertible {
     
-    public init(stringLiteral value: String.StringLiteralType) {
-        self = value.unicodeScalars
+    public init(stringLiteral: String.StringLiteralType) {
+        self = String(stringLiteral).unicodeScalars
     }
     
-    public init(extendedGraphemeClusterLiteral value: String.ExtendedGraphemeClusterLiteralType) {
-        self = value.unicodeScalars
+    public init(extendedGraphemeClusterLiteral: String.ExtendedGraphemeClusterLiteralType) {
+        self = String(extendedGraphemeClusterLiteral).unicodeScalars
     }
     
-    public init(unicodeScalarLiteral value: String.UnicodeScalarLiteralType) {
-        self = value.unicodeScalars
+    public init(unicodeScalarLiteral: String.UnicodeScalarLiteralType) {
+        self = String(unicodeScalarLiteral).unicodeScalars
     }
     
 }

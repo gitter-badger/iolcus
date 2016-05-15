@@ -23,7 +23,7 @@
 //  SOFTWARE.
 //
 
-extension Double: JSONEncodable {
+extension Swift.Double: JSONEncodable {
     
     /// Encode `self` into a `JSON` value.
     public func jsonEncoded() -> JSON {
