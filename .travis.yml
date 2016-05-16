@@ -14,8 +14,8 @@ matrix:
     script: 
       - xcodebuild clean build test
           -workspace Medea.xcworkspace 
-          -scheme Medea_OSX 
-          -destination "platform=OS X"
+          -scheme $SCHEME 
+          -destination $DESTINATION
           | xcpretty && exit ${PIPESTATUS[0]}
   - env: Type=iOS
     script: 
