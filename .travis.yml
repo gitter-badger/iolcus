@@ -30,6 +30,9 @@ matrix:
           -destination "platform=tvOS Simulator,name=Apple TV 1080p" 
           | xcpretty && exit ${PIPESTATUS[0]}
 
+after_script:
+  - sleep 5
+
 addons:
   code_climate:
     repo_token: d74f9806f3845685ee2154bdf097f5caed7651361ea318e79b07a7427dd87a73
