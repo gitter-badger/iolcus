@@ -2,8 +2,9 @@ language: objective-c
 osx_image: xcode7.3
 xcode_project: Medea.xcodeproj
 
+# Default installation of Cocoapods is too old (0.39 vs. current 1.0) => Builds of iOS and tvOS targets fail
 before_install:
-  gem install cocoapods
+  gem install cocoapods 
 
 matrix:
   include:
