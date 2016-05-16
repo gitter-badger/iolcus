@@ -8,14 +8,15 @@ before_install:
 
 matrix:
   include:
-  - env: Type=OSX
+  - env: 
+      - SCHEME=Medea_OSX
+      - DESTINATION=\"platform=OS X\"
     script: 
       - xcodebuild clean build test
           -workspace Medea.xcworkspace 
           -scheme Medea_OSX 
           -destination "platform=OS X"
           | xcpretty && exit ${PIPESTATUS[0]}
-      - sleep 5
   - env: Type=iOS
     script: 
       - xcodebuild clean build test
@@ -23,7 +24,6 @@ matrix:
           -scheme Medea_iOS 
           -destination "platform=iOS Simulator,name=iPad Pro" 
           | xcpretty && exit ${PIPESTATUS[0]}
-      - sleep 5
   - env: Type=tvOS
     script: 
       - xcodebuild clean build test
@@ -31,7 +31,6 @@ matrix:
           -scheme Medea_tvOS 
           -destination "platform=tvOS Simulator,name=Apple TV 1080p" 
           | xcpretty && exit ${PIPESTATUS[0]}
-      - sleep 5
 
 addons:
   code_climate:
