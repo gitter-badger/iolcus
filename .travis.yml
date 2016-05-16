@@ -2,19 +2,38 @@ language: objective-c
 osx_image: xcode7.3
 xcode_project: Medea.xcodeproj
 
-# Default installation of Cocoapods is too old (0.39 vs. current 1.0) => Builds of iOS and tvOS targets fail
+# Default installation of CocoaPods is too old (0.39 vs. current 1.0) => Builds of iOS and tvOS targets fail
 before_install:
-  gem install cocoapods 
+  gem install cocoapods # This upgrades CocoaPods up to the latest release
 
 matrix:
   include:
-  - script: xcodebuild -workspace Medea.xcworkspace -scheme Medea_OSX -destination "platform=OS X" clean build test | xcpretty && exit ${PIPESTATUS[0]}
-    env: Type=OSX
-  - script: xcodebuild -workspace Medea.xcworkspace -scheme Medea_iOS -destination "platform=iOS Simulator,name=iPad Pro" clean build test | xcpretty && exit ${PIPESTATUS[0]}
-    env: Type=iOS
-  - script: xcodebuild -workspace Medea.xcworkspace -scheme Medea_tvOS -destination "platform=tvOS Simulator,name=Apple TV 1080p" clean build test | xcpretty && exit ${PIPESTATUS[0]}
-    env: Type=tvOS
+  - env: Type=OSX
+    script: 
+      - xcodebuild clean build test
+          -workspace Medea.xcworkspace 
+          -scheme Medea_OSX 
+          -destination "platform=OS X"
+          | xcpretty && exit ${PIPESTATUS[0]}
+  - env: Type=iOS
+    script: 
+      - xcodebuild clean build test
+          -workspace Medea.xcworkspace 
+          -scheme Medea_iOS 
+          -destination "platform=iOS Simulator,name=iPad Pro" 
+          | xcpretty && exit ${PIPESTATUS[0]}
+  - env: Type=tvOS
+    script: 
+      - xcodebuild clean build test
+          -workspace Medea.xcworkspace 
+          -scheme Medea_tvOS 
+          -destination "platform=tvOS Simulator,name=Apple TV 1080p" 
+          | xcpretty && exit ${PIPESTATUS[0]}
 
 addons:
   code_climate:
     repo_token: d74f9806f3845685ee2154bdf097f5caed7651361ea318e79b07a7427dd87a73
+
+notifications:
+  email: false
+  slack: swiftmedea:N9Gzr5SCnYzIQew5OBcGSEti
