@@ -20,6 +20,7 @@
 		BA04C4C81CE36BC500DB6F83 /* JSONPath+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA04C4C61CE36BC500DB6F83 /* JSONPath+Equatable.swift */; };
 		BA04C4C91CE36BC500DB6F83 /* JSONPath+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA04C4C61CE36BC500DB6F83 /* JSONPath+Equatable.swift */; };
 		BA04C4CA1CE36BC500DB6F83 /* JSONPath+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA04C4C61CE36BC500DB6F83 /* JSONPath+Equatable.swift */; };
+		BA1A6E571CE9D2DD00465053 /* Podfile.lock in Resources */ = {isa = PBXBuildFile; fileRef = BA1A6E561CE9D2DD00465053 /* Podfile.lock */; };
 		BA35A9FC1CDB8B7400370516 /* TestSubscriptingWithString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA35A9FB1CDB8B7400370516 /* TestSubscriptingWithString.swift */; };
 		BA35A9FD1CDB8B7400370516 /* TestSubscriptingWithString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA35A9FB1CDB8B7400370516 /* TestSubscriptingWithString.swift */; };
 		BA35A9FE1CDB8B7400370516 /* TestSubscriptingWithString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA35A9FB1CDB8B7400370516 /* TestSubscriptingWithString.swift */; };
@@ -388,6 +389,7 @@
 		BA04C4C11CE36B1C00DB6F83 /* JSONIndex+Hashable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSONIndex+Hashable.swift"; path = "Sources/JSONIndex+Hashable.swift"; sourceTree = "<group>"; };
 		BA04C4C61CE36BC500DB6F83 /* JSONPath+Equatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSONPath+Equatable.swift"; path = "Sources/JSONPath+Equatable.swift"; sourceTree = "<group>"; };
 		BA04C4CB1CE371A800DB6F83 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		BA1A6E561CE9D2DD00465053 /* Podfile.lock */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile.lock; sourceTree = "<group>"; };
 		BA35A9FB1CDB8B7400370516 /* TestSubscriptingWithString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestSubscriptingWithString.swift; path = "Tests/Black-box/TestSubscriptingWithString.swift"; sourceTree = "<group>"; };
 		BA35A9FF1CDB8FF300370516 /* TestSubscriptingWithJSONPathElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestSubscriptingWithJSONPathElement.swift; path = "Tests/Black-box/TestSubscriptingWithJSONPathElement.swift"; sourceTree = "<group>"; };
 		BA3EBA111CE9A0A700AFCAA1 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -614,6 +616,7 @@
 			isa = PBXGroup;
 			children = (
 				BA3EBA111CE9A0A700AFCAA1 /* Podfile */,
+				BA1A6E561CE9D2DD00465053 /* Podfile.lock */,
 				BA5FC1171CB5799700FBCB84 /* Info_OSX.plist */,
 				BA5FC1331CB57CFE00FBCB84 /* Info_iOS.plist */,
 				BA5FC1691CB5952500FBCB84 /* Info-tvOS.plist */,
@@ -1095,6 +1098,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA1A6E571CE9D2DD00465053 /* Podfile.lock in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
