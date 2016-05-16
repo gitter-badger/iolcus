@@ -8,9 +8,9 @@ addons:
 
 matrix:
   include:
-  - script: xcodebuild -workspace Medea.xcworkspace -scheme Medea_OSX -destination "platform=OS X" test
+  - script: xcodebuild -workspace Medea.xcworkspace -scheme Medea_OSX -destination "platform=OS X" clean build test | xcpretty
     env: Type=OSX
-  - script: xcodebuild -workspace Medea.xcworkspace -scheme Medea_iOS -destination "platform=iOS Simulator,name=iPad Pro" test
+  - script: xcodebuild -workspace Medea.xcworkspace -scheme Medea_iOS -destination "platform=iOS Simulator,name=iPad Pro" clean build test
     env: Type=iOS
-  - script: xcodebuild -workspace Medea.xcworkspace -scheme Medea_tvOS -destination "platform=tvOS Simulator,name=Apple TV 1080p" test
+  - script: xcodebuild -workspace Medea.xcworkspace -scheme Medea_tvOS -destination "platform=tvOS Simulator,name=Apple TV 1080p" clean build test
     env: Type=tvOS
