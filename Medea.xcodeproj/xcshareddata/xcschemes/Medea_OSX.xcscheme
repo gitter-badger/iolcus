@@ -38,6 +38,11 @@
                BlueprintName = "Medea_OSXTests"
                ReferencedContainer = "container:Medea.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "JSONSpec/initializes_integer_literal_as_JSON_Integer()">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>

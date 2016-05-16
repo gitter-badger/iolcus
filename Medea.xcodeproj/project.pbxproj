@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		97FE978EEB7F0BBA633C9E8B /* Pods_Medea_tvOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4E05E044D0E8CA3158B877B /* Pods_Medea_tvOSTests.framework */; };
 		BA04C4BD1CE36A0A00DB6F83 /* JSONIndex+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA04C4BC1CE36A0A00DB6F83 /* JSONIndex+Equatable.swift */; };
 		BA04C4BE1CE36A0A00DB6F83 /* JSONIndex+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA04C4BC1CE36A0A00DB6F83 /* JSONIndex+Equatable.swift */; };
 		BA04C4BF1CE36A0A00DB6F83 /* JSONIndex+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA04C4BC1CE36A0A00DB6F83 /* JSONIndex+Equatable.swift */; };
@@ -25,6 +26,9 @@
 		BA35AA001CDB8FF300370516 /* TestSubscriptingWithJSONPathElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA35A9FF1CDB8FF300370516 /* TestSubscriptingWithJSONPathElement.swift */; };
 		BA35AA011CDB8FF300370516 /* TestSubscriptingWithJSONPathElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA35A9FF1CDB8FF300370516 /* TestSubscriptingWithJSONPathElement.swift */; };
 		BA35AA021CDB8FF300370516 /* TestSubscriptingWithJSONPathElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA35A9FF1CDB8FF300370516 /* TestSubscriptingWithJSONPathElement.swift */; };
+		BA3EBA171CE9BDD300AFCAA1 /* JSONSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3EBA131CE9ABEA00AFCAA1 /* JSONSpec.swift */; };
+		BA3EBA181CE9BDD500AFCAA1 /* JSONSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3EBA131CE9ABEA00AFCAA1 /* JSONSpec.swift */; };
+		BA3EBA191CE9BDD600AFCAA1 /* JSONSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3EBA131CE9ABEA00AFCAA1 /* JSONSpec.swift */; };
 		BA568CE81CD4E556007CCE56 /* TestPerformanceSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA568CE71CD4E556007CCE56 /* TestPerformanceSerialization.swift */; };
 		BA568CE91CD4E556007CCE56 /* TestPerformanceSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA568CE71CD4E556007CCE56 /* TestPerformanceSerialization.swift */; };
 		BA568CEA1CD4E556007CCE56 /* TestPerformanceSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA568CE71CD4E556007CCE56 /* TestPerformanceSerialization.swift */; };
@@ -343,6 +347,8 @@
 		BAF400681CBC6AE9006A72AD /* TestRingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF400671CBC6AE9006A72AD /* TestRingBuffer.swift */; };
 		BAF400691CBC6AE9006A72AD /* TestRingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF400671CBC6AE9006A72AD /* TestRingBuffer.swift */; };
 		BAF4006A1CBC6AE9006A72AD /* TestRingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF400671CBC6AE9006A72AD /* TestRingBuffer.swift */; };
+		C1D1F5C2FF53416D351FA710 /* Pods_Medea_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C01A05C49907D14E7B1FC7E9 /* Pods_Medea_iOSTests.framework */; };
+		D284D54DBD3BF4EDC1D943FE /* Pods_Medea_OSXTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 479596DCE480C99A78592E4D /* Pods_Medea_OSXTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -370,6 +376,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D3625E95AB0147DE3E077C5 /* Pods-Medea_tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Medea_tvOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Medea_tvOSTests/Pods-Medea_tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		39418FA42DD3A81FEF928DDF /* Pods-Medea_OSXTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Medea_OSXTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Medea_OSXTests/Pods-Medea_OSXTests.release.xcconfig"; sourceTree = "<group>"; };
+		479596DCE480C99A78592E4D /* Pods_Medea_OSXTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Medea_OSXTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C7D41EB84A18811B68ABAE4 /* Pods-Medea_tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Medea_tvOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Medea_tvOSTests/Pods-Medea_tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7267BDC1C80575B1B6740C06 /* Pods-Medea_OSXTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Medea_OSXTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Medea_OSXTests/Pods-Medea_OSXTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A14A0791AE9E17C8C55A016A /* Pods-Medea_iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Medea_iOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Medea_iOSTests/Pods-Medea_iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A4E05E044D0E8CA3158B877B /* Pods_Medea_tvOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Medea_tvOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA04C4BB1CE2884600DB6F83 /* readme.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = readme.playground; sourceTree = "<group>"; };
 		BA04C4BC1CE36A0A00DB6F83 /* JSONIndex+Equatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSONIndex+Equatable.swift"; path = "Sources/JSONIndex+Equatable.swift"; sourceTree = "<group>"; };
 		BA04C4C11CE36B1C00DB6F83 /* JSONIndex+Hashable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSONIndex+Hashable.swift"; path = "Sources/JSONIndex+Hashable.swift"; sourceTree = "<group>"; };
@@ -377,6 +390,8 @@
 		BA04C4CB1CE371A800DB6F83 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		BA35A9FB1CDB8B7400370516 /* TestSubscriptingWithString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestSubscriptingWithString.swift; path = "Tests/Black-box/TestSubscriptingWithString.swift"; sourceTree = "<group>"; };
 		BA35A9FF1CDB8FF300370516 /* TestSubscriptingWithJSONPathElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestSubscriptingWithJSONPathElement.swift; path = "Tests/Black-box/TestSubscriptingWithJSONPathElement.swift"; sourceTree = "<group>"; };
+		BA3EBA111CE9A0A700AFCAA1 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		BA3EBA131CE9ABEA00AFCAA1 /* JSONSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONSpec.swift; path = Tests/QuickTests/JSONSpec.swift; sourceTree = "<group>"; };
 		BA568CE71CD4E556007CCE56 /* TestPerformanceSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestPerformanceSerialization.swift; path = Tests/Performance/TestPerformanceSerialization.swift; sourceTree = "<group>"; };
 		BA568CEC1CD50209007CCE56 /* itunes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = itunes.json; path = Tests/Performance/itunes.json; sourceTree = "<group>"; };
 		BA568CF61CD5E086007CCE56 /* twitter.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = twitter.json; path = Tests/Performance/twitter.json; sourceTree = "<group>"; };
@@ -480,6 +495,8 @@
 		BAF4002F1CB98A6E006A72AD /* TestDeserialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestDeserialization.swift; path = "Tests/Black-box/TestDeserialization.swift"; sourceTree = "<group>"; };
 		BAF400611CBBF6FC006A72AD /* RingBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RingBuffer.swift; path = Sources/RingBuffer.swift; sourceTree = "<group>"; };
 		BAF400671CBC6AE9006A72AD /* TestRingBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestRingBuffer.swift; path = "Tests/White-box/TestRingBuffer.swift"; sourceTree = "<group>"; };
+		BF05FE117B885027C1CFD38E /* Pods-Medea_iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Medea_iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Medea_iOSTests/Pods-Medea_iOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		C01A05C49907D14E7B1FC7E9 /* Pods_Medea_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Medea_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -495,6 +512,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA5FC11D1CB5799700FBCB84 /* Medea.framework in Frameworks */,
+				D284D54DBD3BF4EDC1D943FE /* Pods_Medea_OSXTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,6 +528,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA5FC1391CB57CFE00FBCB84 /* Medea.framework in Frameworks */,
+				C1D1F5C2FF53416D351FA710 /* Pods_Medea_iOSTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,6 +544,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA5FC16F1CB5952500FBCB84 /* Medea.framework in Frameworks */,
+				97FE978EEB7F0BBA633C9E8B /* Pods_Medea_tvOSTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -538,13 +558,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		BA568CE61CD4D69A007CCE56 /* Performance */ = {
+		5FD50B688A092B15B1C2D8E2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				479596DCE480C99A78592E4D /* Pods_Medea_OSXTests.framework */,
+				C01A05C49907D14E7B1FC7E9 /* Pods_Medea_iOSTests.framework */,
+				A4E05E044D0E8CA3158B877B /* Pods_Medea_tvOSTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BA3EBA151CE9ABFB00AFCAA1 /* QuickTests */ = {
+			isa = PBXGroup;
+			children = (
+				BA3EBA131CE9ABEA00AFCAA1 /* JSONSpec.swift */,
+			);
+			name = QuickTests;
+			sourceTree = "<group>";
+		};
+		BA3EBA161CE9BD5200AFCAA1 /* XCTests */ = {
 			isa = PBXGroup;
 			children = (
 				BA568CF51CD5020D007CCE56 /* Resources */,
+				BAF400671CBC6AE9006A72AD /* TestRingBuffer.swift */,
+				BA6C1CBA1CD33A7300536672 /* TestInitializers.swift */,
+				BA6C1CB41CD31D2500536672 /* TestLiteralConvertible.swift */,
+				BA9A7D6E1CDA2EF40087C0D7 /* TestInspection.swift */,
+				BA568D031CD632D0007CCE56 /* TestUnwrapping.swift */,
+				BA9A7D7C1CDA857D0087C0D7 /* TestCoercionToBoolean.swift */,
+				BA9A7D801CDB0F020087C0D7 /* TestCoercionToInteger.swift */,
+				BA9A7D841CDB10320087C0D7 /* TestCoercionToDouble.swift */,
+				BA9A7D881CDB10A60087C0D7 /* TestCoercionToString.swift */,
+				BA9A7D8C1CDB2EC30087C0D7 /* TestSubscriptingWithInt.swift */,
+				BA35A9FB1CDB8B7400370516 /* TestSubscriptingWithString.swift */,
+				BA35A9FF1CDB8FF300370516 /* TestSubscriptingWithJSONPathElement.swift */,
+				BAE9386F1CDB953500DEA2DA /* TestSubscriptingWithJSONPath.swift */,
+				BA862F091CCEB7190016E610 /* TestDecodable.swift */,
+				BAF4002F1CB98A6E006A72AD /* TestDeserialization.swift */,
+				BA6306FD1CC0BCC5000D98EA /* TestSerialization.swift */,
 				BA568CE71CD4E556007CCE56 /* TestPerformanceSerialization.swift */,
 			);
-			name = Performance;
+			name = XCTests;
 			sourceTree = "<group>";
 		};
 		BA568CF51CD5020D007CCE56 /* Resources */ = {
@@ -559,6 +613,7 @@
 		BA5B9B681CB42EE9003EF1CA /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				BA3EBA111CE9A0A700AFCAA1 /* Podfile */,
 				BA5FC1171CB5799700FBCB84 /* Info_OSX.plist */,
 				BA5FC1331CB57CFE00FBCB84 /* Info_iOS.plist */,
 				BA5FC1691CB5952500FBCB84 /* Info-tvOS.plist */,
@@ -654,9 +709,8 @@
 			isa = PBXGroup;
 			children = (
 				BA5B9BC61CB4DE39003EF1CA /* Support */,
-				BA6C1CB91CD31D5C00536672 /* White-box */,
-				BA6C1CB81CD31D4000536672 /* Black-box */,
-				BA568CE61CD4D69A007CCE56 /* Performance */,
+				BA3EBA161CE9BD5200AFCAA1 /* XCTests */,
+				BA3EBA151CE9ABFB00AFCAA1 /* QuickTests */,
 				BA6EDC691CBEC87700B0CC93 /* main.swift */,
 			);
 			name = Tests;
@@ -670,36 +724,6 @@
 				BA5FC1751CB5952500FBCB84 /* Info_tvOSTests.plist */,
 			);
 			name = Support;
-			sourceTree = "<group>";
-		};
-		BA6C1CB81CD31D4000536672 /* Black-box */ = {
-			isa = PBXGroup;
-			children = (
-				BA6C1CBA1CD33A7300536672 /* TestInitializers.swift */,
-				BA6C1CB41CD31D2500536672 /* TestLiteralConvertible.swift */,
-				BA9A7D6E1CDA2EF40087C0D7 /* TestInspection.swift */,
-				BA568D031CD632D0007CCE56 /* TestUnwrapping.swift */,
-				BA9A7D7C1CDA857D0087C0D7 /* TestCoercionToBoolean.swift */,
-				BA9A7D801CDB0F020087C0D7 /* TestCoercionToInteger.swift */,
-				BA9A7D841CDB10320087C0D7 /* TestCoercionToDouble.swift */,
-				BA9A7D881CDB10A60087C0D7 /* TestCoercionToString.swift */,
-				BA9A7D8C1CDB2EC30087C0D7 /* TestSubscriptingWithInt.swift */,
-				BA35A9FB1CDB8B7400370516 /* TestSubscriptingWithString.swift */,
-				BA35A9FF1CDB8FF300370516 /* TestSubscriptingWithJSONPathElement.swift */,
-				BAE9386F1CDB953500DEA2DA /* TestSubscriptingWithJSONPath.swift */,
-				BA862F091CCEB7190016E610 /* TestDecodable.swift */,
-				BAF4002F1CB98A6E006A72AD /* TestDeserialization.swift */,
-				BA6306FD1CC0BCC5000D98EA /* TestSerialization.swift */,
-			);
-			name = "Black-box";
-			sourceTree = "<group>";
-		};
-		BA6C1CB91CD31D5C00536672 /* White-box */ = {
-			isa = PBXGroup;
-			children = (
-				BAF400671CBC6AE9006A72AD /* TestRingBuffer.swift */,
-			);
-			name = "White-box";
 			sourceTree = "<group>";
 		};
 		BA862F071CCE85780016E610 /* Playgrounds */ = {
@@ -805,6 +829,8 @@
 				BA862F071CCE85780016E610 /* Playgrounds */,
 				BAF8092B1CB38E000055F146 /* Products */,
 				BA6AC9D41CB6A09D00D301DD /* Package.swift */,
+				FF7C32DF862C81FF98DB80B8 /* Pods */,
+				5FD50B688A092B15B1C2D8E2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -820,6 +846,19 @@
 				BAA6500A1CB599E8006F561A /* Medea.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		FF7C32DF862C81FF98DB80B8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7267BDC1C80575B1B6740C06 /* Pods-Medea_OSXTests.debug.xcconfig */,
+				39418FA42DD3A81FEF928DDF /* Pods-Medea_OSXTests.release.xcconfig */,
+				A14A0791AE9E17C8C55A016A /* Pods-Medea_iOSTests.debug.xcconfig */,
+				BF05FE117B885027C1CFD38E /* Pods-Medea_iOSTests.release.xcconfig */,
+				4C7D41EB84A18811B68ABAE4 /* Pods-Medea_tvOSTests.debug.xcconfig */,
+				2D3625E95AB0147DE3E077C5 /* Pods-Medea_tvOSTests.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -882,9 +921,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BA5FC1271CB5799700FBCB84 /* Build configuration list for PBXNativeTarget "Medea_OSXTests" */;
 			buildPhases = (
+				30F15F35D4F57A0B265D1D58 /* 📦 Check Pods Manifest.lock */,
 				BA5FC1181CB5799700FBCB84 /* Sources */,
 				BA5FC1191CB5799700FBCB84 /* Frameworks */,
 				BA5FC11A1CB5799700FBCB84 /* Resources */,
+				C6916422B4E637166D6EF7BB /* 📦 Embed Pods Frameworks */,
+				DD4D39A5B0A6D4937C64383B /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -918,9 +960,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BA5FC1431CB57CFE00FBCB84 /* Build configuration list for PBXNativeTarget "Medea_iOSTests" */;
 			buildPhases = (
+				CEDFC7DAAE30590BBEE54286 /* 📦 Check Pods Manifest.lock */,
 				BA5FC1341CB57CFE00FBCB84 /* Sources */,
 				BA5FC1351CB57CFE00FBCB84 /* Frameworks */,
 				BA5FC1361CB57CFE00FBCB84 /* Resources */,
+				8952002C5F5E41E618AFA5F4 /* 📦 Embed Pods Frameworks */,
+				936910DF16BC9BAD4F0734CA /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -954,9 +999,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BA5FC1791CB5952500FBCB84 /* Build configuration list for PBXNativeTarget "Medea_tvOSTests" */;
 			buildPhases = (
+				42346CD451078BC66F92E921 /* 📦 Check Pods Manifest.lock */,
 				BA5FC16A1CB5952500FBCB84 /* Sources */,
 				BA5FC16B1CB5952500FBCB84 /* Frameworks */,
 				BA5FC16C1CB5952500FBCB84 /* Resources */,
+				FC441E5499A90AE1A9EFD810 /* 📦 Embed Pods Frameworks */,
+				044E0D7C23F332E3BB432D00 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1100,6 +1148,144 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		044E0D7C23F332E3BB432D00 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Medea_tvOSTests/Pods-Medea_tvOSTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		30F15F35D4F57A0B265D1D58 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		42346CD451078BC66F92E921 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8952002C5F5E41E618AFA5F4 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Medea_iOSTests/Pods-Medea_iOSTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		936910DF16BC9BAD4F0734CA /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Medea_iOSTests/Pods-Medea_iOSTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C6916422B4E637166D6EF7BB /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Medea_OSXTests/Pods-Medea_OSXTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CEDFC7DAAE30590BBEE54286 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DD4D39A5B0A6D4937C64383B /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Medea_OSXTests/Pods-Medea_OSXTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FC441E5499A90AE1A9EFD810 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Medea_tvOSTests/Pods-Medea_tvOSTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		BA5FC10E1CB5799700FBCB84 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -1190,6 +1376,7 @@
 				BA35A9FC1CDB8B7400370516 /* TestSubscriptingWithString.swift in Sources */,
 				BA9A7D891CDB10A60087C0D7 /* TestCoercionToString.swift in Sources */,
 				BA35AA001CDB8FF300370516 /* TestSubscriptingWithJSONPathElement.swift in Sources */,
+				BA3EBA171CE9BDD300AFCAA1 /* JSONSpec.swift in Sources */,
 				BA862F0A1CCEB7190016E610 /* TestDecodable.swift in Sources */,
 				BA568D041CD632D0007CCE56 /* TestUnwrapping.swift in Sources */,
 				BA9A7D851CDB10320087C0D7 /* TestCoercionToDouble.swift in Sources */,
@@ -1289,6 +1476,7 @@
 				BA35A9FD1CDB8B7400370516 /* TestSubscriptingWithString.swift in Sources */,
 				BA9A7D8A1CDB10A60087C0D7 /* TestCoercionToString.swift in Sources */,
 				BA35AA011CDB8FF300370516 /* TestSubscriptingWithJSONPathElement.swift in Sources */,
+				BA3EBA181CE9BDD500AFCAA1 /* JSONSpec.swift in Sources */,
 				BA862F0B1CCEB7190016E610 /* TestDecodable.swift in Sources */,
 				BA568D051CD632D0007CCE56 /* TestUnwrapping.swift in Sources */,
 				BA9A7D861CDB10320087C0D7 /* TestCoercionToDouble.swift in Sources */,
@@ -1388,6 +1576,7 @@
 				BA35A9FE1CDB8B7400370516 /* TestSubscriptingWithString.swift in Sources */,
 				BA9A7D8B1CDB10A60087C0D7 /* TestCoercionToString.swift in Sources */,
 				BA35AA021CDB8FF300370516 /* TestSubscriptingWithJSONPathElement.swift in Sources */,
+				BA3EBA191CE9BDD600AFCAA1 /* JSONSpec.swift in Sources */,
 				BA862F0C1CCEB7190016E610 /* TestDecodable.swift in Sources */,
 				BA568D061CD632D0007CCE56 /* TestUnwrapping.swift in Sources */,
 				BA9A7D871CDB10320087C0D7 /* TestCoercionToDouble.swift in Sources */,
@@ -1540,6 +1729,7 @@
 		};
 		BA5FC1281CB5799700FBCB84 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7267BDC1C80575B1B6740C06 /* Pods-Medea_OSXTests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1553,6 +1743,7 @@
 		};
 		BA5FC1291CB5799700FBCB84 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 39418FA42DD3A81FEF928DDF /* Pods-Medea_OSXTests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1609,6 +1800,7 @@
 		};
 		BA5FC1441CB57CFE00FBCB84 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A14A0791AE9E17C8C55A016A /* Pods-Medea_iOSTests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Tests/Support/Info_iOSTests.plist";
@@ -1622,6 +1814,7 @@
 		};
 		BA5FC1451CB57CFE00FBCB84 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BF05FE117B885027C1CFD38E /* Pods-Medea_iOSTests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Tests/Support/Info_iOSTests.plist";
@@ -1679,6 +1872,7 @@
 		};
 		BA5FC17A1CB5952500FBCB84 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4C7D41EB84A18811B68ABAE4 /* Pods-Medea_tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Tests/Support/Info_tvOSTests.plist";
@@ -1692,6 +1886,7 @@
 		};
 		BA5FC17B1CB5952500FBCB84 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D3625E95AB0147DE3E077C5 /* Pods-Medea_tvOSTests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Tests/Support/Info_tvOSTests.plist";
