@@ -10,7 +10,7 @@ matrix:
   include:
   - env: 
       - SCHEME=Medea_OSX
-      - DESTINATION=\"platform=OS X\"
+      - DESTINATION='"platform=OS X"'
     script: 
       - xcodebuild clean build test
           -workspace Medea.xcworkspace 
