@@ -12,24 +12,23 @@ matrix:
       - SCHEME=Medea_OSX
       - DESTINATION='"platform=OS X"'
     script: 
+      - echo $SCHEME
+      - echo $DESTINATION
       - xcodebuild clean build test
           -workspace Medea.xcworkspace 
-          -scheme $SCHEME 
-          -destination $DESTINATION
+          -scheme $SCHEME -destination $DESTINATION
           | xcpretty && exit ${PIPESTATUS[0]}
   - env: Type=iOS
     script: 
       - xcodebuild clean build test
           -workspace Medea.xcworkspace 
-          -scheme Medea_iOS 
-          -destination "platform=iOS Simulator,name=iPad Pro" 
+          -scheme Medea_iOS -destination "platform=iOS Simulator,name=iPad Pro" 
           | xcpretty && exit ${PIPESTATUS[0]}
   - env: Type=tvOS
     script: 
       - xcodebuild clean build test
           -workspace Medea.xcworkspace 
-          -scheme Medea_tvOS 
-          -destination "platform=tvOS Simulator,name=Apple TV 1080p" 
+          -scheme Medea_tvOS -destination "platform=tvOS Simulator,name=Apple TV 1080p" 
           | xcpretty && exit ${PIPESTATUS[0]}
 
 addons:
