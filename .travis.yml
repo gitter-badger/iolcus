@@ -8,15 +8,11 @@ before_install:
 
 matrix:
   include:
-  - env: 
-      - SCHEME=Medea_OSX
-      - DESTINATION='"platform=OS X"'
+  - env: Type=OSX
     script: 
-      - echo $SCHEME
-      - echo $DESTINATION
       - xcodebuild clean build test
           -workspace Medea.xcworkspace 
-          -scheme $SCHEME -destination $DESTINATION
+          -scheme Medea_OSX -destination "platform=OS X"
           | xcpretty && exit ${PIPESTATUS[0]}
   - env: Type=iOS
     script: 
