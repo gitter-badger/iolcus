@@ -31,7 +31,7 @@ extension Swift.Array where Element: JSONEncodable {
             $0.jsonEncoded()
         }
         
-        return .Array(elements: elements)
+        return .Array(elements)
     }
     
     /// Serialize `self` into a JSON string.

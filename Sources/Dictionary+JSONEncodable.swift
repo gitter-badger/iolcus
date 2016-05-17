@@ -45,7 +45,7 @@ extension Swift.Dictionary where Key: StringLiteralConvertible, Value: JSONEncod
             properties[$0 as! Swift.String] = $1.jsonEncoded() // tailor:disable
         }
         
-        return .Object(properties: properties)
+        return .Object(properties)
     }
     
     /// Serialize `self` into a JSON string.

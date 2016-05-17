@@ -41,7 +41,7 @@ extension JSON {
             $0.jsonEncoded()
         }
         
-        self = .Array(elements: elements)
+        self = .Array(elements)
     }
     
     /// Creates a `JSON` value from a dictionary of `[String: JSONEncodable]`.
@@ -57,7 +57,7 @@ extension JSON {
             properties[$0] = $1.jsonEncoded()
         }
         
-        self = .Object(properties: properties)
+        self = .Object(properties)
     }
     
 }

@@ -31,8 +31,8 @@
 /// - `Integer(Int)`
 /// - `Double(Double)`
 /// - `String(String)`
-/// - `Array(elements: [JSON])`
-/// - `Object(properties: [String: JSON])`
+/// - `Array([JSON])`
+/// - `Object([String: JSON])`
 public indirect enum JSON {
     
     /// Null JSON value.
@@ -51,10 +51,10 @@ public indirect enum JSON {
     case String(Swift.String)
     
     /// JSON array.
-    case Array(elements: [JSON])
+    case Array([JSON])
     
     /// JSON object.
-    case Object(properties: [Swift.String: JSON])
+    case Object([Swift.String: JSON])
     
     /// Generic JSON-related error.
     public struct Error {}

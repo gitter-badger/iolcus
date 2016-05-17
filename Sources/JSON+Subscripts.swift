@@ -47,7 +47,7 @@ extension JSON {
         var newElements = elements
         newElements[position] = newValue
 
-        self = .Array(elements: newElements)
+        self = .Array(newElements)
     }
 
     /// `Int` subscript.  Suitable for `JSON.Array`.
@@ -86,7 +86,7 @@ extension JSON {
         var newProperties = properties
         newProperties[name] = newValue
         
-        self = .Object(properties: newProperties)
+        self = .Object(newProperties)
     }
     
     /// `String` subscript.  Suitable for `JSON.Object`.

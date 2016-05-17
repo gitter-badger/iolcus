@@ -69,7 +69,7 @@ extension JSON {
             guard case .Array(_) = self else {
                 fatalError("`self` is not `.Array`")
             }
-            self = .Array(elements: newValue ?? [])
+            self = .Array(newValue ?? [])
         }
     }
 

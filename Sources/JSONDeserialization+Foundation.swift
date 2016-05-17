@@ -86,7 +86,7 @@
             let elements = try array.map {
                 try makeJSON(jsonAnyObject: $0)
             }
-            return .Array(elements: elements)
+            return .Array(elements)
         }
         
         private static func makeJSON(object object: [NSString: AnyObject]) throws -> JSON {
@@ -98,7 +98,7 @@
                 properties[key] = value
             }
             
-            return .Object(properties: properties)
+            return .Object(properties)
         }
         
     }

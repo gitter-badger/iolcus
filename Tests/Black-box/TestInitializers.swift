@@ -51,7 +51,7 @@ class TestInitializers: XCTestCase {
         XCTAssertTrue(json.isArray)
         XCTAssertEqual(
             json,
-            JSON.Array(elements:
+            JSON.Array(
                 [
                     JSON.String("Lorem"),
                     JSON.String("ipsum"),
@@ -69,7 +69,7 @@ class TestInitializers: XCTestCase {
         XCTAssertTrue(json.isArray)
         XCTAssertEqual(
             json,
-            JSON.Array(elements:
+            JSON.Array(
                 [
                     JSON.String("Lorem"),
                     JSON.String("ipsum"),
@@ -93,7 +93,7 @@ class TestInitializers: XCTestCase {
         XCTAssertTrue(json.isObject)
         XCTAssertEqual(
             json,
-            JSON.Object(properties:
+            JSON.Object(
                 [
                     "0": JSON.String("Lorem"),
                     "1": JSON.String("ipsum"),
@@ -117,7 +117,7 @@ class TestInitializers: XCTestCase {
         XCTAssertTrue(json.isObject)
         XCTAssertEqual(
             json,
-            JSON.Object(properties:
+            JSON.Object(
                 [
                     "0": JSON.String("Lorem"),
                     "1": JSON.String("ipsum"),

@@ -32,7 +32,7 @@ extension JSON: DictionaryLiteralConvertible {
             properties[key] = value.jsonEncoded()
         }
         
-        self = .Object(properties: properties)
+        self = .Object(properties)
     }
     
 }

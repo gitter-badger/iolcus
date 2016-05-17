@@ -27,7 +27,7 @@ extension JSONDeserialization {
 
     mutating func deserializeArray() throws -> JSON {
         let array = try readArray()
-        return JSON.Array(elements: array)
+        return JSON.Array(array)
     }
     
     private mutating func readArray() throws -> [JSON] {
