@@ -52,7 +52,7 @@ extension JSON {
     /// Decodes an element of `self` into a new instance.
     ///
     /// - Throws: `JSON.Error.Decoding`
-    public func decode<T: JSONDecodable>(at index: Swift.Int) throws -> T {
+    public func decode<T: JSONDecodable>(at index: Int) throws -> T {
         return try T(json: self, at: index)
     }
     
@@ -73,7 +73,7 @@ extension JSON {
     /// Decodes an element of `self` into an array.
     ///
     /// - Throws: `JSON.Error.Decoding`
-    public func decode<T: JSONDecodable>(at index: Swift.Int) throws -> [T] {
+    public func decode<T: JSONDecodable>(at index: Int) throws -> [T] {
         return try Swift.Array(json: self, at: index)
     }
     
@@ -94,7 +94,7 @@ extension JSON {
     /// Decodes an element of `self` into a dictionary.
     ///
     /// - Throws: `JSON.Error.Decoding`
-    public func decode<D: JSONDecodable>(at index: Swift.Int) throws -> [Swift.String: D] {
+    public func decode<D: JSONDecodable>(at index: Int) throws -> [Swift.String: D] {
         return try Swift.Dictionary(json: self, at: index)
     }
     

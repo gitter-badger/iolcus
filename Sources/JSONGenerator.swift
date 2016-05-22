@@ -32,7 +32,7 @@ public struct JSONGenerator: GeneratorType {
     init(json: JSON) {
         switch json {
             
-        case .Null, .Boolean(_), .Integer(_), .Double(_), .String(_):
+        case .Null, .Boolean(_), .Integer(_), .Float(_), .String(_):
             let wrappedSequence = (JSONIndex.This, json)
             var wrappedGenerator = GeneratorOfOne(wrappedSequence)
             wrappedNext = { wrappedGenerator.next() }

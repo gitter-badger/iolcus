@@ -50,8 +50,8 @@ public struct JSONSerialization {
         case .Integer(let integer):
             return serialize(integer)
             
-        case .Double(let double):
-            return serialize(double)
+        case .Float(let float):
+            return serialize(float)
 
         case .String(let string):
             return serialize(string)

@@ -73,7 +73,7 @@
             if Double(number.integerValue) == number.doubleValue {
                 return .Integer(number.integerValue)
             } else {
-                return .Double(number.doubleValue)
+                return .Float(number.doubleValue)
             }
         }
         

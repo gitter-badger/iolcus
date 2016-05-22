@@ -25,56 +25,61 @@
 
 extension JSON {
     
-    /// Indicates whether the `self` is `.Null`.
-    public var isNull: Swift.Bool {
+    /// Indicates whether `self` is null.
+    public var isNull: Bool {
         if self == .Null {
             return true
         }
         return false
     }
     
-    /// Indicates whether the `self` is `.Boolean`.
-    public var isBoolean: Swift.Bool {
+    /// Indicates whether `self` is a boolean.
+    public var isBoolean: Bool {
         if case .Boolean(_) = self {
             return true
         }
         return false
     }
     
-    /// Indicates whether the `self` is `.Integer`.
-    public var isInteger: Swift.Bool {
+    /// Indicates whether the `self` is an integer number.
+    public var isInteger: Bool {
         if case .Integer(_) = self {
             return true
         }
         return false
     }
     
-    /// Indicates whether the `self` is `.Double`.
-    public var isDouble: Swift.Bool {
-        if case .Double(_) = self {
+    /// Indicates whether the `self` is a floating-point number.
+    public var isFloat: Bool {
+        if case .Float(_) = self {
             return true
         }
         return false
     }
+
+    /// Indicates whether the `self` is a number.
+    public var isNumber: Bool {
+        return isInteger || isFloat
+    }
     
-    /// Indicates whether the `self` is `.String`.
-    public var isString: Swift.Bool {
+    /// Indicates whether `self` is string.
+    public var isString: Bool {
         if case .String(_) = self {
             return true
         }
         return false
     }
     
-    /// Indicates whether the `self` is `.Array`.
-    public var isArray: Swift.Bool {
+    /// Indicates whether `self` is array.
+    public var isArray: Bool {
         if case .Array(_) = self {
             return true
         }
         return false
     }
     
-    /// Indicates whether the `self` is `.Object`.
-    public var isObject: Swift.Bool {
+    /// Indicates whether `self` is object.
+    public var isObject: Bool {
         if case .Object(_) = self {
             return true
         }

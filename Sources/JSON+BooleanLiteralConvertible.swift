@@ -26,7 +26,7 @@
 extension JSON: BooleanLiteralConvertible {
     
     public init(booleanLiteral: BooleanLiteralType) {
-        self = JSON.Boolean(Swift.Bool(booleanLiteral))
+        self = JSON.Boolean(Bool(booleanLiteral))
     }
     
 }

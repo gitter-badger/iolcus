@@ -25,7 +25,7 @@
 
 extension JSONIndex: IntegerLiteralConvertible {
     
-    public init(integerLiteral integer: Swift.Int.IntegerLiteralType) {
+    public init(integerLiteral integer: IntegerLiteralType) {
         self = .Position(integer)
     }
     

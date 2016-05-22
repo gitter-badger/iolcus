@@ -34,7 +34,7 @@ extension Int: JSONDecodable {
             throw JSON.Error.Decoding.FailedToDecodeInstanceFromJSON(json: json, type: Int.self)
         }
         
-        self = integer
+        self = Int(integer)
     }
     
 }

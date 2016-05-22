@@ -8,7 +8,7 @@
      case Null
      case Boolean(Bool)
      case Integer(Int)
-     case Double(Double)
+     case Float(Double)
      case String(String )
      case Array([JSON])
      case Object([String: JSON])
@@ -24,7 +24,7 @@
 
         let booleanJSON: JSON = true
         let integerJSON: JSON = 42
-        let doubleJSON: JSON = 36.6
+        let floatJSON: JSON = 36.6
         let stringJSON: JSON = "Lorem ipsum dolor sit amet"
         var arrayJSON: JSON = [false, 1, 2.0, "3"]
         var objectJSON: JSON = [
@@ -75,8 +75,8 @@
             print(integer) // Prints "42"
         }
 
-        if let double = arrayJSON[2].unwrappedDouble {
-            print(double) // Prints "2.0"
+        if let float = arrayJSON[2].unwrappedFloat {
+            print(float) // Prints "2.0"
         }
 
         if let string = objectJSON["array"][3].unwrappedString {

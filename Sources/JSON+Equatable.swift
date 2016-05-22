@@ -25,7 +25,7 @@
 
 extension JSON: Equatable {}
 
-public func == (lhs: JSON, rhs: JSON) -> Swift.Bool {
+public func == (lhs: JSON, rhs: JSON) -> Bool {
     switch (lhs, rhs) {
         
     case (.Null, .Null):
@@ -37,8 +37,8 @@ public func == (lhs: JSON, rhs: JSON) -> Swift.Bool {
     case (.Integer(let lhsInt), .Integer(let rhsInt)):
         return lhsInt == rhsInt
         
-    case (.Double(let lhsDouble), .Double(let rhsDouble)):
-        return lhsDouble == rhsDouble
+    case (.Float(let lhsFloat), .Float(let rhsFloat)):
+        return lhsFloat == rhsFloat
         
     case (.String(let lhsString), .String(let rhsString)):
         return lhsString == rhsString

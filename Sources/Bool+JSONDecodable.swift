@@ -34,7 +34,7 @@ extension Bool: JSONDecodable {
             throw JSON.Error.Decoding.FailedToDecodeInstanceFromJSON(json: json, type: Bool.self)
         }
         
-        self = boolean
+        self = Bool(boolean)
     }
     
 }

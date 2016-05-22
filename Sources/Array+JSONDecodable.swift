@@ -49,7 +49,7 @@ extension Array where Element: JSONDecodable {
     /// - Precondition: `json == .Array(_) && json[index] == .Array(_)`
     ///
     /// - Throws: `JSON.Error.Decoding`
-    public init(json: JSON, at index: Swift.Int) throws {
+    public init(json: JSON, at index: Int) throws {
         try self.init(json: json[index])
     }
     

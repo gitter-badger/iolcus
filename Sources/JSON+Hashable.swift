@@ -37,8 +37,8 @@ extension JSON: Hashable {
         case .Integer(let integer):
             return 2.hashValue ^ integer.hashValue
             
-        case .Double(let double):
-            return 3.hashValue ^ double.hashValue
+        case .Float(let float):
+            return 3.hashValue ^ float.hashValue
             
         case .String(let string):
             return 4.hashValue ^ string.hashValue

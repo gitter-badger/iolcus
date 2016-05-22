@@ -46,8 +46,8 @@ extension JSONDeserialization {
             return JSON.Integer(integer)
         }
         
-        if let double = Double(string) {
-            return JSON.Double(double)
+        if let float = Double(string) where float.isFinite {
+            return JSON.Float(float)
         }
         
         throw JSON.Error.Deserialization.FailedToReadNumber(number: string, position: position)

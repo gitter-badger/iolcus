@@ -25,31 +25,31 @@
 
 extension JSON {
     
-    /// Unwrapped `Bool` value or `nil`.
-    public var unwrappedBoolean: Swift.Bool? {
+    /// Unwrapped boolean value or `nil`.
+    public var unwrappedBoolean: Bool? {
         guard case .Boolean(let boolean) = self else {
             return nil
         }
         return boolean
     }
     
-    /// Unwrapped `Int` value or `nil`.
-    public var unwrappedInteger: Swift.Int? {
+    /// Unwrapped integer value or `nil`.
+    public var unwrappedInteger: Int? {
         guard case .Integer(let integer) = self else {
             return nil
         }
         return integer
     }
     
-    /// Unwrapped `Double` value or `nil`.
-    public var unwrappedDouble: Swift.Double? {
-        guard case .Double(let double) = self else {
+    /// Unwrapped floating-point value or `nil`.
+    public var unwrappedFloat: Double? {
+        guard case .Float(let float) = self else {
             return nil
         }
-        return double
+        return float
     }
     
-    /// Unwrapped `String` value or `nil`.
+    /// Unwrapped string value or `nil`.
     public var unwrappedString: Swift.String? {
         guard case .String(let string) = self else {
             return nil
@@ -57,7 +57,7 @@ extension JSON {
         return string
     }
  
-    /// Unwrapped `[JSON]` array or `nil`.
+    /// Unwrapped array or `nil`.
     public var unwrappedArray: [JSON]? {
         get {
             guard case .Array(let elements) = self else {
@@ -73,7 +73,7 @@ extension JSON {
         }
     }
 
-    /// Unwrapped `[String: JSON]` ditionary of object properties or `nil`.
+    /// Unwrapped ditionary of object properties or `nil`.
     public var unwrappedObject: [Swift.String: JSON]? {
         guard case .Object(let properties) = self else {
             return nil

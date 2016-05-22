@@ -55,7 +55,7 @@ extension JSONDecodable {
     ///   - at:   Index of the input `JSON` value in the JSON array.
     ///
     /// - Throws: `JSON.Error.Decoding`
-    public init(json: JSON, at index: Swift.Int) throws {
+    public init(json: JSON, at index: Int) throws {
         try self.init(json: json[index])
     }
     

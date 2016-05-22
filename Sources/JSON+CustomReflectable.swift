@@ -42,8 +42,8 @@ extension JSON: CustomReflectable {
             let children: [(Swift.String?, Any)] = [(nil, integer)]
             return Mirror(self, children: children, displayStyle: .Set)
             
-        case .Double(let double):
-            let children: [(Swift.String?, Any)] = [(nil, double)]
+        case .Float(let float):
+            let children: [(Swift.String?, Any)] = [(nil, float)]
             return Mirror(self, children: children, displayStyle: .Set)
             
         case .String(let string):
@@ -66,8 +66,8 @@ extension JSON: CustomReflectable {
                 case .Integer(let integer):
                     return (key, integer)
 
-                case .Double(let double):
-                    return (key, double)
+                case .Float(let float):
+                    return (key, float)
 
                 case .String(let string):
                     return (key, string)

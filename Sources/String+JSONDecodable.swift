@@ -34,7 +34,7 @@ extension String: JSONDecodable {
             throw JSON.Error.Decoding.FailedToDecodeInstanceFromJSON(json: json, type: String.self)
         }
         
-        self = string
+        self = String(string)
     }
     
 }

@@ -29,8 +29,8 @@ extension JSONSerialization {
         return [integer.description.unicodeScalars]
     }
     
-    static func serialize(double: Double) -> [String.UnicodeScalarView] {
-        return [double.description.unicodeScalars]
+    static func serialize(float: Double) -> [String.UnicodeScalarView] {
+        return [float.description.unicodeScalars]
     }
     
 }

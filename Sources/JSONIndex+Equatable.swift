@@ -25,7 +25,7 @@
 
 extension JSONIndex: Equatable {}
 
-public func == (lhs: JSONIndex, rhs: JSONIndex) -> Swift.Bool {
+public func == (lhs: JSONIndex, rhs: JSONIndex) -> Bool {
     switch (lhs, rhs) {
 
     case (.This, .This):

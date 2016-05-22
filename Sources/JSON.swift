@@ -29,7 +29,7 @@
 /// - `Null`
 /// - `Boolean(Bool)`
 /// - `Integer(Int)`
-/// - `Double(Double)`
+/// - `Float(Double)`
 /// - `String(String)`
 /// - `Array([JSON])`
 /// - `Object([String: JSON])`
@@ -39,13 +39,13 @@ public indirect enum JSON {
     case Null
     
     /// Boolean JSON value.
-    case Boolean(Swift.Bool)
+    case Boolean(Bool)
     
     /// JSON integer value.
-    case Integer(Swift.Int)
+    case Integer(Int)
     
-    /// JSON double value.
-    case Double(Swift.Double)
+    /// JSON floating-point value.
+    case Float(Double)
     
     /// JSON string value.
     case String(Swift.String)

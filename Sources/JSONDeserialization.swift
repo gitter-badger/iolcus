@@ -151,31 +151,31 @@ extension JSON.Error {
         ///   - position  : Position of the scalar in the input stream.
         ///                 **Note:** This is a position of a scalar and not character (which will
         ///                           be different.
-        case UnexpectedScalar(scalar: UnicodeScalar, position: Swift.Int)
+        case UnexpectedScalar(scalar: UnicodeScalar, position: Int)
         
         /// Same key was found more than once.
         ///
         /// - parameters:
         ///   - key      : The key that is a duplicate.
         ///   - position : Position of the error.
-        case DuplicateObjectKey(key: Swift.String, position: Swift.Int)
+        case DuplicateObjectKey(key: Swift.String, position: Int)
         
         /// There was an error while reading the string that constitutes the key.
         ///
         /// - parameters:
         ///   - position : Position of the error.
-        case FailedToReadKey(position: Swift.Int)
+        case FailedToReadKey(position: Int)
         
         /// There was an error while reading
         ///
         /// There
-        case FailedToReadValue(position: Swift.Int)
+        case FailedToReadValue(position: Int)
         
         /// Failed to read a hex string.
-        case FailedToReadHex(hex: Swift.String, position: Swift.Int)
+        case FailedToReadHex(hex: Swift.String, position: Int)
         
         /// Failed to read a number.
-        case FailedToReadNumber(number: Swift.String, position: Swift.Int)
+        case FailedToReadNumber(number: Swift.String, position: Int)
         
     }
     

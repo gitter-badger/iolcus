@@ -44,8 +44,8 @@
             case .Integer(let integer):
                 return makeAnyObject(integer: integer)
                 
-            case .Double(let double):
-                return makeAnyObject(double: double)
+            case .Float(let float):
+                return makeAnyObject(float: float)
                 
             case .String(let string):
                 return makeAnyObject(string: string)
@@ -73,8 +73,8 @@
             return NSNumber(integer: integer)
         }
         
-        private static func makeAnyObject(double double: Swift.Double) -> AnyObject {
-            return NSNumber(double: double)
+        private static func makeAnyObject(float float: Double) -> AnyObject {
+            return NSNumber(double: float)
         }
         
         private static func makeAnyObject(string string: Swift.String) -> AnyObject {

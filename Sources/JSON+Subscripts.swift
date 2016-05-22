@@ -27,7 +27,7 @@ extension JSON {
 
     // MARK: - `Int` subscript
 
-    private func getValue(at position: Swift.Int) -> JSON {
+    private func getValue(at position: Int) -> JSON {
         guard case .Array(let elements) = self else {
             return .Null
         }
@@ -39,7 +39,7 @@ extension JSON {
         return elements[position]
     }
     
-    private mutating func setValue(at position: Swift.Int, value newValue: JSON) {
+    private mutating func setValue(at position: Int, value newValue: JSON) {
         guard case .Array(let elements) = self else {
             fatalError("`self` is not `.Array`")
         }
@@ -59,7 +59,7 @@ extension JSON {
     ///              `position` of the array. \
     ///            ⁃ If `position` is out of bounds, then the result is `.Null`. \
     ///            ⁃ If `self` is _not_ `.Array`, then the result is `.Null`.
-    public subscript(position: Swift.Int) -> JSON {
+    public subscript(position: Int) -> JSON {
         get {
             return getValue(at: position)
         }

@@ -30,11 +30,11 @@ extension Double: JSONDecodable {
     /// - Throws: `JSON.Error.Decoding`
     public init(json: JSON) throws {
         // We will try to coerce, unwrapping might be too strict
-        guard let double = json.coercedDouble else {
+        guard let float = json.coercedFloat else {
             throw JSON.Error.Decoding.FailedToDecodeInstanceFromJSON(json: json, type: Double.self)
         }
         
-        self = double
+        self = Double(float)
     }
     
 }
