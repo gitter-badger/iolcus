@@ -30,57 +30,18 @@ import Medea
 public class JSONSpec: QuickSpec {
 
     override public func spec() {
-        describe("literal initializer") {
-            it("initializes nil literal into JSON.Null") {
-                let json: JSON = nil
-                expect(json) == JSON.Null
-            }
-
-            it("initializes boolean literal into JSON.Boolean") {
-                let json: JSON = true
-                expect(json) == JSON.Boolean(true)
-            }
-
-            it("initializes integer literal into JSON.Integer") {
-                let json: JSON = 123456789
-                expect(json) == JSON.Integer(123456789)
-            }
-
-            it("initializes double liteal into JSON.Double") {
-                let json: JSON = 123456.789
-                expect(json) == JSON.Double(123456.789)
-            }
-
-            it("initializes string liteal into JSON.String") {
-                let json: JSON = "Lorem ipsum"
-                expect(json) == JSON.String("Lorem ipsum")
-            }
-
-            it("initializes array literal into JSON.Array") {
-                let json: JSON = [true, 2, 3.0, "IV"]
-                expect(json) == JSON.Array(
-                    [
-                        JSON.Boolean(true),
-                        JSON.Integer(2),
-                        JSON.Double(3.0),
-                        JSON.String("IV")
-                    ]
-                )
-            }
-
-            it("initializes dictionary literal into JSON.Object") {
-                let json: JSON = ["boolean": true, "integer": 2, "double": 3.0, "string": "IV"]
-                expect(json) == JSON.Object(
-                    [
-                        "boolean": JSON.Boolean(true),
-                        "integer": JSON.Integer(2),
-                        "double": JSON.Double(3.0),
-                        "string": JSON.String("IV")
-                    ]
-                )
-            }
+        describe("JSON") {
+            self.specLiteralInitializers()
+            self.specEncodableInitializers()
+            self.specEquatable()
+            self.specInspecting()
+            self.specUnwrapping()
+            self.specCoercing()
 
         }
+
     }
+
+
     
 }
