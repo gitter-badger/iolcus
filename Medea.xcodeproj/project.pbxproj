@@ -392,7 +392,6 @@
 		BA6307531CC924AA000D98EA /* JSONSerialization+Foundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSONSerialization+Foundation.swift"; path = "Sources/JSONSerialization+Foundation.swift"; sourceTree = "<group>"; };
 		BA6AC9D41CB6A09D00D301DD /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		BA6C1CAC1CD2AD9200536672 /* JSON+CustomStringConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSON+CustomStringConvertible.swift"; path = "Sources/JSON+CustomStringConvertible.swift"; sourceTree = "<group>"; };
-		BA862F081CCE85940016E610 /* test.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = test.playground; path = Playgrounds/test.playground; sourceTree = "<group>"; };
 		BA862F0D1CD120440016E610 /* JSON+Equatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSON+Equatable.swift"; path = "Sources/JSON+Equatable.swift"; sourceTree = "<group>"; };
 		BA862F121CD120940016E610 /* JSON+Hashable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSON+Hashable.swift"; path = "Sources/JSON+Hashable.swift"; sourceTree = "<group>"; };
 		BA862F171CD120EC0016E610 /* JSON+SequenceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSON+SequenceType.swift"; path = "Sources/JSON+SequenceType.swift"; sourceTree = "<group>"; };
@@ -652,7 +651,6 @@
 		BA862F071CCE85780016E610 /* Playgrounds */ = {
 			isa = PBXGroup;
 			children = (
-				BA862F081CCE85940016E610 /* test.playground */,
 			);
 			name = Playgrounds;
 			sourceTree = "<group>";
