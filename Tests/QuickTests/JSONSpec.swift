@@ -37,11 +37,9 @@ public class JSONSpec: QuickSpec {
             self.specInspecting()
             self.specUnwrapping()
             self.specCoercing()
+            self.specSubscripting()
 
         }
-
     }
 
-
-    
 }
