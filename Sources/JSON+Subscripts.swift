@@ -27,7 +27,15 @@ extension JSON {
 
     // MARK: - `Int` subscript
 
-    private func getValue(at position: Int) -> JSON {
+    /// `JSON.Array` element getter.
+    ///
+    /// - parameters:
+    ///   - at: Integer position of the element in the array.
+    ///
+    /// - returns: ⁃ `JSON` element "`at`" the specified position of the array.  \
+    ///            ⁃ Otherwise, if `self` is not `.Array`, the result is `.Null`. \
+    ///            ⁃ Otherwise, if "`at`" index is out of the array's bounds, the result is `.Null`.
+    public func getValue(at position: Int) -> JSON {
         guard case .Array(let elements) = self else {
             return .Null
         }
@@ -38,49 +46,80 @@ extension JSON {
 
         return elements[position]
     }
-    
-    private mutating func setValue(at position: Int, value newValue: JSON) {
+
+    /// `JSON.Array` element setter.
+    ///
+    /// - parameters:
+    ///   - at: Integer position of the element in the array.
+    ///   - value: New `JSON` value to put "`at`" the given position of the array.
+    ///
+    /// - throws: `JSON.Error.Subscrpting` if: \
+    ///           ⁃ `self` is not `.Array`. \
+    ///           ⁃ `at` index is out of the array's bounds.
+    public mutating func setValue(at position: Int, value newValue: JSON) throws {
         guard case .Array(let elements) = self else {
-            fatalError("`self` is not `.Array`")
+            throw Error.Subscrpting.SettingValueUsingIntegerIndexWithNonArray
+        }
+
+        guard position >= 0 && position < elements.count else {
+            throw Error.Subscrpting.SettingValueUsingIntegerIndexOutOfBounds
         }
 
         var newElements = elements
         newElements[position] = newValue
-
         self = .Array(newElements)
     }
 
-    /// `Int` subscript.  Suitable for `JSON.Array`.
+    /// `JSON.Array` subscript accessor.
     ///
-    /// - note: If `self` is not `.Array`, then this subscript's setter produces runtime exception 
-    ///         (getter simply returns `.Null` value).
+    /// - parameters:
+    ///   - position: Integer position of the element in the array.
     ///
-    /// - returns: ⁃ If `self` is `.Array`, then this accessor returns an element at the given
-    ///              `position` of the array. \
-    ///            ⁃ If `position` is out of bounds, then the result is `.Null`. \
-    ///            ⁃ If `self` is _not_ `.Array`, then the result is `.Null`.
+    /// - throws: Setter throws runtime exception `JSON.Error.Subscrpting` if: \
+    ///           ⁃ `self` is not `.Array`. \
+    ///           ⁃ `at` index is out of the array's bounds.
+    ///
+    /// - returns: ⁃ `JSON` element `at` the specified position of the array.  \
+    ///            ⁃ Otherwise, if `self` is not `.Array`, the result is `.Null`. \
+    ///            ⁃ Otherwise, if "`at`" index is out of the array's bounds, the result is `.Null`.
     public subscript(position: Int) -> JSON {
         get {
             return getValue(at: position)
         }
         set {
-            setValue(at: position, value: newValue)
+            try! setValue(at: position, value: newValue)
         }
     }
     
     // MARK: - `String` subscript
 
-    private func getValue(at name: Swift.String) -> JSON {
+    /// `JSON.Object` property getter.
+    ///
+    /// - parameters:
+    ///   - at: String name of the object's property.
+    ///
+    /// - returns: ⁃ `JSON` element "`at`" the property with specified name.  \
+    ///            ⁃ Otherwise, if `self` is not `.Object`, the result is `.Null`. \
+    ///            ⁃ Otherwise, if there is no property "`at`" such name, the result is `.Null`.
+    public func getValue(at name: Swift.String) -> JSON {
         guard case .Object(let properties) = self else {
             return .Null
         }
         
         return properties[name] ?? .Null
     }
-    
-    private mutating func setValue(at name: Swift.String, value newValue: JSON) {
+
+    /// `JSON.Object` property setter.
+    ///
+    /// - parameters:
+    ///   - at: String name of the object's property.
+    ///   - value: New `JSON` value to assign to the object's property "`at`" the given name.
+    ///
+    /// - throws: Setter throws runtime exception `JSON.Error.Subscrpting` if: \
+    ///           ⁃ `self` is not `.Object`.
+    public mutating func setValue(at name: Swift.String, value newValue: JSON) throws {
         guard case .Object(let properties) = self else {
-            fatalError("`self` is not `.Object`")
+            throw JSON.Error.Subscrpting.SettingValueUsingStringIndexWithNonObject
         }
         
         var newProperties = properties
@@ -89,21 +128,23 @@ extension JSON {
         self = .Object(newProperties)
     }
     
-    /// `String` subscript.  Suitable for `JSON.Object`.
+    /// `JSON.Object` subscript accessor.
     ///
-    /// - note: If `self` is not `.Object`, then this subscript's setter produces runtime exception
-    ///         (getter simply returns `.Null` value).
+    /// - parameters:
+    ///   - property: String name of the object's property.
     ///
-    /// - returns: ⁃ If `self` is `.Object`, then this accessor returns an element associated with
-    ///              the given property `name`. \
-    ///            ⁃ If there is no such property `name`, then the result is `.Null`. \
-    ///            ⁃ If `self` is _not_ `.Object`, then the result is `.Null`.
-    public subscript(name: Swift.String) -> JSON {
+    /// - throws: Setter throws runtime exception `JSON.Error.Subscrpting` if: \
+    ///           ⁃ `self` is not `.Object`.
+    ///
+    /// - returns: ⁃ `JSON` element "`at`" the property with specified name.  \
+    ///            ⁃ Otherwise, if `self` is not `.Object`, the result is `.Null`. \
+    ///            ⁃ Otherwise, if there is no property "`at`" such name, the result is `.Null`.
+    public subscript(property: Swift.String) -> JSON {
         get {
-            return getValue(at: name)
+            return getValue(at: property)
         }
         set {
-            setValue(at: name, value: newValue)
+            try! setValue(at: property, value: newValue)
         }
     }
 
@@ -133,13 +174,15 @@ extension JSON {
         case .Position(let position):
             self[position] = newValue
             
-        case .Name(let name):
-            self[name] = newValue
+        case .Name(let property):
+            self[property] = newValue
 
         }
     }
 
-    /// `JSONIndex` subscript.
+    /// `JSONIndex` subscript accessor.
+    ///
+    /// Maps either to integer accessor to `JSON.Array` or to string accessor ot `JSON.Object`.
     public subscript(index: JSONIndex) -> JSON {
         get {
             return getValue(at: index)
@@ -194,7 +237,10 @@ extension JSON {
         self[pathSlice] = newValue
     }
 
-    /// `JSONPath` subscript.
+    /// `JSONPath` subscript accessor.
+    ///
+    /// Provides get/set access to the `JSON` sub-element at specific path of integer/string 
+    /// indexes (array/object).
     public subscript(path: JSONPath) -> JSON {
         get {
             return getValue(at: path)
@@ -204,4 +250,24 @@ extension JSON {
         }
     }
     
+}
+
+// MARK: - Errors
+
+extension JSON.Error {
+
+    /// Exception while using a subscript setter.
+    public enum Subscrpting: ErrorType {
+
+        /// Attempted to set the value using an integer index on `JSON` that is not `.Array`.
+        case SettingValueUsingIntegerIndexWithNonArray
+
+        /// Attempted to set the value of `JSON.Array` element using the index that is out of bounds.
+        case SettingValueUsingIntegerIndexOutOfBounds
+
+        /// Attempted to set value using string index with `JSON` that is not `.Object`.
+        case SettingValueUsingStringIndexWithNonObject
+
+    }
+
 }

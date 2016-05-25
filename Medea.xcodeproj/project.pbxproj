@@ -26,6 +26,9 @@
 		BA4F2AEC1CF24F2E00AE9AAA /* JSONSpec+Inspecting.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4F2AEB1CF24F2E00AE9AAA /* JSONSpec+Inspecting.swift */; };
 		BA4F2AED1CF24F2E00AE9AAA /* JSONSpec+Inspecting.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4F2AEB1CF24F2E00AE9AAA /* JSONSpec+Inspecting.swift */; };
 		BA4F2AEE1CF24F2E00AE9AAA /* JSONSpec+Inspecting.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4F2AEB1CF24F2E00AE9AAA /* JSONSpec+Inspecting.swift */; };
+		BA4F2AF01CF3B3B500AE9AAA /* JSONSpec+Subscripting.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4F2AEF1CF3B3B500AE9AAA /* JSONSpec+Subscripting.swift */; };
+		BA4F2AF11CF3B3B500AE9AAA /* JSONSpec+Subscripting.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4F2AEF1CF3B3B500AE9AAA /* JSONSpec+Subscripting.swift */; };
+		BA4F2AF21CF3B3B500AE9AAA /* JSONSpec+Subscripting.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4F2AEF1CF3B3B500AE9AAA /* JSONSpec+Subscripting.swift */; };
 		BA568CFF1CD627CC007CCE56 /* JSON+Inspection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA568CFE1CD627CC007CCE56 /* JSON+Inspection.swift */; };
 		BA568D001CD627CC007CCE56 /* JSON+Inspection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA568CFE1CD627CC007CCE56 /* JSON+Inspection.swift */; };
 		BA568D011CD627CC007CCE56 /* JSON+Inspection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA568CFE1CD627CC007CCE56 /* JSON+Inspection.swift */; };
@@ -353,6 +356,8 @@
 		BA3EBA111CE9A0A700AFCAA1 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		BA3EBA131CE9ABEA00AFCAA1 /* JSONSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONSpec.swift; path = Tests/QuickTests/JSONSpec.swift; sourceTree = "<group>"; };
 		BA4F2AEB1CF24F2E00AE9AAA /* JSONSpec+Inspecting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSONSpec+Inspecting.swift"; path = "Tests/QuickTests/JSONSpec+Inspecting.swift"; sourceTree = "<group>"; };
+		BA4F2AEF1CF3B3B500AE9AAA /* JSONSpec+Subscripting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSONSpec+Subscripting.swift"; path = "Tests/QuickTests/JSONSpec+Subscripting.swift"; sourceTree = "<group>"; };
+		BA4F2AF61CF6310000AE9AAA /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = MyPlayground.playground; path = Playgrounds/MyPlayground.playground; sourceTree = "<group>"; };
 		BA568CFE1CD627CC007CCE56 /* JSON+Inspection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSON+Inspection.swift"; path = "Sources/JSON+Inspection.swift"; sourceTree = "<group>"; };
 		BA568D071CD63C62007CCE56 /* JSONIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONIndex.swift; path = Sources/JSONIndex.swift; sourceTree = "<group>"; };
 		BA568D171CD880A8007CCE56 /* JSONPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONPath.swift; path = Sources/JSONPath.swift; sourceTree = "<group>"; };
@@ -651,6 +656,7 @@
 		BA862F071CCE85780016E610 /* Playgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				BA4F2AF61CF6310000AE9AAA /* MyPlayground.playground */,
 			);
 			name = Playgrounds;
 			sourceTree = "<group>";
@@ -664,6 +670,7 @@
 				BA4F2AEB1CF24F2E00AE9AAA /* JSONSpec+Inspecting.swift */,
 				BAF9DDD91CEE648500F2D488 /* JSONSpec+Unwrapping.swift */,
 				BAB0CB251CF20FE000F3F1CA /* JSONSpec+Coercing.swift */,
+				BA4F2AEF1CF3B3B500AE9AAA /* JSONSpec+Subscripting.swift */,
 			);
 			name = JSON;
 			sourceTree = "<group>";
@@ -1301,6 +1308,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA4F2AF01CF3B3B500AE9AAA /* JSONSpec+Subscripting.swift in Sources */,
 				BA4F2AEC1CF24F2E00AE9AAA /* JSONSpec+Inspecting.swift in Sources */,
 				BAF9DDDA1CEE648500F2D488 /* JSONSpec+Unwrapping.swift in Sources */,
 				BAB0CB2A1CF20FFE00F3F1CA /* JSONSpec+Coercing.swift in Sources */,
@@ -1390,6 +1398,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA4F2AF11CF3B3B500AE9AAA /* JSONSpec+Subscripting.swift in Sources */,
 				BA4F2AED1CF24F2E00AE9AAA /* JSONSpec+Inspecting.swift in Sources */,
 				BAF9DDDB1CEE648500F2D488 /* JSONSpec+Unwrapping.swift in Sources */,
 				BAB0CB2B1CF2100000F3F1CA /* JSONSpec+Coercing.swift in Sources */,
@@ -1479,6 +1488,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA4F2AF21CF3B3B500AE9AAA /* JSONSpec+Subscripting.swift in Sources */,
 				BA4F2AEE1CF24F2E00AE9AAA /* JSONSpec+Inspecting.swift in Sources */,
 				BAF9DDDC1CEE648500F2D488 /* JSONSpec+Unwrapping.swift in Sources */,
 				BAB0CB2C1CF2100200F3F1CA /* JSONSpec+Coercing.swift in Sources */,

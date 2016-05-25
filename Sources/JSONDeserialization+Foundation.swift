@@ -103,6 +103,8 @@
         
     }
 
+    // MARK: - Errors
+
     extension JSON.Error {
 
         /// Exception while coverting to/from Foundation representation of JSON.
