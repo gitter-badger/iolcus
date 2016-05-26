@@ -178,18 +178,54 @@
         let yetAnotherBook = try! Book(serialization: serializedBook)
 /*:
  
- ## Traversing
+ ## Iterating
  
  Container `JSON` (object and array) can be looped through:
  
  */
         arrayJSON.forEach {
-            print($0, $1) // $0 is `JSONIndex` and `$1` is child-node of `JSON`
+            (index: JSONIndex, json: JSON) in
+
+            print(index, json)
         }
 
-        for (key, node) in objectJSON {
-            print(key, node)
+        // Above snippet prints:
+        //
+        // [0] false
+        // [1] 1
+        // [2] 2.0
+        // [3] "3"
+
+/*:
+ 
+ `JSONIndex` is a special type that can accomodate both the position of an element in JSON array, and the name of a property in JSON object.
+ 
+ ## Flattening
+
+ Moreover, there is a special method `flatten()` that comes very handy when working with complex `JSON` structures.  It flattens all container JSON values (that is, `.Object` and `.Array`) into an array of tuples `(path: JSONPath, json: JSON)`, where `path` will indicate a path that has to be traversed in order to get to every basic `JSON` sub-element.
+ 
+ For example:
+
+ */
+        jsonBook.flatten().forEach {
+            (path: JSONPath, json: JSON) in
+
+            print("jsonBook\(path) == \(json)")
         }
+
+        // Above snippet prints:
+        //
+        // jsonBook["title"] == "Dune"
+        // jsonBook["isPaperback"] == true
+        // jsonBook["authors"][0] == "Frank Herbert"
+        // jsonBook["notes"]["series"] == "Dune"
+        // jsonBook["notes"]["seriesNo"] == "1"
+        // jsonBook["pages"] == 896
+/*:
+ 
+ So, no more fumbling in the darkness about how to get to the certain element of a branchy JSON tree.  Just do something like above and simply copy-paste the path like follows:
+ */
+        print(jsonBook["authors"][0]) // Prints "Frank Herbert"
 /*:
  
  ## Error handling
@@ -198,7 +234,8 @@
  
  - `JSON.Error.Deserializing`
  - `JSON.Error.Decoding`
- - `jSON.Error.Converting`
+ - `JSON.Error.Converting`
+ - `JSON.Error.Subscripting`
  
  ## Converting from/to Foundation JSON
  
