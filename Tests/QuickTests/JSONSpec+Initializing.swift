@@ -97,8 +97,8 @@ extension JSONSpec {
                 let json1 = JSON(encodable: encodableArray1)
                 let json2 = JSON(encodable: encodableArray2)
 
-                expect(json1) == JSON.Array(encodableArray1.map({$0.jsonEncoded()}))
-                expect(json2) == JSON.Array(encodableArray2.map({$0.jsonEncoded()}))
+                expect(json1) == JSON.Array(encodableArray1.map{$0.jsonEncoded()})
+                expect(json2) == JSON.Array(encodableArray2.map{$0.jsonEncoded()})
             }
 
             it("initializes dictionary [String: JSONEncodable] into JSON.Object with jsonEncodable() results") {
