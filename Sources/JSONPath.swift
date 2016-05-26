@@ -34,15 +34,10 @@ public struct JSONPath {
     }
 
     /// Creates a path from an array of path elements.
-    public init(path: [JSONIndex]) {
-        self.path = path
+    public init<S: SequenceType where S.Generator.Element == JSONIndex>(path: S) {
+        self.path = path.flatMap { $0 }
     }
-    
-    /// Creates a path from an array-slice of path elements.
-    init(elements: ArraySlice<JSONIndex>) {
-        self.init(path: Array(elements))
-    }
-    
+
     /// An element at specific position of the path.
     public subscript(index: Int) -> JSONIndex {
         get {

@@ -35,7 +35,7 @@ extension JSONIndex: CustomStringConvertible {
             return "[\(position)]"
             
         case .Name(let key):
-            return "[\(key)]"
+            return "[\"\(key)\"]"
             
         }
     }
