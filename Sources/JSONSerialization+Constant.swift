@@ -24,7 +24,12 @@
 //
 
 extension JSONSerialization.Constant {
-    
+
+    // MARK: - Common
+
+    static let space: String.UnicodeScalarView = " "
+    static let newLine: String.UnicodeScalarView = "\n"
+
     // MARK: - Null
     
     static let nullScalarSequence: String.UnicodeScalarView = "null"
@@ -58,13 +63,13 @@ extension JSONSerialization.Constant {
 
     static let arrayOpeningSequence: String.UnicodeScalarView = "["
     static let arrayClosingSequence: String.UnicodeScalarView = "]"
-    static let arraySeparatorSequence: String.UnicodeScalarView = ", "
+    static let arraySeparatorSequence: String.UnicodeScalarView = ","
 
     // MARK: - Object
 
     static let objectOpeningSequence: String.UnicodeScalarView = "{"
     static let objectClosingSequence: String.UnicodeScalarView = "}"
-    static let objectKeyValueSeparatorSequence: String.UnicodeScalarView = ": "
-    static let objectPropertySeparatorSequence: String.UnicodeScalarView = ", "
+    static let objectKeyValueSeparatorSequence: String.UnicodeScalarView = ":"
+    static let objectPropertySeparatorSequence: String.UnicodeScalarView = ","
 
 }

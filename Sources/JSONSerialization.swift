@@ -28,8 +28,16 @@ public struct JSONSerialization {
     // MARK: - Public API
     
     /// Create a string by serializing `JSON` value.
-    public static func makeString(json json: JSON) -> Swift.String {
-        return serialize(json).reduce("") {
+    /// 
+    /// - parameters:
+    ///   - json: Input `JSON` value.
+    ///   - prettyPrint: 
+    ///     ⁃ `false` (default) generates the most condense output possible (no whitespace). \
+    ///     ⁃ `true` produces the string formatted for readability.
+    ///
+    /// - returns: String with the serialization of an input `json`.
+    public static func makeString(json json: JSON, prettyPrint: Bool = false) -> Swift.String {
+        return serialize(json: json, prettyPrint: prettyPrint, depth: 0).reduce("") {
             $0 + String($1)
         }
     }
@@ -38,31 +46,36 @@ public struct JSONSerialization {
     
     struct Constant {}
 
-    static func serialize(json: JSON) -> [String.UnicodeScalarView] {
+    static func serialize(json json: JSON, prettyPrint: Bool, depth: Int) -> [String.UnicodeScalarView] {
         switch json {
             
         case .Null:
-            return serialize()
+            return serializeNull()
             
         case .Boolean(let boolean):
-            return serialize(boolean)
+            return serialize(boolean: boolean)
             
         case .Integer(let integer):
-            return serialize(integer)
+            return serialize(integer: integer)
             
         case .Float(let float):
-            return serialize(float)
+            return serialize(float: float)
 
         case .String(let string):
-            return serialize(string)
+            return serialize(string: string)
             
         case .Array(let elements):
-            return serialize(elements)
+            return serialize(elements: elements, prettyPrint: prettyPrint, depth: depth)
             
         case .Object(let properties):
-            return serialize(properties)
+            return serialize(properties: properties, prettyPrint: prettyPrint, depth: depth)
             
         }
+    }
+
+    static func generateIndent(length length: Int) -> String.UnicodeScalarView {
+        let space: Character = " "
+        return Swift.String(count: 4 * length, repeatedValue: space).unicodeScalars
     }
     
 }

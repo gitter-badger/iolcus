@@ -25,7 +25,7 @@
 
 extension JSONSerialization {
 
-    static func serialize(string: String) -> [String.UnicodeScalarView] {
+    static func serialize(string string: String) -> [String.UnicodeScalarView] {
         var result: [String.UnicodeScalarView] = [Constant.stringOpeningSequence]
         
         let scalars = string.unicodeScalars

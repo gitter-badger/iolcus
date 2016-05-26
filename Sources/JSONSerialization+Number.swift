@@ -25,11 +25,11 @@
 
 extension JSONSerialization {
 
-    static func serialize(integer: Int) -> [String.UnicodeScalarView] {
+    static func serialize(integer integer: Int) -> [String.UnicodeScalarView] {
         return [integer.description.unicodeScalars]
     }
     
-    static func serialize(float: Double) -> [String.UnicodeScalarView] {
+    static func serialize(float float: Double) -> [String.UnicodeScalarView] {
         return [float.description.unicodeScalars]
     }
     

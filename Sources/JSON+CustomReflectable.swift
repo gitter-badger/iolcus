@@ -58,25 +58,25 @@ extension JSON: CustomReflectable {
                 switch json {
 
                 case .Null:
-                    return (key, JSON.null)
+                    return ("\"\(key)\"", JSON.null)
 
                 case .Boolean(let boolean):
-                    return (key, boolean)
+                    return ("\"\(key)\"", boolean)
 
                 case .Integer(let integer):
-                    return (key, integer)
+                    return ("\"\(key)\"", integer)
 
                 case .Float(let float):
-                    return (key, float)
+                    return ("\"\(key)\"", float)
 
                 case .String(let string):
-                    return (key, string)
+                    return ("\"\(key)\"", string)
 
                 case .Array(let elements):
-                    return (key, elements)
+                    return ("\"\(key)\"", elements)
 
                 case .Object(let properties):
-                    return (key, properties)
+                    return ("\"\(key)\"", properties)
                     
                 }
             }

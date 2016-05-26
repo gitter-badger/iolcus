@@ -25,22 +25,43 @@
 
 extension JSONSerialization {
 
-    static func serialize(properties: [Swift.String: JSON]) -> [String.UnicodeScalarView] {
-        var result: [String.UnicodeScalarView] = [Constant.objectOpeningSequence]
-        
-        let propertyBodies = properties.map { (key: Swift.String, value: JSON) -> [String.UnicodeScalarView] in
-            var result = serialize(key)
-            result.append(Constant.objectKeyValueSeparatorSequence)
-            result.appendContentsOf(serialize(value))
-            return result
+    static func serialize(properties properties: [Swift.String: JSON], prettyPrint: Bool = false, depth: Int = 0) -> [String.UnicodeScalarView] {
+        if properties.count == 0 {
+            return [Constant.objectOpeningSequence, Constant.objectClosingSequence]
         }
+
+        let indentBraces = generateIndent(length: depth)
+        let indentContent = generateIndent(length: depth + 1)
+
+        let opening = prettyPrint ?
+            [Constant.objectOpeningSequence, Constant.newLine, indentContent] :
+            [Constant.objectOpeningSequence]
+
+        let separatorKeyValue = prettyPrint ?
+            [Constant.objectKeyValueSeparatorSequence, Constant.space] :
+            [Constant.objectKeyValueSeparatorSequence]
+
+        let separatorProperty = prettyPrint ?
+            [Constant.objectPropertySeparatorSequence, Constant.newLine, indentContent] :
+            [Constant.objectPropertySeparatorSequence]
+
+        let closing = prettyPrint ?
+            [Constant.newLine, indentBraces, Constant.objectClosingSequence] :
+            [Constant.objectClosingSequence]
+
+        let body = properties.map { (key: Swift.String, value: JSON) -> [String.UnicodeScalarView] in
+            let serializedKey = serialize(string: key)
+            let serializedValue = serialize(json: value, prettyPrint: prettyPrint, depth: depth + 1)
+
+            var result = serializedKey
+            result.appendContentsOf(separatorKeyValue)
+            result.appendContentsOf(serializedValue)
+            return result
+        }.joinWithSeparator(separatorProperty)
             
-        let body = propertyBodies.joinWithSeparator([Constant.objectPropertySeparatorSequence])
-        
+        var result: [String.UnicodeScalarView] = opening
         result.appendContentsOf(body)
-        
-        result.append(Constant.objectClosingSequence)
-        
+        result.appendContentsOf(closing)
         return result
     }
     

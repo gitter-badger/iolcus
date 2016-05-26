@@ -25,14 +25,32 @@
 
 extension JSONSerialization {
 
-    static func serialize(elements: [JSON]) -> [String.UnicodeScalarView] {
-        var result: [String.UnicodeScalarView] = [Constant.arrayOpeningSequence]
-        
-        let body = elements.map(serialize).joinWithSeparator([Constant.arraySeparatorSequence])
+    static func serialize(elements elements: [JSON], prettyPrint: Bool = false, depth: Int = 0) -> [String.UnicodeScalarView] {
+        if elements.count == 0 {
+            return [Constant.arrayOpeningSequence, Constant.arrayClosingSequence]
+        }
+
+        let indentBraces = generateIndent(length: depth)
+        let indentContent = generateIndent(length: depth + 1)
+
+        let opening = prettyPrint ?
+            [Constant.arrayOpeningSequence, Constant.newLine, indentContent] :
+            [Constant.arrayOpeningSequence]
+
+        let separator = prettyPrint ?
+            [Constant.arraySeparatorSequence, Constant.newLine, indentContent] :
+            [Constant.arraySeparatorSequence]
+
+        let closing = prettyPrint ?
+            [Constant.newLine, indentBraces, Constant.arrayClosingSequence] :
+            [Constant.arrayClosingSequence]
+
+        let body = elements.map { serialize(json: $0, prettyPrint: prettyPrint, depth: depth + 1) }
+            .joinWithSeparator(separator)
+
+        var result: [String.UnicodeScalarView] = opening
         result.appendContentsOf(body)
-        
-        result.append(Constant.arrayClosingSequence)
-        
+        result.appendContentsOf(closing)
         return result
     }
         

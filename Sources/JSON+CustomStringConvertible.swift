@@ -26,7 +26,7 @@
 extension JSON: CustomStringConvertible {
     
     public var description: Swift.String {
-        return self.jsonSerialized()
+        return self.jsonSerialized(prettyPrint: true)
     }
     
 }
