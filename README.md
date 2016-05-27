@@ -5,6 +5,18 @@
 [![Issue Count](https://codeclimate.com/github/SwiftMedea/Medea/badges/issue_count.svg)](https://codeclimate.com/github/SwiftMedea/Medea)
 [![Travis CI](https://travis-ci.org/SwiftMedea/Medea.svg?branch=master)](https://travis-ci.org/SwiftMedea/Medea)
 
+There is a plenty of JSON libraries for Swift already.  Why this one?
+
+- It is using pure Swift and only Swift. It will work anywhere Swift works.  Foundation is not necessary.
+- It is using strong Swift type system by using enums. No more guessing around AnyObject.
+- It provides convenient subcript access to nested JSON sub-components.
+- It comes with flatten() method that shows how exactly to get to any particular value. 
+- It promotes encapsulation with JSONEncodable and JSONDecodable protocols that allow any of your types to be easily (de-)serialized to/from JSON.
+
+This library was inspired by three other Swift libraries that facilitate JSON, namely [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON), [Gloss](https://github.com/hkellaway/Gloss) and [TidyJSON](https://github.com/benloong/TidyJSON).
+
+## Contents
+
 - [Usage](#usage)
   - [Literals](#literals)
   - [Initializers](#initializers)
@@ -13,7 +25,8 @@
   - [Coercing](#coercing)
   - [Encoding](#encoding)
   - [Decoding](#decoding)
-  - [Iterating](#iterating)
+  - [Iterating](#iterating) 
+  - [Flattening](#flattening)
   - [Error handling](#error-handling)
   - [Converting from/to Foundation JSON](#converting-fromto-foundation-json)
 

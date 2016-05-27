@@ -2,6 +2,18 @@
   
  # Medea
   
+ There is a plenty of JSON libraries for Swift already.  Why this one?
+
+ - It is using pure Swift and only Swift. It will work anywhere Swift works.  Foundation is not necessary.
+ - It is using strong Swift type system by using enums. No more guessing around AnyObject.
+ - It provides convenient subcript access to nested JSON sub-components.
+ - It comes with flatten() method that shows how exactly to get to any particular value.
+ - It promotes encapsulation with JSONEncodable and JSONDecodable protocols that allow any of your types to be easily (de-)serialized to/from JSON.
+
+ This library was inspired by three other Swift libraries that facilitate JSON, namely [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON), [Gloss](https://github.com/hkellaway/Gloss) and [TidyJSON](https://github.com/benloong/TidyJSON).
+
+ ## Usage
+
  The core of `Medea` framework is `JSON` type.  In practice it's just an `enum` like:
  ````
  enum JSON {
@@ -15,7 +27,7 @@
  }
  ````
  
- ## Literals
+ ### Literals
  
  It's possible to create an instance of `JSON` by just assigning a variable with literal value:
   
@@ -35,7 +47,7 @@
         ]
 /*:
  
- ## Initializers
+ ### Initializers
  
  Alternative ways to instantiate `JSON`:
  
@@ -46,7 +58,7 @@
         let anotherArrayJSON = try! JSON(serialization: "[false, 1, 2.0, \"3\"]")
 /*:
  
- ## Unwrapping
+ ### Unwrapping
  
  Every `JSON` value (except `.Null`) is a wrapper around some basic value (`Bool`, `Int`, `Double`, `String`) or around a container (`[JSON]` or `[String: JSON]`).  It is possible to access a particular kind of wrapped instance via dedicated optional property.  For example:
   
@@ -66,7 +78,7 @@
         }
 /*:
  
- ## Subscripting
+ ### Subscripting
  
  Elements in an array and object `JSON` kinds can be reached via subscripts:
   
@@ -84,7 +96,7 @@
         }
 /*:
  
- ## Coercing
+ ### Coercing
  
  Sometimes JSON messages come serialized as a pile strings for just everything: boolean, integer, float, whatever.  This is when coercion could be handy.  E.g.:
   
@@ -96,7 +108,7 @@
         }
 /*:
 
- ## Encoding
+ ### Encoding
 
  If you want to encode/serialize some type into `JSON` then it will suffice to just adopt `JSONEncodable` protocol.  Let say we have a `Book` type:
  
@@ -150,7 +162,7 @@
         let serializedArray = [book, book, book].jsonSerialized()
 /*:
  
- ## Decoding
+ ### Decoding
  
  Reverse task, that is decoding/deserializing an instance from `JSON` requires `JSONDecodable` protocol implemented.  For example:
  
@@ -178,7 +190,7 @@
         let yetAnotherBook = try! Book(serialization: serializedBook)
 /*:
  
- ## Iterating
+ ### Iterating
  
  Container `JSON` (object and array) can be looped through:
  
@@ -200,7 +212,7 @@
  
  `JSONIndex` is a special type that can accomodate both the position of an element in JSON array, and the name of a property in JSON object.
  
- ## Flattening
+ ### Flattening
 
  Moreover, there is a special method `flatten()` that comes very handy when working with complex `JSON` structures.  It flattens all container JSON values (that is, `.Object` and `.Array`) into an array of tuples `(path: JSONPath, json: JSON)`, where `path` will indicate a path that has to be traversed in order to get to every basic `JSON` sub-element.
  
@@ -228,7 +240,7 @@
         print(jsonBook["authors"][0]) // Prints "Frank Herbert"
 /*:
  
- ## Error handling
+ ### Error handling
  
  You have probably noticed that some initializers or methods use `try!` signature.  This is because firstly, not every string can be deserialized in a `JSON`, and secondly, not every `JSON` can be translated into the desired destination type.  All errors that can occur during deserialization/decoding are grouped under `JSON.Error` structure.  There are three of them:
  
@@ -237,7 +249,7 @@
  - `JSON.Error.Converting`
  - `JSON.Error.Subscripting`
  
- ## Converting from/to Foundation JSON
+ ### Converting from/to Foundation JSON
  
  Stadard library provides `NSJSONSerialization` class that has (de-)serialization API (serialization is not yet working in Swift 2, though).  This class uses Foundation's hierarchy of types to represent JSON intances (namely `NSNull`, `NSNumber`, `NSString`, `NSArray` and `NSDictionary`).  Medea can convert to/from Foundation JSON representation like follows:
  
