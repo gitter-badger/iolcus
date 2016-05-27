@@ -23,14 +23,8 @@
 //  SOFTWARE.
 //
 
-#import <UIKit/UIKit.h>
-
 //! Project version number for Medea_iOS.
 FOUNDATION_EXPORT double Medea_iOSVersionNumber;
 
 //! Project version string for Medea_iOS.
 FOUNDATION_EXPORT const unsigned char Medea_iOSVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <Medea_iOS/PublicHeader.h>
-
-

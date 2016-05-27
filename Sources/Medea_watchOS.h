@@ -23,14 +23,8 @@
 //  SOFTWARE.
 //
 
-#import <WatchKit/WatchKit.h>
-
 //! Project version number for Medea_watchOS.
 FOUNDATION_EXPORT double Medea_watchOSVersionNumber;
 
 //! Project version string for Medea_watchOS.
 FOUNDATION_EXPORT const unsigned char Medea_watchOSVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <Medea_watchOS/PublicHeader.h>
-
-

@@ -23,14 +23,8 @@
 //  SOFTWARE.
 //
 
-#import <Cocoa/Cocoa.h>
-
 //! Project version number for Medea-OSX.
 FOUNDATION_EXPORT double Medea_OSXVersionNumber;
 
 //! Project version string for Medea-OSX.
 FOUNDATION_EXPORT const unsigned char Medea_OSXVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <Medea_OSX/PublicHeader.h>
-
-
