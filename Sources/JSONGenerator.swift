@@ -39,14 +39,14 @@ public struct JSONGenerator: GeneratorType {
             
         case .Array(let elements):
             let wrappedSequence = elements.enumerate().map {
-                (JSONIndex.Position($0), $1)
+                (JSONIndex.Index($0), $1)
             }
             var wrappedGenerator = wrappedSequence.generate()
             wrappedNext = { wrappedGenerator.next() }
             
         case .Object(let properties):
             let wrappedSequence = properties.map {
-                (JSONIndex.Name($0), $1)
+                (JSONIndex.Key($0), $1)
             }
             var wrappedGenerator = wrappedSequence.generate()
             wrappedNext = { wrappedGenerator.next() }

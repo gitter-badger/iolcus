@@ -1,5 +1,5 @@
 //
-//  JSONIndex+CustomStringConvertible.swift
+//  StringConvertible.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -23,21 +23,10 @@
 //  SOFTWARE.
 //
 
-extension JSONIndex: CustomStringConvertible {
-    
-    public var description: String {
-        switch self {
-            
-        case .This:
-            return "[]"
+public protocol StringConvertible {
 
-        case .Index(let index):
-            return "[\(index)]"
-            
-        case .Key(let key):
-            return "[\"\(key)\"]"
-            
-        }
-    }
-    
+    init(string: Swift.String)
+
+    func stringConverted() -> String
+
 }

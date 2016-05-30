@@ -47,7 +47,7 @@ extension JSONSpec {
                     describe("explicit setter") {
                         it("fails with error ") {
                             expect { try json.setValue(at: 0, value: .Null) }
-                                .to(throwError(errorType: JSON.Error.Subscrpting.self))
+                                .to(throwError(errorType: JSON.Error.Subscripting.self))
                         }
                     }
                 }
@@ -67,7 +67,7 @@ extension JSONSpec {
                     describe("explicit setter") {
                         it("fails with error ") {
                             expect { try json.setValue(at: 0, value: .Null) }
-                                .to(throwError(errorType: JSON.Error.Subscrpting.self))
+                                .to(throwError(errorType: JSON.Error.Subscripting.self))
                         }
                     }
                 }
@@ -87,7 +87,7 @@ extension JSONSpec {
                     describe("explicit setter") {
                         it("fails with error ") {
                             expect { try json.setValue(at: 0, value: .Null) }
-                                .to(throwError(errorType: JSON.Error.Subscrpting.self))
+                                .to(throwError(errorType: JSON.Error.Subscripting.self))
                         }
                     }
                 }
@@ -107,7 +107,7 @@ extension JSONSpec {
                     describe("explicit setter") {
                         it("fails with error ") {
                             expect { try json.setValue(at: 0, value: .Null) }
-                                .to(throwError(errorType: JSON.Error.Subscrpting.self))
+                                .to(throwError(errorType: JSON.Error.Subscripting.self))
                         }
                     }
                 }
@@ -127,7 +127,7 @@ extension JSONSpec {
                     describe("explicit setter") {
                         it("fails with error ") {
                             expect { try json.setValue(at: 0, value: .Null) }
-                                .to(throwError(errorType: JSON.Error.Subscrpting.self))
+                                .to(throwError(errorType: JSON.Error.Subscripting.self))
                         }
                     }
                 }
@@ -212,10 +212,10 @@ extension JSONSpec {
                         context("when index is out of bounds") {
                             it("fails") {
                                 expect { try json.setValue(at: -1, value: nil) }
-                                    .to(throwError(errorType: JSON.Error.Subscrpting.self))
+                                    .to(throwError(errorType: JSON.Error.Subscripting.self))
 
                                 expect { try json.setValue(at: 4, value: nil) }
-                                    .to(throwError(errorType: JSON.Error.Subscrpting.self))
+                                    .to(throwError(errorType: JSON.Error.Subscripting.self))
                             }
                         }
                     }
@@ -236,7 +236,7 @@ extension JSONSpec {
                     describe("explicit setter") {
                         it("fails with error ") {
                             expect { try json.setValue(at: 0, value: .Null) }
-                                .to(throwError(errorType: JSON.Error.Subscrpting.self))
+                                .to(throwError(errorType: JSON.Error.Subscripting.self))
                         }
                     }
                 }
@@ -256,7 +256,7 @@ extension JSONSpec {
                     describe("explicit setter") {
                         it("fails with error ") {
                             expect { try json.setValue(at: "", value: .Null) }
-                                .to(throwError(errorType: JSON.Error.Subscrpting.self))
+                                .to(throwError(errorType: JSON.Error.Subscripting.self))
                         }
                     }
                 }
@@ -274,7 +274,7 @@ extension JSONSpec {
                     describe("explicit setter") {
                         it("fails with error ") {
                             expect { try json.setValue(at: "", value: .Null) }
-                                .to(throwError(errorType: JSON.Error.Subscrpting.self))
+                                .to(throwError(errorType: JSON.Error.Subscripting.self))
                         }
                     }
                 }
@@ -292,7 +292,7 @@ extension JSONSpec {
                     describe("explicit setter") {
                         it("fails with error ") {
                             expect { try json.setValue(at: "", value: .Null) }
-                                .to(throwError(errorType: JSON.Error.Subscrpting.self))
+                                .to(throwError(errorType: JSON.Error.Subscripting.self))
                         }
                     }
                 }
@@ -310,7 +310,7 @@ extension JSONSpec {
                     describe("explicit setter") {
                         it("fails with error ") {
                             expect { try json.setValue(at: "", value: .Null) }
-                                .to(throwError(errorType: JSON.Error.Subscrpting.self))
+                                .to(throwError(errorType: JSON.Error.Subscripting.self))
                         }
                     }
                 }
@@ -328,7 +328,7 @@ extension JSONSpec {
                     describe("explicit setter") {
                         it("fails with error ") {
                             expect { try json.setValue(at: "", value: .Null) }
-                                .to(throwError(errorType: JSON.Error.Subscrpting.self))
+                                .to(throwError(errorType: JSON.Error.Subscripting.self))
                         }
                     }
                 }
@@ -346,7 +346,7 @@ extension JSONSpec {
                     describe("explicit setter") {
                         it("fails with error ") {
                             expect { try json.setValue(at: "", value: .Null) }
-                                .to(throwError(errorType: JSON.Error.Subscrpting.self))
+                                .to(throwError(errorType: JSON.Error.Subscripting.self))
                         }
                     }
                 }

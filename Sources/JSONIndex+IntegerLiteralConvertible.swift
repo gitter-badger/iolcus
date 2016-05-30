@@ -25,8 +25,8 @@
 
 extension JSONIndex: IntegerLiteralConvertible {
     
-    public init(integerLiteral integer: IntegerLiteralType) {
-        self = .Position(integer)
+    public init(integerLiteral: IntegerLiteralType) {
+        self = .Index(Int(integerLiteral))
     }
     
 }

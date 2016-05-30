@@ -42,7 +42,7 @@ public protocol JSONDecodable {
 extension JSONDecodable {
     
     /// Initializes (decodes) a new instance of `Self` from `JSON` value at specified index of a
-    /// given `JSON` array.
+    /// given `JSON.Array`.
     ///
     ///     // Get first two strings from the JSON array.
     ///     let first = String(json: inputJSON, at: 0)
@@ -56,11 +56,11 @@ extension JSONDecodable {
     ///
     /// - Throws: `JSON.Error.Decoding`
     public init(json: JSON, at index: Int) throws {
-        try self.init(json: json[index])
+        try self.init(json: json.getValue(at: index))
     }
     
-    /// Initializes (decodes) a new instance of `Self` from `JSON` value at specified key of a given
-    /// `JSON` object.
+    /// Initializes (decodes) a new instance of `Self` from `JSON` value at specified `key` of a
+    /// given `JSON.Object`.
     ///
     ///     // Get a string from the value of "name" property
     ///     let name = String(json: inputJSON, at: "name")
@@ -73,7 +73,7 @@ extension JSONDecodable {
     ///
     /// - Throws: `JSON.Error.Decoding`
     public init(json: JSON, at key: Swift.String) throws {
-        try self.init(json: json[key])
+        try self.init(json: json.getValue(at: key))
     }
     
     /// Initializes (deserializes) a new instance of `Self` from a given JSON string.

@@ -39,16 +39,9 @@ public protocol JSONEncodable {
 
 extension JSONEncodable {
     
-    /// Serialize `self` into a JSON string.
-    ///
-    /// - parameters:
-    ///   - prettyPrint:
-    ///     ⁃ `false` (default) generates the most condense output possible (no whitespace). \
-    ///     ⁃ `true` produces the string formatted for readability.
-    ///
-    /// - returns: String with the serialization of `self`.
-    public func jsonSerialized(prettyPrint prettyPring: Bool = false) -> Swift.String {
-        return JSONSerialization.makeString(json: self.jsonEncoded(), prettyPrint: prettyPring)
+    /// JSON-serialize `self` into a string.
+    public func jsonSerialized(prettyPrint prettyPrint: Bool = false) -> Swift.String {
+        return JSONSerialization.makeString(json: self.jsonEncoded(), prettyPrint: prettyPrint)
     }
     
 }

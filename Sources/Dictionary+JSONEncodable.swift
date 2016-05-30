@@ -23,34 +23,16 @@
 //  SOFTWARE.
 //
 
-#if os(OSX) || os(iOS) || os(tvOS)
-
-    import Foundation
-
-#endif
-
-extension Swift.Dictionary where Key: StringLiteralConvertible, Value: JSONEncodable {
+extension Dictionary where Key: StringConvertible, Value: JSONEncodable {
     
     /// Encode `self` into a `JSON` value.
     public func jsonEncoded() -> JSON {
-        #if os(OSX) || os(iOS) || os(tvOS)
-            assert(Key.self == Swift.String || Key.self == Foundation.NSString, "The key is \(Dictionary.self) while it must be \(Swift.String) or \(Foundation.NSString)")
-        #else
-            assert(Key.self == Swift.String, "The key is \(Dictionary.self) while it must be \(Swift.String)")
-        #endif
-        
-        var properties: [Swift.String: JSON] = [:]
-        
-        self.forEach {
-            properties[$0 as! Swift.String] = $1.jsonEncoded() // tailor:disable
-        }
-        
-        return .Object(properties)
+        return JSON(encoding: self)
     }
     
-    /// Serialize `self` into a JSON string.
-    public func jsonSerialized() -> Swift.String {
-        return JSONSerialization.makeString(json: self.jsonEncoded())
+    /// JSON-serialize `self` into a string.
+    public func jsonSerialized(prettyPrint prettyPrint: Bool = false) -> Swift.String {
+        return self.jsonEncoded().jsonSerialized(prettyPrint: prettyPrint)
     }
-    
+
 }

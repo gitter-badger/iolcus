@@ -34,68 +34,127 @@ extension JSON: JSONDecodable {
 // MARK: - Default implementations
 
 extension JSON {
-    
-    /// Decodes `self` into a new instance.
+
+    // MARK: JSONDecodable
+
+    /// Decodes `self`.
     ///
     /// - Throws: `JSON.Error.Decoding`
     public func decode<T: JSONDecodable>() throws -> T {
         return try T(json: self)
     }
-    
-    /// Decodes a property of `self` into a new instance.
+
+    /// Decodes `self` sub-element `at` given key.
+    ///
+    /// - Precondition: `self == .Object(_)`
     ///
     /// - Throws: `JSON.Error.Decoding`
     public func decode<T: JSONDecodable>(at key: Swift.String) throws -> T {
-        return try T(json: self, at: key)
+        return try self.getValue(at: key).decode()
     }
-    
-    /// Decodes an element of `self` into a new instance.
+
+    /// Decodes `self` sub-element `at` given index.
+    ///
+    /// - Precondition: `self == .Array(_)`
     ///
     /// - Throws: `JSON.Error.Decoding`
     public func decode<T: JSONDecodable>(at index: Int) throws -> T {
-        return try T(json: self, at: index)
+        return try self.getValue(at: index).decode()
     }
-    
-    /// Decodes `self` into an array.
+
+    // MARK: - [JSONDecodable]
+
+    /// Decodes `self`.
     ///
     /// - Throws: `JSON.Error.Decoding`
     public func decode<T: JSONDecodable>() throws -> [T] {
         return try Swift.Array(json: self)
     }
     
-    /// Decodes a property of `self` into an array.
+    /// Decodes `self` sub-element `at` given key.
+    ///
+    /// - Precondition: `self == .Object(_)`
     ///
     /// - Throws: `JSON.Error.Decoding`
     public func decode<T: JSONDecodable>(at key: Swift.String) throws -> [T] {
-        return try Swift.Array(json: self, at: key)
+        return try self.getValue(at: key).decode()
     }
-    
-    /// Decodes an element of `self` into an array.
+
+    /// Decodes `self` sub-element `at` given index.
     ///
     /// - Throws: `JSON.Error.Decoding`
     public func decode<T: JSONDecodable>(at index: Int) throws -> [T] {
-        return try Swift.Array(json: self, at: index)
+        return try self.getValue(at: index).decode()
     }
-    
-    /// Decodes `self` into a dictionary.
+
+    // MARK: - [StringConvertible: JSONDecodable]
+
+    /// Decodes `self`.
     ///
     /// - Throws: `JSON.Error.Decoding`
-    public func decode<D: JSONDecodable>() throws -> [Swift.String: D] {
-        return try Swift.Dictionary(json: self)
+    public func decode<S: StringConvertible, T: JSONDecodable>() throws -> [S: T] {
+        return try Dictionary(json: self)
     }
-    
-    /// Decodes a property of `self` into a dictionary.
+
+    /// Decodes `self` sub-element `at` given key.
+    ///
+    /// - Precondition: `self == .Object(_)`
     ///
     /// - Throws: `JSON.Error.Decoding`
-    public func decode<D: JSONDecodable>(at key: Swift.String) throws -> [Swift.String: D] {
-        return try Swift.Dictionary(json: self, at: key)
+    public func decode<S: StringConvertible, T: JSONDecodable>(at key: Swift.String) throws -> [S: T] {
+        return try self.getValue(at: key).decode()
     }
-    
-    /// Decodes an element of `self` into a dictionary.
+
+    /// Decodes `self` sub-element `at` given index.
+    ///
+    /// - Precondition: `self == .Array(_)`
     ///
     /// - Throws: `JSON.Error.Decoding`
-    public func decode<D: JSONDecodable>(at index: Int) throws -> [Swift.String: D] {
-        return try Swift.Dictionary(json: self, at: index)
+    public func decode<S: StringConvertible, T: JSONDecodable>(at index: Int) throws -> [S: T] {
+        return try self.getValue(at: index).decode()
     }
-    
+
+    // MARK: - [StringConvertible: [JSONDecodable]]
+
+    /// Decodes `self`.
+    ///
+    /// - Throws: `JSON.Error.Decoding`
+    public func decode<S: StringConvertible, T: JSONDecodable>() throws -> [S: [T]] {
+        switch self {
+
+        case .Object(let properties):
+            var dictionary: [S: [T]] = [:]
+
+            try properties.forEach {
+                let key = S(string: $0)
+                let value = try [T](json: $1)
+                dictionary[key] = value
+            }
+
+            return dictionary
+
+        default:
+            throw JSON.Error.Decoding.FailedToDecodeDictionaryFromJSON(json: self, type: [S: [T]].self)
+
+        }
+    }
+
+    /// Decodes `self` sub-element `at` given key.
+    ///
+    /// - Precondition: `self == .Object(_)`
+    ///
+    /// - Throws: `JSON.Error.Decoding`
+    public func decode<S: StringConvertible, T: JSONDecodable>(at key: Swift.String) throws -> [S: [T]] {
+        return try self.getValue(at: key).decode()
+    }
+
+    /// Decodes `self` sub-element `at` given index.
+    ///
+    /// - Precondition: `self == .Array(_)`
+    ///
+    /// - Throws: `JSON.Error.Decoding`
+    public func decode<S: StringConvertible, T: JSONDecodable>(at index: Int) throws -> [S: [T]] {
+        return try self.getValue(at: index).decode()
+    }
+
 }

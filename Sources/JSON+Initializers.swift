@@ -24,39 +24,74 @@
 //
 
 extension JSON {
-    
-    /// Creates a `JSON` value from an instance of `JSONEncodable`.
-    public init(encodable: JSONEncodable) {
-        self = encodable.jsonEncoded()
+
+    // MARK: JSONEncodable
+
+    /// Create `JSON` value from `JSONEncodable`.
+    public init(encoding instance: JSONEncodable) {
+        self = instance.jsonEncoded()
     }
-    
-    /// Creates a `JSON` value from an array of `JSONEncodable`'s.
-    public init<Encodable: JSONEncodable>(encodable: [Encodable]) {
-        self = encodable.jsonEncoded()
-    }
-    
-    /// Creates a `JSON` value from an array of `JSONEncodable`'s.
-    public init(encodable: [JSONEncodable]) {
-        let elements = encodable.map {
+
+    // MARK: - [JSONEncodable]
+
+    /// Create `JSON` value from `[JSONEncodable]`.
+    public init(encoding array: [JSONEncodable]) {
+        let elements = array.map {
             $0.jsonEncoded()
         }
-        
+
+        self = .Array(elements)
+    }
+
+    /// Create `JSON` value from `[JSONEncodable]`.
+    public init<J: JSONEncodable>(encoding array: [J]) {
+        let elements = array.map {
+            $0.jsonEncoded()
+        }
+
         self = .Array(elements)
     }
     
-    /// Creates a `JSON` value from a dictionary of `[String: JSONEncodable]`.
-    public init<Encodable: JSONEncodable>(encodable: [Swift.String: Encodable]) {
-        self = encodable.jsonEncoded()
-    }
-    
-    /// Creates a `JSON` value from a dictionary of `[String: JSONEncodable]`.
-    public init(encodable: [Swift.String: JSONEncodable]) {
+    // MARK: - [StringConvertible: JSONEncodable]
+
+    /// Create `JSON` value from `[StringConvertible: JSONEncodable]`.
+    public init<J: StringConvertible>(encoding dictionary: [J: JSONEncodable]) {
         var properties: [Swift.String: JSON] = [:]
-        
-        encodable.forEach {
-            properties[$0] = $1.jsonEncoded()
+
+        dictionary.forEach {
+            let key = $0.stringConverted()
+            let value = $1.jsonEncoded()
+            properties[key] = value
         }
-        
+
+        self = .Object(properties)
+    }
+
+    /// Create `JSON` value from `[StringConvertible: JSONEncodable]`.
+    public init<S: StringConvertible, J: JSONEncodable>(encoding dictionary: [S: J]) {
+        var properties: [Swift.String: JSON] = [:]
+
+        dictionary.forEach {
+            let key = $0.stringConverted()
+            let value = $1.jsonEncoded()
+            properties[key] = value
+        }
+
+        self = .Object(properties)
+    }
+
+    // MARK: - [StringConvertible: [JSONEncodable]]
+
+    /// Create `JSON` value from `[StringConvertible: [JSONEncodable]]`.
+    public init<S: StringConvertible, J: JSONEncodable>(encoding arraysDictionary: [S: [J]]) {
+        var properties: [Swift.String: JSON] = [:]
+
+        arraysDictionary.forEach {
+            let key = $0.stringConverted()
+            let value = $1.jsonEncoded()
+            properties[key] = value
+        }
+
         self = .Object(properties)
     }
     

@@ -48,7 +48,7 @@ public struct JSONDeserialization {
         
         if !deserialization.eof() {
             let scalar = try! deserialization.readScalar()
-            throw JSON.Error.Deserialization.UnexpectedScalar(scalar: scalar, position: deserialization.position)
+            throw JSON.Error.Deserializing.UnexpectedScalar(scalar: scalar, position: deserialization.position)
         }
         
         return json
@@ -73,7 +73,7 @@ public struct JSONDeserialization {
             return scalar
         }
         guard let scalar = getNextScalar() else {
-            throw JSON.Error.Deserialization.UnexpectedEOF
+            throw JSON.Error.Deserializing.UnexpectedEOF
         }
         position += 1
         return scalar
@@ -84,7 +84,7 @@ public struct JSONDeserialization {
             return scalar
         }
         guard let scalar = getNextScalar() else {
-            throw JSON.Error.Deserialization.UnexpectedEOF
+            throw JSON.Error.Deserializing.UnexpectedEOF
         }
         peekedScalar = scalar
         return scalar
@@ -93,7 +93,7 @@ public struct JSONDeserialization {
     mutating func readExpectedScalar(expectedScalar: UnicodeScalar) throws {
         let scalar = try readScalar()
         if scalar != expectedScalar {
-            throw JSON.Error.Deserialization.UnexpectedScalar(scalar: scalar, position: position)
+            throw JSON.Error.Deserializing.UnexpectedScalar(scalar: scalar, position: position)
         }
     }
     
@@ -137,7 +137,7 @@ public struct JSONDeserialization {
 extension JSON.Error {
     
     /// Error produced while deserializing a `JSON` value.
-    public enum Deserialization: ErrorType {
+    public enum Deserializing: ErrorType {
         
         /// Unexpected end of file.
         ///
@@ -160,22 +160,11 @@ extension JSON.Error {
         ///   - position : Position of the error.
         case DuplicateObjectKey(key: Swift.String, position: Int)
         
-        /// There was an error while reading the string that constitutes the key.
-        ///
-        /// - parameters:
-        ///   - position : Position of the error.
-        case FailedToReadKey(position: Int)
+        /// Failed to interpret hex number (unicode point).
+        case FailureInterpretingHex(hex: Swift.String, position: Int)
         
-        /// There was an error while reading
-        ///
-        /// There
-        case FailedToReadValue(position: Int)
-        
-        /// Failed to read a hex string.
-        case FailedToReadHex(hex: Swift.String, position: Int)
-        
-        /// Failed to read a number.
-        case FailedToReadNumber(number: Swift.String, position: Int)
+        /// Failed to interpret a number.
+        case FailureInterpretingNumber(number: Swift.String, position: Int)
         
     }
     

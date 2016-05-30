@@ -50,7 +50,7 @@ extension Array where Element: JSONDecodable {
     ///
     /// - Throws: `JSON.Error.Decoding`
     public init(json: JSON, at index: Int) throws {
-        try self.init(json: json[index])
+        try self.init(json: json.getValue(at: index))
     }
     
     /// Initializes an array by decoding `JSON` value at specified key of `json` parameter.
@@ -59,7 +59,7 @@ extension Array where Element: JSONDecodable {
     ///
     /// - Throws: `JSON.Error.Decoding`
     public init(json: JSON, at key: Swift.String) throws {
-        try self.init(json: json[key])
+        try self.init(json: json.getValue(at: key))
     }
     
     /// Initializes (deserializes) a new `Array` from a given JSON string.

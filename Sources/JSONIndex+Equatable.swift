@@ -31,11 +31,11 @@ public func == (lhs: JSONIndex, rhs: JSONIndex) -> Bool {
     case (.This, .This):
         return true
         
-    case (.Position(let lhsPosition), .Position(let rhsPosition)):
-        return lhsPosition == rhsPosition
+    case (.Index(let lhsIndex), .Index(let rhsIndex)):
+        return lhsIndex == rhsIndex
         
-    case (.Name(let lhsName), .Name(let rhsName)):
-        return lhsName == rhsName
+    case (.Key(let lhsKey), .Key(let rhsKey)):
+        return lhsKey == rhsKey
 
     default:
         return false

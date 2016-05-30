@@ -46,7 +46,7 @@ extension JSONDeserialization {
                 let escapedSymbol = try readEscapedSymbol()
                 scalars.append(escapedSymbol)
             } else if Constant.stringForbiddenScalars.contains(scalar) {
-                throw JSON.Error.Deserialization.UnexpectedScalar(scalar: scalar, position: position)
+                throw JSON.Error.Deserializing.UnexpectedScalar(scalar: scalar, position: position)
             } else {
                 scalars.append(scalar)
             }
@@ -66,7 +66,7 @@ extension JSONDeserialization {
             return try readEscapedUnicodeCharacter()
         }
         
-        throw JSON.Error.Deserialization.UnexpectedScalar(scalar: scalar, position: position)
+        throw JSON.Error.Deserializing.UnexpectedScalar(scalar: scalar, position: position)
     }
     
     private mutating func readEscapedUnicodeCharacter() throws -> UnicodeScalar {
@@ -102,7 +102,7 @@ extension JSONDeserialization {
         let string = String(scalars)
         
         guard let codepoint = Int(string, radix: 16) else {
-            throw JSON.Error.Deserialization.FailedToReadHex(hex: string, position: position)
+            throw JSON.Error.Deserializing.FailureInterpretingHex(hex: string, position: position)
         }
         
         return codepoint

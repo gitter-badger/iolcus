@@ -25,16 +25,16 @@
 
 extension JSONIndex: StringLiteralConvertible {
     
-    public init(stringLiteral string: Swift.String.StringLiteralType) {
-        self = Name(string)
+    public init(stringLiteral: String.StringLiteralType) {
+        self = .Key(String(stringLiteral))
     }
     
-    public init(unicodeScalarLiteral string: Swift.String.UnicodeScalarLiteralType) {
-        self = Name(string)
+    public init(unicodeScalarLiteral: String.UnicodeScalarLiteralType) {
+        self = .Key(String(unicodeScalarLiteral))
     }
     
-    public init(extendedGraphemeClusterLiteral string: Swift.String.ExtendedGraphemeClusterLiteralType) {
-        self = Name(string)
+    public init(extendedGraphemeClusterLiteral: String.ExtendedGraphemeClusterLiteralType) {
+        self = .Key(String(extendedGraphemeClusterLiteral))
     }
     
 }

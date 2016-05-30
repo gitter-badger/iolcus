@@ -30,11 +30,11 @@ extension JSONIndex: Hashable {
         case .This:
             return 0.hashValue
 
-        case .Position(let position):
-            return 1.hashValue ^ position.hashValue
+        case .Index(let index):
+            return 1.hashValue ^ index.hashValue
             
-        case .Name(let name):
-            return 2.hashValue ^ name.hashValue
+        case .Key(let key):
+            return 2.hashValue ^ key.hashValue
             
         }
     }

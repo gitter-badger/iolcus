@@ -29,10 +29,10 @@ public enum JSONIndex {
     /// Addresses `self`.
     case This
     
-    /// Addresses an element from `JSON` array.
-    case Position(Int)
+    /// Index of an element in `JSON.Array`.
+    case Index(Int)
     
-    /// Addresses a property of `JSON` object.
-    case Name(String)
+    /// Key of a property in `JSON.Object`.
+    case Key(String)
  
 }

@@ -23,9 +23,7 @@
 //  SOFTWARE.
 //
 
-import Foundation
-
-extension Dictionary where Key: StringLiteralConvertible, Value: JSONDecodable {
+extension Dictionary where Key: StringConvertible, Value: JSONDecodable {
     
     /// Initializes a dictionary by decoding given `JSON` value.
     ///
@@ -33,18 +31,15 @@ extension Dictionary where Key: StringLiteralConvertible, Value: JSONDecodable {
     ///
     /// - Throws: `JSON.Error.Decoding`
     public init(json: JSON) throws {
-        assert(
-            Key.self == Swift.String || Key.self == Foundation.NSString,
-            "The key is \(Dictionary.self) while it must be String"
-        )
-        
         switch json {
             
         case .Object(let properties):
             var dictionary: Dictionary = [:]
             
             try properties.forEach {
-                dictionary[$0 as! Key] = try Value(json: $1) // tailor:disable
+                let key = Key(string: $0)
+                let value = try Value(json: $1)
+                dictionary[key] = value
             }
             
             self = dictionary
@@ -61,7 +56,7 @@ extension Dictionary where Key: StringLiteralConvertible, Value: JSONDecodable {
     ///
     /// - Throws: `JSON.Error.Decoding`
     public init(json: JSON, at key: Swift.String) throws {
-        try self.init(json: json[key])
+        try self.init(json: json.getValue(at: key))
     }
     
     /// Initializes a dictionary by decoding `JSON` value at specified key of `json` parameter.
@@ -70,9 +65,11 @@ extension Dictionary where Key: StringLiteralConvertible, Value: JSONDecodable {
     ///
     /// - Throws: `JSON.Error.Decoding`
     public init(json: JSON, at index: Int) throws {
-        try self.init(json: json[index])
+        try self.init(json: json.getValue(at: index))
     }
-    
+
+    // MARK: -
+
     /// Initializes (deserializes) a new `Dictionary` from a given JSON string.
     ///
     /// - Throws: `JSON.Error.Decoding`

@@ -50,9 +50,9 @@ extension JSON {
 
         case .Array(let elements):
             return elements.enumerate().flatMap {
-                (position: Int, element: JSON) -> [(reversePath: [JSONIndex], json: JSON)] in
+                (index: Int, element: JSON) -> [(reversePath: [JSONIndex], json: JSON)] in
 
-                let suffix = JSONIndex.Position(position)
+                let suffix = JSONIndex.Index(index)
                 return element.reversePathEnumeration().map {
                     (reversePath: [JSONIndex], json: JSON) -> (reversePath: [JSONIndex], json: JSON) in
 
@@ -64,9 +64,9 @@ extension JSON {
 
         case .Object(let properties):
             return properties.flatMap {
-                (name: Swift.String, element: JSON) -> [(reversePath: [JSONIndex], json: JSON)] in
+                (key: Swift.String, element: JSON) -> [(reversePath: [JSONIndex], json: JSON)] in
 
-                let suffix = JSONIndex.Name(name)
+                let suffix = JSONIndex.Key(key)
                 return element.reversePathEnumeration().map {
                     (reversePath: [JSONIndex], json: JSON) -> (reversePath: [JSONIndex], json: JSON) in
 

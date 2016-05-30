@@ -23,20 +23,16 @@
 //  SOFTWARE.
 //
 
-extension Swift.Array where Element: JSONEncodable {
+extension Array where Element: JSONEncodable {
     
-    /// Encode `self` into a `JSON` value.
+    /// Encode `self` into `JSON` value.
     public func jsonEncoded() -> JSON {
-        let elements = self.map {
-            $0.jsonEncoded()
-        }
-        
-        return .Array(elements)
+        return JSON(encoding: self)
     }
     
-    /// Serialize `self` into a JSON string.
-    public func jsonSerialized() -> Swift.String {
-        return JSONSerialization.makeString(json: self.jsonEncoded())
+    /// JSON-serialize `self` into a string.
+    public func jsonSerialized(prettyPrint prettyPrint: Bool = false) -> Swift.String {
+        return self.jsonEncoded().jsonSerialized(prettyPrint: prettyPrint)
     }
     
 }

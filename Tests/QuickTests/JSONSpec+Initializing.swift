@@ -86,7 +86,7 @@ extension JSONSpec {
         describe("encodable initializer") {
             it("initializes instance of JSONEncodable into the same value as its jsonEncoded() method returns") {
                 let encodable = "Lorem ipsum"
-                let json = JSON(encodable: encodable)
+                let json = JSON(encoding: encodable)
                 expect(json) == encodable.jsonEncoded()
             }
 
@@ -94,8 +94,8 @@ extension JSONSpec {
                 let encodableArray1: [String] = ["Lorem", "ipsum", "dolor", "sit", "amet"]
                 let encodableArray2: [JSONEncodable] = ["Lorem", "ipsu", "dolor", "sit", "amet"]
 
-                let json1 = JSON(encodable: encodableArray1)
-                let json2 = JSON(encodable: encodableArray2)
+                let json1 = JSON(encoding: encodableArray1)
+                let json2 = JSON(encoding: encodableArray2)
 
                 expect(json1) == JSON.Array(encodableArray1.map { $0.jsonEncoded() })
                 expect(json2) == JSON.Array(encodableArray2.map { $0.jsonEncoded() })
@@ -105,8 +105,8 @@ extension JSONSpec {
                 let encodableDictionary1: [String: String] = ["1": "Lorem", "2": "ipsum", "3": "dolor", "4": "sit", "5": "amet"]
                 let encodableDictionary2: [String: JSONEncodable] = ["1": "Lorem", "2": "ipsum", "3": "dolor", "4": "sit", "5": "amet"]
 
-                let json1 = JSON(encodable: encodableDictionary1)
-                let json2 = JSON(encodable: encodableDictionary2)
+                let json1 = JSON(encoding: encodableDictionary1)
+                let json2 = JSON(encoding: encodableDictionary2)
 
                 expect(json1) == JSON.Object(
                     [

@@ -50,7 +50,7 @@ extension JSONDeserialization {
             return JSON.Float(float)
         }
         
-        throw JSON.Error.Deserialization.FailedToReadNumber(number: string, position: position)
+        throw JSON.Error.Deserializing.FailureInterpretingNumber(number: string, position: position)
     }
 
 }
