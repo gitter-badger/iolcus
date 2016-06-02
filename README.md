@@ -16,18 +16,15 @@ This library was inspired by [`SwiftyJSON`](https://github.com/SwiftyJSON/Swifty
 ## Contents
 
 - [Usage](#usage)
-  - [Literals](#literals)
-  - [Initializers](#initializers)
-  - [Inspecting](#inspecting)
-  - [Unwrapping](#unwrapping)
+  - [`JSON` literals](#json-literals)
+  - [`JSON` initializers](#json-initializers)
+  - [Inspecting `JSON`](#inspecting-json)
+  - [Unwrapping and coercing `JSON` values](#unwrapping-and-coercing-json-values)
   - [Subscripting](#subscripting) 
-  - [Coercing](#coercing)
   - [Encoding](#encoding)
   - [Decoding](#decoding)
-  - [Iterating](#iterating) 
-  - [Flattening](#flattening)
-  - [Error handling](#error-handling)
-  - [Converting from/to Foundation JSON](#converting-fromto-foundation-json)
+  - [Serializing and deserializing](#serializing-and-deserializing) 
+  - [Iterating over `JSON`](#iterating-over-json)
 
 ## Usage
 
@@ -86,8 +83,6 @@ let jsonAge = try! JSON(json: jsonPerson, at: "age")        // .Integer(42)
 let serializedFibonacci = "[1, 1, 2, 3, 5, 8]"
 let jsonFibonacci = try! JSON(jsonSerialization: serializedFibonacci)
 ````
-
-### Inspecting `JSON`
 
 ### Inspecting `JSON`
 
