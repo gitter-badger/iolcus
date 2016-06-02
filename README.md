@@ -221,7 +221,7 @@ extension Book: JSONEncodable {
 }
 ````
 
-- note: Array `authors` and dictionary `notes` have to be explicitly encoded into `JSON` via `JSON(encoding: _)` initializer.  This is because there is no support (yet) for conditional protocol conformance by generics.  It [might appear in Swift 3](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160229/011666.html), though.
+> Array `authors` and dictionary `notes` have to be explicitly encoded into `JSON` via `JSON(encoding: _)` initializer.  This is because there is no support (yet) for conditional protocol conformance by generics.  It [might appear in Swift 3](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160229/011666.html), though.
 
 Obvioulsy, with `JSONEncodable` implemented, we can encode `Book` instances into `JSON` by calling the method we just implemented:
  
@@ -317,7 +317,7 @@ let anotherSerializedBook = book.jsonSerialized()
 
 Special form of initializer `JSON(jsonSerialization: _)` can be used to deserialize `JSON` values:
 
-- note: Theoretically, a string that is used as an input for deserialization can be invalid.  That is why `JSON(jsonSerialization: _)` call can throw an error of `JSON.Error.Deserializing` type.
+> Theoretically, a string that is used as an input for deserialization can be invalid.  That is why `JSON(jsonSerialization: _)` call can throw an error of `JSON.Error.Deserializing` type.
  
 ````swift
 do {
@@ -346,9 +346,10 @@ jsonTodoList.forEach {                                              // [0] "Groc
 }                                                                   // [2] "Dinner"
 ````
 
-- note: Non-container `JSON` kinds can be iterated over as well, only there will be just one iteration made.
+> Non-container `JSON` kinds can be iterated over as well, only there will be just one iteration made.
 
-- note: `JSONIndex` is `enum` with three cases: `.This` used for non-container `JSON`, `.Index(Int)` used for `.Array` and `.Key(String)` used for `.Object`.
+
+> `JSONIndex` is `enum` with three cases: `.This` used for non-container `JSON`, `.Index(Int)` used for `.Array` and `.Key(String)` used for `.Object`.
 
 Naturally, `map()`, `filter()` and all other methods applicable to sequences can be used with `JSON` too:
 
@@ -387,4 +388,4 @@ jsonDune.flatten().forEach {                                // jsonDune["isPaper
                                                             // ["notes"]["2015-05-23"]
 ````
 
-- note: `JSONPath` is essentially an array of `JSONIndex` values.  It can be constructed from the sequence of `JSONIndex` values or from a literal.  It can be used in the subsript accessor as well.
+> Note: `JSONPath` is essentially an array of `JSONIndex` values.  It can be constructed from the sequence of `JSONIndex` values or from a literal.  It can be used in the subsript accessor as well.
