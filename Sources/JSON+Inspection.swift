@@ -24,8 +24,44 @@
 //
 
 extension JSON {
-    
-    /// Indicates whether `self` is null.
+
+    /// Indicates the kind of `self`.
+    ///
+    /// `.Null` => `"Null"` \
+    /// `.Boolean(_)` => `"Boolean"` \
+    /// `.Integer(_)` => `"Integer"` \
+    /// `.Float(_)` => `"Float"` \
+    /// `.String(_)` => `"String"` \
+    /// `.Array(_)` => `"Array"` \
+    /// `.Object(_)` => `"Object"`
+    public var kind: Swift.String {
+        switch self {
+
+        case .Null:
+            return "Null"
+
+        case .Boolean(_):
+            return "Boolean"
+
+        case .Integer(_):
+            return "Integer"
+
+        case .Float(_):
+            return "Float"
+
+        case .String(_):
+            return "String"
+
+        case .Array(_):
+            return "Array"
+
+        case .Object(_):
+            return "Object"
+
+        }
+    }
+
+    /// Indicates whether `self` is `.Null`.
     public var isNull: Bool {
         if self == .Null {
             return true
@@ -33,7 +69,7 @@ extension JSON {
         return false
     }
     
-    /// Indicates whether `self` is a boolean.
+    /// Indicates whether `self` is `.Boolean`.
     public var isBoolean: Bool {
         if case .Boolean(_) = self {
             return true
@@ -41,7 +77,7 @@ extension JSON {
         return false
     }
     
-    /// Indicates whether the `self` is an integer number.
+    /// Indicates whether the `self` is `.Integer`.
     public var isInteger: Bool {
         if case .Integer(_) = self {
             return true
@@ -49,7 +85,7 @@ extension JSON {
         return false
     }
     
-    /// Indicates whether the `self` is a floating-point number.
+    /// Indicates whether the `self` is `.Float`.
     public var isFloat: Bool {
         if case .Float(_) = self {
             return true
@@ -57,12 +93,12 @@ extension JSON {
         return false
     }
 
-    /// Indicates whether the `self` is a number.
+    /// Indicates whether the `self` is `.Integer` or `.Float` (that is, a number).
     public var isNumber: Bool {
         return isInteger || isFloat
     }
     
-    /// Indicates whether `self` is string.
+    /// Indicates whether `self` is `.String`.
     public var isString: Bool {
         if case .String(_) = self {
             return true
@@ -70,7 +106,7 @@ extension JSON {
         return false
     }
     
-    /// Indicates whether `self` is array.
+    /// Indicates whether `self` is `.Array`.
     public var isArray: Bool {
         if case .Array(_) = self {
             return true
@@ -78,7 +114,7 @@ extension JSON {
         return false
     }
     
-    /// Indicates whether `self` is object.
+    /// Indicates whether `self` is `.Object`.
     public var isObject: Bool {
         if case .Object(_) = self {
             return true

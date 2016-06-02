@@ -26,13 +26,13 @@
 /// `JSON` value.
 ///
 /// Enumeration of:
-/// - `Null`
-/// - `Boolean(Bool)`
-/// - `Integer(Int)`
-/// - `Float(Double)`
-/// - `String(String)`
-/// - `Array([JSON])`
-/// - `Object([String: JSON])`
+/// - `.Null`
+/// - `.Boolean(Bool)`
+/// - `.Integer(Int)`
+/// - `.Float(Double)`
+/// - `.String(String)`
+/// - `.Array([JSON])`
+/// - `.Object([String: JSON])`
 public indirect enum JSON {
     
     /// Null JSON value.

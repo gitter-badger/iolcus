@@ -59,18 +59,10 @@ extension JSON {
  
     /// Unwrapped array or `nil`.
     public var unwrappedArray: [JSON]? {
-        get {
-            guard case .Array(let elements) = self else {
-                return nil
-            }
-            return elements
+        guard case .Array(let elements) = self else {
+            return nil
         }
-        set {
-            guard case .Array(_) = self else {
-                fatalError("`self` is not `.Array`")
-            }
-            self = .Array(newValue ?? [])
-        }
+        return elements
     }
 
     /// Unwrapped ditionary of object properties or `nil`.

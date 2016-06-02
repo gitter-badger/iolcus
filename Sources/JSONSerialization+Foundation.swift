@@ -23,78 +23,78 @@
 //  SOFTWARE.
 //
 
-#if os(OSX) || os(iOS) || os(tvOS)
-    
-    import Foundation
-    
-    extension JSONSerialization {
-        
-        // MARK: - Public API
-        
-        /// Makes Foundation's `AnyObject` representation of JSON using Medea's `JSON` value.
-        public static func makeAnyObject(json json: JSON) -> AnyObject {
-            switch json {
-                
-            case .Null:
-                return makeAnyObject(null: ())
-                
-            case .Boolean(let boolean):
-                return makeAnyObject(boolean: boolean)
-                
-            case .Integer(let integer):
-                return makeAnyObject(integer: integer)
-                
-            case .Float(let float):
-                return makeAnyObject(float: float)
-                
-            case .String(let string):
-                return makeAnyObject(string: string)
-                
-            case .Array(let elements):
-                return makeAnyObject(array: elements)
-                
-            case .Object(let properties):
-                return makeAnyObject(object: properties)
-                
-            }
-        }
-        
-        // MARK: - Internal
-        
-        private static func makeAnyObject(null null: Void) -> AnyObject {
-            return NSNull()
-        }
-        
-        private static func makeAnyObject(boolean boolean: Bool) -> AnyObject {
-            return NSNumber.init(bool: boolean)
-        }
-        
-        private static func makeAnyObject(integer integer: Int) -> AnyObject {
-            return NSNumber(integer: integer)
-        }
-        
-        private static func makeAnyObject(float float: Double) -> AnyObject {
-            return NSNumber(double: float)
-        }
-        
-        private static func makeAnyObject(string string: Swift.String) -> AnyObject {
-            return NSString(string: string)
-        }
-        
-        private static func makeAnyObject(array elements: [JSON]) -> AnyObject {
-            return elements.map {
-                makeAnyObject(json: $0)
-            }
-        }
-        
-        private static func makeAnyObject(object properties: [Swift.String: JSON]) -> AnyObject {
-            var nsjsonProperties: [NSString: AnyObject] = [:]
-            properties.forEach {
-                nsjsonProperties[$0] = makeAnyObject(json: $1)
-            }
-            return nsjsonProperties
-        }
-        
-    }
-    
-#endif
+//#if os(OSX) || os(iOS) || os(tvOS)
+//    
+//    import Foundation
+//    
+//    extension JSONSerialization {
+//        
+//        // MARK: - Public API
+//        
+//        /// Makes Foundation's `AnyObject` representation of JSON using Medea's `JSON` value.
+//        public static func makeAnyObject(json json: JSON) -> AnyObject {
+//            switch json {
+//                
+//            case .Null:
+//                return makeAnyObject(null: ())
+//                
+//            case .Boolean(let boolean):
+//                return makeAnyObject(boolean: boolean)
+//                
+//            case .Integer(let integer):
+//                return makeAnyObject(integer: integer)
+//                
+//            case .Float(let float):
+//                return makeAnyObject(float: float)
+//                
+//            case .String(let string):
+//                return makeAnyObject(string: string)
+//                
+//            case .Array(let elements):
+//                return makeAnyObject(array: elements)
+//                
+//            case .Object(let properties):
+//                return makeAnyObject(object: properties)
+//                
+//            }
+//        }
+//        
+//        // MARK: - Internal
+//        
+//        private static func makeAnyObject(null null: Void) -> AnyObject {
+//            return NSNull()
+//        }
+//        
+//        private static func makeAnyObject(boolean boolean: Bool) -> AnyObject {
+//            return NSNumber.init(bool: boolean)
+//        }
+//        
+//        private static func makeAnyObject(integer integer: Int) -> AnyObject {
+//            return NSNumber(integer: integer)
+//        }
+//        
+//        private static func makeAnyObject(float float: Double) -> AnyObject {
+//            return NSNumber(double: float)
+//        }
+//        
+//        private static func makeAnyObject(string string: Swift.String) -> AnyObject {
+//            return NSString(string: string)
+//        }
+//        
+//        private static func makeAnyObject(array elements: [JSON]) -> AnyObject {
+//            return elements.map {
+//                makeAnyObject(json: $0)
+//            }
+//        }
+//        
+//        private static func makeAnyObject(object properties: [Swift.String: JSON]) -> AnyObject {
+//            var nsjsonProperties: [NSString: AnyObject] = [:]
+//            properties.forEach {
+//                nsjsonProperties[$0] = makeAnyObject(json: $1)
+//            }
+//            return nsjsonProperties
+//        }
+//        
+//    }
+//    
+//#endif

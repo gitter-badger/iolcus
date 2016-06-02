@@ -79,23 +79,23 @@ extension JSONDecodable {
     /// Initializes (deserializes) a new instance of `Self` from a given JSON string.
     ///
     /// - Throws: `JSON.Error.Decoding`
-    public init(serialization: Swift.String) throws {
-        let json = try JSONDeserialization.makeJSON(string: serialization)
+    public init(jsonSerialization: Swift.String) throws {
+        let json = try JSONDeserialization.makeJSON(string: jsonSerialization)
         try self.init(json: json)
     }
     
-    #if os(OSX) || os(iOS) || os(tvOS)
-    
-    /// Initializes (deserializes) a new instance of `Self` from a given JSON `AnyObject`.
-    ///
-    /// - Throws: `JSON.Error.Decoding`, `JSON.Error.Converting`
-    public init(jsonAnyObject: AnyObject) throws {
-        let json = try JSONDeserialization.makeJSON(jsonAnyObject: jsonAnyObject)
-        try self.init(json: json)
-    }
-    
-    #endif
-    
+//    #if os(OSX) || os(iOS) || os(tvOS)
+//    
+//    /// Initializes (deserializes) a new instance of `Self` from a given JSON `AnyObject`.
+//    ///
+//    /// - Throws: `JSON.Error.Decoding`, `JSON.Error.Converting`
+//    public init(jsonAnyObject: AnyObject) throws {
+//        let json = try JSONDeserialization.makeJSON(jsonAnyObject: jsonAnyObject)
+//        try self.init(json: json)
+//    }
+//    
+//    #endif
+
 }
 
 // MARK: - Errors

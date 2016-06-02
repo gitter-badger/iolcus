@@ -25,8 +25,8 @@
 
 extension JSONPath: ArrayLiteralConvertible {
     
-    public init(arrayLiteral elements: JSONIndex...) {
-        self.init(path: elements)
+    public init(arrayLiteral: JSONIndex...) {
+        self.init(path: Array(arrayLiteral))
     }
     
 }

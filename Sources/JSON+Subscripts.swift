@@ -25,6 +25,33 @@
 
 extension JSON {
 
+    // MARK: - `Void` subscript
+
+    func getArray() -> [JSON] {
+        guard case .Array(let elements) = self else {
+            return [self]
+        }
+
+        return elements
+    }
+
+    mutating func setArray(value newValue: [JSON]) {
+        self = .Array(newValue)
+    }
+
+    /// `JSON.Array` subscript.
+    ///
+    /// - Returns: ⁃ `self` if `self` is `.Array` \
+    ///            ⁃ `.Array([self])` otherwise
+    public subscript() -> [JSON] {
+        get {
+            return getArray()
+        }
+        set {
+            setArray(value: newValue)
+        }
+    }
+
     // MARK: - `Int` subscript
 
     /// `JSON.Array` element getter.

@@ -5,8 +5,8 @@
  There is a plenty of JSON libraries for Swift already.  Why this one?
 
  - It is using pure Swift and only Swift. It will work anywhere Swift works.  Even `Foundation` framework is not necessary.
- - It enforces strict type system by using `enum` to wrap each possible case of JSON.  So, no more need to resort to obscure `AnyObject`.
- - It takes convenience of use and readability of code seriously.  For example, it provides convenient subcript access to nested JSON sub-components.  Encoding and decoding of custom types to/from JSON is easy and transparent.  Quite few feactures come out-of-the-box via default protocol implementations, etc.
+ - It enforces strict types conformance by wrapping each possible case of JSON in `enum`.  Therefore, no more need to resort to obscure `AnyObject`.
+ - It takes convenience and readability quite seriously.  In particular, it provides subcript access to nested JSON sub-components, easy encoding and decoding of custom types, out-of-the-box serialization for the types that adopted encoding protocols, etc.
 
  This library was inspired by [`SwiftyJSON`](https://github.com/SwiftyJSON/SwiftyJSON), [`Gloss`](https://github.com/hkellaway/Gloss) and [`TidyJSON`](https://github.com/benloong/TidyJSON).
 
@@ -23,21 +23,22 @@
  ## Usage
 
  The core of `Medea` framework is `JSON` type.  In practice it's just an `enum`:
- ````swift
- enum JSON {
-     case Null
-     case Boolean(Bool)
-     case Integer(Int)
-     case Float(Double)
-     case String(String )
-     case Array([JSON])
-     case Object([String: JSON])
- }
- ````
  
- ### Literals
+ */
+        indirect enum _JSON {                       // Please disregard underscore in
+            case Null                               // front of _JSON.  It's only
+            case Boolean(Bool)                      // introduced to avoid collision
+            case Integer(Int)                       // with JSON from Medea framework.
+            case Float(Double)
+            case String(Swift.String )
+            case Array([JSON])
+            case Object([Swift.String: JSON])
+        }
+/*:
  
- It's possible to create an instance of `JSON` by just assigning a property with some literal:
+ ### `JSON` literals
+ 
+ It's possible to create an instance of `JSON` by just assigning some property with a literal:
   
  */
         import Medea
@@ -46,89 +47,141 @@
         let jsonInteger: JSON = 42
         let jsonFloat: JSON = 36.6
         let jsonString: JSON = "Lorem ipsum dolor sit amet"
-        var jsonArray: JSON = [false, 1, 42.0, "3"]
-        var jsonObject: JSON = [
+        let jsonArray: JSON = [false, 1, 42.0, "3"]
+        let jsonObject: JSON = [
             "boolean" : false,
             "integer" : -42,
             "string"  : "Lorem ipsum"
         ]
 /*:
- 
- ### Initializers
- 
+
+ ### `JSON` initializers
+
  Some other ways ways to instantiate `JSON` are:
  
  */
         // Direcly via enum's case
-        let jsonAnotherInteger = JSON.Integer(99)
+        let jsonLUAE = JSON.Integer(42)
 
-        // By encoding JSON from an instance conforming to JSONEncodable protocol
-        let jsonAnotherBoolean = JSON(encoding: true)
+        // By encoding JSON from an JSONEncodable-conforming instance
+        let jsonNotFalse = JSON(encoding: true)
 
         // By copying another JSON's sub-element
-        let jsonAnotherFloat = try! JSON(json: jsonArray, at: 2)                    // 42.0
-        let jsonAnotherString = try! JSON(json: jsonObject, at: "string")           // "Lorem ipsum"
+        let jsonSentence: JSON = ["Lorem", "ipsum", "dolor", "sit", "amet"]
+        let jsonFirstWord = try! JSON(json: jsonSentence, at: 0)    // .String("Lorem")
+
+        let jsonPerson: JSON = ["name": "John Doe", "age": 42]
+        let jsonAge = try! JSON(json: jsonPerson, at: "age")        // .Integer(42)
 
         // By deserializing string representation of JSON
-        let jsonAnotherArray = try! JSON(serialization: "[false, 1, 2.0, \"3\"]")   // [false, 1, 2.0, "3"]
+        let serializedFibonacci = "[1, 1, 2, 3, 5, 8]"
+        let jsonFibonacci = try! JSON(jsonSerialization: serializedFibonacci)
 /*:
+
+ ### Inspecting `JSON`
  
- ### Inspecting
+ Although, `JSON` is `enum` and as such can be used in standard Swift `switch` statement, or in `if/case` pattern, it might be eaiser to use the set of `is...`  (`isNull`, `isBoolean`, `isInteger`,  etc) computed properties to check which particular `JSON` kind is being handled at the moment.
  
- Although, `JSON` is `enum` and as such can be inspected via standard Swift `switch` pattern, or via `if case`, it is eaiser to just use the set of computed properties `isNull`, `isBoolean`, `isInteger`, etc.  For example:
+ For example:
+
  */
-        if jsonFloat.isNumber {
-            print("\(jsonFloat) is a number") // Yes, it is
+        let jsonStuff: JSON = [true, "Ook", 36.6, 999, "Eek"]       // Prints:
+                                                                    //
+        for (_, element) in jsonStuff where element.isNumber {      // Float 36.6
+            print(element.kind, element)                            // Integer 999
         }
 /*:
 
- ### Unwrapping
+ ### Unwrapping and coercing `JSON` values
 
- Every `JSON` value, except `.Null`, wraps either some elementary value (`Bool`, `Int`, `Double` or `String`), or a container (`[JSON]` or `[String: JSON]`).  It is possible to access the value wrapped by `JSON` via special set of computed properties `unwrappedBoolean`, `unwrappedInteger`, etc.
+ Every `JSON` value, except `.Null`, wraps either some elementary value (`Bool`, `Int`, `Double` or `String`) or a container (`[JSON]` or `[String: JSON]`).  It is possible to access the value wrapped by `JSON` via special set of computed properties `unwrapped...` (`unwrappedBoolean`, `unwrappedInteger`, `unwrappedFloat` , etc).  These properties return either a wrapped value (if the type matches) or `nil` (if there is no match).
  
  For example:
   
 */
-        if let boolean = jsonBoolean.unwrappedBoolean {
-            print(boolean.dynamicType) // Bool
-            print(boolean)             // true
+        let jsonEarth: JSON = [
+            "isFlat" : false,
+            "mass"   : JSON(encoding: ["value": 5.972e24, "uom": "kg"]),
+            "radius" : JSON(encoding: ["value": 6371, "uom": "km"])
+        ]
+
+        if let earthIsFlat = jsonEarth["isFlat"].unwrappedBoolean {         // Prints:
+            if !earthIsFlat {                                               //
+                print("Earth is not flat")                                  // Earth is not flat
+            }
         }
+
+        if let earthMass = jsonEarth["mass"]["value"].unwrappedString {     // Prints nothing because
+            print("Earth's mass is \(earthMass)")                           // unwrappedString returns nil
+        }                                                                   // for JSON.Float values
 /*:
  
- ... or:
-  
+ In addition to `unwrapped...` set of properties there is another set of `coerced...` properties.  This set provides implicit conversion from actually wrapped elementary value into a target type.  If such conversion is not possible then the result is, again, `nil`.
+ 
+ For example:
+ 
  */
-        if let dictionaryProperties = jsonObject.unwrappedObject {
-            print(dictionaryProperties.dynamicType) // Dictionary<String, JSON>
-            print(dictionaryProperties)             // ["integer": -42, "boolean": false, "string": "Lorem ipsum"]
-        }
+        if let earthMass = jsonEarth["mass"]["value"].coercedString {       // Prints:
+            print("Earth's mass is \(earthMass)")                           //
+        }                                                                   // Earth's mass is 5.972e+24
 /*:
- 
+
  ### Subscripting
- 
- Elements of the container `JSON` kinds (that is, `.Array` and `.Object`) can be directly reached via subscripts:
+
+ Elements of the container `JSON` kinds (that is, `.Array` and `.Object`) can be directly accessed via subscripts:
   
  */
-        let jsonSubElement1 = jsonObject["integer"]     // .Integer(-42)
-        let jsonSubElement2 = jsonArray[2]              // .Float(42.0)
+        let jsonEarthIsFlat = jsonEarth["isFlat"]       // .Boolean(false)
 /*:
  
  Subscripts can be chained:
 
  */
-        let jsonSubSubElement = jsonObject["array"][3]  // .String("3")
+        let jsonEarthMass = jsonEarth["mass"]["value"]  // .Float(5.972e+24)
 /*:
  
- ### Coercing
+ Subscripts can be used as setters:
  
- Just like with unrwapping, there is a set of computed properties `coercedXXX` that help with automatic coercion between elementary `JSON` types.  For example, if you get JSON that has all values passed as strings, although what you really expect can be a number or boolean, you can try to coerce the input:
  */
-        let jsonStringInteger: JSON = "365" // .String("365")
+        var jsonListOfOrders: JSON = [1000000, 1000001, 1000002]    // Prints:
+                                                                    //
+        jsonListOfOrders[2] = 1000005                               // [
+        jsonListOfOrders[1] = 1000003                               //     1000007,
+        jsonListOfOrders[0] = 1000007                               //     1000003,
+                                                                    //     1000005
+        print(jsonListOfOrders)                                     // ]
+/*:
+
+ In addition to `Int` and `String`-indexed subscripts, there is a special case of `Void`-indexed subscript `[]`:
+
+ */
+        var jsonDynamicallyGrownArray: JSON = []            // Prints:
+                                                            //
+        jsonDynamicallyGrownArray[].append("start"  )       // [
+        jsonDynamicallyGrownArray[].append(".")             //     "start",
+        jsonDynamicallyGrownArray[].append("..")            //     ".",
+        jsonDynamicallyGrownArray[].append("...end")        //     "..",
+                                                            //     "...end"
+        print(jsonDynamicallyGrownArray)                    // ]
+/*:
  
-        if let integer = jsonStringInteger.coercedInteger {
-            print(integer.dynamicType) // Int
-            print(integer)             // 365
-        }
+ Main purpose of `[]` subcript is to provide a way to create/grow/shrink `JSON.Array`:
+
+ - When getter is applied to `.Array`, it unwraps and returns underlying array of `JSON` sub-elements.
+ - When getter is applied to any other `JSON` kind, it will create and return single-element array out of it.
+ - The setter will take input `[JSON]` array and create `JSON.Array` out of it.
+ 
+ For example, the following snippet will produce exactly same output as the one from above:
+ 
+ */
+        var jsonImplicitlyConvertedArray: JSON = "start"    // Prints:
+                                                            //
+        jsonImplicitlyConvertedArray[].append("."  )        // [
+        jsonImplicitlyConvertedArray[].append("..")         //     "start",
+        jsonImplicitlyConvertedArray[].append("...end")     //     ".",
+                                                            //     "..",
+        print(jsonImplicitlyConvertedArray)                 //     "...end"
+                                                            // ]
 /*:
 
  ### Encoding
@@ -147,7 +200,7 @@
         }
 /*:
 
- ... then it could implement `JSONEncodable` as follows:
+ ... then it can implement `JSONEncodable` as follows:
 
  */
         extension Book: JSONEncodable {
@@ -163,47 +216,34 @@
         }
 /*:
  
- - note: Array `authors` and dictionary `notes` have to be explicitly encoded into `JSON` via `JSON(encoding: _)` initializer.  This is because there is no support (yet) for conditional protocol conformance by generics.  It [might happen in Swift 3](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160229/011666.html), though.
+ - note: Array `authors` and dictionary `notes` have to be explicitly encoded into `JSON` via `JSON(encoding: _)` initializer.  This is because there is no support (yet) for conditional protocol conformance by generics.  It [might appear in Swift 3](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160229/011666.html), though.
 
  Obvioulsy, with `JSONEncodable` implemented, we can encode `Book` instances into `JSON` by calling the method we just implemented:
 
  */
-        let book = Book(
-            title       : "Dune",
-            pagesCount  : 896,
-            isPaperback : true,
-            authors     : ["Frank Herbert"],
-            notes       : [
-                "2015-05-23": "The book was slightly damaged. Handed over to repair.",
-                "2015-06-10": "Repaired.  Condition is good."
-            ]
-        )
-
-        let jsonBook = book.jsonEncoded()
-
-        print(jsonBook)
-
-        // {
-        //     "title": "Dune",
-        //     "isPaperback": true,
-        //     "authors": [
-        //         "Frank Herbert"
-        //     ],
-        //     "notes": {
-        //         "2015-05-23": "The book was slightly damaged. Handed over to repair.",
-        //         "2015-06-10": "Repaired.  Condition is good."
-        //     },
-        //     "pages": 896
-        // }
+        let book = Book(                                            // Prints:
+            title       : "Dune",                                   //
+            pagesCount  : 896,                                      // {
+            isPaperback : true,                                     //     "title": "Dune",
+            authors     : ["Frank Herbert"],                        //     "isPaperback": true,
+            notes       : [                                         //     "authors": [
+                "2015-05-23": "Damaged. Handed over to repair.",    //         "Frank Herbert"
+                "2015-06-10": "Repaired. Condition is good."        //     ],
+            ]                                                       //     "notes": {
+        )                                                           //         "2015-05-23": "Damaged. Handed over to repair.",
+                                                                    //         "2015-06-10": "Repaired. Condition is good."
+        var jsonBook = book.jsonEncoded()                           //     },
+                                                                    //     "pages": 896
+        print(jsonBook)                                             // }
 /*:
 
  ... or alternatively we can use the initializer:
  
  */
-        let jsonBook2 = JSON(encoding: book)
+        let jsonAnotherBook = JSON(encoding: book)
 /*:
 
- Possibility to encode arrays and dictionaries containing `Book` is available now as well:
+ As soon as `Book` is `JSONEncodable` we can also encode arrays and dictionaries that contain `Book`:
 
  */
         struct Library: JSONEncodable {
@@ -220,35 +260,12 @@
         }
 /*:
 
- ### Serializing / Deserializing
- 
- With `JSONEncodable` protovol implemented, serialization of instances into JSON strings comes out of the box:
-
- */
-        let serializedBook = book.jsonSerialized()
-        let prettySerializedBook = book.jsonSerialized(prettyPrint: true)
-/*:
-
- Deserializing JSON from the string is also quite simple:
- 
- */
-        let jsonDeserialized = try! JSON(serialization: serializedBook)
-/*:
- 
- Technically, an input string can be not a valid JSON, or not JSON at all.  That's why `JSON(serialization: _)` call can throw.  Errors that can happen are nested under `JSON.Error.Deserializing` type.  Therefore, proper deserialization of of JSON can look like follows:
-*/
-        do {
-            let jsonDeserialized2 = try JSON(serialization: prettySerializedBook)
-        }
-        catch let error as JSON.Error.Deserializing {
-            // Deserializing JSON failed.  Do something about it.
-        }
-/*:
- 
  ### Decoding
+
+ Decoding of `JSON` is also made possible via protocol implementation.  In this case it's `JSONDecodable` protocol.  
  
- Similarly to `JSON` encoding, decoding is also made possible via protocol implementation.  In this case it's `JSONDecodable` protocol.  Keeping up with our `Book` as an example:
- 
+ Keeping up with our `Book` as an example:
+
  */
         extension Book: JSONDecodable {
             init(json: JSON) throws {
@@ -260,7 +277,7 @@
             }
         }
 /*:
- 
+
  Same thing for `Library`:
 
  */
@@ -272,18 +289,47 @@
             }
         }
 /*:
- 
- As soon as `JSONDecodable` is implemented, decoding of a new instance from `JSON` takes just a call of the initializer that have been implemented:
- 
+
+ As soon as `JSONDecodable` is implemented, decoding of a new instance from `JSON` takes just a call to the initializer:
+
  */
         let anotherBook = try! Book(json: jsonBook)
 /*:
 
- ... but deserialization of a `Book` also becomes possible via another initiailizer that is provided by the framework:
+ ### Serializing and deserializing
+
+ Method `jsonSerialized()` should be used both to serialize `JSON` values:
  
  */
+        let serializedBook = jsonBook.jsonSerialized()
+/*:
+ 
+ ... as well as instances that conform to `JSONEncodable` protocol:
+ 
+ */
+        let anotherSerializedBook = book.jsonSerialized()
+/*:
+
+ Special form of initializer `JSON(jsonSerialization: _)` can be used to deserialize `JSON` values:
+
+ - note: Theoretically, a string that is used as an input for deserialization can be invalid.  That is why `JSON(jsonSerialization: _)` call can throw an error of `JSON.Error.Deserializing` type.
+
+ */
         do {
-            let yetAnotherBook = try Book(serialization: serializedBook)
+            let jsonDeserialized = try JSON(jsonSerialization: serializedBook)
+        }
+        catch let error as JSON.Error.Deserializing {
+            // Deserializing JSON failed.  Do something about it.
+        }
+/*:
+
+ Similar form of initializer in available for types conforming to `JSONDecodable` protocol:
+
+ - note: Deserialization of `Book` can throw a more error types.  On top of `JSON.Error.Deserializing` it can also throw `JSON.Error.Decoding` and `JSON.Error.Subscripting`:
+
+ */
+        do {
+            let yetAnotherBook = try Book(jsonSerialization: serializedBook)
         }
         catch let error as JSON.Error.Deserializing {
             // Something went wrong during deserialization of JSON from input string
@@ -295,67 +341,60 @@
             // Something went wrong while reading values from container JSON elements
         }
 /*:
+
+ ### Iterating over `JSON`
  
- ### Iterating
- 
- Container `JSON` kinds (`.Object` and `.Array`) can be iterated through with usual `for/in` loop or `forEach()` method:
+ Container `JSON` kinds (`.Object` and `.Array`) can be iterated over.  For example, with `forEach()` method:
  
  */
-        jsonArray.forEach {
-            (index: JSONIndex, json: JSON) in
-
-            print(index, json)
-        }
-
-        // [0] false
-        // [1] 1
-        // [2] 2.0
-        // [3] "3"
+        let jsonTodoList: JSON = ["Groceries", "Pick up kids", "Dinner"]    // Prints:
+                                                                            //
+        jsonTodoList.forEach {                                              // [0] "Groceries"
+            print($0, $1)                                                   // [1] "Pick up kids"
+        }                                                                   // [2] "Dinner"
 /*:
  
- Non-container `JSON` kinds will accept that as well, although there will be just one iteration made.
+ - note: Non-container `JSON` kinds can be iterated over as well, only there will be just one iteration made.
 
- - note: `JSONIndex` is `enum` with three cases: `.This` (used for non-container `JSON`), `.Index(Int)` (used for `.Array`) and `.Key(String)` (used for `.Object`).
+ - note: `JSONIndex` is `enum` with three cases: `.This` used for non-container `JSON`, `.Index(Int)` used for `.Array` and `.Key(String)` used for `.Object`.
  
- Naturally, `map()`, `filter()` and all other methods applicable to sequences can be used on `JSON` too:
+ Naturally, `map()`, `filter()` and all other methods applicable to sequences can be used with `JSON` too:
 
  */
-        let pagerCountIndex = jsonBook.filter {
-            $1 == 896
-        }.first!.index
-
-        print(pagerCountIndex) // ["pages"]
+        let pagerCountIndex = jsonBook.filter { $1 == 896 }     // Prints:
+            .first?.index                                       //
+        print(pagerCountIndex)                                  // Optional(["pages"])
 /*:
 
- ### Flattening complex `JSON` tree
+ Iterating over `JSON` in a standard `for`-loop will only go over the surface without going deeper down into nested `JSON` sub-elements.  For this reason `JSON` offers special method `flatten()` that constructs an array of `(path: JSONPath, elemetaryValue: JSON)` tuples.  Such array will only contain basic `JSON` values (`.Null`, `.Boolean`, `.Integer`, `.Float` and `.String`), and each such value will be accompanied with a `JSONPath` that holds the indexes that have to be traversed from the root of `self` and all the way down to the particular basic element.
 
- There is a special method `flatten()` that comes very handy when working with complex `JSON` structures.  It flattens all container JSON values (that is, `.Object` and `.Array`) into an array of tuples `(path: JSONPath, json: JSON)`, where `path` will indicate a path that has to be traversed in order to get to every basic `JSON` sub-element.
- 
  For example:
 
  */
-        jsonBook.flatten().forEach {
-            (path: JSONPath, json: JSON) in
-
-            print("jsonBook\(path) == \(json)")
-        }
-
-        // jsonBook["title"] == "Dune"
-        // jsonBook["isPaperback"] == true
-        // jsonBook["authors"][0] == "Frank Herbert"
-        // jsonBook["notes"]["series"] == "Dune"
-        // jsonBook["notes"]["seriesNo"] == "1"
-        // jsonBook["pages"] == 896
+        let dune = Book(                                            // Prints:
+            title       : "Dune",                                   //
+            pagesCount  : 896,                                      // {
+            isPaperback : true,                                     //     "title": "Dune",
+            authors     : ["Frank Herbert"],                        //     "isPaperback": true,
+            notes       : [                                         //     "authors": [
+                "2015-05-23": "Damaged. Handed over to repair.",    //         "Frank Herbert"
+                "2015-06-10": "Repaired. Condition is good."        //     ],
+            ]                                                       //     "notes": {
+        )                                                           //         "2015-05-23": "Damaged. Handed over to repair.",
+                                                                    //         "2015-06-10": "Repaired. Condition is good."
+        let jsonDune = book.jsonEncoded()                           //     },
+                                                                    //     "pages": 896
+        print(jsonDune)                                             // }
+        print()                                                     //
+                                                                    // jsonDune["title"] == "Dune"
+        jsonDune.flatten().forEach {                                // jsonDune["isPaperback"] == true
+            (path: JSONPath, json: JSON) in                         // jsonDune["authors"][0] == "Frank Herbert"
+                                                                    // jsonDune["notes"]["2015-05-23"] == "Damaged. Handed over to repair."
+            print("jsonDune\(path) == \(json)")                     // jsonDune["notes"]["2015-06-10"] == "Repaired. Condition is good."
+        }                                                           // jsonDune["pages"] == 896
+                                                                    // ["notes"]["2015-05-23"]
 /*:
  
- And again, we even can use `filter()` method:
+ - note: `JSONPath` is essentially an array of `JSONIndex` values.  It can be constructed from the sequence of `JSONIndex` values or from a literal.  It can be used in the subsript accessor as well.
 
- */
-        let pathToRepairNote = jsonBook.flatten().filter {
-            $1 == "The book was slightly damaged. Handed over to repair."
-        }.first!.path
-
-        print(pathToRepairNote) // ["notes"]["2015-05-23"]
-/*:
- 
  */
