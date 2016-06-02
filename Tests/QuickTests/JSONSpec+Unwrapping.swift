@@ -210,7 +210,6 @@ extension JSONSpec {
                     expect(jsonObjectWithArray.unwrappedBoolean).to(beNil())
                     expect(jsonObjectWithObject.unwrappedBoolean).to(beNil())
                     expect(jsonObjectWithMixup.unwrappedBoolean).to(beNil())
-
                 }
             }
 
@@ -247,7 +246,6 @@ extension JSONSpec {
                     expect(jsonObjectWithArray.unwrappedArray).to(beNil())
                     expect(jsonObjectWithObject.unwrappedArray).to(beNil())
                     expect(jsonObjectWithMixup.unwrappedArray).to(beNil())
-
                 }
             }
 
