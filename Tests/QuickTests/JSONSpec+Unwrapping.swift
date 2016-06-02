@@ -249,24 +249,6 @@ extension JSONSpec {
                     expect(jsonObjectWithMixup.unwrappedArray).to(beNil())
 
                 }
-
-                it("allows to modify the array") {
-                    var json: JSON = []
-                    json.unwrappedArray?.append(JSON.Null)
-                    expect(json) == [JSON.Null]
-                    json.unwrappedArray?.append(true)
-                    expect(json) == [JSON.Null, true]
-                    json.unwrappedArray?.insert(0, atIndex: 0)
-                    expect(json) == [0, JSON.Null, true]
-                    json.unwrappedArray?[1] = 0.0
-                    expect(json) == [0, 0.0, true]
-                    json.unwrappedArray?.removeAtIndex(1)
-                    expect(json) == [0, true]
-                    json.unwrappedArray?.removeFirst()
-                    expect(json) == [true]
-                    json.unwrappedArray?.removeLast()
-                    expect(json) == []
-                }
             }
 
             describe("object accessor") {
