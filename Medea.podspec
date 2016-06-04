@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name         = "Medea"
-    s.version      = "0.0.12"
+    s.version      = "0.0.13"
     s.summary      = "Strict but helpful JSON library for Swift"
     s.description  = <<-DESC
                         This library combines some new handy features to manipulate JSON together with best ideas from other libraries.
