@@ -1,5 +1,5 @@
 //
-//  JSON+JSONDecodable.swift
+//  JSONSpec+Subscripts+Void.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -23,10 +23,16 @@
 //  SOFTWARE.
 //
 
-extension JSON: JSONDecodable {
-    
-    public init(json: JSON) throws {
-        self = json
+import Nimble
+import Quick
+import Medea
+
+extension JSONSpec {
+
+    func specSubscriptVoid() {
+
+        // TODO: Write tests
+        
     }
-    
+
 }

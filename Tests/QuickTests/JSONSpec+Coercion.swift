@@ -1,5 +1,5 @@
 //
-//  JSONSpec+Coercing.swift
+//  JSONSpec+Coercion.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -29,7 +29,7 @@ import Medea
 
 extension JSONSpec {
 
-    func specCoercing() {
+    func specCoercion() {
         describe("coercing") {
             let jsonNull: JSON = nil
 

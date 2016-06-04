@@ -24,32 +24,40 @@
 //
 
 extension JSON: Hashable {
-    
+
+    private static let hashNull = 0.hashValue
+    private static let hashBoolean = 1.hashValue
+    private static let hashInteger = 2.hashValue
+    private static let hashFloat = 3.hashValue
+    private static let hashString = 4.hashValue
+    private static let hashArray = 5.hashValue
+    private static let hashObject = 6.hashValue
+
     public var hashValue: Int {
         switch self {
             
         case .Null:
-            return 0.hashValue
+            return JSON.hashNull
             
         case .Boolean(let boolean):
-            return 1.hashValue ^ boolean.hashValue
+            return JSON.hashBoolean ^ boolean.hashValue
             
         case .Integer(let integer):
-            return 2.hashValue ^ integer.hashValue
+            return JSON.hashInteger ^ integer.hashValue
             
         case .Float(let float):
-            return 3.hashValue ^ float.hashValue
+            return JSON.hashFloat ^ float.hashValue
             
         case .String(let string):
-            return 4.hashValue ^ string.hashValue
+            return JSON.hashString ^ string.hashValue
             
         case .Array(let elements):
-            return elements.reduce(5.hashValue) {
+            return elements.reduce(JSON.hashArray) {
                 $0 ^ $1.hashValue
             }
             
         case .Object(let properties):
-            return properties.reduce(6.hashValue) {
+            return properties.reduce(JSON.hashObject) {
                 $0 ^ $1.0.hashValue ^ $1.1.hashValue
             }
             

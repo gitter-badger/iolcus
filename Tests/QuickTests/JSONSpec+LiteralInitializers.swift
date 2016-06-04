@@ -1,5 +1,5 @@
 //
-//  JSONSpec+Initializing.swift
+//  JSONSpec+LiteralInitializers.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -76,54 +76,6 @@ extension JSONSpec {
                         "integer": JSON.Integer(2),
                         "float": JSON.Float(3.0),
                         "string": JSON.String("IV")
-                    ]
-                )
-            }
-        }
-    }
-
-    func specEncodableInitializers() {
-        describe("encodable initializer") {
-            it("initializes instance of JSONEncodable into the same value as its jsonEncoded() method returns") {
-                let encodable = "Lorem ipsum"
-                let json = JSON(encoding: encodable)
-                expect(json) == encodable.jsonEncoded()
-            }
-
-            it("initializes array of JSONEncodable into JSON.Array of jsonEncodable() results") {
-                let encodableArray1: [String] = ["Lorem", "ipsum", "dolor", "sit", "amet"]
-                let encodableArray2: [JSONEncodable] = ["Lorem", "ipsu", "dolor", "sit", "amet"]
-
-                let json1 = JSON(encoding: encodableArray1)
-                let json2 = JSON(encoding: encodableArray2)
-
-                expect(json1) == JSON.Array(encodableArray1.map { $0.jsonEncoded() })
-                expect(json2) == JSON.Array(encodableArray2.map { $0.jsonEncoded() })
-            }
-
-            it("initializes dictionary [String: JSONEncodable] into JSON.Object with jsonEncodable() results") {
-                let encodableDictionary1: [String: String] = ["1": "Lorem", "2": "ipsum", "3": "dolor", "4": "sit", "5": "amet"]
-                let encodableDictionary2: [String: JSONEncodable] = ["1": "Lorem", "2": "ipsum", "3": "dolor", "4": "sit", "5": "amet"]
-
-                let json1 = JSON(encoding: encodableDictionary1)
-                let json2 = JSON(encoding: encodableDictionary2)
-
-                expect(json1) == JSON.Object(
-                    [
-                        "1": encodableDictionary1["1"]?.jsonEncoded() ?? JSON.Null,
-                        "2": encodableDictionary1["2"]?.jsonEncoded() ?? JSON.Null,
-                        "3": encodableDictionary1["3"]?.jsonEncoded() ?? JSON.Null,
-                        "4": encodableDictionary1["4"]?.jsonEncoded() ?? JSON.Null,
-                        "5": encodableDictionary1["5"]?.jsonEncoded() ?? JSON.Null,
-                    ]
-                )
-                expect(json2) == JSON.Object(
-                    [
-                        "1": encodableDictionary1["1"]?.jsonEncoded() ?? JSON.Null,
-                        "2": encodableDictionary1["2"]?.jsonEncoded() ?? JSON.Null,
-                        "3": encodableDictionary1["3"]?.jsonEncoded() ?? JSON.Null,
-                        "4": encodableDictionary1["4"]?.jsonEncoded() ?? JSON.Null,
-                        "5": encodableDictionary1["5"]?.jsonEncoded() ?? JSON.Null,
                     ]
                 )
             }

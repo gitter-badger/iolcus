@@ -1,7 +1,11 @@
 //
-//  JSON+JSONDecodable.swift
+//  JSONSpec+Hashable.swift
 //  Medea
 //
+//  Created by Anton Bronnikov on 04/06/2016.
+//
+//
+
 //  Copyright (c) 2016 Anton Bronnikov
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,10 +27,16 @@
 //  SOFTWARE.
 //
 
-extension JSON: JSONDecodable {
-    
-    public init(json: JSON) throws {
-        self = json
+import Nimble
+import Quick
+import Medea
+
+extension JSONSpec {
+
+    func specHashable() {
+
+        // TODO: Write tests
+        
     }
-    
+
 }

@@ -34,11 +34,18 @@ public class JSONSpec: QuickSpec {
             self.specLiteralInitializers()
             self.specEncodableInitializers()
             self.specEquatable()
-            self.specInspecting()
+            self.specHashable()
+            self.specInspection()
             self.specUnwrapping()
-            self.specCoercing()
-            self.specSubscripting()
-
+            self.specCoercion()
+            self.specSubscriptInt()
+            self.specSubscriptString()
+            self.specSubscriptVoid()
+            self.specSubscriptJSONIndex()
+            self.specSubscriptJSONPath()
+            self.specDecoding()
+            self.specSequence()
+            self.specFlatten()
         }
     }
 

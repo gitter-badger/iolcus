@@ -1,5 +1,5 @@
 //
-//  JSON+JSONDecodable.swift
+//  JSONPath+Sequence.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -23,10 +23,10 @@
 //  SOFTWARE.
 //
 
-extension JSON: JSONDecodable {
+extension JSONPath: SequenceType {
     
-    public init(json: JSON) throws {
-        self = json
+    public func generate() -> IndexingGenerator<[JSONIndex]> {
+        return path.generate()
     }
     
 }

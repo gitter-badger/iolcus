@@ -1,5 +1,5 @@
 //
-//  JSON+Initializers.swift
+//  JSON+EncodableInitializers.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -55,7 +55,7 @@ extension JSON {
     // MARK: - [StringConvertible: JSONEncodable]
 
     /// Create `JSON` value from `[StringConvertible: JSONEncodable]`.
-    public init<J: StringConvertible>(encoding dictionary: [J: JSONEncodable]) {
+    public init<S: StringConvertible>(encoding dictionary: [S: JSONEncodable]) {
         var properties: [Swift.String: JSON] = [:]
 
         dictionary.forEach {
@@ -82,14 +82,30 @@ extension JSON {
 
     // MARK: - [StringConvertible: [JSONEncodable]]
 
+    public init<S: StringConvertible>(encoding arraysDictionary: [S: [JSONEncodable]]) {
+        var properties: [Swift.String: JSON] = [:]
+
+        arraysDictionary.forEach { (key: S, array: [JSONEncodable]) in
+            let convertedKey = key.stringConverted()
+            let convertedArray = array.map {
+                $0.jsonEncoded()
+            }
+            properties[convertedKey] = .Array(convertedArray)
+        }
+
+        self = .Object(properties)
+    }
+
     /// Create `JSON` value from `[StringConvertible: [JSONEncodable]]`.
     public init<S: StringConvertible, J: JSONEncodable>(encoding arraysDictionary: [S: [J]]) {
         var properties: [Swift.String: JSON] = [:]
 
-        arraysDictionary.forEach {
-            let key = $0.stringConverted()
-            let value = $1.jsonEncoded()
-            properties[key] = value
+        arraysDictionary.forEach { (key: S, array: [J]) in
+            let convertedKey = key.stringConverted()
+            let convertedArray = array.map {
+                $0.jsonEncoded()
+            }
+            properties[convertedKey] = .Array(convertedArray)
         }
 
         self = .Object(properties)

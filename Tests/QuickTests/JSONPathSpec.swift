@@ -1,5 +1,5 @@
 //
-//  JSON+JSONDecodable.swift
+//  JSONPathSpec.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -23,10 +23,19 @@
 //  SOFTWARE.
 //
 
-extension JSON: JSONDecodable {
-    
-    public init(json: JSON) throws {
-        self = json
+import Nimble
+import Quick
+import Medea
+
+public class JSONPathSpec: QuickSpec {
+
+    public override func spec() {
+        describe("JSONPath") {
+            self.specInitializer()
+            self.specLiteralInitializer()
+            self.specEquatable()
+            self.specSequence()
+        }
     }
-    
+
 }

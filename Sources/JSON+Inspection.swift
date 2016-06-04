@@ -27,13 +27,13 @@ extension JSON {
 
     /// Indicates the kind of `self`.
     ///
-    /// `.Null` => `"Null"` \
+    /// `.Null`       => `"Null"` \
     /// `.Boolean(_)` => `"Boolean"` \
     /// `.Integer(_)` => `"Integer"` \
-    /// `.Float(_)` => `"Float"` \
-    /// `.String(_)` => `"String"` \
-    /// `.Array(_)` => `"Array"` \
-    /// `.Object(_)` => `"Object"`
+    /// `.Float(_)`   => `"Float"` \
+    /// `.String(_)`  => `"String"` \
+    /// `.Array(_)`   => `"Array"` \
+    /// `.Object(_)`  => `"Object"`
     public var kind: Swift.String {
         switch self {
 

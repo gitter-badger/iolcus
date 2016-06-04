@@ -1,5 +1,5 @@
 //
-//  JSONSpec+Inspecting.swift
+//  JSONSpec+Inspection.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -29,7 +29,7 @@ import Medea
 
 extension JSONSpec {
 
-    func specInspecting() {
+    func specInspection() {
         describe("inspection") {
             let jsonNull: JSON = nil
             let jsonBoolean: JSON = false
@@ -38,6 +38,18 @@ extension JSONSpec {
             let jsonString: JSON = ""
             let jsonArray: JSON = []
             let jsonObject: JSON = [:]
+
+            describe("via kind") {
+                it("returns string identifying type of JSON") {
+                    expect(jsonNull.kind) == "Null"
+                    expect(jsonBoolean.kind) == "Boolean"
+                    expect(josnInteger.kind) == "Integer"
+                    expect(jsonFloat.kind) == "Float"
+                    expect(jsonString.kind) == "String"
+                    expect(jsonArray.kind) == "Array"
+                    expect(jsonObject.kind) == "Object"
+                }
+            }
 
             describe("via isNull") {
                 it("only returns true if self is JSON.Null") {

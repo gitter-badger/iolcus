@@ -1,5 +1,5 @@
 //
-//  JSONPath+SequenceType.swift
+//  JSONIndexSpec+LiteralInitializers.swift
 //  Medea
 //
 //  Copyright (c) 2016 Anton Bronnikov
@@ -23,10 +23,16 @@
 //  SOFTWARE.
 //
 
-extension JSONPath: SequenceType {
-    
-    public func generate() -> IndexingGenerator<[JSONIndex]> {
-        return path.generate()
+import Nimble
+import Quick
+import Medea
+
+extension JSONIndexSpec {
+
+    func specLiteralInitializers() {
+
+        // TODO: Write tests
+
     }
-    
+
 }
