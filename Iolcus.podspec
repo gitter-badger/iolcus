@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name         = "Iolcus"
-    s.version      = "0.0.13"
+    s.version      = "0.0.14"
     s.summary      = "Swift JSON library"
     s.description  = <<-DESC
                         Swift JSON library.
