@@ -92,7 +92,7 @@ For example:
 
 ````swift
 let jsonStuff: JSON = [true, "Ook", 36.6, 999, "Eek"]       // Prints:
-//
+                                                            //
 for (_, element) in jsonStuff where element.isNumber {      // Float 36.6
     print(element.kind, element)                            // Integer 999
 }
@@ -171,7 +171,7 @@ jsonDynamicallyGrownArray[].append("...end")        //     "..",
 print(jsonDynamicallyGrownArray)                    // ]
 ````
 
-Main purpose of `[]` subcript is to provide a way to create/grow/shrink `JSON.Array`:
+The main purpose of `[]` subcript is to provide a way to create/grow/shrink `JSON.Array`:
 
 - When getter is applied to `.Array`, it unwraps and returns underlying array of `JSON` sub-elements.
 - When getter is applied to any other `JSON` kind, it will create and return single-element array out of it.
@@ -179,6 +179,7 @@ Main purpose of `[]` subcript is to provide a way to create/grow/shrink `JSON.Ar
 
 For example, the following snippet will produce exactly same output as the one from above:
 
+````swift
 var jsonImplicitlyConvertedArray: JSON = "start"    // Prints:
                                                     //
 jsonImplicitlyConvertedArray[].append("."  )        // [
@@ -187,6 +188,7 @@ jsonImplicitlyConvertedArray[].append("...end")     //     ".",
                                                     //     "..",
 print(jsonImplicitlyConvertedArray)                 //     "...end"
                                                     // ]
+````
 
 ### Encoding
 
@@ -205,7 +207,6 @@ struct Book {
 ````
 
 ... then it can implement `JSONEncodable` as follows:
-
 
 ````swift
 extension Book: JSONEncodable {
@@ -360,7 +361,6 @@ jsonTodoList.forEach {                                              // [0] "Groc
 ````
 
 > **Note:** Non-container `JSON` kinds can be iterated over as well, only there will be just one iteration made.
-
 
 > **Note:** `JSONIndex` is `enum` with three cases: `.This` used for non-container `JSON`, `.Index(Int)` used for `.Array` and `.Key(String)` used for `.Object`.
 
