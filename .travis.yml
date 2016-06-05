@@ -11,20 +11,20 @@ matrix:
   - env: Type=OSX
     script: 
       - xcodebuild clean build test
-          -workspace Medea.xcworkspace 
-          -scheme Medea_OSX -destination "platform=OS X"
+          -workspace Iolcus.xcworkspace 
+          -scheme Iolcus_OSX -destination "platform=OS X"
           | xcpretty && exit ${PIPESTATUS[0]}
   - env: Type=iOS
     script: 
       - xcodebuild clean build test
-          -workspace Medea.xcworkspace 
-          -scheme Medea_iOS -destination "platform=iOS Simulator,name=iPad Pro" 
+          -workspace Iolcus.xcworkspace 
+          -scheme Iolcus_iOS -destination "platform=iOS Simulator,name=iPad Pro" 
           | xcpretty && exit ${PIPESTATUS[0]}
   - env: Type=tvOS
     script: 
       - xcodebuild clean build test
-          -workspace Medea.xcworkspace 
-          -scheme Medea_tvOS -destination "platform=tvOS Simulator,name=Apple TV 1080p" 
+          -workspace Iolcus.xcworkspace 
+          -scheme Iolcus_tvOS -destination "platform=tvOS Simulator,name=Apple TV 1080p" 
           | xcpretty && exit ${PIPESTATUS[0]}
 
 addons:
@@ -33,4 +33,4 @@ addons:
 
 notifications:
   email: false
-  slack: swiftmedea:N9Gzr5SCnYzIQew5OBcGSEti
+  slack: iolcus:N9Gzr5SCnYzIQew5OBcGSEti
