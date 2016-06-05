@@ -30,9 +30,13 @@ import Medea
 extension JSONSpec {
 
     func specSubscriptJSONPath() {
+        describe("subscript") {
+            context("with JSONPath index") {
 
-        // TODO: Write tests
-        
+                // TODO: Write tests
+
+            }
+        }
     }
 
 }

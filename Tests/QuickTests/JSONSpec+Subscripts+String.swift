@@ -31,7 +31,7 @@ extension JSONSpec {
 
     func specSubscriptString() {
         describe("subscript") {
-            describe("with a string index") {
+            context("with String index") {
                 context("for JSON.Null") {
                     var json: JSON = nil
                     describe("subscript getter") {

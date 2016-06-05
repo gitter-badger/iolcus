@@ -30,9 +30,13 @@ import Medea
 extension JSONSpec {
 
     func specSubscriptJSONIndex() {
+        describe("subscript") {
+            context("with JSONIndex index") {
 
-        // TODO: Write tests
+                // TODO: Write tests
 
+            }
+        }
     }
 
 }

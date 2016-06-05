@@ -30,9 +30,13 @@ import Medea
 extension JSONSpec {
 
     func specSubscriptVoid() {
+        describe("subscript") {
+            context("with Void index") {
 
-        // TODO: Write tests
-        
+                // TODO: Write tests
+
+            }
+        }
     }
 
 }
