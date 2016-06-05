@@ -1,6 +1,6 @@
 //
 //  JSONPathSpec+Initializer.swift
-//  Medea
+//  Iolcus
 //
 //  Copyright (c) 2016 Anton Bronnikov
 //
@@ -25,7 +25,7 @@
 
 import Nimble
 import Quick
-import Medea
+import Iolcus
 
 extension JSONPathSpec {
 

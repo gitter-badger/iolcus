@@ -1,6 +1,6 @@
 //
-//  Medea_watchOS.h
-//  Medea_watchOS
+//  Iolcus_OSX.h
+//  Iolcus_OSX
 //
 //  Copyright (c) 2016 Anton Bronnikov
 //
@@ -23,8 +23,8 @@
 //  SOFTWARE.
 //
 
-//! Project version number for Medea_watchOS.
-FOUNDATION_EXPORT double Medea_watchOSVersionNumber;
+//! Project version number for Iolcus-OSX.
+FOUNDATION_EXPORT double Iolcus_OSXVersionNumber;
 
-//! Project version string for Medea_watchOS.
-FOUNDATION_EXPORT const unsigned char Medea_watchOSVersionString[];
+//! Project version string for Iolcus-OSX.
+FOUNDATION_EXPORT const unsigned char Iolcus_OSXVersionString[];

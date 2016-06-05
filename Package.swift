@@ -1,6 +1,6 @@
 //
 //  Package.swift
-//  Medea
+//  Iolcus
 //
 //  Copyright (c) 2016 Anton Bronnikov
 //
@@ -26,7 +26,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "Medea",
+    name: "Iolcus",
     exclude: [
         "Support",
         "Tests/Support",

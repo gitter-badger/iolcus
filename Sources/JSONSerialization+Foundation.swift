@@ -1,6 +1,6 @@
 //
 //  JSONSerialization+Foundation.swift
-//  Medea
+//  Iolcus
 //
 //  Copyright (c) 2016 Anton Bronnikov
 //
@@ -31,7 +31,7 @@
 //        
 //        // MARK: - Public API
 //        
-//        /// Makes Foundation's `AnyObject` representation of JSON using Medea's `JSON` value.
+//        /// Makes Foundation's `AnyObject` representation of JSON using Iolcus `JSON` value.
 //        public static func makeAnyObject(json json: JSON) -> AnyObject {
 //            switch json {
 //                

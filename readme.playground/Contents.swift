@@ -1,6 +1,6 @@
 /*:
   
-# Medea
+# Iolcus
   
  There is a plenty of JSON libraries for Swift already.  Why this one?
 
@@ -22,13 +22,13 @@
 
  ## Usage
 
- The core of `Medea` framework is `JSON` type.  In practice it's just an `enum`:
+ The core of `Iolcus` framework is `JSON` type.  In practice it's just an `enum`:
  
  */
         indirect enum _JSON {                       // Please disregard underscore in
             case Null                               // front of _JSON.  It's only
             case Boolean(Bool)                      // introduced to avoid collision
-            case Integer(Int)                       // with JSON from Medea framework.
+            case Integer(Int)                       // with JSON from Iolcus framework.
             case Float(Double)
             case String(Swift.String )
             case Array([JSON])
@@ -41,7 +41,7 @@
  It's possible to create an instance of `JSON` by just assigning some property with a literal:
   
  */
-        import Medea
+        import Iolcus
 
         let jsonBoolean: JSON = true
         let jsonInteger: JSON = 42
@@ -396,5 +396,4 @@
 /*:
  
  > `JSONPath` is essentially an array of `JSONIndex` values.  It can be constructed from the sequence of `JSONIndex` values or from a literal.  It can be used in the subsript accessor as well.
-
- */
+*/

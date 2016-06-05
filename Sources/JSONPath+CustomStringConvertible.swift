@@ -1,6 +1,6 @@
 //
 //  JSONPath+CustomStringConvertible.swift
-//  Medea
+//  Iolcus
 //
 //  Copyright (c) 2016 Anton Bronnikov
 //

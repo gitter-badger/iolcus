@@ -5,14 +5,14 @@ def testing_pods
     pod 'Nimble'
 end
 
-target 'Medea_OSXTests' do
+target 'Iolcus_OSXTests' do
     testing_pods
 end
 
-target 'Medea_iOSTests' do
+target 'Iolcus_iOSTests' do
     testing_pods
 end
 
-target 'Medea_tvOSTests' do
+target 'Iolcus_tvOSTests' do
     testing_pods
 end

@@ -1,6 +1,6 @@
 //
 //  JSONDeserialization+Foundation.swift
-//  Medea
+//  Iolcus
 //
 //  Copyright (c) 2016 Anton Bronnikov
 //
@@ -31,11 +31,11 @@
 //        
 //        // MARK: - Public API
 //        
-//        /// Makes Medea `JSON` value using Foundation's `AnyObject` representation of JSON.
+//        /// Makes Iolcus `JSON` value using Foundation's `AnyObject` representation of JSON.
 //        ///
 //        /// - note: Foundation represents JSON's number and boolean as the same internal type, namely
 //        ///         `NSNumber`.  This means that there is really no way to tell one from another while
-//        ///         converting from Foundation to Medea.  JSON's `true` will end up as `.Integer(1)`
+//        ///         converting from Foundation to Iolcus.  JSON's `true` will end up as `.Integer(1)`
 //        ///         this way and `false` will be `.Integer(0)`.
 //        ///
 //        /// - Throws: `JSON.Error.Converting`
@@ -110,7 +110,7 @@
 //        /// Exception while coverting to/from Foundation representation of JSON.
 //        public enum Converting: ErrorType {
 //
-//            /// Failed to convert from Foundation `JSON` representation into Medea `JSON`.
+//            /// Failed to convert from Foundation `JSON` representation into Iolcus `JSON`.
 //            case FailedToConvertFromAnyObject(type: Any.Type)
 //            
 //        }

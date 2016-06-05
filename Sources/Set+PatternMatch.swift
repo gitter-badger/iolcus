@@ -1,6 +1,6 @@
 //
 //  Set+PatternMatch.swift
-//  Medea
+//  Iolcus
 //
 //  Copyright (c) 2016 Anton Bronnikov
 //

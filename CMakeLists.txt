@@ -1,6 +1,6 @@
 #
 #  CMakeLists.txt
-#  Medea
+#  Iolcus
 #
 #  Copyright (c) 2016 Anton Bronnikov
 #
@@ -25,9 +25,9 @@
 
 cmake_minimum_required(VERSION 3.5)
 
-project(Medea)
+project(Iolcus)
 
-add_custom_target(Medea
+add_custom_target(Iolcus
         COMMAND /opt/swift/usr/bin/swift build
         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
         SOURCES Package.swift Sources)

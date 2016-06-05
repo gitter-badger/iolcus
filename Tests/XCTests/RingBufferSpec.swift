@@ -1,6 +1,6 @@
 //
 //  RingBufferSpec.swift
-//  Medea
+//  Iolcus
 //
 //  Copyright (c) 2016 Anton Bronnikov
 //
@@ -23,7 +23,7 @@
 //  SOFTWARE.
 //
 
-@testable import Medea
+@testable import Iolcus
 import XCTest
 
 class RingBufferSpec: XCTestCase {

@@ -1,6 +1,6 @@
 //
-//  Medea_OSX.h
-//  Medea_OSX
+//  Iolcus_iOS.h
+//  Iolcus_iOS
 //
 //  Copyright (c) 2016 Anton Bronnikov
 //
@@ -23,8 +23,8 @@
 //  SOFTWARE.
 //
 
-//! Project version number for Medea-OSX.
-FOUNDATION_EXPORT double Medea_OSXVersionNumber;
+//! Project version number for Iolcus_iOS.
+FOUNDATION_EXPORT double Iolcus_iOSVersionNumber;
 
-//! Project version string for Medea-OSX.
-FOUNDATION_EXPORT const unsigned char Medea_OSXVersionString[];
+//! Project version string for Iolcus_iOS.
+FOUNDATION_EXPORT const unsigned char Iolcus_iOSVersionString[];

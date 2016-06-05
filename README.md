@@ -1,9 +1,9 @@
-# Medea
+# Iolcus
 
-[![license](https://img.shields.io/github/license/swiftmedea/medea.svg?maxAge=2592000)](https://raw.githubusercontent.com/SwiftMedea/Medea/master/LICENSE)
-[![Code Climate](https://codeclimate.com/github/SwiftMedea/Medea/badges/gpa.svg)](https://codeclimate.com/github/SwiftMedea/Medea)
-[![Issue Count](https://codeclimate.com/github/SwiftMedea/Medea/badges/issue_count.svg)](https://codeclimate.com/github/SwiftMedea/Medea)
-[![Travis CI](https://travis-ci.org/SwiftMedea/Medea.svg?branch=master)](https://travis-ci.org/SwiftMedea/Medea)
+[![license](https://img.shields.io/github/license/iolcus/iolcus.svg?maxAge=2592000)](https://raw.githubusercontent.com/iolcus/iolcus/master/LICENSE)
+[![Code Climate](https://codeclimate.com/github/iolcus/iolcus/badges/gpa.svg)](https://codeclimate.com/github/iolcus/iolcus)
+[![Issue Count](https://codeclimate.com/github/iolcus/iolcus/badges/issue_count.svg)](https://codeclimate.com/github/iolcus/iolcus)
+[![Travis CI](https://travis-ci.org/iolcus/iolcus.svg?branch=master)](https://travis-ci.org/iolcus/iolcus)
 
 There is a plenty of JSON libraries for Swift already.  Why this one?
 
@@ -28,7 +28,7 @@ This library was inspired by [`SwiftyJSON`](https://github.com/SwiftyJSON/Swifty
 
 ## Usage
 
-The core of `Medea` framework is `JSON` type.  In practice it's just an `enum`:
+The core of `Iolcus` framework is `JSON` type.  In practice it's just an `enum`:
 
 ````swift
 enum JSON {
@@ -47,7 +47,7 @@ enum JSON {
 It's possible to create an instance of `JSON` by just assigning some property with a literal:
   
 ````swift
-import Medea
+import Iolcus
 
 let jsonBoolean: JSON = true
 let jsonInteger: JSON = 42

@@ -1,6 +1,6 @@
 //
 //  JSONSpec+Hashable.swift
-//  Medea
+//  Iolcus
 //
 //  Created by Anton Bronnikov on 04/06/2016.
 //
@@ -29,7 +29,7 @@
 
 import Nimble
 import Quick
-import Medea
+import Iolcus
 
 extension JSONSpec {
 
