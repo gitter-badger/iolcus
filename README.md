@@ -1,5 +1,7 @@
 # Iolcus
 
+[![Join the chat at https://gitter.im/iolcus/iolcus](https://badges.gitter.im/iolcus/iolcus.svg)](https://gitter.im/iolcus/iolcus?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![license](https://img.shields.io/github/license/iolcus/iolcus.svg?maxAge=2592000)](https://raw.githubusercontent.com/iolcus/iolcus/master/LICENSE)
 [![Code Climate](https://codeclimate.com/github/iolcus/iolcus/badges/gpa.svg)](https://codeclimate.com/github/iolcus/iolcus)
 [![Issue Count](https://codeclimate.com/github/iolcus/iolcus/badges/issue_count.svg)](https://codeclimate.com/github/iolcus/iolcus)
